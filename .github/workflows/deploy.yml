@@ -61,7 +61,7 @@ jobs:
           source-dir: site/out
 
       - name: Deploy production
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           clean-exclude: pr-preview/
