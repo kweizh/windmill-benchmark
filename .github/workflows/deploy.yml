@@ -54,6 +54,9 @@ jobs:
         run: bun run build
         working-directory: site
 
+      - name: Disable Jekyll on Pages
+        run: touch site/out/.nojekyll
+
       - name: Deploy preview
         if: github.event_name == 'pull_request'
         uses: rossjrw/pr-preview-action@v1
