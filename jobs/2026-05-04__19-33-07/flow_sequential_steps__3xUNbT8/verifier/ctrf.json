@@ -1,0 +1,119 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 11,
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777950676.068729,
+            "stop": 1777950676.105023
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_generate_message_ts_exists",
+                "status": "passed",
+                "duration": 0.0003613739972934127,
+                "start": 1777950676.0748425,
+                "stop": 1777950676.075376,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wrap_message_ts_exists",
+                "status": "passed",
+                "duration": 0.0003179990453645587,
+                "start": 1777950676.0754485,
+                "stop": 1777950676.075899,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_exists",
+                "status": "passed",
+                "duration": 0.00028929102700203657,
+                "start": 1777950676.0759685,
+                "stop": 1777950676.0763855,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_generate_message_runtime",
+                "status": "passed",
+                "duration": 0.014547125087119639,
+                "start": 1777950676.0764444,
+                "stop": 1777950676.0911806,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wrap_message_runtime",
+                "status": "passed",
+                "duration": 0.011310217785649002,
+                "start": 1777950676.0912836,
+                "stop": 1777950676.102762,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_has_summary",
+                "status": "passed",
+                "duration": 0.00022333301603794098,
+                "start": 1777950676.1028771,
+                "stop": 1777950676.1032002,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_has_module_ids_a_and_b",
+                "status": "passed",
+                "duration": 0.00019516597967594862,
+                "start": 1777950676.1032598,
+                "stop": 1777950676.1035328,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_input_transform_uses_javascript_expression",
+                "status": "passed",
+                "duration": 0.00020516698714345694,
+                "start": 1777950676.1035838,
+                "stop": 1777950676.103863,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_step_a_has_static_name",
+                "status": "passed",
+                "duration": 0.0002186250640079379,
+                "start": 1777950676.1039338,
+                "stop": 1777950676.1042445,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_generate_message_metadata_exists",
+                "status": "passed",
+                "duration": 0.0001771240495145321,
+                "start": 1777950676.1042995,
+                "stop": 1777950676.1045508,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wrap_message_metadata_exists",
+                "status": "passed",
+                "duration": 0.0001850408734753728,
+                "start": 1777950676.1046019,
+                "stop": 1777950676.1048899,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

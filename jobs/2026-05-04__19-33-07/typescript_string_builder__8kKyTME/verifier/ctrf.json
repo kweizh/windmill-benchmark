@@ -1,0 +1,92 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 4,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777949050.3055928,
+            "stop": 1777949050.4813075
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_build_report_ts_exists",
+                "status": "passed",
+                "duration": 0.0002470009494572878,
+                "start": 1777949050.3107202,
+                "stop": 1777949050.3111,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_build_report_yaml_exists",
+                "status": "passed",
+                "duration": 0.00018824997823685408,
+                "start": 1777949050.3111677,
+                "stop": 1777949050.3114426,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_report_structure",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.08350345387589186,
+                "start": 1777949050.3114963,
+                "stop": 1777949050.400872,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_report_structure():\n        \"\"\"Priority 1: header, items, and footer are correctly assembled.\"\"\"\n>       report = _eval_report(\"Sales\", [\"Widget A: $10\", \"Widget B: $20\"])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:36: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nargs = ('Sales', ['Widget A: $10', 'Widget B: $20'])\nfh = <_io.TextIOWrapper name='/home/user/windmill-project/f/scripts/build_report.ts' mode='r' encoding='utf-8'>\nsrc = 'export async function main(title: string, items: string[], footer: string = \"End of report\") {\\n  const lines = [\\n    `=== ${title} ===`,\\n    ...items.map(i => `- ${i}`),\\n    `--- ${footer} ---`,\\n  ];\\n  return lines.join(\"\\\\n\");\\n}\\n'\njs = 'async function main(title, items[], footer = \"End of report\") {\\n  const lines = [\\n    `=== ${title} ===`,\\n    ...items.map(i => `- ${i}`),\\n    `--- ${footer} ---`,\\n  ];\\n  return lines.join(\"\\\\n\");\\n}\\n'\n\n    def _eval_report(*args) -> str:\n        with open(BUILD_REPORT_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\":\\s*(string|string\\[\\])\", \"\", src)\n        js = js.replace(\"export async function\", \"async function\")\n        arg_str = \", \".join(\n            repr(a) if isinstance(a, str) else f\"[{', '.join(repr(x) for x in a)}]\"\n            for a in args\n        )\n        call = f\"main({arg_str}).then(r => process.stdout.write(r));\"\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:1\nE         async function main(title, items[], footer = \"End of report\") {\nE                                         ^\nE         Expected ',', got '['\nE         \nE         SyntaxError: Unexpected token '['\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(title, items[], footer = \"End of report\") {\\n  const lines =...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n').returncode\n\ntests/test_final_state.py:30: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_custom_footer",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.03853815805632621,
+                "start": 1777949050.4009583,
+                "stop": 1777949050.4420338,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_custom_footer():\n        \"\"\"Priority 1: custom footer replaces default.\"\"\"\n>       report = _eval_report(\"Q1\", [\"Alpha\"], \"Done\")\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:46: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nargs = ('Q1', ['Alpha'], 'Done')\nfh = <_io.TextIOWrapper name='/home/user/windmill-project/f/scripts/build_report.ts' mode='r' encoding='utf-8'>\nsrc = 'export async function main(title: string, items: string[], footer: string = \"End of report\") {\\n  const lines = [\\n    `=== ${title} ===`,\\n    ...items.map(i => `- ${i}`),\\n    `--- ${footer} ---`,\\n  ];\\n  return lines.join(\"\\\\n\");\\n}\\n'\njs = 'async function main(title, items[], footer = \"End of report\") {\\n  const lines = [\\n    `=== ${title} ===`,\\n    ...items.map(i => `- ${i}`),\\n    `--- ${footer} ---`,\\n  ];\\n  return lines.join(\"\\\\n\");\\n}\\n'\n\n    def _eval_report(*args) -> str:\n        with open(BUILD_REPORT_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\":\\s*(string|string\\[\\])\", \"\", src)\n        js = js.replace(\"export async function\", \"async function\")\n        arg_str = \", \".join(\n            repr(a) if isinstance(a, str) else f\"[{', '.join(repr(x) for x in a)}]\"\n            for a in args\n        )\n        call = f\"main({arg_str}).then(r => process.stdout.write(r));\"\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:1\nE         async function main(title, items[], footer = \"End of report\") {\nE                                         ^\nE         Expected ',', got '['\nE         \nE         SyntaxError: Unexpected token '['\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(title, items[], footer = \"End of report\") {\\n  const lines =...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n').returncode\n\ntests/test_final_state.py:30: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_empty_items",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.03566236002370715,
+                "start": 1777949050.442122,
+                "stop": 1777949050.4801116,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_empty_items():\n        \"\"\"Priority 1: empty items list gives 2-line report.\"\"\"\n>       report = _eval_report(\"Empty\", [])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:52: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nargs = ('Empty', [])\nfh = <_io.TextIOWrapper name='/home/user/windmill-project/f/scripts/build_report.ts' mode='r' encoding='utf-8'>\nsrc = 'export async function main(title: string, items: string[], footer: string = \"End of report\") {\\n  const lines = [\\n    `=== ${title} ===`,\\n    ...items.map(i => `- ${i}`),\\n    `--- ${footer} ---`,\\n  ];\\n  return lines.join(\"\\\\n\");\\n}\\n'\njs = 'async function main(title, items[], footer = \"End of report\") {\\n  const lines = [\\n    `=== ${title} ===`,\\n    ...items.map(i => `- ${i}`),\\n    `--- ${footer} ---`,\\n  ];\\n  return lines.join(\"\\\\n\");\\n}\\n'\n\n    def _eval_report(*args) -> str:\n        with open(BUILD_REPORT_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\":\\s*(string|string\\[\\])\", \"\", src)\n        js = js.replace(\"export async function\", \"async function\")\n        arg_str = \", \".join(\n            repr(a) if isinstance(a, str) else f\"[{', '.join(repr(x) for x in a)}]\"\n            for a in args\n        )\n        call = f\"main({arg_str}).then(r => process.stdout.write(r));\"\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:1\nE         async function main(title, items[], footer = \"End of report\") {\nE                                         ^\nE         Expected ',', got '['\nE         \nE         SyntaxError: Unexpected token '['\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(title, items[], footer = \"End of report\") {\\n  const lines =...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n').returncode\n\ntests/test_final_state.py:30: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_language",
+                "status": "passed",
+                "duration": 0.0003191678551957011,
+                "start": 1777949050.4802117,
+                "stop": 1777949050.480661,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_summary",
+                "status": "passed",
+                "duration": 0.00029066717252135277,
+                "start": 1777949050.4807434,
+                "stop": 1777949050.481144,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

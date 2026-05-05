@@ -1,0 +1,118 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 11ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 7 items
+
+tests/test_final_state.py ..FF...                                        [100%]
+
+=================================== FAILURES ===================================
+____________________________ test_single_line_item _____________________________
+
+    def test_single_line_item():
+        """Priority 1: qty=2, unit_price=5, tax=10% → subtotal=$10, tax=$1, total=$11."""
+>       r = _eval_invoice([{"name": "Widget", "qty": 2, "unit_price": 5}], 0.1, "USD")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+items = [{'name': 'Widget', 'qty': 2, 'unit_price': 5}], tax_rate = 0.1
+currency = 'USD'
+
+    def _eval_invoice(items: list, tax_rate: float = 0.1, currency: str = "USD") -> dict:
+        with open(INVOICE_TS) as fh:
+            src = fh.read()
+        js = re.sub(r"Array<[^>]+>", "", src)
+        js = re.sub(r":\s*(number|string|boolean)", "", js)
+        js = js.replace("export async function", "async function")
+        call = (
+            f"main({json.dumps(items)}, {tax_rate}, {repr(currency)})"
+            f".then(r => console.log(JSON.stringify(r)));"
+        )
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed: {result.stderr}"
+E       AssertionError: node failed: [eval]:5
+E         function computeSubtotal(items: ) {
+E                                       ^
+E         Unexpected token `)`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (
+E         
+E         SyntaxError: Unexpected token ':'
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', 'function formatCurrency(amount, currency) {\n  return `${currency} ${amount.toFi...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n").returncode
+
+tests/test_final_state.py:31: AssertionError
+_____________________________ test_two_line_items ______________________________
+
+    def test_two_line_items():
+        """Priority 1: A:$100 + B:$60 = $160 subtotal."""
+        items = [{"name": "A", "qty": 1, "unit_price": 100}, {"name": "B", "qty": 3, "unit_price": 20}]
+>       r = _eval_invoice(items, 0.1, "USD")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+items = [{'name': 'A', 'qty': 1, 'unit_price': 100}, {'name': 'B', 'qty': 3, 'unit_price': 20}]
+tax_rate = 0.1, currency = 'USD'
+
+    def _eval_invoice(items: list, tax_rate: float = 0.1, currency: str = "USD") -> dict:
+        with open(INVOICE_TS) as fh:
+            src = fh.read()
+        js = re.sub(r"Array<[^>]+>", "", src)
+        js = re.sub(r":\s*(number|string|boolean)", "", js)
+        js = js.replace("export async function", "async function")
+        call = (
+            f"main({json.dumps(items)}, {tax_rate}, {repr(currency)})"
+            f".then(r => console.log(JSON.stringify(r)));"
+        )
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed: {result.stderr}"
+E       AssertionError: node failed: [eval]:5
+E         function computeSubtotal(items: ) {
+E                                       ^
+E         Unexpected token `)`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (
+E         
+E         SyntaxError: Unexpected token ':'
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', 'function formatCurrency(amount, currency) {\n  return `${currency} ${amount.toFi...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n").returncode
+
+tests/test_final_state.py:31: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_invoice_ts_exists
+PASSED tests/test_final_state.py::test_invoice_yaml_exists
+PASSED tests/test_final_state.py::test_helper_not_exported
+PASSED tests/test_final_state.py::test_yaml_language
+PASSED tests/test_final_state.py::test_yaml_summary
+FAILED tests/test_final_state.py::test_single_line_item - AssertionError: nod...
+FAILED tests/test_final_state.py::test_two_line_items - AssertionError: node ...
+========================= 2 failed, 5 passed in 0.14s ==========================

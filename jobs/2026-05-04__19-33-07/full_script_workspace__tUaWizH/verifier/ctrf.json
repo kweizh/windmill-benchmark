@@ -1,0 +1,188 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 14,
+            "passed": 0,
+            "failed": 14,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777949888.187927,
+            "stop": 1777949888.2235496
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_fetch_users_ts_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0004026221577078104,
+                "start": 1777949888.195402,
+                "stop": 1777949888.2005963,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_fetch_users_ts_exists():\n>       assert os.path.isfile(FETCH_TS)\nE       AssertionError: assert False\nE        +  where False = <function isfile at 0xf73b3c4f0220>('/home/user/windmill-project/f/scripts/fetch_users.ts')\nE        +    where <function isfile at 0xf73b3c4f0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:34: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_enrich_users_ts_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003405400784686208,
+                "start": 1777949888.2006972,
+                "stop": 1777949888.202118,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_enrich_users_ts_exists():\n>       assert os.path.isfile(ENRICH_TS)\nE       AssertionError: assert False\nE        +  where False = <function isfile at 0xf73b3c4f0220>('/home/user/windmill-project/f/scripts/enrich_users.ts')\nE        +    where <function isfile at 0xf73b3c4f0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:38: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_export_csv_ts_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0002949980553239584,
+                "start": 1777949888.202185,
+                "stop": 1777949888.2035022,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_export_csv_ts_exists():\n>       assert os.path.isfile(EXPORT_TS)\nE       AssertionError: assert False\nE        +  where False = <function isfile at 0xf73b3c4f0220>('/home/user/windmill-project/f/scripts/export_csv.ts')\nE        +    where <function isfile at 0xf73b3c4f0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:42: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00034491391852498055,
+                "start": 1777949888.203563,
+                "stop": 1777949888.205032,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_flow_yaml_exists():\n>       assert os.path.isfile(FLOW_YAML)\nE       AssertionError: assert False\nE        +  where False = <function isfile at 0xf73b3c4f0220>('/home/user/windmill-project/f/flows/user_export_pipeline.yaml')\nE        +    where <function isfile at 0xf73b3c4f0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:46: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_fetch_users_metadata_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003076639259234071,
+                "start": 1777949888.2050974,
+                "stop": 1777949888.2065105,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_fn():\n>       assert os.path.isfile(os.path.join(SCRIPTS_DIR, f\"{name}.script.yaml\")), \\\n            f\"{name}.script.yaml not found.\"\nE       AssertionError: fetch_users.script.yaml not found.\nE       assert False\nE        +  where False = <function isfile at 0xf73b3c4f0220>('/home/user/windmill-project/f/scripts/fetch_users.script.yaml')\nE        +    where <function isfile at 0xf73b3c4f0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\nE        +    and   '/home/user/windmill-project/f/scripts/fetch_users.script.yaml' = <function join at 0xf73b3c4f0c20>('/home/user/windmill-project/f/scripts', 'fetch_users.script.yaml')\nE        +      where <function join at 0xf73b3c4f0c20> = <module 'posixpath' (frozen)>.join\nE        +        where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:52: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_enrich_users_metadata_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00035853893496096134,
+                "start": 1777949888.2065701,
+                "stop": 1777949888.2080991,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_fn():\n>       assert os.path.isfile(os.path.join(SCRIPTS_DIR, f\"{name}.script.yaml\")), \\\n            f\"{name}.script.yaml not found.\"\nE       AssertionError: enrich_users.script.yaml not found.\nE       assert False\nE        +  where False = <function isfile at 0xf73b3c4f0220>('/home/user/windmill-project/f/scripts/enrich_users.script.yaml')\nE        +    where <function isfile at 0xf73b3c4f0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\nE        +    and   '/home/user/windmill-project/f/scripts/enrich_users.script.yaml' = <function join at 0xf73b3c4f0c20>('/home/user/windmill-project/f/scripts', 'enrich_users.script.yaml')\nE        +      where <function join at 0xf73b3c4f0c20> = <module 'posixpath' (frozen)>.join\nE        +        where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:52: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_export_csv_metadata_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003253309987485409,
+                "start": 1777949888.2081585,
+                "stop": 1777949888.2095916,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_fn():\n>       assert os.path.isfile(os.path.join(SCRIPTS_DIR, f\"{name}.script.yaml\")), \\\n            f\"{name}.script.yaml not found.\"\nE       AssertionError: export_csv.script.yaml not found.\nE       assert False\nE        +  where False = <function isfile at 0xf73b3c4f0220>('/home/user/windmill-project/f/scripts/export_csv.script.yaml')\nE        +    where <function isfile at 0xf73b3c4f0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\nE        +    and   '/home/user/windmill-project/f/scripts/export_csv.script.yaml' = <function join at 0xf73b3c4f0c20>('/home/user/windmill-project/f/scripts', 'export_csv.script.yaml')\nE        +      where <function join at 0xf73b3c4f0c20> = <module 'posixpath' (frozen)>.join\nE        +        where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:52: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_fetch_users_generates_correct_count",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00029683089815080166,
+                "start": 1777949888.209648,
+                "stop": 1777949888.2118282,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_fetch_users_generates_correct_count():\n        \"\"\"Priority 1: fetch_users(3) returns exactly 3 users with ids 1,2,3.\"\"\"\n>       users = _eval_ts(FETCH_TS, \"main(3).then(r => console.log(JSON.stringify(r)));\")\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:62: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/windmill-project/f/scripts/fetch_users.ts'\ncall = 'main(3).then(r => console.log(JSON.stringify(r)));'\n\n    def _eval_ts(path: str, call: str) -> object:\n>       with open(path) as fh:\n             ^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/fetch_users.ts'\n\ntests/test_final_state.py:24: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_enrich_users_adds_display_field",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00029183190781623125,
+                "start": 1777949888.2118847,
+                "stop": 1777949888.2141519,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_enrich_users_adds_display_field():\n        \"\"\"Priority 1: enrich_users adds display field to each user.\"\"\"\n        sample = [{\"id\": 1, \"name\": \"Alice\", \"email\": \"alice@example.com\"}]\n>       enriched = _eval_ts(ENRICH_TS,\n            f\"main({json.dumps(sample)}, '').then(r => console.log(JSON.stringify(r)));\")\n\ntests/test_final_state.py:72: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/windmill-project/f/scripts/enrich_users.ts'\ncall = 'main([{\"id\": 1, \"name\": \"Alice\", \"email\": \"alice@example.com\"}], \\'\\').then(r => console.log(JSON.stringify(r)));'\n\n    def _eval_ts(path: str, call: str) -> object:\n>       with open(path) as fh:\n             ^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/enrich_users.ts'\n\ntests/test_final_state.py:24: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_enrich_users_domain_filter",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003107470693066716,
+                "start": 1777949888.2142088,
+                "stop": 1777949888.2163591,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_enrich_users_domain_filter():\n        \"\"\"Priority 1: domain_filter removes non-matching users.\"\"\"\n        sample = [\n            {\"id\": 1, \"name\": \"Alice\", \"email\": \"alice@example.com\"},\n            {\"id\": 2, \"name\": \"Bob\", \"email\": \"bob@other.com\"},\n        ]\n>       enriched = _eval_ts(ENRICH_TS,\n            f\"main({json.dumps(sample)}, '@example.com').then(r => console.log(JSON.stringify(r)));\")\n\ntests/test_final_state.py:85: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/windmill-project/f/scripts/enrich_users.ts'\ncall = 'main([{\"id\": 1, \"name\": \"Alice\", \"email\": \"alice@example.com\"}, {\"id\": 2, \"name\": \"Bob\", \"email\": \"bob@other.com\"}], \\'@example.com\\').then(r => console.log(JSON.stringify(r)));'\n\n    def _eval_ts(path: str, call: str) -> object:\n>       with open(path) as fh:\n             ^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/enrich_users.ts'\n\ntests/test_final_state.py:24: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_export_csv_basic",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.000289413845166564,
+                "start": 1777949888.2164237,
+                "stop": 1777949888.2186356,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_export_csv_basic():\n        \"\"\"Priority 1: export_csv produces correct CSV with header and rows.\"\"\"\n        records = [{\"a\": \"1\", \"b\": \"2\"}, {\"a\": \"3\", \"b\": \"4\"}]\n>       r = _eval_ts(EXPORT_TS,\n            f\"main({json.dumps(records)}).then(r => console.log(JSON.stringify(r)));\")\n\ntests/test_final_state.py:94: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/windmill-project/f/scripts/export_csv.ts'\ncall = 'main([{\"a\": \"1\", \"b\": \"2\"}, {\"a\": \"3\", \"b\": \"4\"}]).then(r => console.log(JSON.stringify(r)));'\n\n    def _eval_ts(path: str, call: str) -> object:\n>       with open(path) as fh:\n             ^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/export_csv.ts'\n\ntests/test_final_state.py:24: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_export_csv_empty",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0002832899335771799,
+                "start": 1777949888.2187061,
+                "stop": 1777949888.2207823,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_export_csv_empty():\n        \"\"\"Priority 1: empty records \u2192 csv='' and row_count=0.\"\"\"\n>       r = _eval_ts(EXPORT_TS, \"main([]).then(r => console.log(JSON.stringify(r)));\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:104: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/windmill-project/f/scripts/export_csv.ts'\ncall = 'main([]).then(r => console.log(JSON.stringify(r)));'\n\n    def _eval_ts(path: str, call: str) -> object:\n>       with open(path) as fh:\n             ^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/export_csv.ts'\n\ntests/test_final_state.py:24: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_has_three_steps",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00027712411247193813,
+                "start": 1777949888.220843,
+                "stop": 1777949888.2220829,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_flow_yaml_has_three_steps():\n>       with open(FLOW_YAML) as fh:\n             ^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/flows/user_export_pipeline.yaml'\n\ntests/test_final_state.py:110: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_wires_results",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.000286039081402123,
+                "start": 1777949888.222139,
+                "stop": 1777949888.2233949,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_flow_yaml_wires_results():\n>       with open(FLOW_YAML) as fh:\n             ^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/flows/user_export_pipeline.yaml'\n\ntests/test_final_state.py:118: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

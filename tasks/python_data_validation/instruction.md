@@ -1,0 +1,38 @@
+# Python Windmill Script — Input Data Validator
+
+## Background
+
+Windmill scripts often act as validation gates in a flow — they inspect incoming data, collect all validation errors, and either return a clean validated object or raise an error listing every problem. This prevents bad data from propagating to downstream steps.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/validate_user.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(user: dict) -> dict:
+  ```
+  The `user` dict may contain: `name` (str), `email` (str), `age` (int).
+- Validation rules:
+  - `name`: required, must be a non-empty string
+  - `email`: required, must contain `@` and `.`
+  - `age`: optional; if present, must be an integer between 0 and 150
+- Collect ALL validation errors into a list.
+- If there are any errors, raise `ValueError(f"Validation failed: {'; '.join(errors)}")`
+- If valid, return:
+  ```python
+  {"valid": True, "name": user["name"].strip(), "email": user["email"].lower(), "age": user.get("age")}
+  ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/validate_user.script.yaml` with:
+  - `summary: "Validate and normalize a user input dict"`
+  - `language: python3`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Collect ALL errors before raising (not fail-fast)
+- `email` must be lowercased in output
+- `name` must be stripped in output
+
+## Integrations
+
+None.

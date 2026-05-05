@@ -1,0 +1,127 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 10ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 6 items
+
+tests/test_final_state.py FFFFFF                                         [100%]
+
+=================================== FAILURES ===================================
+___________________________ test_user_info_ts_exists ___________________________
+
+    def test_user_info_ts_exists():
+>       assert os.path.isfile(USER_INFO_TS), f"Expected '{USER_INFO_TS}' but file not found."
+E       AssertionError: Expected '/home/user/windmill-project/f/scripts/user_info.ts' but file not found.
+E       assert False
+E        +  where False = <function isfile at 0xee64d3df0220>('/home/user/windmill-project/f/scripts/user_info.ts')
+E        +    where <function isfile at 0xee64d3df0220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:13: AssertionError
+__________________________ test_user_info_yaml_exists __________________________
+
+    def test_user_info_yaml_exists():
+>       assert os.path.isfile(USER_INFO_YAML), f"Expected '{USER_INFO_YAML}' but file not found."
+E       AssertionError: Expected '/home/user/windmill-project/f/scripts/user_info.script.yaml' but file not found.
+E       assert False
+E        +  where False = <function isfile at 0xee64d3df0220>('/home/user/windmill-project/f/scripts/user_info.script.yaml')
+E        +    where <function isfile at 0xee64d3df0220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:17: AssertionError
+___________________________ test_active_user_object ____________________________
+
+    def test_active_user_object():
+        """Priority 1: main(1, 'Alice') returns correct object with active=true."""
+>       obj = _eval_user_info(1, "Alice")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+id_ = 1, name = 'Alice', active = ''
+
+    def _eval_user_info(id_: int, name: str, active: str = "") -> dict:
+        """Strip TS type annotations, call main(), serialize result to JSON."""
+>       with open(USER_INFO_TS) as fh:
+             ^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/user_info.ts'
+
+tests/test_final_state.py:22: FileNotFoundError
+__________________________ test_inactive_user_object ___________________________
+
+    def test_inactive_user_object():
+        """Priority 1: main(2, 'Bob', false) returns correct object with active=false."""
+>       obj = _eval_user_info(2, "Bob", "false")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+id_ = 2, name = 'Bob', active = 'false'
+
+    def _eval_user_info(id_: int, name: str, active: str = "") -> dict:
+        """Strip TS type annotations, call main(), serialize result to JSON."""
+>       with open(USER_INFO_TS) as fh:
+             ^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/user_info.ts'
+
+tests/test_final_state.py:22: FileNotFoundError
+______________________________ test_yaml_language ______________________________
+
+    def test_yaml_language():
+>       data = _parse_simple_yaml(USER_INFO_YAML)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:76: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/home/user/windmill-project/f/scripts/user_info.script.yaml'
+
+    def _parse_simple_yaml(path: str) -> dict:
+        result = {}
+>       with open(path) as fh:
+             ^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/user_info.script.yaml'
+
+tests/test_final_state.py:64: FileNotFoundError
+______________________________ test_yaml_summary _______________________________
+
+    def test_yaml_summary():
+>       data = _parse_simple_yaml(USER_INFO_YAML)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/home/user/windmill-project/f/scripts/user_info.script.yaml'
+
+    def _parse_simple_yaml(path: str) -> dict:
+        result = {}
+>       with open(path) as fh:
+             ^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/user_info.script.yaml'
+
+tests/test_final_state.py:64: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_final_state.py::test_user_info_ts_exists - AssertionError: ...
+FAILED tests/test_final_state.py::test_user_info_yaml_exists - AssertionError...
+FAILED tests/test_final_state.py::test_active_user_object - FileNotFoundError...
+FAILED tests/test_final_state.py::test_inactive_user_object - FileNotFoundErr...
+FAILED tests/test_final_state.py::test_yaml_language - FileNotFoundError: [Er...
+FAILED tests/test_final_state.py::test_yaml_summary - FileNotFoundError: [Err...
+============================== 6 failed in 0.02s ===============================

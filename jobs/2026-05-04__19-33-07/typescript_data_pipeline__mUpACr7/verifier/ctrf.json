@@ -1,0 +1,104 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 0,
+            "failed": 7,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777950227.5540426,
+            "stop": 1777950227.5775568
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_etl_ts_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00038137286901474,
+                "start": 1777950227.5610774,
+                "stop": 1777950227.5665333,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_etl_ts_exists():\n>       assert os.path.isfile(ETL_TS)\nE       AssertionError: assert False\nE        +  where False = <function isfile at 0xfd5ef53a0220>('/home/user/windmill-project/f/scripts/etl_pipeline.ts')\nE        +    where <function isfile at 0xfd5ef53a0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:19: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_etl_yaml_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00032137404195964336,
+                "start": 1777950227.566611,
+                "stop": 1777950227.5679817,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_etl_yaml_exists():\n>       assert os.path.isfile(ETL_YAML)\nE       AssertionError: assert False\nE        +  where False = <function isfile at 0xfd5ef53a0220>('/home/user/windmill-project/f/scripts/etl_pipeline.script.yaml')\nE        +    where <function isfile at 0xfd5ef53a0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:23: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_parse_filter_transform_aggregate",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00027174793649464846,
+                "start": 1777950227.568046,
+                "stop": 1777950227.5700922,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_parse_filter_transform_aggregate():\n        \"\"\"Priority 1: full pipeline \u2014 parse error, filter by category, multiply.\"\"\"\n>       r = _eval_etl(RAW_RECORDS, filter_cat=\"x\", multiplier=2)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:44: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nrecords = [{'category': 'x', 'name': 'A', 'value': '10'}, {'category': 'x', 'name': 'B', 'value': 'bad'}, {'category': 'y', 'name': 'C', 'value': '20'}]\nfilter_cat = 'x', multiplier = 2\n\n    def _eval_etl(records: list, filter_cat: str = \"\", multiplier: float = 1) -> dict:\n>       with open(ETL_TS) as fh:\n             ^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/etl_pipeline.ts'\n\ntests/test_final_state.py:27: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_no_filter_all_valid",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0002293749712407589,
+                "start": 1777950227.570147,
+                "stop": 1777950227.572136,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_no_filter_all_valid():\n        \"\"\"Priority 1: no filter, all valid records included.\"\"\"\n        records = [{\"name\": \"X\", \"value\": \"5\", \"category\": \"a\"}, {\"name\": \"Y\", \"value\": \"15\", \"category\": \"b\"}]\n>       r = _eval_etl(records, filter_cat=\"\", multiplier=1)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:60: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nrecords = [{'category': 'a', 'name': 'X', 'value': '5'}, {'category': 'b', 'name': 'Y', 'value': '15'}]\nfilter_cat = '', multiplier = 1\n\n    def _eval_etl(records: list, filter_cat: str = \"\", multiplier: float = 1) -> dict:\n>       with open(ETL_TS) as fh:\n             ^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/etl_pipeline.ts'\n\ntests/test_final_state.py:27: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_empty_input",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00024999817833304405,
+                "start": 1777950227.572223,
+                "stop": 1777950227.574101,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_empty_input():\n        \"\"\"Priority 1: empty input \u2192 all zeros.\"\"\"\n>       r = _eval_etl([])\n            ^^^^^^^^^^^^^\n\ntests/test_final_state.py:67: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nrecords = [], filter_cat = '', multiplier = 1\n\n    def _eval_etl(records: list, filter_cat: str = \"\", multiplier: float = 1) -> dict:\n>       with open(ETL_TS) as fh:\n             ^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/etl_pipeline.ts'\n\ntests/test_final_state.py:27: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_language",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00022545794490724802,
+                "start": 1777950227.574166,
+                "stop": 1777950227.5757954,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_yaml_language():\n>       assert _parse_simple_yaml(ETL_YAML).get(\"language\") == \"typescript\"\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:87: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/windmill-project/f/scripts/etl_pipeline.script.yaml'\n\n    def _parse_simple_yaml(path: str) -> dict:\n        result = {}\n>       with open(path) as fh:\n             ^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/etl_pipeline.script.yaml'\n\ntests/test_final_state.py:75: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_summary",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00020224996842443943,
+                "start": 1777950227.575848,
+                "stop": 1777950227.5774343,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_yaml_summary():\n>       assert _parse_simple_yaml(ETL_YAML).get(\"summary\") == \"Multi-stage ETL pipeline: parse, filter, transform, aggregate\"\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:91: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/windmill-project/f/scripts/etl_pipeline.script.yaml'\n\n    def _parse_simple_yaml(path: str) -> dict:\n        result = {}\n>       with open(path) as fh:\n             ^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/etl_pipeline.script.yaml'\n\ntests/test_final_state.py:75: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

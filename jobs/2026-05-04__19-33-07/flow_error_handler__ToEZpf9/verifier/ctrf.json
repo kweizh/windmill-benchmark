@@ -1,0 +1,92 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777949375.3347702,
+            "stop": 1777949375.3794615
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_risky_ts_exists",
+                "status": "passed",
+                "duration": 0.0002434171037748456,
+                "start": 1777949375.3399363,
+                "stop": 1777949375.3403127,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_handle_error_ts_exists",
+                "status": "passed",
+                "duration": 0.00018662505317479372,
+                "start": 1777949375.3403797,
+                "stop": 1777949375.3406525,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_exists",
+                "status": "passed",
+                "duration": 0.00023199990391731262,
+                "start": 1777949375.3407125,
+                "stop": 1777949375.341045,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_risky_operation_success",
+                "status": "passed",
+                "duration": 0.013450605911202729,
+                "start": 1777949375.3410985,
+                "stop": 1777949375.3547287,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_risky_operation_throws",
+                "status": "passed",
+                "duration": 0.011477937106974423,
+                "start": 1777949375.3548295,
+                "stop": 1777949375.36647,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_handle_error_runtime",
+                "status": "passed",
+                "duration": 0.011733895051293075,
+                "start": 1777949375.366568,
+                "stop": 1777949375.378471,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_has_error_handler",
+                "status": "passed",
+                "duration": 0.00026770890690386295,
+                "start": 1777949375.3785589,
+                "stop": 1777949375.3789055,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_references_risky_operation",
+                "status": "passed",
+                "duration": 0.0002275001024827361,
+                "start": 1777949375.379001,
+                "stop": 1777949375.3793292,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

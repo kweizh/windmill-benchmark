@@ -1,0 +1,31 @@
+# Python Windmill Script — Webhook Payload Dispatcher
+
+## Background
+
+Windmill is frequently triggered by webhooks from GitHub, Stripe, Slack, and other platforms. A Windmill script that acts as a webhook handler must inspect the event type, route to the appropriate logic, and return a structured response. This task builds a GitHub-style webhook handler.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/handle_webhook.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(event_type: str, payload: dict) -> dict:
+  ```
+- Dispatch based on `event_type`:
+  - `"push"`: extract `payload["repository"]["name"]` and `payload["commits"]` (list). Return `{"action": "push", "repo": repo_name, "commit_count": len(commits), "handled": True}`.
+  - `"pull_request"`: extract `payload["action"]` (e.g., `"opened"`) and `payload["pull_request"]["title"]`. Return `{"action": "pull_request", "pr_action": pr_action, "title": title, "handled": True}`.
+  - `"ping"`: return `{"action": "ping", "message": "pong", "handled": True}`.
+  - Any other event: return `{"action": event_type, "handled": False, "message": f"Unhandled event type: {event_type}"}`.
+- Create the metadata file at `/home/user/windmill-project/f/scripts/handle_webhook.script.yaml` with:
+  - `summary: "Dispatch and process incoming GitHub webhook events"`
+  - `language: python3`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Return key `handled` must be `True` for known events, `False` for unknown
+- Use stdlib only (no third-party packages)
+
+## Integrations
+
+None.

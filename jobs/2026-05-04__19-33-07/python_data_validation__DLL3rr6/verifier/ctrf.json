@@ -1,0 +1,110 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 10,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777950497.1513479,
+            "stop": 1777950497.2076242
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_validate_py_exists",
+                "status": "passed",
+                "duration": 0.00024378998205065727,
+                "start": 1777950497.1581542,
+                "stop": 1777950497.1585267,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_validate_yaml_exists",
+                "status": "passed",
+                "duration": 0.0001992490142583847,
+                "start": 1777950497.1585958,
+                "stop": 1777950497.1588821,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_valid_user",
+                "status": "passed",
+                "duration": 0.010578504065051675,
+                "start": 1777950497.1589377,
+                "stop": 1777950497.169718,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_name_stripped_email_lowercased",
+                "status": "passed",
+                "duration": 0.008832053979858756,
+                "start": 1777950497.1698165,
+                "stop": 1777950497.1787786,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_missing_name_raises",
+                "status": "passed",
+                "duration": 0.0066385610261932015,
+                "start": 1777950497.1788566,
+                "stop": 1777950497.185609,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_bad_email_raises",
+                "status": "passed",
+                "duration": 0.006544311065226793,
+                "start": 1777950497.1856782,
+                "stop": 1777950497.1923478,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_age_out_of_range_raises",
+                "status": "passed",
+                "duration": 0.006373977987095714,
+                "start": 1777950497.19242,
+                "stop": 1777950497.1989136,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_multiple_errors_collected",
+                "status": "passed",
+                "duration": 0.007055225083604455,
+                "start": 1777950497.1989894,
+                "stop": 1777950497.2062106,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_language",
+                "status": "passed",
+                "duration": 0.00031349901109933853,
+                "start": 1777950497.2062957,
+                "stop": 1777950497.2067416,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_summary",
+                "status": "passed",
+                "duration": 0.0005147478077560663,
+                "start": 1777950497.2068145,
+                "stop": 1777950497.20745,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

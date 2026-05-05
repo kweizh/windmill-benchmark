@@ -1,0 +1,165 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 12ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 7 items
+
+tests/test_final_state.py ..FFF..                                        [100%]
+
+=================================== FAILURES ===================================
+____________________________ test_report_structure _____________________________
+
+    def test_report_structure():
+        """Priority 1: header, items, and footer are correctly assembled."""
+>       report = _eval_report("Sales", ["Widget A: $10", "Widget B: $20"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('Sales', ['Widget A: $10', 'Widget B: $20'])
+fh = <_io.TextIOWrapper name='/home/user/windmill-project/f/scripts/build_report.ts' mode='r' encoding='utf-8'>
+src = 'export async function main(title: string, items: string[], footer: string = "End of report") {\n  const lines = [\n    `=== ${title} ===`,\n    ...items.map(i => `- ${i}`),\n    `--- ${footer} ---`,\n  ];\n  return lines.join("\\n");\n}\n'
+js = 'async function main(title, items[], footer = "End of report") {\n  const lines = [\n    `=== ${title} ===`,\n    ...items.map(i => `- ${i}`),\n    `--- ${footer} ---`,\n  ];\n  return lines.join("\\n");\n}\n'
+
+    def _eval_report(*args) -> str:
+        with open(BUILD_REPORT_TS) as fh:
+            src = fh.read()
+        js = re.sub(r":\s*(string|string\[\])", "", src)
+        js = js.replace("export async function", "async function")
+        arg_str = ", ".join(
+            repr(a) if isinstance(a, str) else f"[{', '.join(repr(x) for x in a)}]"
+            for a in args
+        )
+        call = f"main({arg_str}).then(r => process.stdout.write(r));"
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed: {result.stderr}"
+E       AssertionError: node failed: [eval]:1
+E         async function main(title, items[], footer = "End of report") {
+E                                         ^
+E         Expected ',', got '['
+E         
+E         SyntaxError: Unexpected token '['
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(title, items[], footer = "End of report") {\n  const lines =...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n').returncode
+
+tests/test_final_state.py:30: AssertionError
+______________________________ test_custom_footer ______________________________
+
+    def test_custom_footer():
+        """Priority 1: custom footer replaces default."""
+>       report = _eval_report("Q1", ["Alpha"], "Done")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('Q1', ['Alpha'], 'Done')
+fh = <_io.TextIOWrapper name='/home/user/windmill-project/f/scripts/build_report.ts' mode='r' encoding='utf-8'>
+src = 'export async function main(title: string, items: string[], footer: string = "End of report") {\n  const lines = [\n    `=== ${title} ===`,\n    ...items.map(i => `- ${i}`),\n    `--- ${footer} ---`,\n  ];\n  return lines.join("\\n");\n}\n'
+js = 'async function main(title, items[], footer = "End of report") {\n  const lines = [\n    `=== ${title} ===`,\n    ...items.map(i => `- ${i}`),\n    `--- ${footer} ---`,\n  ];\n  return lines.join("\\n");\n}\n'
+
+    def _eval_report(*args) -> str:
+        with open(BUILD_REPORT_TS) as fh:
+            src = fh.read()
+        js = re.sub(r":\s*(string|string\[\])", "", src)
+        js = js.replace("export async function", "async function")
+        arg_str = ", ".join(
+            repr(a) if isinstance(a, str) else f"[{', '.join(repr(x) for x in a)}]"
+            for a in args
+        )
+        call = f"main({arg_str}).then(r => process.stdout.write(r));"
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed: {result.stderr}"
+E       AssertionError: node failed: [eval]:1
+E         async function main(title, items[], footer = "End of report") {
+E                                         ^
+E         Expected ',', got '['
+E         
+E         SyntaxError: Unexpected token '['
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(title, items[], footer = "End of report") {\n  const lines =...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n').returncode
+
+tests/test_final_state.py:30: AssertionError
+_______________________________ test_empty_items _______________________________
+
+    def test_empty_items():
+        """Priority 1: empty items list gives 2-line report."""
+>       report = _eval_report("Empty", [])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('Empty', [])
+fh = <_io.TextIOWrapper name='/home/user/windmill-project/f/scripts/build_report.ts' mode='r' encoding='utf-8'>
+src = 'export async function main(title: string, items: string[], footer: string = "End of report") {\n  const lines = [\n    `=== ${title} ===`,\n    ...items.map(i => `- ${i}`),\n    `--- ${footer} ---`,\n  ];\n  return lines.join("\\n");\n}\n'
+js = 'async function main(title, items[], footer = "End of report") {\n  const lines = [\n    `=== ${title} ===`,\n    ...items.map(i => `- ${i}`),\n    `--- ${footer} ---`,\n  ];\n  return lines.join("\\n");\n}\n'
+
+    def _eval_report(*args) -> str:
+        with open(BUILD_REPORT_TS) as fh:
+            src = fh.read()
+        js = re.sub(r":\s*(string|string\[\])", "", src)
+        js = js.replace("export async function", "async function")
+        arg_str = ", ".join(
+            repr(a) if isinstance(a, str) else f"[{', '.join(repr(x) for x in a)}]"
+            for a in args
+        )
+        call = f"main({arg_str}).then(r => process.stdout.write(r));"
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed: {result.stderr}"
+E       AssertionError: node failed: [eval]:1
+E         async function main(title, items[], footer = "End of report") {
+E                                         ^
+E         Expected ',', got '['
+E         
+E         SyntaxError: Unexpected token '['
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(title, items[], footer = "End of report") {\n  const lines =...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n').returncode
+
+tests/test_final_state.py:30: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_build_report_ts_exists
+PASSED tests/test_final_state.py::test_build_report_yaml_exists
+PASSED tests/test_final_state.py::test_yaml_language
+PASSED tests/test_final_state.py::test_yaml_summary
+FAILED tests/test_final_state.py::test_report_structure - AssertionError: nod...
+FAILED tests/test_final_state.py::test_custom_footer - AssertionError: node f...
+FAILED tests/test_final_state.py::test_empty_items - AssertionError: node fai...
+========================= 3 failed, 4 passed in 0.18s ==========================

@@ -1,0 +1,101 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 5,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777950953.726665,
+            "stop": 1777950953.7829933
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_greet_ts_exists",
+                "status": "passed",
+                "duration": 0.00026983197312802076,
+                "start": 1777950953.7328284,
+                "stop": 1777950953.7332547,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_greet_script_yaml_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00027562398463487625,
+                "start": 1777950953.733325,
+                "stop": 1777950953.7386544,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_greet_script_yaml_exists():\n>       assert os.path.isfile(GREET_YAML), (\n            f\"Expected metadata file at '{GREET_YAML}' but it was not found.\"\n        )\nE       AssertionError: Expected metadata file at '/home/user/windmill-project/f/scripts/greet.script.yaml' but it was not found.\nE       assert False\nE        +  where False = <function isfile at 0xf98981420220>('/home/user/windmill-project/f/scripts/greet.script.yaml')\nE        +    where <function isfile at 0xf98981420220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:23: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_main_default_greeting",
+                "status": "passed",
+                "duration": 0.014586509088985622,
+                "start": 1777950953.7387323,
+                "stop": 1777950953.7535267,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_main_custom_greeting",
+                "status": "passed",
+                "duration": 0.012572765117511153,
+                "start": 1777950953.7536566,
+                "stop": 1777950953.7664447,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_main_another_name",
+                "status": "passed",
+                "duration": 0.011671473970636725,
+                "start": 1777950953.7665415,
+                "stop": 1777950953.778386,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_greet_ts_exports_main_function",
+                "status": "passed",
+                "duration": 0.00021116598509252071,
+                "start": 1777950953.7784727,
+                "stop": 1777950953.7787843,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_language_is_typescript",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00025853991974145174,
+                "start": 1777950953.7788525,
+                "stop": 1777950953.781116,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_yaml_language_is_typescript():\n        \"\"\"Priority 1: greet.script.yaml must declare language: typescript\"\"\"\n>       data = _parse_simple_yaml(GREET_YAML)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:154: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/windmill-project/f/scripts/greet.script.yaml'\n\n    def _parse_simple_yaml(path: str) -> dict:\n        \"\"\"\n        Parse a flat YAML file (key: value lines only) without third-party libs.\n        Strips surrounding quotes from values.\n        \"\"\"\n        result = {}\n>       with open(path) as fh:\n             ^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/greet.script.yaml'\n\ntests/test_final_state.py:139: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_summary_is_greet_a_user",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.000213125953450799,
+                "start": 1777950953.7812066,
+                "stop": 1777950953.782857,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_yaml_summary_is_greet_a_user():\n        \"\"\"Priority 1: greet.script.yaml must have summary: 'Greet a user'\"\"\"\n>       data = _parse_simple_yaml(GREET_YAML)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:165: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/windmill-project/f/scripts/greet.script.yaml'\n\n    def _parse_simple_yaml(path: str) -> dict:\n        \"\"\"\n        Parse a flat YAML file (key: value lines only) without third-party libs.\n        Strips surrounding quotes from values.\n        \"\"\"\n        result = {}\n>       with open(path) as fh:\n             ^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/greet.script.yaml'\n\ntests/test_final_state.py:139: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

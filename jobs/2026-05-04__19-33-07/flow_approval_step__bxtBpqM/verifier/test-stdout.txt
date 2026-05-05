@@ -1,0 +1,117 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 10ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 9 items
+
+tests/test_final_state.py .FF.FFFFF                                      [100%]
+
+=================================== FAILURES ===================================
+____________________________ test_execute_ts_exists ____________________________
+
+    def test_execute_ts_exists():
+>       assert os.path.isfile(EXECUTE_TS)
+E       AssertionError: assert False
+E        +  where False = <function isfile at 0xe75b55050220>('/home/user/windmill-project/f/scripts/execute_deployment.ts')
+E        +    where <function isfile at 0xe75b55050220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:34: AssertionError
+____________________________ test_flow_yaml_exists _____________________________
+
+    def test_flow_yaml_exists():
+>       assert os.path.isfile(FLOW_YAML)
+E       AssertionError: assert False
+E        +  where False = <function isfile at 0xe75b55050220>('/home/user/windmill-project/f/flows/deploy_with_approval.yaml')
+E        +    where <function isfile at 0xe75b55050220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:38: AssertionError
+_______________________ test_execute_deployment_approved _______________________
+
+    def test_execute_deployment_approved():
+        """Priority 1: approved=true → status='deployed'."""
+>       r = _eval_ts(EXECUTE_TS,
+            "main('kubectl set image ...', true).then(r => console.log(JSON.stringify(r)));")
+
+tests/test_final_state.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/home/user/windmill-project/f/scripts/execute_deployment.ts'
+call = "main('kubectl set image ...', true).then(r => console.log(JSON.stringify(r)));"
+
+    def _eval_ts(path: str, call: str) -> dict:
+>       with open(path) as fh:
+             ^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/execute_deployment.ts'
+
+tests/test_final_state.py:21: FileNotFoundError
+_____________________ test_execute_deployment_not_approved _____________________
+
+    def test_execute_deployment_not_approved():
+        """Priority 1: approved=false → status='cancelled'."""
+>       r = _eval_ts(EXECUTE_TS,
+            "main('kubectl set image ...', false).then(r => console.log(JSON.stringify(r)));")
+
+tests/test_final_state.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/home/user/windmill-project/f/scripts/execute_deployment.ts'
+call = "main('kubectl set image ...', false).then(r => console.log(JSON.stringify(r)));"
+
+    def _eval_ts(path: str, call: str) -> dict:
+>       with open(path) as fh:
+             ^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/execute_deployment.ts'
+
+tests/test_final_state.py:21: FileNotFoundError
+_________________________ test_flow_has_approval_step __________________________
+
+    def test_flow_has_approval_step():
+>       with open(FLOW_YAML) as fh:
+             ^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/flows/deploy_with_approval.yaml'
+
+tests/test_final_state.py:66: FileNotFoundError
+________________________ test_flow_has_correct_step_ids ________________________
+
+    def test_flow_has_correct_step_ids():
+>       with open(FLOW_YAML) as fh:
+             ^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/flows/deploy_with_approval.yaml'
+
+tests/test_final_state.py:72: FileNotFoundError
+________________________ test_flow_wires_deploy_command ________________________
+
+    def test_flow_wires_deploy_command():
+>       with open(FLOW_YAML) as fh:
+             ^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/flows/deploy_with_approval.yaml'
+
+tests/test_final_state.py:79: FileNotFoundError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_prepare_ts_exists
+PASSED tests/test_final_state.py::test_prepare_deployment
+FAILED tests/test_final_state.py::test_execute_ts_exists - AssertionError: as...
+FAILED tests/test_final_state.py::test_flow_yaml_exists - AssertionError: ass...
+FAILED tests/test_final_state.py::test_execute_deployment_approved - FileNotF...
+FAILED tests/test_final_state.py::test_execute_deployment_not_approved - File...
+FAILED tests/test_final_state.py::test_flow_has_approval_step - FileNotFoundE...
+FAILED tests/test_final_state.py::test_flow_has_correct_step_ids - FileNotFou...
+FAILED tests/test_final_state.py::test_flow_wires_deploy_command - FileNotFou...
+========================= 7 failed, 2 passed in 0.04s ==========================

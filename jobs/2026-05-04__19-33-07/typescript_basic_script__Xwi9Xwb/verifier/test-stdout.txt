@@ -1,0 +1,93 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 12ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 8 items
+
+tests/test_final_state.py .F....FF                                       [100%]
+
+=================================== FAILURES ===================================
+________________________ test_greet_script_yaml_exists _________________________
+
+    def test_greet_script_yaml_exists():
+>       assert os.path.isfile(GREET_YAML), (
+            f"Expected metadata file at '{GREET_YAML}' but it was not found."
+        )
+E       AssertionError: Expected metadata file at '/home/user/windmill-project/f/scripts/greet.script.yaml' but it was not found.
+E       assert False
+E        +  where False = <function isfile at 0xf98981420220>('/home/user/windmill-project/f/scripts/greet.script.yaml')
+E        +    where <function isfile at 0xf98981420220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:23: AssertionError
+_______________________ test_yaml_language_is_typescript _______________________
+
+    def test_yaml_language_is_typescript():
+        """Priority 1: greet.script.yaml must declare language: typescript"""
+>       data = _parse_simple_yaml(GREET_YAML)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:154: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/home/user/windmill-project/f/scripts/greet.script.yaml'
+
+    def _parse_simple_yaml(path: str) -> dict:
+        """
+        Parse a flat YAML file (key: value lines only) without third-party libs.
+        Strips surrounding quotes from values.
+        """
+        result = {}
+>       with open(path) as fh:
+             ^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/greet.script.yaml'
+
+tests/test_final_state.py:139: FileNotFoundError
+______________________ test_yaml_summary_is_greet_a_user _______________________
+
+    def test_yaml_summary_is_greet_a_user():
+        """Priority 1: greet.script.yaml must have summary: 'Greet a user'"""
+>       data = _parse_simple_yaml(GREET_YAML)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:165: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/home/user/windmill-project/f/scripts/greet.script.yaml'
+
+    def _parse_simple_yaml(path: str) -> dict:
+        """
+        Parse a flat YAML file (key: value lines only) without third-party libs.
+        Strips surrounding quotes from values.
+        """
+        result = {}
+>       with open(path) as fh:
+             ^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/greet.script.yaml'
+
+tests/test_final_state.py:139: FileNotFoundError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_greet_ts_exists
+PASSED tests/test_final_state.py::test_main_default_greeting
+PASSED tests/test_final_state.py::test_main_custom_greeting
+PASSED tests/test_final_state.py::test_main_another_name
+PASSED tests/test_final_state.py::test_greet_ts_exports_main_function
+FAILED tests/test_final_state.py::test_greet_script_yaml_exists - AssertionEr...
+FAILED tests/test_final_state.py::test_yaml_language_is_typescript - FileNotF...
+FAILED tests/test_final_state.py::test_yaml_summary_is_greet_a_user - FileNot...
+========================= 3 failed, 5 passed in 0.06s ==========================

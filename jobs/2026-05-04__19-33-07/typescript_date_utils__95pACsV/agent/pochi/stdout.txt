@@ -1,0 +1,33 @@
+- Initializing MCP connections...
+You
+# Preserving your work Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable. --- # TypeScript Windmill Script — Date Formatting and Difference ## Background Windmill scripts often need to work with dates — formatting timestamps for display, computing how many days until a deadline, or checking if something is overdue. This task involves building a utility script that performs both. ## Requirements - Create a TypeScript script at `/home/user/windmill-project/f/scripts/date_utils.ts`. - Export an async `main` function: ```typescript export async function main(iso_date: string, label: string = "Event") ``` where `iso_date` is an ISO 8601 date string (e.g., `"2025-12-31"`). - The function must return: ```typescript { label: string, formatted: string, // "December 31, 2025" iso: string, // the original iso_date days_from_today: number // positive = future, negative = past } ``` Use `toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })` for `formatted`. For `days_from_today`, compute `Math.round((target - today) / 86400000)` where today is midnight UTC. - Create the metadata file at `/home/user/windmill-project/f/scripts/date_utils.script.yaml` with: - `summary: "Format a date and compute days from today"` - `language: typescript` ## Implementation Guide ```typescript export async function main(iso_date: string, label: string = "Event") { const target = new Date(iso_date); const today = new Date(new Date().toISOString().split('T')[0]); const days_from_today = Math.round((target.getTime() - today.getTime()) / 86400000); return { label, formatted: target.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), iso: iso_date, days_from_today, }; } ``` ## Constraints - Project path: `/home/user/windmill-project` - Return keys must be exactly: `label`, `formatted`, `iso`, `days_from_today` - `formatted` must use `en-US` locale: e.g., `"December 31, 2025"` ## Integrations None.   
+
+Pochi
+📋 Updating todo list (4 items) ✔ 
+💫 Executing mkdir -p /home/user/windmill-project/f/scripts/ /logs/artifacts/scripts/ ✔ 
+📋 Updating todo list (4 items) ✔ 
+✏️  Writing /home/user/windmill-project/f/scripts/date_utils.ts ✔ 
+📋 Updating todo list (4 items) ✔ 
+✏️  Writing /home/user/windmill-project/f/scripts/date_utils.script.yaml ✔ 
+📋 Updating todo list (4 items) ✔ 
+💫 Executing cp /home/user/windmill-project/f/scripts/date_utils.ts /logs/artifacts/scripts/date_utils.ts && cp /home/user/windmill-project/f/scripts/date_utils.script.yaml /logs/artifacts/scripts/date_utils.script.yaml ✔ 
+📋 Updating todo list (4 items) ✔ 
+💫 Executing cat /home/user/windmill-project/f/scripts/date_utils.ts /home/user/windmill-project/f/scripts/date_utils.script.yaml ✔ 
+🎉 Task Completed
+I have created the Windmill script and its metadata file as requested.
+
+### Files Created:
+- `/home/user/windmill-project/f/scripts/date_utils.ts`: The TypeScript utility script for date formatting and difference calculation.
+- `/home/user/windmill-project/f/scripts/date_utils.script.yaml`: The metadata file specifying the script's summary and language.
+
+### Artifacts:
+Copies of these files have been saved to `/logs/artifacts/scripts/`.
+
+### Implementation Details:
+The script exports an async `main` function that:
+1.  Parses the provided ISO 8601 date string.
+2.  Calculates the current date at midnight UTC.
+3.  Computes the difference in days between the target date and today.
+4.  Formats the target date using the `en-US` locale (e.g., "December 31, 2025").
+5.  Returns an object with the keys: `label`, `formatted`, `iso`, and `days_from_today`.   
+  

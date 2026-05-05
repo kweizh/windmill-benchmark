@@ -1,0 +1,1521 @@
+{
+  "python_return_dict": {
+    "instruction": "# Python Windmill Script Returning a Dictionary\n\n## Background\n\nWindmill scripts can return Python dictionaries which are serialized to JSON and passed to downstream flow steps. This pattern is common for scripts that compute and return multiple related values together.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/stats.py`.\n- The `main` function must accept one parameter: `numbers` of type `list[float]`.\n- The function must return a dict with exactly these keys:\n  - `count`: the number of elements in `numbers` (int)\n  - `total`: the sum of all elements (float)\n  - `average`: `total / count`, or `0.0` if `numbers` is empty (float)\n- Create the metadata file at `/home/user/windmill-project/f/scripts/stats.script.yaml` with:\n  - `summary: \"Compute basic statistics for a list of numbers\"`\n  - `language: python3`\n\n## Implementation Guide\n\n1. Create `f/scripts/stats.py`:\n   ```python\n   def main(numbers: list[float]) -> dict:\n       count = len(numbers)\n       total = sum(numbers)\n       average = total / count if count > 0 else 0.0\n       return {\"count\": count, \"total\": total, \"average\": average}\n   ```\n2. Create `f/scripts/stats.script.yaml`:\n   ```yaml\n   summary: \"Compute basic statistics for a list of numbers\"\n   language: python3\n   ```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Script path: `/home/user/windmill-project/f/scripts/stats.py`\n- Metadata path: `/home/user/windmill-project/f/scripts/stats.script.yaml`\n- Return key names must be exactly `count`, `total`, `average`\n- Handle empty list by returning `average: 0.0`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_return_dict__LMkmbx8",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": true,
+        "latency_sec": 350.644,
+        "latency_breakdown": {
+          "env_setup": 1.394,
+          "agent_setup": 30.365,
+          "agent_exec": 300.727,
+          "verifier": 7.572
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12241,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "flow_conditional_branch": {
+    "instruction": "# Create a Windmill Flow with a Conditional Branch\n\n## Background\n\nWindmill flows support `branchone` modules that evaluate a set of branch conditions in order and execute the first matching branch. This is Windmill's equivalent of an if/else — a key building block for decision-making pipelines.\n\n## Requirements\n\nCreate three TypeScript scripts and a flow with a conditional branch:\n\n### Script 1: `/home/user/windmill-project/f/scripts/check_score.ts`\n```typescript\nexport async function main(score: number) {\n  return { score, passed: score >= 60 };\n}\n```\nMetadata: `summary: \"Check if a score passes\"`, `language: typescript`\n\n### Script 2a: `/home/user/windmill-project/f/scripts/on_pass.ts`\n```typescript\nexport async function main(score: number) {\n  return `Score ${score}: PASSED`;\n}\n```\nMetadata: `summary: \"Emit a pass message\"`, `language: typescript`\n\n### Script 2b: `/home/user/windmill-project/f/scripts/on_fail.ts`\n```typescript\nexport async function main(score: number) {\n  return `Score ${score}: FAILED`;\n}\n```\nMetadata: `summary: \"Emit a fail message\"`, `language: typescript`\n\n### Flow: `/home/user/windmill-project/f/flows/score_check.yaml`\n```yaml\nsummary: \"Route based on score pass/fail\"\nvalue:\n  modules:\n    - id: a\n      value:\n        type: script\n        path: f/scripts/check_score\n        input_transforms:\n          score:\n            type: static\n            value: 75\n    - id: b\n      value:\n        type: branchone\n        branches:\n          - summary: \"Passed\"\n            expr: \"results.a.passed === true\"\n            modules:\n              - id: c\n                value:\n                  type: script\n                  path: f/scripts/on_pass\n                  input_transforms:\n                    score:\n                      type: javascript\n                      expr: \"results.a.score\"\n        default:\n          - id: d\n            value:\n              type: script\n              path: f/scripts/on_fail\n              input_transforms:\n                score:\n                  type: javascript\n                  expr: \"results.a.score\"\n```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Flow file: `/home/user/windmill-project/f/flows/score_check.yaml`\n- The `branchone` module must reference `results.a.passed` in the branch expression\n- Default branch must route to `on_fail`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "flow_conditional_branch__tYavVYx",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 129.885,
+        "latency_breakdown": {
+          "env_setup": 1.337,
+          "agent_setup": 33.673,
+          "agent_exec": 64.464,
+          "verifier": 19.921
+        },
+        "tokens": {
+          "input": 0,
+          "output": 14427,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "flows",
+            "type": "dir",
+            "path": "artifacts/flows",
+            "children": [
+              {
+                "name": "score_check.yaml",
+                "type": "file",
+                "path": "artifacts/flows/score_check.yaml"
+              }
+            ]
+          },
+          {
+            "name": "scripts",
+            "type": "dir",
+            "path": "artifacts/scripts",
+            "children": [
+              {
+                "name": "check_score.script.json",
+                "type": "file",
+                "path": "artifacts/scripts/check_score.script.json"
+              },
+              {
+                "name": "check_score.ts",
+                "type": "file",
+                "path": "artifacts/scripts/check_score.ts"
+              },
+              {
+                "name": "on_fail.script.json",
+                "type": "file",
+                "path": "artifacts/scripts/on_fail.script.json"
+              },
+              {
+                "name": "on_fail.ts",
+                "type": "file",
+                "path": "artifacts/scripts/on_fail.ts"
+              },
+              {
+                "name": "on_pass.script.json",
+                "type": "file",
+                "path": "artifacts/scripts/on_pass.script.json"
+              },
+              {
+                "name": "on_pass.ts",
+                "type": "file",
+                "path": "artifacts/scripts/on_pass.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "python_error_handling": {
+    "instruction": "# Python Windmill Script with Input Validation\n\n## Background\n\nIn Windmill, when a script raises a Python exception, the step fails and the error is surfaced in the UI or routed to an error handler in a flow. Writing scripts that validate inputs and raise informative exceptions makes debugging and flow error-handling much easier.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/parse_age.py`.\n- The `main` function must have this signature:\n  ```python\n  def main(age_str: str) -> dict:\n  ```\n- Behaviour:\n  - Convert `age_str` to an integer.\n  - If the value is not a valid integer, raise `ValueError(f\"Invalid age: '{age_str}' is not an integer\")`\n  - If the integer is less than 0 or greater than 150, raise `ValueError(f\"Age {age} is out of valid range (0–150)\")`\n  - Otherwise return `{\"age\": age, \"category\": category}` where category is:\n    - `\"minor\"` if age < 18\n    - `\"adult\"` if 18 <= age < 65\n    - `\"senior\"` if age >= 65\n- Create the metadata file at `/home/user/windmill-project/f/scripts/parse_age.script.yaml` with:\n  - `summary: \"Parse and categorize an age string\"`\n  - `language: python3`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Raise `ValueError` (not a generic Exception) for invalid inputs\n- Category strings must be exactly: `\"minor\"`, `\"adult\"`, `\"senior\"`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_error_handling__U2weczF",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 438.083,
+        "latency_breakdown": {
+          "env_setup": 1.35,
+          "agent_setup": 41.191,
+          "agent_exec": 375.446,
+          "verifier": 9.66
+        },
+        "tokens": {
+          "input": 0,
+          "output": 13172,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "scripts",
+            "type": "dir",
+            "path": "artifacts/scripts",
+            "children": [
+              {
+                "name": "parse_age.py",
+                "type": "file",
+                "path": "artifacts/scripts/parse_age.py"
+              },
+              {
+                "name": "parse_age.script.yaml",
+                "type": "file",
+                "path": "artifacts/scripts/parse_age.script.yaml"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_date_utils": {
+    "instruction": "# TypeScript Windmill Script — Date Formatting and Difference\n\n## Background\n\nWindmill scripts often need to work with dates — formatting timestamps for display, computing how many days until a deadline, or checking if something is overdue. This task involves building a utility script that performs both.\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/date_utils.ts`.\n- Export an async `main` function:\n  ```typescript\n  export async function main(iso_date: string, label: string = \"Event\")\n  ```\n  where `iso_date` is an ISO 8601 date string (e.g., `\"2025-12-31\"`).\n- The function must return:\n  ```typescript\n  {\n    label: string,\n    formatted: string,   // \"December 31, 2025\"\n    iso: string,         // the original iso_date\n    days_from_today: number  // positive = future, negative = past\n  }\n  ```\n  Use `toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })` for `formatted`.\n  For `days_from_today`, compute `Math.round((target - today) / 86400000)` where today is midnight UTC.\n- Create the metadata file at `/home/user/windmill-project/f/scripts/date_utils.script.yaml` with:\n  - `summary: \"Format a date and compute days from today\"`\n  - `language: typescript`\n\n## Implementation Guide\n\n```typescript\nexport async function main(iso_date: string, label: string = \"Event\") {\n  const target = new Date(iso_date);\n  const today = new Date(new Date().toISOString().split('T')[0]);\n  const days_from_today = Math.round((target.getTime() - today.getTime()) / 86400000);\n  return {\n    label,\n    formatted: target.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),\n    iso: iso_date,\n    days_from_today,\n  };\n}\n```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Return keys must be exactly: `label`, `formatted`, `iso`, `days_from_today`\n- `formatted` must use `en-US` locale: e.g., `\"December 31, 2025\"`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_date_utils__95pACsV",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": true,
+        "latency_sec": 690.583,
+        "latency_breakdown": {
+          "env_setup": 8.895,
+          "agent_setup": 59.968,
+          "agent_exec": 600.116,
+          "verifier": 11.105
+        },
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "scripts",
+            "type": "dir",
+            "path": "artifacts/scripts",
+            "children": [
+              {
+                "name": "date_utils.script.yaml",
+                "type": "file",
+                "path": "artifacts/scripts/date_utils.script.yaml"
+              },
+              {
+                "name": "date_utils.ts",
+                "type": "file",
+                "path": "artifacts/scripts/date_utils.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "python_class_script": {
+    "instruction": "# Python Windmill Script — Class-Based Report Generator\n\n## Background\n\nWindmill Python scripts can use classes as internal utilities — the script entry point is still `main`, but a class can encapsulate stateful logic that would be awkward to express as pure functions. This pattern is used for template rendering, report generation, and structured output formatting.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/generate_report.py`.\n- Define an internal class `ReportBuilder` (not exported — just used inside `main`):\n  ```python\n  class ReportBuilder:\n      def __init__(self, title: str):\n          self.title = title\n          self.sections = []\n\n      def add_section(self, heading: str, content: str):\n          self.sections.append({\"heading\": heading, \"content\": content})\n          return self  # fluent interface\n\n      def build(self) -> dict:\n          return {\n              \"title\": self.title,\n              \"section_count\": len(self.sections),\n              \"sections\": self.sections,\n              \"text\": self._render()\n          }\n\n      def _render(self) -> str:\n          lines = [f\"# {self.title}\"]\n          for s in self.sections:\n              lines.append(f\"\\n## {s['heading']}\")\n              lines.append(s['content'])\n          return \"\\n\".join(lines)\n  ```\n- Export a `main` function:\n  ```python\n  def main(title: str, sections: list[dict]) -> dict:\n      \"\"\"sections is a list of {heading: str, content: str} dicts.\"\"\"\n      builder = ReportBuilder(title)\n      for s in sections:\n          builder.add_section(s[\"heading\"], s[\"content\"])\n      return builder.build()\n  ```\n- Create the metadata file at `/home/user/windmill-project/f/scripts/generate_report.script.yaml` with:\n  - `summary: \"Generate a structured report from sections\"`\n  - `language: python3`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- `ReportBuilder` must use a fluent interface (`add_section` returns `self`)\n- `text` field must start with `# {title}` and include `## {heading}` for each section\n- Return keys: `title`, `section_count`, `sections`, `text`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_class_script__dh2MWFb",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": true,
+        "latency_sec": 635.049,
+        "latency_breakdown": {
+          "env_setup": 1.354,
+          "agent_setup": 18.039,
+          "agent_exec": 600.108,
+          "verifier": 4.833
+        },
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "generate_report.py",
+                "type": "file",
+                "path": "artifacts/code/generate_report.py"
+              },
+              {
+                "name": "generate_report.script.yaml",
+                "type": "file",
+                "path": "artifacts/code/generate_report.script.yaml"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "python_list_transform": {
+    "instruction": "# Python Windmill Script — Filter and Transform a List\n\n## Background\n\nWindmill Python scripts frequently receive lists from upstream flow steps and must filter, transform, and return new lists. This is a core pattern for data-processing pipelines built in Windmill.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/process_orders.py`.\n- The `main` function must have this signature:\n  ```python\n  def main(orders: list[dict], min_amount: float = 0.0) -> dict:\n  ```\n  Each order dict has keys: `id` (int), `product` (str), `amount` (float), `shipped` (bool).\n- The function must:\n  1. Filter orders where `amount >= min_amount`.\n  2. Return a dict:\n     ```python\n     {\n       \"total_orders\": len(filtered),\n       \"total_amount\": sum(o[\"amount\"] for o in filtered),\n       \"shipped_count\": sum(1 for o in filtered if o[\"shipped\"]),\n       \"items\": [{\"id\": o[\"id\"], \"product\": o[\"product\"], \"amount\": o[\"amount\"]} for o in filtered]\n     }\n     ```\n- Create the metadata file at `/home/user/windmill-project/f/scripts/process_orders.script.yaml` with:\n  - `summary: \"Filter and summarize a list of orders\"`\n  - `language: python3`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Return keys must be exactly: `total_orders`, `total_amount`, `shipped_count`, `items`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_list_transform__y66ACAN",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": false,
+        "latency_sec": 92.615,
+        "latency_breakdown": {
+          "env_setup": 1.356,
+          "agent_setup": 26.42,
+          "agent_exec": 44.568,
+          "verifier": 9.695
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12733,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "scripts",
+            "type": "dir",
+            "path": "artifacts/scripts",
+            "children": [
+              {
+                "name": "process_orders.py",
+                "type": "file",
+                "path": "artifacts/scripts/process_orders.py"
+              },
+              {
+                "name": "process_orders.script.yaml",
+                "type": "file",
+                "path": "artifacts/scripts/process_orders.script.yaml"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_environment_config": {
+    "instruction": "# TypeScript Windmill Script — Environment-Aware Configuration Builder\n\n## Background\n\nWindmill scripts can access environment variables via `Deno.env.get()` (in the Deno runtime) or `process.env` (in Node.js). However, the idiomatic Windmill pattern for environment-specific config is to pass config values as script parameters and use Windmill's variable/secret system to inject them. This task builds an environment config assembler.\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/build_config.ts`.\n- Export an async `main` function:\n  ```typescript\n  export async function main(\n    environment: string,\n    api_base_url: string,\n    debug: boolean = false,\n    max_retries: number = 3,\n    timeout_ms: number = 5000\n  )\n  ```\n- The function must:\n  1. Validate that `environment` is one of `\"development\"`, `\"staging\"`, `\"production\"`. If not, throw `new Error(\\`Unknown environment: ${environment}\\`)`.\n  2. Return a config object:\n     ```typescript\n     {\n       environment,\n       api_base_url: api_base_url.replace(/\\/$/, ''),  // strip trailing slash\n       debug: environment !== 'production' && debug,\n       max_retries,\n       timeout_ms,\n       is_production: environment === 'production',\n       log_level: environment === 'production' ? 'warn' : 'debug'\n     }\n     ```\n- Create the metadata file at `/home/user/windmill-project/f/scripts/build_config.script.yaml` with:\n  - `summary: \"Build an environment-specific configuration object\"`\n  - `language: typescript`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Strip trailing slash from `api_base_url`\n- `debug` must be forced to `false` in production even if caller passes `true`\n- Valid environments: `development`, `staging`, `production`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_environment_config__q9ChZD3",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": true,
+        "latency_sec": 637.59,
+        "latency_breakdown": {
+          "env_setup": 1.315,
+          "agent_setup": 20.554,
+          "agent_exec": 600.109,
+          "verifier": 5.166
+        },
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "build_config.script.yaml",
+                "type": "file",
+                "path": "artifacts/code/build_config.script.yaml"
+              },
+              {
+                "name": "build_config.ts",
+                "type": "file",
+                "path": "artifacts/code/build_config.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_basic_script": {
+    "instruction": "# Create a TypeScript Windmill Script\n\n## Background\n\nWindmill is an open-source workflow engine and developer platform that allows you to write scripts in TypeScript, Python, and other languages. Each Windmill script is a file that exports a `main` function, and is accompanied by a metadata YAML file describing its properties.\n\nIn this task you will use the Windmill CLI (`wmill`) to create a TypeScript script and its accompanying metadata file inside a local Windmill project directory.\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/greet.ts` that exports an async `main` function.\n- The `main` function must accept two parameters:\n  - `name`: a `string` (required)\n  - `greeting`: a `string` with a default value of `\"Hello\"`\n- The function must return the string `` `${greeting}, ${name}!` ``.\n- Create the accompanying metadata file at `/home/user/windmill-project/f/scripts/greet.script.yaml` with:\n  - `summary: \"Greet a user\"`\n  - `language: typescript`\n\n## Implementation Guide\n\n1. Navigate to the project directory:\n   ```bash\n   cd /home/user/windmill-project\n   ```\n\n2. Create the scripts directory if it does not already exist:\n   ```bash\n   mkdir -p f/scripts\n   ```\n\n3. Create the TypeScript script file `f/scripts/greet.ts` with the following structure:\n   ```typescript\n   export async function main(name: string, greeting: string = \"Hello\") {\n     return `${greeting}, ${name}!`;\n   }\n   ```\n\n4. Create the metadata file `f/scripts/greet.script.yaml` with:\n   ```yaml\n   summary: \"Greet a user\"\n   language: typescript\n   ```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Script path: `/home/user/windmill-project/f/scripts/greet.ts`\n- Metadata path: `/home/user/windmill-project/f/scripts/greet.script.yaml`\n- The `main` function signature must match exactly: `main(name: string, greeting: string = \"Hello\")`\n- The return value must use a template literal: `` `${greeting}, ${name}!` ``\n- Do not add a Windmill server — this is a local file creation task only.\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_basic_script__Xwi9Xwb",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": true,
+        "latency_sec": 483.572,
+        "latency_breakdown": {
+          "env_setup": 1.331,
+          "agent_setup": 45.307,
+          "agent_exec": 420.707,
+          "verifier": 5.644
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12332,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_with_defaults": {
+    "instruction": "# TypeScript Windmill Script with Multiple Default Parameters\n\n## Background\n\nWindmill scripts frequently accept optional configuration parameters with sensible defaults. TypeScript's default parameter syntax maps directly to Windmill's UI — parameters without a value use the default, while those with a value are treated as optional in the form. This task tests your ability to write a script with several optional parameters.\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/format_price.ts`.\n- Export an async `main` function with this signature:\n  ```typescript\n  export async function main(\n    amount: number,\n    currency: string = \"USD\",\n    decimals: number = 2,\n    prefix: string = \"\"\n  )\n  ```\n- The function must return a formatted price string:\n  - Format: `` `${prefix}${amount.toFixed(decimals)} ${currency}` ``\n  - Example: `main(9.5)` → `\"9.50 USD\"`\n  - Example: `main(1234.5, \"EUR\", 0, \"~\")` → `\"~1235 EUR\"`\n- Create the metadata file `/home/user/windmill-project/f/scripts/format_price.script.yaml` with:\n  - `summary: \"Format a monetary amount as a price string\"`\n  - `language: typescript`\n\n## Implementation Guide\n\n1. Create `f/scripts/format_price.ts`:\n   ```typescript\n   export async function main(\n     amount: number,\n     currency: string = \"USD\",\n     decimals: number = 2,\n     prefix: string = \"\"\n   ) {\n     return `${prefix}${amount.toFixed(decimals)} ${currency}`;\n   }\n   ```\n2. Create `f/scripts/format_price.script.yaml` with summary and language fields.\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Default values: `currency=\"USD\"`, `decimals=2`, `prefix=\"\"`\n- Use `amount.toFixed(decimals)` for formatting\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_with_defaults__wnRShsX",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": true,
+        "latency_sec": 651.615,
+        "latency_breakdown": {
+          "env_setup": 1.341,
+          "agent_setup": 29.452,
+          "agent_exec": 600.126,
+          "verifier": 10.03
+        },
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "scripts",
+            "type": "dir",
+            "path": "artifacts/scripts",
+            "children": [
+              {
+                "name": "format_price.script.yaml",
+                "type": "file",
+                "path": "artifacts/scripts/format_price.script.yaml"
+              },
+              {
+                "name": "format_price.ts",
+                "type": "file",
+                "path": "artifacts/scripts/format_price.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "flow_parallel_branches": {
+    "instruction": "# Create a Windmill Flow with Parallel Branches\n\n## Background\n\nWindmill's `branchall` module runs multiple branches in parallel and collects their results. This is ideal for fan-out patterns: sending the same data to multiple processors simultaneously and aggregating results in a later step.\n\n## Requirements\n\nCreate three TypeScript scripts and a flow with parallel branches:\n\n### Script: `/home/user/windmill-project/f/scripts/compute_word_count.ts`\n```typescript\nexport async function main(text: string) {\n  return { word_count: text.trim().split(/\\s+/).filter(w => w).length };\n}\n```\nMetadata: `summary: \"Count words in text\"`, `language: typescript`\n\n### Script: `/home/user/windmill-project/f/scripts/compute_char_count.ts`\n```typescript\nexport async function main(text: string) {\n  return { char_count: text.length, char_count_no_spaces: text.replace(/\\s/g, '').length };\n}\n```\nMetadata: `summary: \"Count characters in text\"`, `language: typescript`\n\n### Script: `/home/user/windmill-project/f/scripts/compute_line_count.ts`\n```typescript\nexport async function main(text: string) {\n  return { line_count: text.split('\\n').length };\n}\n```\nMetadata: `summary: \"Count lines in text\"`, `language: typescript`\n\n### Flow: `/home/user/windmill-project/f/flows/text_stats.yaml`\n```yaml\nsummary: \"Compute text statistics in parallel\"\nvalue:\n  modules:\n    - id: stats\n      value:\n        type: branchall\n        parallel: true\n        branches:\n          - summary: \"Word count\"\n            modules:\n              - id: words\n                value:\n                  type: script\n                  path: f/scripts/compute_word_count\n                  input_transforms:\n                    text:\n                      type: static\n                      value: \"Hello World\\nThis is Windmill\"\n          - summary: \"Char count\"\n            modules:\n              - id: chars\n                value:\n                  type: script\n                  path: f/scripts/compute_char_count\n                  input_transforms:\n                    text:\n                      type: static\n                      value: \"Hello World\\nThis is Windmill\"\n          - summary: \"Line count\"\n            modules:\n              - id: lines\n                value:\n                  type: script\n                  path: f/scripts/compute_line_count\n                  input_transforms:\n                    text:\n                      type: static\n                      value: \"Hello World\\nThis is Windmill\"\n```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Flow must use `type: branchall` with `parallel: true`\n- All three scripts must run as separate branches\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "flow_parallel_branches__tPmvHxY",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 122.101,
+        "latency_breakdown": {
+          "env_setup": 1.335,
+          "agent_setup": 54.219,
+          "agent_exec": 43.188,
+          "verifier": 12.89
+        },
+        "tokens": {
+          "input": 0,
+          "output": 13604,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "compute_char_count.ts",
+                "type": "file",
+                "path": "artifacts/code/compute_char_count.ts"
+              },
+              {
+                "name": "compute_line_count.ts",
+                "type": "file",
+                "path": "artifacts/code/compute_line_count.ts"
+              },
+              {
+                "name": "compute_word_count.ts",
+                "type": "file",
+                "path": "artifacts/code/compute_word_count.ts"
+              }
+            ]
+          },
+          {
+            "name": "flows",
+            "type": "dir",
+            "path": "artifacts/flows",
+            "children": [
+              {
+                "name": "text_stats.yaml",
+                "type": "file",
+                "path": "artifacts/flows/text_stats.yaml"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "python_optional_params": {
+    "instruction": "# Python Windmill Script with Optional Parameters\n\n## Background\n\nWindmill Python scripts support optional parameters with default values, just like TypeScript scripts. When a parameter has a default, it becomes optional in Windmill's auto-generated UI form. This is useful for building configurable scripts that work out-of-the-box with sensible defaults.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/send_notification.py`.\n- The `main` function must have this signature:\n  ```python\n  def main(\n      message: str,\n      recipient: str = \"admin@example.com\",\n      subject: str = \"Notification\",\n      priority: int = 1\n  ) -> dict:\n  ```\n- The function must return a dict:\n  ```python\n  {\n      \"to\": recipient,\n      \"subject\": subject,\n      \"body\": message,\n      \"priority\": priority,\n      \"sent\": False   # simulated — no real email is sent\n  }\n  ```\n- Create the metadata file at `/home/user/windmill-project/f/scripts/send_notification.script.yaml` with:\n  - `summary: \"Prepare a notification payload\"`\n  - `language: python3`\n\n## Implementation Guide\n\n1. Create `f/scripts/send_notification.py` with the function above.\n2. Create `f/scripts/send_notification.script.yaml`.\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- `sent` must always be `False` (simulation only — no real sending)\n- Return dict keys must be exactly: `to`, `subject`, `body`, `priority`, `sent`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_optional_params__AU2J92G",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 112.419,
+        "latency_breakdown": {
+          "env_setup": 1.343,
+          "agent_setup": 59.398,
+          "agent_exec": 31.25,
+          "verifier": 9.661
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12472,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "send_notification.py",
+            "type": "file",
+            "path": "artifacts/send_notification.py"
+          },
+          {
+            "name": "send_notification.script.yaml",
+            "type": "file",
+            "path": "artifacts/send_notification.script.yaml"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "python_nested_dict": {
+    "instruction": "# Python Windmill Script — Nested Dictionary Transformer\n\n## Background\n\nWindmill Python scripts that process webhook payloads or API responses often receive deeply nested JSON structures. Flattening or restructuring these nested dicts is a common pre-processing step before passing data to downstream scripts.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/flatten_config.py`.\n- The `main` function must have this signature:\n  ```python\n  def main(config: dict, prefix: str = \"\") -> dict:\n  ```\n- The function must flatten a nested dict into a single-level dict with dot-notation keys.\n  - e.g., `{\"a\": {\"b\": 1, \"c\": {\"d\": 2}}}` → `{\"a.b\": 1, \"a.c.d\": 2}`\n  - If `prefix` is provided, prepend it: `{\"x\": 1}` with `prefix=\"ns\"` → `{\"ns.x\": 1}`\n- Non-dict values are written as-is (string, int, float, bool, list).\n- Create the metadata file at `/home/user/windmill-project/f/scripts/flatten_config.script.yaml` with:\n  - `summary: \"Flatten a nested dictionary into dot-notation keys\"`\n  - `language: python3`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Key separator is `.` (dot)\n- Lists are NOT recursed into — kept as-is\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_nested_dict__e4Tqe2m",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": true,
+        "latency_sec": 643.178,
+        "latency_breakdown": {
+          "env_setup": 1.316,
+          "agent_setup": 27.25,
+          "agent_exec": 600.108,
+          "verifier": 4.048
+        },
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "flow_error_handler": {
+    "instruction": "# Create a Windmill Flow with an Error Handler\n\n## Background\n\nWindmill flows support a global `error_handler` — a script path that is called automatically whenever any step in the flow fails. The error handler receives the error details and can notify engineers, log incidents, or trigger recovery actions. Setting up proper error handling is a production best practice for Windmill workflows.\n\n## Requirements\n\nCreate two TypeScript scripts and a flow with an error handler configured:\n\n### Script 1: `/home/user/windmill-project/f/scripts/risky_operation.ts`\n```typescript\nexport async function main(should_fail: boolean = false) {\n  if (should_fail) {\n    throw new Error(\"Intentional failure for testing\");\n  }\n  return { status: \"ok\", message: \"Operation completed successfully\" };\n}\n```\nMetadata: `summary: \"A risky operation that can fail\"`, `language: typescript`\n\n### Script 2: `/home/user/windmill-project/f/scripts/handle_error.ts`\n```typescript\nexport async function main(\n  error_message: string,\n  flow_path: string = \"unknown\",\n  step_id: string = \"unknown\"\n) {\n  return {\n    alert: true,\n    message: `Flow '${flow_path}' failed at step '${step_id}': ${error_message}`,\n    timestamp: new Date().toISOString()\n  };\n}\n```\nMetadata: `summary: \"Handle a flow error by logging an alert\"`, `language: typescript`\n\n### Flow: `/home/user/windmill-project/f/flows/resilient_pipeline.yaml`\n```yaml\nsummary: \"A resilient pipeline with error handling\"\nerror_handler: f/scripts/handle_error\nvalue:\n  modules:\n    - id: a\n      value:\n        type: script\n        path: f/scripts/risky_operation\n        input_transforms:\n          should_fail:\n            type: static\n            value: false\n```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Flow file: `/home/user/windmill-project/f/flows/resilient_pipeline.yaml`\n- The flow YAML must have `error_handler: f/scripts/handle_error` at the top level\n- `handle_error.ts` must return an object with `alert: true` and `message` containing both the flow path and error message\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "flow_error_handler__ToEZpf9",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 134.904,
+        "latency_breakdown": {
+          "env_setup": 1.351,
+          "agent_setup": 47.441,
+          "agent_exec": 66.446,
+          "verifier": 9.138
+        },
+        "tokens": {
+          "input": 0,
+          "output": 14277,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "handle_error.script.yaml",
+                "type": "file",
+                "path": "artifacts/code/handle_error.script.yaml"
+              },
+              {
+                "name": "handle_error.ts",
+                "type": "file",
+                "path": "artifacts/code/handle_error.ts"
+              },
+              {
+                "name": "risky_operation.script.yaml",
+                "type": "file",
+                "path": "artifacts/code/risky_operation.script.yaml"
+              },
+              {
+                "name": "risky_operation.ts",
+                "type": "file",
+                "path": "artifacts/code/risky_operation.ts"
+              }
+            ]
+          },
+          {
+            "name": "flows",
+            "type": "dir",
+            "path": "artifacts/flows",
+            "children": [
+              {
+                "name": "resilient_pipeline.yaml",
+                "type": "file",
+                "path": "artifacts/flows/resilient_pipeline.yaml"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_error_handling": {
+    "instruction": "# TypeScript Windmill Script with Input Validation and Error Handling\n\n## Background\n\nIn Windmill, when a script throws an error, the step fails and the error message is surfaced in the Windmill UI or passed to an error handler branch in a flow. Writing scripts that validate inputs and throw meaningful errors is a best practice in Windmill development.\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/divide.ts`.\n- Export an async `main` function:\n  ```typescript\n  export async function main(numerator: number, denominator: number)\n  ```\n- If `denominator === 0`, throw: `new Error(\"Division by zero is not allowed\")`\n- Otherwise, return `{ result: numerator / denominator, numerator, denominator }`\n- Create the metadata file at `/home/user/windmill-project/f/scripts/divide.script.yaml` with:\n  - `summary: \"Divide two numbers with zero-check\"`\n  - `language: typescript`\n\n## Implementation Guide\n\n1. Create `f/scripts/divide.ts`:\n   ```typescript\n   export async function main(numerator: number, denominator: number) {\n     if (denominator === 0) {\n       throw new Error(\"Division by zero is not allowed\");\n     }\n     return { result: numerator / denominator, numerator, denominator };\n   }\n   ```\n2. Create the metadata YAML.\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Error message must be exactly: `\"Division by zero is not allowed\"`\n- Return object keys: `result`, `numerator`, `denominator`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_error_handling__zWBeNX3",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 421.993,
+        "latency_breakdown": {
+          "env_setup": 1.356,
+          "agent_setup": 60.662,
+          "agent_exec": 344.6,
+          "verifier": 4.7
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12856,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "scripts",
+            "type": "dir",
+            "path": "artifacts/scripts",
+            "children": [
+              {
+                "name": "divide.script.yaml",
+                "type": "file",
+                "path": "artifacts/scripts/divide.script.yaml"
+              },
+              {
+                "name": "divide.ts",
+                "type": "file",
+                "path": "artifacts/scripts/divide.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_array_filter": {
+    "instruction": "# TypeScript Windmill Script — Filter and Transform an Array\n\n## Background\n\nWindmill scripts often process collections of records passed in from a previous flow step or a webhook payload. TypeScript's native array methods (`filter`, `map`) are the idiomatic way to transform these collections before passing results downstream.\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/filter_users.ts`.\n- Export an async `main` function:\n  ```typescript\n  export async function main(\n    users: Array<{ id: number; name: string; active: boolean }>,\n    active_only: boolean = true\n  )\n  ```\n- The function must:\n  1. If `active_only` is `true`, keep only users where `active === true`.\n  2. Return an array of objects `{ id: number; name: string; display: string }` where `display` is `` `#${id} — ${name}` ``.\n- Create the metadata file at `/home/user/windmill-project/f/scripts/filter_users.script.yaml` with:\n  - `summary: \"Filter and format a list of users\"`\n  - `language: typescript`\n\n## Implementation Guide\n\n1. Create `f/scripts/filter_users.ts`:\n   ```typescript\n   export async function main(\n     users: Array<{ id: number; name: string; active: boolean }>,\n     active_only: boolean = true\n   ) {\n     const filtered = active_only ? users.filter(u => u.active) : users;\n     return filtered.map(u => ({ id: u.id, name: u.name, display: `#${u.id} — ${u.name}` }));\n   }\n   ```\n2. Create the metadata YAML.\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- `display` format: `` `#${id} — ${name}` `` (em dash `—`, not a hyphen)\n- When `active_only=false`, return all users\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_array_filter__PppRnCk",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": true,
+        "latency_sec": 344.11,
+        "latency_breakdown": {
+          "env_setup": 1.387,
+          "agent_setup": 27.727,
+          "agent_exec": 300.693,
+          "verifier": 3.847
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12010,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_async_transform": {
+    "instruction": "# TypeScript Windmill Script — Async Data Enrichment\n\n## Background\n\nWindmill's TypeScript runtime supports native async/await and `Promise.all`, making it well-suited for enriching collections in parallel. This task creates a script that simulates async enrichment of a list of items by adding computed fields.\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/enrich_products.ts`.\n- Export an async `main` function:\n  ```typescript\n  export async function main(\n    products: Array<{ id: number; name: string; price: number }>,\n    tax_rate: number = 0.1\n  )\n  ```\n- Use `Promise.all` to enrich each product in parallel:\n  ```typescript\n  const enriched = await Promise.all(\n    products.map(async (p) => ({\n      ...p,\n      tax: parseFloat((p.price * tax_rate).toFixed(2)),\n      total: parseFloat((p.price * (1 + tax_rate)).toFixed(2)),\n      label: `${p.name} ($${p.price})`,\n    }))\n  );\n  return { count: enriched.length, tax_rate, products: enriched };\n  ```\n- Create the metadata file at `/home/user/windmill-project/f/scripts/enrich_products.script.yaml` with:\n  - `summary: \"Enrich a list of products with tax and total price\"`\n  - `language: typescript`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Must use `Promise.all` (parallel enrichment, not sequential)\n- `tax` and `total` must be rounded to 2 decimal places with `parseFloat(...toFixed(2))`\n- Return keys: `count`, `tax_rate`, `products`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_async_transform__gCnt4qh",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": false,
+        "latency_sec": 120.582,
+        "latency_breakdown": {
+          "env_setup": 1.325,
+          "agent_setup": 62.973,
+          "agent_exec": 29.47,
+          "verifier": 15.838
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12849,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "enrich_products.script.yaml",
+                "type": "file",
+                "path": "artifacts/code/enrich_products.script.yaml"
+              },
+              {
+                "name": "enrich_products.ts",
+                "type": "file",
+                "path": "artifacts/code/enrich_products.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_multi_helper": {
+    "instruction": "# TypeScript Windmill Script with Helper Functions\n\n## Background\n\nIn Windmill TypeScript scripts, you can define helper functions in the same file alongside `main`. Only `main` is the entry point Windmill calls, but helper functions keep the logic organized and testable. This is the recommended pattern for scripts with non-trivial logic.\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/invoice.ts`.\n- Define these helper functions (NOT exported):\n  ```typescript\n  function formatCurrency(amount: number, currency: string): string {\n    return `${currency} ${amount.toFixed(2)}`;\n  }\n\n  function computeSubtotal(items: Array<{ qty: number; unit_price: number }>): number {\n    return items.reduce((sum, item) => sum + item.qty * item.unit_price, 0);\n  }\n  ```\n- Export an async `main` function:\n  ```typescript\n  export async function main(\n    items: Array<{ name: string; qty: number; unit_price: number }>,\n    tax_rate: number = 0.1,\n    currency: string = \"USD\"\n  )\n  ```\n  returning:\n  ```typescript\n  {\n    subtotal: formatCurrency(subtotal, currency),\n    tax: formatCurrency(subtotal * tax_rate, currency),\n    total: formatCurrency(subtotal * (1 + tax_rate), currency),\n    line_items: items.map(i => ({\n      name: i.name,\n      amount: formatCurrency(i.qty * i.unit_price, currency)\n    }))\n  }\n  ```\n- Create the metadata file at `/home/user/windmill-project/f/scripts/invoice.script.yaml` with:\n  - `summary: \"Generate an invoice summary from line items\"`\n  - `language: typescript`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Helper functions must NOT be exported\n- Currency format: `\"USD 10.00\"` (currency code then amount)\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_multi_helper__MCbNP83",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": false,
+        "latency_sec": 452.73,
+        "latency_breakdown": {
+          "env_setup": 8.877,
+          "agent_setup": 92.769,
+          "agent_exec": 311.677,
+          "verifier": 28.505
+        },
+        "tokens": {
+          "input": 0,
+          "output": 13712,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "scripts",
+            "type": "dir",
+            "path": "artifacts/scripts",
+            "children": [
+              {
+                "name": "invoice.script.yaml",
+                "type": "file",
+                "path": "artifacts/scripts/invoice.script.yaml"
+              },
+              {
+                "name": "invoice.ts",
+                "type": "file",
+                "path": "artifacts/scripts/invoice.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "python_basic_script": {
+    "instruction": "# Create a Python Windmill Script\n\n## Background\n\nWindmill supports Python scripts alongside TypeScript. A Python Windmill script is a `.py` file containing a `main` function — the entry point Windmill calls when running the script. Like TypeScript scripts, each Python script is paired with a `.script.yaml` metadata file.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/hello.py`.\n- The `main` function must accept one parameter: `name` of type `str`.\n- The function must return the string `f\"Hello, {name}!\"`.\n- Create the metadata file at `/home/user/windmill-project/f/scripts/hello.script.yaml` with:\n  - `summary: \"Say hello to a user\"`\n  - `language: python3`\n\n## Implementation Guide\n\n1. Navigate to the project directory:\n   ```bash\n   cd /home/user/windmill-project\n   ```\n\n2. Create the Python script `f/scripts/hello.py`:\n   ```python\n   def main(name: str) -> str:\n       return f\"Hello, {name}!\"\n   ```\n\n3. Create the metadata file `f/scripts/hello.script.yaml`:\n   ```yaml\n   summary: \"Say hello to a user\"\n   language: python3\n   ```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Script path: `/home/user/windmill-project/f/scripts/hello.py`\n- Metadata path: `/home/user/windmill-project/f/scripts/hello.script.yaml`\n- The function signature must be exactly: `main(name: str) -> str`\n- The return value must be a formatted string: `f\"Hello, {name}!\"`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_basic_script__9NQLJkd",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 394.92,
+        "latency_breakdown": {
+          "env_setup": 1.321,
+          "agent_setup": 40.39,
+          "agent_exec": 327.976,
+          "verifier": 14.718
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12747,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "hello.py",
+                "type": "file",
+                "path": "artifacts/code/hello.py"
+              },
+              {
+                "name": "hello.script.yaml",
+                "type": "file",
+                "path": "artifacts/code/hello.script.yaml"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "python_webhook_handler": {
+    "instruction": "# Python Windmill Script — Webhook Payload Dispatcher\n\n## Background\n\nWindmill is frequently triggered by webhooks from GitHub, Stripe, Slack, and other platforms. A Windmill script that acts as a webhook handler must inspect the event type, route to the appropriate logic, and return a structured response. This task builds a GitHub-style webhook handler.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/handle_webhook.py`.\n- The `main` function must have this signature:\n  ```python\n  def main(event_type: str, payload: dict) -> dict:\n  ```\n- Dispatch based on `event_type`:\n  - `\"push\"`: extract `payload[\"repository\"][\"name\"]` and `payload[\"commits\"]` (list). Return `{\"action\": \"push\", \"repo\": repo_name, \"commit_count\": len(commits), \"handled\": True}`.\n  - `\"pull_request\"`: extract `payload[\"action\"]` (e.g., `\"opened\"`) and `payload[\"pull_request\"][\"title\"]`. Return `{\"action\": \"pull_request\", \"pr_action\": pr_action, \"title\": title, \"handled\": True}`.\n  - `\"ping\"`: return `{\"action\": \"ping\", \"message\": \"pong\", \"handled\": True}`.\n  - Any other event: return `{\"action\": event_type, \"handled\": False, \"message\": f\"Unhandled event type: {event_type}\"}`.\n- Create the metadata file at `/home/user/windmill-project/f/scripts/handle_webhook.script.yaml` with:\n  - `summary: \"Dispatch and process incoming GitHub webhook events\"`\n  - `language: python3`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Return key `handled` must be `True` for known events, `False` for unknown\n- Use stdlib only (no third-party packages)\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_webhook_handler__nM3taaf",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 106.617,
+        "latency_breakdown": {
+          "env_setup": 1.364,
+          "agent_setup": 58.456,
+          "agent_exec": 30.945,
+          "verifier": 5.459
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12650,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "handle_webhook.py",
+                "type": "file",
+                "path": "artifacts/code/handle_webhook.py"
+              },
+              {
+                "name": "handle_webhook.script.yaml",
+                "type": "file",
+                "path": "artifacts/code/handle_webhook.script.yaml"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_data_pipeline": {
+    "instruction": "# TypeScript Windmill Script — Multi-Stage Data Pipeline\n\n## Background\n\nA single Windmill TypeScript script can implement a complete multi-stage data transformation pipeline as chained function calls within `main`. This is useful when the transformation logic is too simple to warrant a full multi-step flow, but complex enough to need several passes over the data.\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/etl_pipeline.ts`.\n- Export an async `main` function:\n  ```typescript\n  export async function main(\n    raw_records: Array<{ name: string; value: string; category: string }>,\n    filter_category: string = \"\",\n    value_multiplier: number = 1\n  )\n  ```\n- The pipeline must perform these stages **in order**:\n  1. **Parse**: convert `value` from string to float (skip records where `value` is not a valid number, setting `parse_error: true`).\n  2. **Filter**: if `filter_category` is non-empty, keep only records where `category === filter_category`.\n  3. **Transform**: multiply each numeric value by `value_multiplier`.\n  4. **Aggregate**: compute `{ total: sum, count, average }` from the transformed values.\n- Return:\n  ```typescript\n  {\n    input_count: number,\n    output_count: number,\n    parse_errors: number,\n    filter_category: string,\n    records: Array<{ name: string; value: number; category: string }>,\n    aggregate: { total: number; count: number; average: number }\n  }\n  ```\n- Create the metadata file at `/home/user/windmill-project/f/scripts/etl_pipeline.script.yaml` with:\n  - `summary: \"Multi-stage ETL pipeline: parse, filter, transform, aggregate\"`\n  - `language: typescript`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Pipeline stages must run in order: parse → filter → transform → aggregate\n- Records with parse errors are excluded from subsequent stages\n- `aggregate.average` is 0 if `count` is 0\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_data_pipeline__mUpACr7",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": true,
+        "latency_sec": 339.413,
+        "latency_breakdown": {
+          "env_setup": 1.402,
+          "agent_setup": 18.568,
+          "agent_exec": 300.748,
+          "verifier": 8.098
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12102,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "python_data_validation": {
+    "instruction": "# Python Windmill Script — Input Data Validator\n\n## Background\n\nWindmill scripts often act as validation gates in a flow — they inspect incoming data, collect all validation errors, and either return a clean validated object or raise an error listing every problem. This prevents bad data from propagating to downstream steps.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/validate_user.py`.\n- The `main` function must have this signature:\n  ```python\n  def main(user: dict) -> dict:\n  ```\n  The `user` dict may contain: `name` (str), `email` (str), `age` (int).\n- Validation rules:\n  - `name`: required, must be a non-empty string\n  - `email`: required, must contain `@` and `.`\n  - `age`: optional; if present, must be an integer between 0 and 150\n- Collect ALL validation errors into a list.\n- If there are any errors, raise `ValueError(f\"Validation failed: {'; '.join(errors)}\")`\n- If valid, return:\n  ```python\n  {\"valid\": True, \"name\": user[\"name\"].strip(), \"email\": user[\"email\"].lower(), \"age\": user.get(\"age\")}\n  ```\n- Create the metadata file at `/home/user/windmill-project/f/scripts/validate_user.script.yaml` with:\n  - `summary: \"Validate and normalize a user input dict\"`\n  - `language: python3`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Collect ALL errors before raising (not fail-fast)\n- `email` must be lowercased in output\n- `name` must be stripped in output\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_data_validation__DLL3rr6",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": true,
+        "latency_sec": 681.717,
+        "latency_breakdown": {
+          "env_setup": 1.309,
+          "agent_setup": 56.62,
+          "agent_exec": 600.062,
+          "verifier": 13.297
+        },
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "validate_user.py",
+                "type": "file",
+                "path": "artifacts/code/validate_user.py"
+              }
+            ]
+          },
+          {
+            "name": "metadata",
+            "type": "dir",
+            "path": "artifacts/metadata",
+            "children": [
+              {
+                "name": "validate_user.script.yaml",
+                "type": "file",
+                "path": "artifacts/metadata/validate_user.script.yaml"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "python_math_utils": {
+    "instruction": "# Python Windmill Script — Statistical Math Utilities\n\n## Background\n\nWindmill scripts are frequently embedded in data pipelines to perform numerical analysis on values produced by upstream steps (e.g., sensor readings, financial metrics). This task creates a Python script that computes common statistical descriptors.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/describe.py`.\n- The `main` function must have this signature:\n  ```python\n  def main(values: list[float]) -> dict:\n  ```\n- If `values` is empty, raise `ValueError(\"Cannot describe an empty list\")`.\n- Otherwise return:\n  ```python\n  {\n    \"count\": int,\n    \"min\": float,\n    \"max\": float,\n    \"mean\": float,            # sum / count\n    \"median\": float,          # middle value (or average of two middles)\n    \"range\": float            # max - min\n  }\n  ```\n  Compute `median` without using `statistics` module — sort the list and compute manually.\n- Create the metadata file at `/home/user/windmill-project/f/scripts/describe.script.yaml` with:\n  - `summary: \"Compute descriptive statistics for a list of numbers\"`\n  - `language: python3`\n\n## Implementation Guide\n\n```python\ndef main(values: list[float]) -> dict:\n    if not values:\n        raise ValueError(\"Cannot describe an empty list\")\n    sorted_v = sorted(values)\n    n = len(sorted_v)\n    mid = n // 2\n    median = sorted_v[mid] if n % 2 else (sorted_v[mid - 1] + sorted_v[mid]) / 2\n    return {\n        \"count\": n,\n        \"min\": sorted_v[0],\n        \"max\": sorted_v[-1],\n        \"mean\": sum(sorted_v) / n,\n        \"median\": median,\n        \"range\": sorted_v[-1] - sorted_v[0],\n    }\n```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- No `import statistics` — compute manually\n- Return keys must be: `count`, `min`, `max`, `mean`, `median`, `range`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_math_utils__KYZS38E",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": true,
+        "latency_sec": 351.595,
+        "latency_breakdown": {
+          "env_setup": 1.327,
+          "agent_setup": 32.465,
+          "agent_exec": 300.753,
+          "verifier": 6.477
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12758,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "flow_approval_step": {
+    "instruction": "# Create a Windmill Flow with an Approval (Suspend) Step\n\n## Background\n\nWindmill supports human-in-the-loop workflows via `suspend` modules. A suspend step pauses the flow until a human approves or rejects the continuation. This is essential for high-stakes automated actions — deployments, budget approvals, data deletions — where a human must sign off before the flow proceeds.\n\n## Requirements\n\nCreate two TypeScript scripts and a flow with an approval step between them:\n\n### Script 1: `/home/user/windmill-project/f/scripts/prepare_deployment.ts`\n```typescript\nexport async function main(service: string, version: string, environment: string) {\n  return {\n    service,\n    version,\n    environment,\n    deploy_command: `kubectl set image deployment/${service} ${service}=${service}:${version} -n ${environment}`,\n    requires_approval: true\n  };\n}\n```\nMetadata: `summary: \"Prepare a deployment plan\"`, `language: typescript`\n\n### Script 2: `/home/user/windmill-project/f/scripts/execute_deployment.ts`\n```typescript\nexport async function main(deploy_command: string, approved: boolean = true) {\n  if (!approved) {\n    return { status: \"cancelled\", message: \"Deployment was not approved\" };\n  }\n  return { status: \"deployed\", command_run: deploy_command, deployed_at: new Date().toISOString() };\n}\n```\nMetadata: `summary: \"Execute a deployment after approval\"`, `language: typescript`\n\n### Flow: `/home/user/windmill-project/f/flows/deploy_with_approval.yaml`\n```yaml\nsummary: \"Deploy a service with human approval\"\nvalue:\n  modules:\n    - id: prepare\n      value:\n        type: script\n        path: f/scripts/prepare_deployment\n        input_transforms:\n          service:\n            type: static\n            value: \"api-server\"\n          version:\n            type: static\n            value: \"v1.2.3\"\n          environment:\n            type: static\n            value: \"production\"\n    - id: approval\n      value:\n        type: flow\n        path: hub/0/approval\n        input_transforms: {}\n    - id: deploy\n      value:\n        type: script\n        path: f/scripts/execute_deployment\n        input_transforms:\n          deploy_command:\n            type: javascript\n            expr: \"results.prepare.deploy_command\"\n```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Flow file: `/home/user/windmill-project/f/flows/deploy_with_approval.yaml`\n- The approval step must use `path: hub/0/approval`\n- Step ids must be `prepare`, `approval`, `deploy`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "flow_approval_step__bxtBpqM",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": true,
+        "latency_sec": 729.947,
+        "latency_breakdown": {
+          "env_setup": 8.881,
+          "agent_setup": 93.897,
+          "agent_exec": 600.078,
+          "verifier": 16.607
+        },
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "flow_sequential_steps": {
+    "instruction": "# Create a Windmill Flow with Two Sequential Script Steps\n\n## Background\n\nWindmill flows are YAML definitions that chain scripts into pipelines. Each flow module has an `id`, a `value` describing what to run, and `input_transforms` that wire outputs from previous steps into the current step's inputs. The flow file lives in a `.flow/` directory or as a single `.yaml` file.\n\n## Requirements\n\nCreate two TypeScript scripts and a flow that chains them:\n\n### Script 1: `/home/user/windmill-project/f/scripts/generate_message.ts`\n```typescript\nexport async function main(name: string) {\n  return { message: `Hello, ${name}!`, timestamp: new Date().toISOString() };\n}\n```\nWith metadata `generate_message.script.yaml`: `summary: \"Generate a greeting message\"`, `language: typescript`\n\n### Script 2: `/home/user/windmill-project/f/scripts/wrap_message.ts`\n```typescript\nexport async function main(message: string, prefix: string = \">>>\") {\n  return `${prefix} ${message}`;\n}\n```\nWith metadata `wrap_message.script.yaml`: `summary: \"Wrap a message with a prefix\"`, `language: typescript`\n\n### Flow: `/home/user/windmill-project/f/flows/greet_and_wrap.yaml`\nA flow with two sequential steps:\n- **Step `a`**: runs `f/scripts/generate_message` with a static input `name: \"Windmill\"`\n- **Step `b`**: runs `f/scripts/wrap_message`, wiring `message` from `results.a.message` via a JavaScript expression input transform\n\nThe flow YAML must follow the Windmill flow format:\n```yaml\nsummary: \"Greet and wrap a message\"\nvalue:\n  modules:\n    - id: a\n      value:\n        type: script\n        path: f/scripts/generate_message\n        input_transforms:\n          name:\n            type: static\n            value: \"Windmill\"\n    - id: b\n      value:\n        type: script\n        path: f/scripts/wrap_message\n        input_transforms:\n          message:\n            type: javascript\n            expr: \"results.a.message\"\n```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Flows directory: `/home/user/windmill-project/f/flows/`\n- Flow file: `/home/user/windmill-project/f/flows/greet_and_wrap.yaml`\n- Script step ids must be `a` and `b`\n- Input transform for `message` in step `b` must use `type: javascript` with `expr: \"results.a.message\"`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "flow_sequential_steps__3xUNbT8",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 78.581,
+        "latency_breakdown": {
+          "env_setup": 1.343,
+          "agent_setup": 21.908,
+          "agent_exec": 34.632,
+          "verifier": 10.211
+        },
+        "tokens": {
+          "input": 0,
+          "output": 13863,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "flows",
+            "type": "dir",
+            "path": "artifacts/flows",
+            "children": [
+              {
+                "name": "greet_and_wrap.yaml",
+                "type": "file",
+                "path": "artifacts/flows/greet_and_wrap.yaml"
+              }
+            ]
+          },
+          {
+            "name": "scripts",
+            "type": "dir",
+            "path": "artifacts/scripts",
+            "children": [
+              {
+                "name": "generate_message.script.yaml",
+                "type": "file",
+                "path": "artifacts/scripts/generate_message.script.yaml"
+              },
+              {
+                "name": "generate_message.ts",
+                "type": "file",
+                "path": "artifacts/scripts/generate_message.ts"
+              },
+              {
+                "name": "wrap_message.script.yaml",
+                "type": "file",
+                "path": "artifacts/scripts/wrap_message.script.yaml"
+              },
+              {
+                "name": "wrap_message.ts",
+                "type": "file",
+                "path": "artifacts/scripts/wrap_message.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "full_script_workspace": {
+    "instruction": "# Set Up a Complete Windmill Script Workspace\n\n## Background\n\nA production Windmill workspace typically contains a set of utility scripts organized under `f/scripts/`, flows under `f/flows/`, and consistent metadata files for every script. This task challenges you to set up a coherent workspace with three interdependent scripts and a flow that orchestrates them end-to-end.\n\n## Requirements\n\nCreate the following files in `/home/user/windmill-project/`:\n\n### 1. `/home/user/windmill-project/f/scripts/fetch_users.ts`\n```typescript\nexport async function main(limit: number = 10): Promise<Array<{ id: number; name: string; email: string }>> {\n  // Simulate fetching users (no real HTTP)\n  return Array.from({ length: limit }, (_, i) => ({\n    id: i + 1,\n    name: `User ${i + 1}`,\n    email: `user${i + 1}@example.com`\n  }));\n}\n```\nMetadata `fetch_users.script.yaml`: `summary: \"Fetch a list of simulated users\"`, `language: typescript`\n\n### 2. `/home/user/windmill-project/f/scripts/enrich_users.ts`\n```typescript\nexport async function main(\n  users: Array<{ id: number; name: string; email: string }>,\n  domain_filter: string = \"\"\n) {\n  const filtered = domain_filter\n    ? users.filter(u => u.email.endsWith(domain_filter))\n    : users;\n  return filtered.map(u => ({ ...u, display: `[${u.id}] ${u.name} <${u.email}>` }));\n}\n```\nMetadata `enrich_users.script.yaml`: `summary: \"Enrich and optionally filter users by email domain\"`, `language: typescript`\n\n### 3. `/home/user/windmill-project/f/scripts/export_csv.ts`\n```typescript\nexport async function main(records: Array<Record<string, unknown>>, delimiter: string = \",\") {\n  if (records.length === 0) return { csv: \"\", row_count: 0 };\n  const headers = Object.keys(records[0]);\n  const rows = [headers.join(delimiter), ...records.map(r => headers.map(h => String(r[h] ?? '')).join(delimiter))];\n  return { csv: rows.join(\"\\n\"), row_count: records.length };\n}\n```\nMetadata `export_csv.script.yaml`: `summary: \"Export an array of records to CSV format\"`, `language: typescript`\n\n### 4. `/home/user/windmill-project/f/flows/user_export_pipeline.yaml`\n```yaml\nsummary: \"Fetch, enrich, and export users to CSV\"\nvalue:\n  modules:\n    - id: fetch\n      value:\n        type: script\n        path: f/scripts/fetch_users\n        input_transforms:\n          limit:\n            type: static\n            value: 5\n    - id: enrich\n      value:\n        type: script\n        path: f/scripts/enrich_users\n        input_transforms:\n          users:\n            type: javascript\n            expr: \"results.fetch\"\n    - id: export\n      value:\n        type: script\n        path: f/scripts/export_csv\n        input_transforms:\n          records:\n            type: javascript\n            expr: \"results.enrich\"\n```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- All 3 scripts + 3 metadata YAML files + 1 flow YAML = 7 files total\n- `fetch_users.ts` must generate exactly `limit` users with ids 1..limit\n- `export_csv.ts` must use `delimiter` as the column separator\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "full_script_workspace__tUaWizH",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": true,
+        "latency_sec": 703.969,
+        "latency_breakdown": {
+          "env_setup": 1.326,
+          "agent_setup": 62.847,
+          "agent_exec": 600.133,
+          "verifier": 29.133
+        },
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "f",
+            "type": "dir",
+            "path": "artifacts/f",
+            "children": [
+              {
+                "name": "flows",
+                "type": "dir",
+                "path": "artifacts/f/flows",
+                "children": []
+              },
+              {
+                "name": "scripts",
+                "type": "dir",
+                "path": "artifacts/f/scripts",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_string_builder": {
+    "instruction": "# TypeScript Windmill Script — Dynamic Report String Builder\n\n## Background\n\nWindmill scripts are often used as formatting steps in a flow that assemble human-readable reports from structured data produced by earlier steps. This task involves building a multi-line report string from a set of input fields.\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/build_report.ts`.\n- Export an async `main` function:\n  ```typescript\n  export async function main(\n    title: string,\n    items: string[],\n    footer: string = \"End of report\"\n  )\n  ```\n- The function must return a string that is a report with:\n  - Line 1: `=== ${title} ===`\n  - Lines 2..N: each item prefixed with `- ` (a dash and space)\n  - Last line: `--- ${footer} ---`\n  - Lines joined with `\\n`\n- Create the metadata file at `/home/user/windmill-project/f/scripts/build_report.script.yaml` with:\n  - `summary: \"Build a formatted text report from a list of items\"`\n  - `language: typescript`\n\n## Implementation Guide\n\n```typescript\nexport async function main(title: string, items: string[], footer: string = \"End of report\") {\n  const lines = [\n    `=== ${title} ===`,\n    ...items.map(i => `- ${i}`),\n    `--- ${footer} ---`,\n  ];\n  return lines.join(\"\\n\");\n}\n```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Join lines with `\\n` (newline), not `\\r\\n`\n- Item prefix is `\"- \"` (dash space)\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_string_builder__8kKyTME",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": true,
+        "latency_sec": 670.864,
+        "latency_breakdown": {
+          "env_setup": 8.904,
+          "agent_setup": 40.353,
+          "agent_exec": 600.111,
+          "verifier": 10.994
+        },
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "build_report.script.yaml",
+                "type": "file",
+                "path": "artifacts/code/build_report.script.yaml"
+              },
+              {
+                "name": "build_report.ts",
+                "type": "file",
+                "path": "artifacts/code/build_report.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_return_object": {
+    "instruction": "# TypeScript Windmill Script Returning a Structured Object\n\n## Background\n\nWindmill scripts can return structured objects, not just primitives. The returned object is serialized to JSON and made available to downstream flow steps or displayed in the Windmill UI. This is useful for scripts that produce multiple named output values.\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/user_info.ts`.\n- The script must export an async `main` function with this signature:\n  ```typescript\n  export async function main(id: number, name: string, active: boolean = true)\n  ```\n- The function must return an object with exactly these fields:\n  ```typescript\n  { id: number, name: string, active: boolean, display: string }\n  ```\n  Where `display` is the string `` `[${id}] ${name} (${active ? 'active' : 'inactive'})` ``.\n- Create the metadata file at `/home/user/windmill-project/f/scripts/user_info.script.yaml` with:\n  - `summary: \"Build a user info object\"`\n  - `language: typescript`\n\n## Implementation Guide\n\n1. Create `f/scripts/user_info.ts`:\n   ```typescript\n   export async function main(id: number, name: string, active: boolean = true) {\n     return {\n       id,\n       name,\n       active,\n       display: `[${id}] ${name} (${active ? 'active' : 'inactive'})`,\n     };\n   }\n   ```\n2. Create `f/scripts/user_info.script.yaml`:\n   ```yaml\n   summary: \"Build a user info object\"\n   language: typescript\n   ```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Script path: `/home/user/windmill-project/f/scripts/user_info.ts`\n- Metadata path: `/home/user/windmill-project/f/scripts/user_info.script.yaml`\n- The `display` field format must be: `[${id}] ${name} (active)` or `[${id}] ${name} (inactive)`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_return_object__RpFdm8x",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": true,
+        "latency_sec": 355.013,
+        "latency_breakdown": {
+          "env_setup": 1.349,
+          "agent_setup": 25.183,
+          "agent_exec": 300.718,
+          "verifier": 17.287
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12044,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "python_batch_processor": {
+    "instruction": "# Python Windmill Script — Batch Processor with Progress Tracking\n\n## Background\n\nWindmill is often used to orchestrate bulk data processing. A common pattern is a script that receives a large list of items, processes them in fixed-size batches, and returns both the results and a processing summary. This makes it easy to detect partial failures in a flow.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/batch_process.py`.\n- The `main` function must have this signature:\n  ```python\n  def main(items: list[str], batch_size: int = 10, transform: str = \"upper\") -> dict:\n  ```\n- `transform` options:\n  - `\"upper\"`: convert each string to uppercase\n  - `\"lower\"`: convert to lowercase\n  - `\"reverse\"`: reverse each string\n  - Any other value: raise `ValueError(f\"Unknown transform: '{transform}'. Choose 'upper', 'lower', or 'reverse'\")`\n- Process `items` in batches of `batch_size`.\n- Return:\n  ```python\n  {\n    \"total\": len(items),\n    \"batch_count\": math.ceil(len(items) / batch_size) if items else 0,\n    \"batch_size\": batch_size,\n    \"transform\": transform,\n    \"results\": [transformed_item, ...],  # all items transformed, in order\n    \"batches\": [{\"batch_index\": i, \"items\": batch_results}, ...]\n  }\n  ```\n- Create the metadata file at `/home/user/windmill-project/f/scripts/batch_process.script.yaml` with:\n  - `summary: \"Process a list of strings in configurable batches\"`\n  - `language: python3`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Use `import math` for `math.ceil`\n- `batches` list must reflect actual batching (each batch dict has `batch_index` and `items`)\n- `results` is a flat list of all transformed items\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_batch_processor__zsvqzZN",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 114.099,
+        "latency_breakdown": {
+          "env_setup": 1.393,
+          "agent_setup": 36.981,
+          "agent_exec": 40.485,
+          "verifier": 24.815
+        },
+        "tokens": {
+          "input": 0,
+          "output": 13408,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "batch_process.py",
+                "type": "file",
+                "path": "artifacts/code/batch_process.py"
+              },
+              {
+                "name": "batch_process.script.yaml",
+                "type": "file",
+                "path": "artifacts/code/batch_process.script.yaml"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "python_json_processor": {
+    "instruction": "# Python Windmill Script — JSON Log Processor\n\n## Background\n\nA common Windmill pattern is receiving a JSON string payload from a webhook or HTTP trigger and transforming it into a structured dict for downstream steps. This task involves parsing a JSON string, extracting fields, and returning a clean summary object.\n\n## Requirements\n\n- Create a Python script at `/home/user/windmill-project/f/scripts/parse_event.py`.\n- The `main` function must have this signature:\n  ```python\n  def main(event_json: str) -> dict:\n  ```\n- `event_json` is a JSON string with this shape:\n  ```json\n  {\"event\": \"user.signup\", \"user_id\": 42, \"metadata\": {\"plan\": \"pro\", \"source\": \"web\"}}\n  ```\n- The function must:\n  1. Parse the JSON string.\n  2. Return a dict:\n     ```python\n     {\n       \"event\": event,\n       \"user_id\": user_id,\n       \"plan\": metadata.get(\"plan\", \"free\"),\n       \"source\": metadata.get(\"source\", \"unknown\"),\n       \"summary\": f\"{event} by user #{user_id} via {source} on {plan} plan\"\n     }\n     ```\n  3. If the JSON is invalid, raise `ValueError(\"Invalid JSON payload\")`.\n- Create the metadata file at `/home/user/windmill-project/f/scripts/parse_event.script.yaml` with:\n  - `summary: \"Parse and summarize a JSON event payload\"`\n  - `language: python3`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Use `json.loads` (stdlib only — no third-party dependencies)\n- Return keys must be: `event`, `user_id`, `plan`, `source`, `summary`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "python_json_processor__tKqnLYp",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": true,
+        "latency_sec": 736.78,
+        "latency_breakdown": {
+          "env_setup": 8.893,
+          "agent_setup": 97.23,
+          "agent_exec": 600.052,
+          "verifier": 20.167
+        },
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "parse_event.py",
+                "type": "file",
+                "path": "artifacts/code/parse_event.py"
+              },
+              {
+                "name": "parse_event.script.yaml",
+                "type": "file",
+                "path": "artifacts/code/parse_event.script.yaml"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "typescript_object_param": {
+    "instruction": "# TypeScript Windmill Script with Object-Typed Parameter\n\n## Background\n\nWindmill supports object-typed parameters for TypeScript scripts. When the parameter type is an inline object type, Windmill generates a nested form in its UI. This pattern is common for grouping related configuration fields together (e.g., database config, API credentials).\n\n## Requirements\n\n- Create a TypeScript script at `/home/user/windmill-project/f/scripts/send_email.ts`.\n- Export an async `main` function:\n  ```typescript\n  export async function main(\n    recipient: { email: string; name: string },\n    subject: string,\n    body: string,\n    dry_run: boolean = true\n  )\n  ```\n- The function must return:\n  ```typescript\n  {\n    to: `${recipient.name} <${recipient.email}>`,\n    subject,\n    body,\n    dry_run,\n    sent: !dry_run,\n    preview: `To: ${recipient.name} <${recipient.email}>\\nSubject: ${subject}\\n\\n${body}`\n  }\n  ```\n- Create the metadata file at `/home/user/windmill-project/f/scripts/send_email.script.yaml` with:\n  - `summary: \"Compose and optionally send an email\"`\n  - `language: typescript`\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- `sent` must be `true` only when `dry_run` is `false`\n- `to` format: `\"Name <email@domain>\"`\n- `preview` must join header and body with `\\n\\n`\n\n## Integrations\n\nNone.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-04__19-33-07",
+        "trial_name": "typescript_object_param__2d39SoE",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 130.941,
+        "latency_breakdown": {
+          "env_setup": 1.409,
+          "agent_setup": 43.448,
+          "agent_exec": 43.569,
+          "verifier": 32.098
+        },
+        "tokens": {
+          "input": 0,
+          "output": 13243,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "scripts",
+            "type": "dir",
+            "path": "artifacts/scripts",
+            "children": [
+              {
+                "name": "send_email.script.yaml",
+                "type": "file",
+                "path": "artifacts/scripts/send_email.script.yaml"
+              },
+              {
+                "name": "send_email.ts",
+                "type": "file",
+                "path": "artifacts/scripts/send_email.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  }
+}
