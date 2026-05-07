@@ -1,0 +1,119 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 11,
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778125254.4408796,
+            "stop": 1778125254.5221188
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_check_score_ts_exists",
+                "status": "passed",
+                "duration": 0.0004869310650974512,
+                "start": 1778125254.4475968,
+                "stop": 1778125254.4482584,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_on_pass_ts_exists",
+                "status": "passed",
+                "duration": 0.0004939720965921879,
+                "start": 1778125254.448345,
+                "stop": 1778125254.4489584,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_on_fail_ts_exists",
+                "status": "passed",
+                "duration": 0.0004690970527008176,
+                "start": 1778125254.4490383,
+                "stop": 1778125254.4496489,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_exists",
+                "status": "passed",
+                "duration": 0.00045988697092980146,
+                "start": 1778125254.4497347,
+                "stop": 1778125254.4503102,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_check_score_passing",
+                "status": "passed",
+                "duration": 0.029646477079950273,
+                "start": 1778125254.4503794,
+                "stop": 1778125254.4802756,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_check_score_failing",
+                "status": "passed",
+                "duration": 0.013783043948933482,
+                "start": 1778125254.480399,
+                "stop": 1778125254.4944499,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_on_pass_message",
+                "status": "passed",
+                "duration": 0.012423297041095793,
+                "start": 1778125254.4945755,
+                "stop": 1778125254.5072064,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_on_fail_message",
+                "status": "passed",
+                "duration": 0.013051148969680071,
+                "start": 1778125254.507312,
+                "stop": 1778125254.5206232,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_uses_branchone",
+                "status": "passed",
+                "duration": 0.0002944240113720298,
+                "start": 1778125254.5207415,
+                "stop": 1778125254.521165,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_references_results_a_passed",
+                "status": "passed",
+                "duration": 0.00023538200184702873,
+                "start": 1778125254.5212445,
+                "stop": 1778125254.5215964,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_references_on_pass_and_on_fail",
+                "status": "passed",
+                "duration": 0.00021517195273190737,
+                "start": 1778125254.5216627,
+                "stop": 1778125254.5219715,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

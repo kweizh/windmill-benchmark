@@ -1,0 +1,110 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 10,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778027643.2364743,
+            "stop": 1778027643.2856607
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_word_count_ts_exists",
+                "status": "passed",
+                "duration": 0.000286633032374084,
+                "start": 1778027643.2423513,
+                "stop": 1778027643.2427857,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_char_count_ts_exists",
+                "status": "passed",
+                "duration": 0.00020883907563984394,
+                "start": 1778027643.2428613,
+                "stop": 1778027643.2431905,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_line_count_ts_exists",
+                "status": "passed",
+                "duration": 0.00017712789122015238,
+                "start": 1778027643.243249,
+                "stop": 1778027643.2435083,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_exists",
+                "status": "passed",
+                "duration": 0.00020504696294665337,
+                "start": 1778027643.2435606,
+                "stop": 1778027643.2438495,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_word_count_runtime",
+                "status": "passed",
+                "duration": 0.013723654905334115,
+                "start": 1778027643.2439146,
+                "stop": 1778027643.2579417,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_char_count_runtime",
+                "status": "passed",
+                "duration": 0.01188961195293814,
+                "start": 1778027643.258078,
+                "stop": 1778027643.270187,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_line_count_runtime",
+                "status": "passed",
+                "duration": 0.013804032932966948,
+                "start": 1778027643.2702763,
+                "stop": 1778027643.2842777,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_uses_branchall",
+                "status": "passed",
+                "duration": 0.0002450071042403579,
+                "start": 1778027643.284361,
+                "stop": 1778027643.2847178,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_has_parallel_true",
+                "status": "passed",
+                "duration": 0.0002169640501961112,
+                "start": 1778027643.2847831,
+                "stop": 1778027643.285089,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_references_all_three_scripts",
+                "status": "passed",
+                "duration": 0.0002660908503457904,
+                "start": 1778027643.2851374,
+                "stop": 1778027643.285503,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

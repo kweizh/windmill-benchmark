@@ -1,0 +1,58 @@
+{
+    "id": "364e1f89-8671-4eac-a803-3cfc8f5e0b21",
+    "started_at": "2026-05-06T20:18:27.061539",
+    "finished_at": "2026-05-06T20:31:49.786169",
+    "n_total_trials": 30,
+    "stats": {
+        "n_trials": 30,
+        "n_errors": 0,
+        "evals": {
+            "pochi__glm-4.7__windmill-tasks": {
+                "n_trials": 30,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 1.0
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "typescript_date_utils__QeoTko8",
+                            "flow_approval_step__o7N6VoM",
+                            "typescript_string_builder__GdZ8MHZ",
+                            "python_json_processor__NqxQDAN",
+                            "typescript_multi_helper__GsahQN9",
+                            "typescript_return_object__LYP76v9",
+                            "flow_conditional_branch__TKDm9eT",
+                            "python_batch_processor__VDUjq6M",
+                            "typescript_object_param__2SqG5rS",
+                            "flow_parallel_branches__HNF6hmK",
+                            "python_class_script__xkq7Lkv",
+                            "full_script_workspace__emU4VRm",
+                            "typescript_async_transform__eoHiYYz",
+                            "typescript_error_handling__7UYUPJg",
+                            "flow_error_handler__bMwTZHm",
+                            "python_basic_script__8rZTwQ3",
+                            "python_list_transform__vpnq7pz",
+                            "typescript_with_defaults__BqbGTZE",
+                            "python_math_utils__aaMuMnp",
+                            "typescript_array_filter__xaGbEEY",
+                            "python_data_validation__bhQa8Gn",
+                            "typescript_data_pipeline__BzNGpri",
+                            "typescript_environment_config__Diwj3m2",
+                            "python_error_handling__gtD3KTL",
+                            "python_return_dict__UyneJsM",
+                            "python_nested_dict__EbWLtV8",
+                            "typescript_basic_script__8SVCpkZ",
+                            "python_optional_params__qBDsdtP",
+                            "python_webhook_handler__7hzhMtm",
+                            "flow_sequential_steps__doLYvuM"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}

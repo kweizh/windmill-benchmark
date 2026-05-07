@@ -1,0 +1,226 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 14ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 14 items
+
+tests/test_final_state.py .......FFFFF..                                 [100%]
+
+=================================== FAILURES ===================================
+___________________ test_fetch_users_generates_correct_count ___________________
+
+    def test_fetch_users_generates_correct_count():
+        """Priority 1: fetch_users(3) returns exactly 3 users with ids 1,2,3."""
+>       users = _eval_ts(FETCH_TS, "main(3).then(r => console.log(JSON.stringify(r)));")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/home/user/windmill-project/f/scripts/fetch_users.ts'
+call = 'main(3).then(r => console.log(JSON.stringify(r)));'
+
+    def _eval_ts(path: str, call: str) -> object:
+        with open(path) as fh:
+            src = fh.read()
+        js = _strip_ts(src)
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed for {path}: {result.stderr}"
+E       AssertionError: node failed for /home/user/windmill-project/f/scripts/fetch_users.ts: [eval]:1
+E         async function main(limit = 10): > {
+E                                        ^
+E         Unexpected token `>`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (
+E         
+E         SyntaxError: Unexpected token ':'
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(limit = 10): > {\n  // Simulate fetching users (no real HTTP...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n").returncode
+
+tests/test_final_state.py:28: AssertionError
+_____________________ test_enrich_users_adds_display_field _____________________
+
+    def test_enrich_users_adds_display_field():
+        """Priority 1: enrich_users adds display field to each user."""
+        sample = [{"id": 1, "name": "Alice", "email": "alice@example.com"}]
+>       enriched = _eval_ts(ENRICH_TS,
+            f"main({json.dumps(sample)}, '').then(r => console.log(JSON.stringify(r)));")
+
+tests/test_final_state.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/home/user/windmill-project/f/scripts/enrich_users.ts'
+call = 'main([{"id": 1, "name": "Alice", "email": "alice@example.com"}], \'\').then(r => console.log(JSON.stringify(r)));'
+
+    def _eval_ts(path: str, call: str) -> object:
+        with open(path) as fh:
+            src = fh.read()
+        js = _strip_ts(src)
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed for {path}: {result.stderr}"
+E       AssertionError: node failed for /home/user/windmill-project/f/scripts/enrich_users.ts: [eval]:2
+E           users: ,
+E                ^
+E         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (
+E         
+E         SyntaxError: Unexpected token ':'
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(\n  users: ,\n  domain_filter = ""\n) {\n  const filtered = ...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n").returncode
+
+tests/test_final_state.py:28: AssertionError
+_______________________ test_enrich_users_domain_filter ________________________
+
+    def test_enrich_users_domain_filter():
+        """Priority 1: domain_filter removes non-matching users."""
+        sample = [
+            {"id": 1, "name": "Alice", "email": "alice@example.com"},
+            {"id": 2, "name": "Bob", "email": "bob@other.com"},
+        ]
+>       enriched = _eval_ts(ENRICH_TS,
+            f"main({json.dumps(sample)}, '@example.com').then(r => console.log(JSON.stringify(r)));")
+
+tests/test_final_state.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/home/user/windmill-project/f/scripts/enrich_users.ts'
+call = 'main([{"id": 1, "name": "Alice", "email": "alice@example.com"}, {"id": 2, "name": "Bob", "email": "bob@other.com"}], \'@example.com\').then(r => console.log(JSON.stringify(r)));'
+
+    def _eval_ts(path: str, call: str) -> object:
+        with open(path) as fh:
+            src = fh.read()
+        js = _strip_ts(src)
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed for {path}: {result.stderr}"
+E       AssertionError: node failed for /home/user/windmill-project/f/scripts/enrich_users.ts: [eval]:2
+E           users: ,
+E                ^
+E         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (
+E         
+E         SyntaxError: Unexpected token ':'
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(\n  users: ,\n  domain_filter = ""\n) {\n  const filtered = ...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n").returncode
+
+tests/test_final_state.py:28: AssertionError
+____________________________ test_export_csv_basic _____________________________
+
+    def test_export_csv_basic():
+        """Priority 1: export_csv produces correct CSV with header and rows."""
+        records = [{"a": "1", "b": "2"}, {"a": "3", "b": "4"}]
+>       r = _eval_ts(EXPORT_TS,
+            f"main({json.dumps(records)}).then(r => console.log(JSON.stringify(r)));")
+
+tests/test_final_state.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/home/user/windmill-project/f/scripts/export_csv.ts'
+call = 'main([{"a": "1", "b": "2"}, {"a": "3", "b": "4"}]).then(r => console.log(JSON.stringify(r)));'
+
+    def _eval_ts(path: str, call: str) -> object:
+        with open(path) as fh:
+            src = fh.read()
+        js = _strip_ts(src)
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed for {path}: {result.stderr}"
+E       AssertionError: node failed for /home/user/windmill-project/f/scripts/export_csv.ts: [eval]:1
+E         async function main(records: >, delimiter = ",") {
+E                                    ^
+E         Unexpected token `>`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (
+E         
+E         SyntaxError: Unexpected token ':'
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(records: >, delimiter = ",") {\n  if (records.length === 0) ...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n').returncode
+
+tests/test_final_state.py:28: AssertionError
+____________________________ test_export_csv_empty _____________________________
+
+    def test_export_csv_empty():
+        """Priority 1: empty records → csv='' and row_count=0."""
+>       r = _eval_ts(EXPORT_TS, "main([]).then(r => console.log(JSON.stringify(r)));")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/home/user/windmill-project/f/scripts/export_csv.ts'
+call = 'main([]).then(r => console.log(JSON.stringify(r)));'
+
+    def _eval_ts(path: str, call: str) -> object:
+        with open(path) as fh:
+            src = fh.read()
+        js = _strip_ts(src)
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed for {path}: {result.stderr}"
+E       AssertionError: node failed for /home/user/windmill-project/f/scripts/export_csv.ts: [eval]:1
+E         async function main(records: >, delimiter = ",") {
+E                                    ^
+E         Unexpected token `>`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (
+E         
+E         SyntaxError: Unexpected token ':'
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(records: >, delimiter = ",") {\n  if (records.length === 0) ...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n').returncode
+
+tests/test_final_state.py:28: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_fetch_users_ts_exists
+PASSED tests/test_final_state.py::test_enrich_users_ts_exists
+PASSED tests/test_final_state.py::test_export_csv_ts_exists
+PASSED tests/test_final_state.py::test_flow_yaml_exists
+PASSED tests/test_final_state.py::test_fetch_users_metadata_exists
+PASSED tests/test_final_state.py::test_enrich_users_metadata_exists
+PASSED tests/test_final_state.py::test_export_csv_metadata_exists
+PASSED tests/test_final_state.py::test_flow_yaml_has_three_steps
+PASSED tests/test_final_state.py::test_flow_yaml_wires_results
+FAILED tests/test_final_state.py::test_fetch_users_generates_correct_count - ...
+FAILED tests/test_final_state.py::test_enrich_users_adds_display_field - Asse...
+FAILED tests/test_final_state.py::test_enrich_users_domain_filter - Assertion...
+FAILED tests/test_final_state.py::test_export_csv_basic - AssertionError: nod...
+FAILED tests/test_final_state.py::test_export_csv_empty - AssertionError: nod...
+========================= 5 failed, 9 passed in 0.23s ==========================

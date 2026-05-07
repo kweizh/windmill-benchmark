@@ -1,0 +1,83 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 7,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778124223.8778653,
+            "stop": 1778124223.9651837
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_divide_ts_exists",
+                "status": "passed",
+                "duration": 0.0003985411021858454,
+                "start": 1778124223.8849547,
+                "stop": 1778124223.8856149,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_divide_yaml_exists",
+                "status": "passed",
+                "duration": 0.00029339687898755074,
+                "start": 1778124223.8857014,
+                "stop": 1778124223.8861122,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_normal_division",
+                "status": "passed",
+                "duration": 0.02364614501129836,
+                "start": 1778124223.886187,
+                "stop": 1778124223.9101987,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_decimal_division",
+                "status": "passed",
+                "duration": 0.03383862192276865,
+                "start": 1778124223.9105072,
+                "stop": 1778124223.9446378,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_division_by_zero_throws",
+                "status": "passed",
+                "duration": 0.0184594439342618,
+                "start": 1778124223.944777,
+                "stop": 1778124223.9635873,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_language",
+                "status": "passed",
+                "duration": 0.00042282696813344955,
+                "start": 1778124223.9637508,
+                "stop": 1778124223.9643261,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_summary",
+                "status": "passed",
+                "duration": 0.00035788293462246656,
+                "start": 1778124223.9644754,
+                "stop": 1778124223.9649768,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

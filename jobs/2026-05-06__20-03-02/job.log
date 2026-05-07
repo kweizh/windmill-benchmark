@@ -1,0 +1,3501 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo typescript_string_builder__yEXgWMf > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# TypeScript Windmill Script — Dynamic Report String Builder
+
+## Background
+
+Windmill scripts are often used as formatting steps in a flow that assemble human-readable reports from structured data produced by earlier steps. This task involves building a multi-line report string from a set of input fields.
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/build_report.ts`.
+- Export an async `main` function:
+  ```typescript
+  export async function main(
+    title: string,
+    items: string[],
+    footer: string = "End of report"
+  )
+  ```
+- The function must return a string that is a report with:
+  - Line 1: `=== ${title} ===`
+  - Lines 2..N: each item prefixed with `- ` (a dash and space)
+  - Last line: `--- ${footer} ---`
+  - Lines joined with `\n`
+- Create the metadata file at `/home/user/windmill-project/f/scripts/build_report.script.yaml` with:
+  - `summary: "Build a formatted text report from a list of items"`
+  - `language: typescript`
+
+## Implementation Guide
+
+```typescript
+export async function main(title: string, items: string[], footer: string = "End of report") {
+  const lines = [
+    `=== ${title} ===`,
+    ...items.map(i => `- ${i}`),
+    `--- ${footer} ---`,
+  ];
+  return lines.join("\n");
+}
+```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Join lines with `\n` (newline), not `\r\n`
+- Item prefix is `"- "` (dash space)
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo flow_approval_step__39sb666 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Create a Windmill Flow with an Approval (Suspend) Step
+
+## Background
+
+Windmill supports human-in-the-loop workflows via `suspend` modules. A suspend step pauses the flow until a human approves or rejects the continuation. This is essential for high-stakes automated actions — deployments, budget approvals, data deletions — where a human must sign off before the flow proceeds.
+
+## Requirements
+
+Create two TypeScript scripts and a flow with an approval step between them:
+
+### Script 1: `/home/user/windmill-project/f/scripts/prepare_deployment.ts`
+```typescript
+export async function main(service: string, version: string, environment: string) {
+  return {
+    service,
+    version,
+    environment,
+    deploy_command: `kubectl set image deployment/${service} ${service}=${service}:${version} -n ${environment}`,
+    requires_approval: true
+  };
+}
+```
+Metadata: `summary: "Prepare a deployment plan"`, `language: typescript`
+
+### Script 2: `/home/user/windmill-project/f/scripts/execute_deployment.ts`
+```typescript
+export async function main(deploy_command: string, approved: boolean = true) {
+  if (!approved) {
+    return { status: "cancelled", message: "Deployment was not approved" };
+  }
+  return { status: "deployed", command_run: deploy_command, deployed_at: new Date().toISOString() };
+}
+```
+Metadata: `summary: "Execute a deployment after approval"`, `language: typescript`
+
+### Flow: `/home/user/windmill-project/f/flows/deploy_with_approval.yaml`
+```yaml
+summary: "Deploy a service with human approval"
+value:
+  modules:
+    - id: prepare
+      value:
+        type: script
+        path: f/scripts/prepare_deployment
+        input_transforms:
+          service:
+            type: static
+            value: "api-server"
+          version:
+            type: static
+            value: "v1.2.3"
+          environment:
+            type: static
+            value: "production"
+    - id: approval
+      value:
+        type: flow
+        path: hub/0/approval
+        input_transforms: {}
+    - id: deploy
+      value:
+        type: script
+        path: f/scripts/execute_deployment
+        input_transforms:
+          deploy_command:
+            type: javascript
+            expr: "results.prepare.deploy_command"
+```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Flow file: `/home/user/windmill-project/f/flows/deploy_with_approval.yaml`
+- The approval step must use `path: hub/0/approval`
+- Step ids must be `prepare`, `approval`, `deploy`
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo typescript_multi_helper__cc4aSMf > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# TypeScript Windmill Script with Helper Functions
+
+## Background
+
+In Windmill TypeScript scripts, you can define helper functions in the same file alongside `main`. Only `main` is the entry point Windmill calls, but helper functions keep the logic organized and testable. This is the recommended pattern for scripts with non-trivial logic.
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/invoice.ts`.
+- Define these helper functions (NOT exported):
+  ```typescript
+  function formatCurrency(amount: number, currency: string): string {
+    return `${currency} ${amount.toFixed(2)}`;
+  }
+
+  function computeSubtotal(items: Array<{ qty: number; unit_price: number }>): number {
+    return items.reduce((sum, item) => sum + item.qty * item.unit_price, 0);
+  }
+  ```
+- Export an async `main` function:
+  ```typescript
+  export async function main(
+    items: Array<{ name: string; qty: number; unit_price: number }>,
+    tax_rate: number = 0.1,
+    currency: string = "USD"
+  )
+  ```
+  returning:
+  ```typescript
+  {
+    subtotal: formatCurrency(subtotal, currency),
+    tax: formatCurrency(subtotal * tax_rate, currency),
+    total: formatCurrency(subtotal * (1 + tax_rate), currency),
+    line_items: items.map(i => ({
+      name: i.name,
+      amount: formatCurrency(i.qty * i.unit_price, currency)
+    }))
+  }
+  ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/invoice.script.yaml` with:
+  - `summary: "Generate an invoice summary from line items"`
+  - `language: typescript`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Helper functions must NOT be exported
+- Currency format: `"USD 10.00"` (currency code then amount)
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo python_json_processor__SwoGdY9 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script — JSON Log Processor
+
+## Background
+
+A common Windmill pattern is receiving a JSON string payload from a webhook or HTTP trigger and transforming it into a structured dict for downstream steps. This task involves parsing a JSON string, extracting fields, and returning a clean summary object.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/parse_event.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(event_json: str) -> dict:
+  ```
+- `event_json` is a JSON string with this shape:
+  ```json
+  {"event": "user.signup", "user_id": 42, "metadata": {"plan": "pro", "source": "web"}}
+  ```
+- The function must:
+  1. Parse the JSON string.
+  2. Return a dict:
+     ```python
+     {
+       "event": event,
+       "user_id": user_id,
+       "plan": metadata.get("plan", "free"),
+       "source": metadata.get("source", "unknown"),
+       "summary": f"{event} by user #{user_id} via {source} on {plan} plan"
+     }
+     ```
+  3. If the JSON is invalid, raise `ValueError("Invalid JSON payload")`.
+- Create the metadata file at `/home/user/windmill-project/f/scripts/parse_event.script.yaml` with:
+  - `summary: "Parse and summarize a JSON event payload"`
+  - `language: python3`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Use `json.loads` (stdlib only — no third-party dependencies)
+- Return keys must be: `event`, `user_id`, `plan`, `source`, `summary`
+
+## Integrations
+
+None.
+
+EOF
+Running command: echo typescript_date_utils__3ZLvCxK > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# TypeScript Windmill Script — Date Formatting and Difference
+
+## Background
+
+Windmill scripts often need to work with dates — formatting timestamps for display, computing how many days until a deadline, or checking if something is overdue. This task involves building a utility script that performs both.
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/date_utils.ts`.
+- Export an async `main` function:
+  ```typescript
+  export async function main(iso_date: string, label: string = "Event")
+  ```
+  where `iso_date` is an ISO 8601 date string (e.g., `"2025-12-31"`).
+- The function must return:
+  ```typescript
+  {
+    label: string,
+    formatted: string,   // "December 31, 2025"
+    iso: string,         // the original iso_date
+    days_from_today: number  // positive = future, negative = past
+  }
+  ```
+  Use `toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })` for `formatted`.
+  For `days_from_today`, compute `Math.round((target - today) / 86400000)` where today is midnight UTC.
+- Create the metadata file at `/home/user/windmill-project/f/scripts/date_utils.script.yaml` with:
+  - `summary: "Format a date and compute days from today"`
+  - `language: typescript`
+
+## Implementation Guide
+
+```typescript
+export async function main(iso_date: string, label: string = "Event") {
+  const target = new Date(iso_date);
+  const today = new Date(new Date().toISOString().split('T')[0]);
+  const days_from_today = Math.round((target.getTime() - today.getTime()) / 86400000);
+  return {
+    label,
+    formatted: target.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    iso: iso_date,
+    days_from_today,
+  };
+}
+```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Return keys must be exactly: `label`, `formatted`, `iso`, `days_from_today`
+- `formatted` must use `en-US` locale: e.g., `"December 31, 2025"`
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo typescript_return_object__Mi2UkfY > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# TypeScript Windmill Script Returning a Structured Object
+
+## Background
+
+Windmill scripts can return structured objects, not just primitives. The returned object is serialized to JSON and made available to downstream flow steps or displayed in the Windmill UI. This is useful for scripts that produce multiple named output values.
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/user_info.ts`.
+- The script must export an async `main` function with this signature:
+  ```typescript
+  export async function main(id: number, name: string, active: boolean = true)
+  ```
+- The function must return an object with exactly these fields:
+  ```typescript
+  { id: number, name: string, active: boolean, display: string }
+  ```
+  Where `display` is the string `` `[${id}] ${name} (${active ? 'active' : 'inactive'})` ``.
+- Create the metadata file at `/home/user/windmill-project/f/scripts/user_info.script.yaml` with:
+  - `summary: "Build a user info object"`
+  - `language: typescript`
+
+## Implementation Guide
+
+1. Create `f/scripts/user_info.ts`:
+   ```typescript
+   export async function main(id: number, name: string, active: boolean = true) {
+     return {
+       id,
+       name,
+       active,
+       display: `[${id}] ${name} (${active ? 'active' : 'inactive'})`,
+     };
+   }
+   ```
+2. Create `f/scripts/user_info.script.yaml`:
+   ```yaml
+   summary: "Build a user info object"
+   language: typescript
+   ```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Script path: `/home/user/windmill-project/f/scripts/user_info.ts`
+- Metadata path: `/home/user/windmill-project/f/scripts/user_info.script.yaml`
+- The `display` field format must be: `[${id}] ${name} (active)` or `[${id}] ${name} (inactive)`
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo flow_conditional_branch__x7CWA5A > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Create a Windmill Flow with a Conditional Branch
+
+## Background
+
+Windmill flows support `branchone` modules that evaluate a set of branch conditions in order and execute the first matching branch. This is Windmill's equivalent of an if/else — a key building block for decision-making pipelines.
+
+## Requirements
+
+Create three TypeScript scripts and a flow with a conditional branch:
+
+### Script 1: `/home/user/windmill-project/f/scripts/check_score.ts`
+```typescript
+export async function main(score: number) {
+  return { score, passed: score >= 60 };
+}
+```
+Metadata: `summary: "Check if a score passes"`, `language: typescript`
+
+### Script 2a: `/home/user/windmill-project/f/scripts/on_pass.ts`
+```typescript
+export async function main(score: number) {
+  return `Score ${score}: PASSED`;
+}
+```
+Metadata: `summary: "Emit a pass message"`, `language: typescript`
+
+### Script 2b: `/home/user/windmill-project/f/scripts/on_fail.ts`
+```typescript
+export async function main(score: number) {
+  return `Score ${score}: FAILED`;
+}
+```
+Metadata: `summary: "Emit a fail message"`, `language: typescript`
+
+### Flow: `/home/user/windmill-project/f/flows/score_check.yaml`
+```yaml
+summary: "Route based on score pass/fail"
+value:
+  modules:
+    - id: a
+      value:
+        type: script
+        path: f/scripts/check_score
+        input_transforms:
+          score:
+            type: static
+            value: 75
+    - id: b
+      value:
+        type: branchone
+        branches:
+          - summary: "Passed"
+            expr: "results.a.passed === true"
+            modules:
+              - id: c
+                value:
+                  type: script
+                  path: f/scripts/on_pass
+                  input_transforms:
+                    score:
+                      type: javascript
+                      expr: "results.a.score"
+        default:
+          - id: d
+            value:
+              type: script
+              path: f/scripts/on_fail
+              input_transforms:
+                score:
+                  type: javascript
+                  expr: "results.a.score"
+```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Flow file: `/home/user/windmill-project/f/flows/score_check.yaml`
+- The `branchone` module must reference `results.a.passed` in the branch expression
+- Default branch must route to `on_fail`
+
+## Integrations
+
+None.
+
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo python_batch_processor__G34P2J9 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script — Batch Processor with Progress Tracking
+
+## Background
+
+Windmill is often used to orchestrate bulk data processing. A common pattern is a script that receives a large list of items, processes them in fixed-size batches, and returns both the results and a processing summary. This makes it easy to detect partial failures in a flow.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/batch_process.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(items: list[str], batch_size: int = 10, transform: str = "upper") -> dict:
+  ```
+- `transform` options:
+  - `"upper"`: convert each string to uppercase
+  - `"lower"`: convert to lowercase
+  - `"reverse"`: reverse each string
+  - Any other value: raise `ValueError(f"Unknown transform: '{transform}'. Choose 'upper', 'lower', or 'reverse'")`
+- Process `items` in batches of `batch_size`.
+- Return:
+  ```python
+  {
+    "total": len(items),
+    "batch_count": math.ceil(len(items) / batch_size) if items else 0,
+    "batch_size": batch_size,
+    "transform": transform,
+    "results": [transformed_item, ...],  # all items transformed, in order
+    "batches": [{"batch_index": i, "items": batch_results}, ...]
+  }
+  ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/batch_process.script.yaml` with:
+  - `summary: "Process a list of strings in configurable batches"`
+  - `language: python3`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Use `import math` for `math.ceil`
+- `batches` list must reflect actual batching (each batch dict has `batch_index` and `items`)
+- `results` is a flat list of all transformed items
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo typescript_object_param__aNhuqPW > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# TypeScript Windmill Script with Object-Typed Parameter
+
+## Background
+
+Windmill supports object-typed parameters for TypeScript scripts. When the parameter type is an inline object type, Windmill generates a nested form in its UI. This pattern is common for grouping related configuration fields together (e.g., database config, API credentials).
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/send_email.ts`.
+- Export an async `main` function:
+  ```typescript
+  export async function main(
+    recipient: { email: string; name: string },
+    subject: string,
+    body: string,
+    dry_run: boolean = true
+  )
+  ```
+- The function must return:
+  ```typescript
+  {
+    to: `${recipient.name} <${recipient.email}>`,
+    subject,
+    body,
+    dry_run,
+    sent: !dry_run,
+    preview: `To: ${recipient.name} <${recipient.email}>\nSubject: ${subject}\n\n${body}`
+  }
+  ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/send_email.script.yaml` with:
+  - `summary: "Compose and optionally send an email"`
+  - `language: typescript`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- `sent` must be `true` only when `dry_run` is `false`
+- `to` format: `"Name <email@domain>"`
+- `preview` must join header and body with `\n\n`
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo flow_parallel_branches__3Djws7a > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Create a Windmill Flow with Parallel Branches
+
+## Background
+
+Windmill's `branchall` module runs multiple branches in parallel and collects their results. This is ideal for fan-out patterns: sending the same data to multiple processors simultaneously and aggregating results in a later step.
+
+## Requirements
+
+Create three TypeScript scripts and a flow with parallel branches:
+
+### Script: `/home/user/windmill-project/f/scripts/compute_word_count.ts`
+```typescript
+export async function main(text: string) {
+  return { word_count: text.trim().split(/\s+/).filter(w => w).length };
+}
+```
+Metadata: `summary: "Count words in text"`, `language: typescript`
+
+### Script: `/home/user/windmill-project/f/scripts/compute_char_count.ts`
+```typescript
+export async function main(text: string) {
+  return { char_count: text.length, char_count_no_spaces: text.replace(/\s/g, '').length };
+}
+```
+Metadata: `summary: "Count characters in text"`, `language: typescript`
+
+### Script: `/home/user/windmill-project/f/scripts/compute_line_count.ts`
+```typescript
+export async function main(text: string) {
+  return { line_count: text.split('\n').length };
+}
+```
+Metadata: `summary: "Count lines in text"`, `language: typescript`
+
+### Flow: `/home/user/windmill-project/f/flows/text_stats.yaml`
+```yaml
+summary: "Compute text statistics in parallel"
+value:
+  modules:
+    - id: stats
+      value:
+        type: branchall
+        parallel: true
+        branches:
+          - summary: "Word count"
+            modules:
+              - id: words
+                value:
+                  type: script
+                  path: f/scripts/compute_word_count
+                  input_transforms:
+                    text:
+                      type: static
+                      value: "Hello World\nThis is Windmill"
+          - summary: "Char count"
+            modules:
+              - id: chars
+                value:
+                  type: script
+                  path: f/scripts/compute_char_count
+                  input_transforms:
+                    text:
+                      type: static
+                      value: "Hello World\nThis is Windmill"
+          - summary: "Line count"
+            modules:
+              - id: lines
+                value:
+                  type: script
+                  path: f/scripts/compute_line_count
+                  input_transforms:
+                    text:
+                      type: static
+                      value: "Hello World\nThis is Windmill"
+```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Flow must use `type: branchall` with `parallel: true`
+- All three scripts must run as separate branches
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo python_class_script__mYxb7Kx > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script — Class-Based Report Generator
+
+## Background
+
+Windmill Python scripts can use classes as internal utilities — the script entry point is still `main`, but a class can encapsulate stateful logic that would be awkward to express as pure functions. This pattern is used for template rendering, report generation, and structured output formatting.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/generate_report.py`.
+- Define an internal class `ReportBuilder` (not exported — just used inside `main`):
+  ```python
+  class ReportBuilder:
+      def __init__(self, title: str):
+          self.title = title
+          self.sections = []
+
+      def add_section(self, heading: str, content: str):
+          self.sections.append({"heading": heading, "content": content})
+          return self  # fluent interface
+
+      def build(self) -> dict:
+          return {
+              "title": self.title,
+              "section_count": len(self.sections),
+              "sections": self.sections,
+              "text": self._render()
+          }
+
+      def _render(self) -> str:
+          lines = [f"# {self.title}"]
+          for s in self.sections:
+              lines.append(f"\n## {s['heading']}")
+              lines.append(s['content'])
+          return "\n".join(lines)
+  ```
+- Export a `main` function:
+  ```python
+  def main(title: str, sections: list[dict]) -> dict:
+      """sections is a list of {heading: str, content: str} dicts."""
+      builder = ReportBuilder(title)
+      for s in sections:
+          builder.add_section(s["heading"], s["content"])
+      return builder.build()
+  ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/generate_report.script.yaml` with:
+  - `summary: "Generate a structured report from sections"`
+  - `language: python3`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- `ReportBuilder` must use a fluent interface (`add_section` returns `self`)
+- `text` field must start with `# {title}` and include `## {heading}` for each section
+- Return keys: `title`, `section_count`, `sections`, `text`
+
+## Integrations
+
+None.
+
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo full_script_workspace__fh3uwqR > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Set Up a Complete Windmill Script Workspace
+
+## Background
+
+A production Windmill workspace typically contains a set of utility scripts organized under `f/scripts/`, flows under `f/flows/`, and consistent metadata files for every script. This task challenges you to set up a coherent workspace with three interdependent scripts and a flow that orchestrates them end-to-end.
+
+## Requirements
+
+Create the following files in `/home/user/windmill-project/`:
+
+### 1. `/home/user/windmill-project/f/scripts/fetch_users.ts`
+```typescript
+export async function main(limit: number = 10): Promise<Array<{ id: number; name: string; email: string }>> {
+  // Simulate fetching users (no real HTTP)
+  return Array.from({ length: limit }, (_, i) => ({
+    id: i + 1,
+    name: `User ${i + 1}`,
+    email: `user${i + 1}@example.com`
+  }));
+}
+```
+Metadata `fetch_users.script.yaml`: `summary: "Fetch a list of simulated users"`, `language: typescript`
+
+### 2. `/home/user/windmill-project/f/scripts/enrich_users.ts`
+```typescript
+export async function main(
+  users: Array<{ id: number; name: string; email: string }>,
+  domain_filter: string = ""
+) {
+  const filtered = domain_filter
+    ? users.filter(u => u.email.endsWith(domain_filter))
+    : users;
+  return filtered.map(u => ({ ...u, display: `[${u.id}] ${u.name} <${u.email}>` }));
+}
+```
+Metadata `enrich_users.script.yaml`: `summary: "Enrich and optionally filter users by email domain"`, `language: typescript`
+
+### 3. `/home/user/windmill-project/f/scripts/export_csv.ts`
+```typescript
+export async function main(records: Array<Record<string, unknown>>, delimiter: string = ",") {
+  if (records.length === 0) return { csv: "", row_count: 0 };
+  const headers = Object.keys(records[0]);
+  const rows = [headers.join(delimiter), ...records.map(r => headers.map(h => String(r[h] ?? '')).join(delimiter))];
+  return { csv: rows.join("\n"), row_count: records.length };
+}
+```
+Metadata `export_csv.script.yaml`: `summary: "Export an array of records to CSV format"`, `language: typescript`
+
+### 4. `/home/user/windmill-project/f/flows/user_export_pipeline.yaml`
+```yaml
+summary: "Fetch, enrich, and export users to CSV"
+value:
+  modules:
+    - id: fetch
+      value:
+        type: script
+        path: f/scripts/fetch_users
+        input_transforms:
+          limit:
+            type: static
+            value: 5
+    - id: enrich
+      value:
+        type: script
+        path: f/scripts/enrich_users
+        input_transforms:
+          users:
+            type: javascript
+            expr: "results.fetch"
+    - id: export
+      value:
+        type: script
+        path: f/scripts/export_csv
+        input_transforms:
+          records:
+            type: javascript
+            expr: "results.enrich"
+```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- All 3 scripts + 3 metadata YAML files + 1 flow YAML = 7 files total
+- `fetch_users.ts` must generate exactly `limit` users with ids 1..limit
+- `export_csv.ts` must use `delimiter` as the column separator
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo typescript_async_transform__Ed4Kn69 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# TypeScript Windmill Script — Async Data Enrichment
+
+## Background
+
+Windmill's TypeScript runtime supports native async/await and `Promise.all`, making it well-suited for enriching collections in parallel. This task creates a script that simulates async enrichment of a list of items by adding computed fields.
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/enrich_products.ts`.
+- Export an async `main` function:
+  ```typescript
+  export async function main(
+    products: Array<{ id: number; name: string; price: number }>,
+    tax_rate: number = 0.1
+  )
+  ```
+- Use `Promise.all` to enrich each product in parallel:
+  ```typescript
+  const enriched = await Promise.all(
+    products.map(async (p) => ({
+      ...p,
+      tax: parseFloat((p.price * tax_rate).toFixed(2)),
+      total: parseFloat((p.price * (1 + tax_rate)).toFixed(2)),
+      label: `${p.name} ($${p.price})`,
+    }))
+  );
+  return { count: enriched.length, tax_rate, products: enriched };
+  ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/enrich_products.script.yaml` with:
+  - `summary: "Enrich a list of products with tax and total price"`
+  - `language: typescript`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Must use `Promise.all` (parallel enrichment, not sequential)
+- `tax` and `total` must be rounded to 2 decimal places with `parseFloat(...toFixed(2))`
+- Return keys: `count`, `tax_rate`, `products`
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo typescript_error_handling__SG7bbzj > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# TypeScript Windmill Script with Input Validation and Error Handling
+
+## Background
+
+In Windmill, when a script throws an error, the step fails and the error message is surfaced in the Windmill UI or passed to an error handler branch in a flow. Writing scripts that validate inputs and throw meaningful errors is a best practice in Windmill development.
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/divide.ts`.
+- Export an async `main` function:
+  ```typescript
+  export async function main(numerator: number, denominator: number)
+  ```
+- If `denominator === 0`, throw: `new Error("Division by zero is not allowed")`
+- Otherwise, return `{ result: numerator / denominator, numerator, denominator }`
+- Create the metadata file at `/home/user/windmill-project/f/scripts/divide.script.yaml` with:
+  - `summary: "Divide two numbers with zero-check"`
+  - `language: typescript`
+
+## Implementation Guide
+
+1. Create `f/scripts/divide.ts`:
+   ```typescript
+   export async function main(numerator: number, denominator: number) {
+     if (denominator === 0) {
+       throw new Error("Division by zero is not allowed");
+     }
+     return { result: numerator / denominator, numerator, denominator };
+   }
+   ```
+2. Create the metadata YAML.
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Error message must be exactly: `"Division by zero is not allowed"`
+- Return object keys: `result`, `numerator`, `denominator`
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo flow_error_handler__YxZKaJA > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Create a Windmill Flow with an Error Handler
+
+## Background
+
+Windmill flows support a global `error_handler` — a script path that is called automatically whenever any step in the flow fails. The error handler receives the error details and can notify engineers, log incidents, or trigger recovery actions. Setting up proper error handling is a production best practice for Windmill workflows.
+
+## Requirements
+
+Create two TypeScript scripts and a flow with an error handler configured:
+
+### Script 1: `/home/user/windmill-project/f/scripts/risky_operation.ts`
+```typescript
+export async function main(should_fail: boolean = false) {
+  if (should_fail) {
+    throw new Error("Intentional failure for testing");
+  }
+  return { status: "ok", message: "Operation completed successfully" };
+}
+```
+Metadata: `summary: "A risky operation that can fail"`, `language: typescript`
+
+### Script 2: `/home/user/windmill-project/f/scripts/handle_error.ts`
+```typescript
+export async function main(
+  error_message: string,
+  flow_path: string = "unknown",
+  step_id: string = "unknown"
+) {
+  return {
+    alert: true,
+    message: `Flow '${flow_path}' failed at step '${step_id}': ${error_message}`,
+    timestamp: new Date().toISOString()
+  };
+}
+```
+Metadata: `summary: "Handle a flow error by logging an alert"`, `language: typescript`
+
+### Flow: `/home/user/windmill-project/f/flows/resilient_pipeline.yaml`
+```yaml
+summary: "A resilient pipeline with error handling"
+error_handler: f/scripts/handle_error
+value:
+  modules:
+    - id: a
+      value:
+        type: script
+        path: f/scripts/risky_operation
+        input_transforms:
+          should_fail:
+            type: static
+            value: false
+```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Flow file: `/home/user/windmill-project/f/flows/resilient_pipeline.yaml`
+- The flow YAML must have `error_handler: f/scripts/handle_error` at the top level
+- `handle_error.ts` must return an object with `alert: true` and `message` containing both the flow path and error message
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo python_basic_script__RoVRMHF > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Create a Python Windmill Script
+
+## Background
+
+Windmill supports Python scripts alongside TypeScript. A Python Windmill script is a `.py` file containing a `main` function — the entry point Windmill calls when running the script. Like TypeScript scripts, each Python script is paired with a `.script.yaml` metadata file.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/hello.py`.
+- The `main` function must accept one parameter: `name` of type `str`.
+- The function must return the string `f"Hello, {name}!"`.
+- Create the metadata file at `/home/user/windmill-project/f/scripts/hello.script.yaml` with:
+  - `summary: "Say hello to a user"`
+  - `language: python3`
+
+## Implementation Guide
+
+1. Navigate to the project directory:
+   ```bash
+   cd /home/user/windmill-project
+   ```
+
+2. Create the Python script `f/scripts/hello.py`:
+   ```python
+   def main(name: str) -> str:
+       return f"Hello, {name}!"
+   ```
+
+3. Create the metadata file `f/scripts/hello.script.yaml`:
+   ```yaml
+   summary: "Say hello to a user"
+   language: python3
+   ```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Script path: `/home/user/windmill-project/f/scripts/hello.py`
+- Metadata path: `/home/user/windmill-project/f/scripts/hello.script.yaml`
+- The function signature must be exactly: `main(name: str) -> str`
+- The return value must be a formatted string: `f"Hello, {name}!"`
+
+## Integrations
+
+None.
+
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo python_list_transform__pDWkcQ8 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script — Filter and Transform a List
+
+## Background
+
+Windmill Python scripts frequently receive lists from upstream flow steps and must filter, transform, and return new lists. This is a core pattern for data-processing pipelines built in Windmill.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/process_orders.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(orders: list[dict], min_amount: float = 0.0) -> dict:
+  ```
+  Each order dict has keys: `id` (int), `product` (str), `amount` (float), `shipped` (bool).
+- The function must:
+  1. Filter orders where `amount >= min_amount`.
+  2. Return a dict:
+     ```python
+     {
+       "total_orders": len(filtered),
+       "total_amount": sum(o["amount"] for o in filtered),
+       "shipped_count": sum(1 for o in filtered if o["shipped"]),
+       "items": [{"id": o["id"], "product": o["product"], "amount": o["amount"]} for o in filtered]
+     }
+     ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/process_orders.script.yaml` with:
+  - `summary: "Filter and summarize a list of orders"`
+  - `language: python3`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Return keys must be exactly: `total_orders`, `total_amount`, `shipped_count`, `items`
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo typescript_with_defaults__BPE84rC > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# TypeScript Windmill Script with Multiple Default Parameters
+
+## Background
+
+Windmill scripts frequently accept optional configuration parameters with sensible defaults. TypeScript's default parameter syntax maps directly to Windmill's UI — parameters without a value use the default, while those with a value are treated as optional in the form. This task tests your ability to write a script with several optional parameters.
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/format_price.ts`.
+- Export an async `main` function with this signature:
+  ```typescript
+  export async function main(
+    amount: number,
+    currency: string = "USD",
+    decimals: number = 2,
+    prefix: string = ""
+  )
+  ```
+- The function must return a formatted price string:
+  - Format: `` `${prefix}${amount.toFixed(decimals)} ${currency}` ``
+  - Example: `main(9.5)` → `"9.50 USD"`
+  - Example: `main(1234.5, "EUR", 0, "~")` → `"~1235 EUR"`
+- Create the metadata file `/home/user/windmill-project/f/scripts/format_price.script.yaml` with:
+  - `summary: "Format a monetary amount as a price string"`
+  - `language: typescript`
+
+## Implementation Guide
+
+1. Create `f/scripts/format_price.ts`:
+   ```typescript
+   export async function main(
+     amount: number,
+     currency: string = "USD",
+     decimals: number = 2,
+     prefix: string = ""
+   ) {
+     return `${prefix}${amount.toFixed(decimals)} ${currency}`;
+   }
+   ```
+2. Create `f/scripts/format_price.script.yaml` with summary and language fields.
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Default values: `currency="USD"`, `decimals=2`, `prefix=""`
+- Use `amount.toFixed(decimals)` for formatting
+
+## Integrations
+
+None.
+
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo python_math_utils__ZLYd8oJ > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script — Statistical Math Utilities
+
+## Background
+
+Windmill scripts are frequently embedded in data pipelines to perform numerical analysis on values produced by upstream steps (e.g., sensor readings, financial metrics). This task creates a Python script that computes common statistical descriptors.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/describe.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(values: list[float]) -> dict:
+  ```
+- If `values` is empty, raise `ValueError("Cannot describe an empty list")`.
+- Otherwise return:
+  ```python
+  {
+    "count": int,
+    "min": float,
+    "max": float,
+    "mean": float,            # sum / count
+    "median": float,          # middle value (or average of two middles)
+    "range": float            # max - min
+  }
+  ```
+  Compute `median` without using `statistics` module — sort the list and compute manually.
+- Create the metadata file at `/home/user/windmill-project/f/scripts/describe.script.yaml` with:
+  - `summary: "Compute descriptive statistics for a list of numbers"`
+  - `language: python3`
+
+## Implementation Guide
+
+```python
+def main(values: list[float]) -> dict:
+    if not values:
+        raise ValueError("Cannot describe an empty list")
+    sorted_v = sorted(values)
+    n = len(sorted_v)
+    mid = n // 2
+    median = sorted_v[mid] if n % 2 else (sorted_v[mid - 1] + sorted_v[mid]) / 2
+    return {
+        "count": n,
+        "min": sorted_v[0],
+        "max": sorted_v[-1],
+        "mean": sum(sorted_v) / n,
+        "median": median,
+        "range": sorted_v[-1] - sorted_v[0],
+    }
+```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- No `import statistics` — compute manually
+- Return keys must be: `count`, `min`, `max`, `mean`, `median`, `range`
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo typescript_array_filter__QevaNdi > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# TypeScript Windmill Script — Filter and Transform an Array
+
+## Background
+
+Windmill scripts often process collections of records passed in from a previous flow step or a webhook payload. TypeScript's native array methods (`filter`, `map`) are the idiomatic way to transform these collections before passing results downstream.
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/filter_users.ts`.
+- Export an async `main` function:
+  ```typescript
+  export async function main(
+    users: Array<{ id: number; name: string; active: boolean }>,
+    active_only: boolean = true
+  )
+  ```
+- The function must:
+  1. If `active_only` is `true`, keep only users where `active === true`.
+  2. Return an array of objects `{ id: number; name: string; display: string }` where `display` is `` `#${id} — ${name}` ``.
+- Create the metadata file at `/home/user/windmill-project/f/scripts/filter_users.script.yaml` with:
+  - `summary: "Filter and format a list of users"`
+  - `language: typescript`
+
+## Implementation Guide
+
+1. Create `f/scripts/filter_users.ts`:
+   ```typescript
+   export async function main(
+     users: Array<{ id: number; name: string; active: boolean }>,
+     active_only: boolean = true
+   ) {
+     const filtered = active_only ? users.filter(u => u.active) : users;
+     return filtered.map(u => ({ id: u.id, name: u.name, display: `#${u.id} — ${u.name}` }));
+   }
+   ```
+2. Create the metadata YAML.
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- `display` format: `` `#${id} — ${name}` `` (em dash `—`, not a hyphen)
+- When `active_only=false`, return all users
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Running command: echo python_data_validation__g3WQ79N > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script — Input Data Validator
+
+## Background
+
+Windmill scripts often act as validation gates in a flow — they inspect incoming data, collect all validation errors, and either return a clean validated object or raise an error listing every problem. This prevents bad data from propagating to downstream steps.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/validate_user.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(user: dict) -> dict:
+  ```
+  The `user` dict may contain: `name` (str), `email` (str), `age` (int).
+- Validation rules:
+  - `name`: required, must be a non-empty string
+  - `email`: required, must contain `@` and `.`
+  - `age`: optional; if present, must be an integer between 0 and 150
+- Collect ALL validation errors into a list.
+- If there are any errors, raise `ValueError(f"Validation failed: {'; '.join(errors)}")`
+- If valid, return:
+  ```python
+  {"valid": True, "name": user["name"].strip(), "email": user["email"].lower(), "age": user.get("age")}
+  ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/validate_user.script.yaml` with:
+  - `summary: "Validate and normalize a user input dict"`
+  - `language: python3`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Collect ALL errors before raising (not fail-fast)
+- `email` must be lowercased in output
+- `name` must be stripped in output
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo typescript_data_pipeline__aoBNKMM > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# TypeScript Windmill Script — Multi-Stage Data Pipeline
+
+## Background
+
+A single Windmill TypeScript script can implement a complete multi-stage data transformation pipeline as chained function calls within `main`. This is useful when the transformation logic is too simple to warrant a full multi-step flow, but complex enough to need several passes over the data.
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/etl_pipeline.ts`.
+- Export an async `main` function:
+  ```typescript
+  export async function main(
+    raw_records: Array<{ name: string; value: string; category: string }>,
+    filter_category: string = "",
+    value_multiplier: number = 1
+  )
+  ```
+- The pipeline must perform these stages **in order**:
+  1. **Parse**: convert `value` from string to float (skip records where `value` is not a valid number, setting `parse_error: true`).
+  2. **Filter**: if `filter_category` is non-empty, keep only records where `category === filter_category`.
+  3. **Transform**: multiply each numeric value by `value_multiplier`.
+  4. **Aggregate**: compute `{ total: sum, count, average }` from the transformed values.
+- Return:
+  ```typescript
+  {
+    input_count: number,
+    output_count: number,
+    parse_errors: number,
+    filter_category: string,
+    records: Array<{ name: string; value: number; category: string }>,
+    aggregate: { total: number; count: number; average: number }
+  }
+  ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/etl_pipeline.script.yaml` with:
+  - `summary: "Multi-stage ETL pipeline: parse, filter, transform, aggregate"`
+  - `language: typescript`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Pipeline stages must run in order: parse → filter → transform → aggregate
+- Records with parse errors are excluded from subsequent stages
+- `aggregate.average` is 0 if `count` is 0
+
+## Integrations
+
+None.
+
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo typescript_environment_config__aJS72Ct > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# TypeScript Windmill Script — Environment-Aware Configuration Builder
+
+## Background
+
+Windmill scripts can access environment variables via `Deno.env.get()` (in the Deno runtime) or `process.env` (in Node.js). However, the idiomatic Windmill pattern for environment-specific config is to pass config values as script parameters and use Windmill's variable/secret system to inject them. This task builds an environment config assembler.
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/build_config.ts`.
+- Export an async `main` function:
+  ```typescript
+  export async function main(
+    environment: string,
+    api_base_url: string,
+    debug: boolean = false,
+    max_retries: number = 3,
+    timeout_ms: number = 5000
+  )
+  ```
+- The function must:
+  1. Validate that `environment` is one of `"development"`, `"staging"`, `"production"`. If not, throw `new Error(\`Unknown environment: ${environment}\`)`.
+  2. Return a config object:
+     ```typescript
+     {
+       environment,
+       api_base_url: api_base_url.replace(/\/$/, ''),  // strip trailing slash
+       debug: environment !== 'production' && debug,
+       max_retries,
+       timeout_ms,
+       is_production: environment === 'production',
+       log_level: environment === 'production' ? 'warn' : 'debug'
+     }
+     ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/build_config.script.yaml` with:
+  - `summary: "Build an environment-specific configuration object"`
+  - `language: typescript`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Strip trailing slash from `api_base_url`
+- `debug` must be forced to `false` in production even if caller passes `true`
+- Valid environments: `development`, `staging`, `production`
+
+## Integrations
+
+None.
+
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo python_error_handling__VXEKawo > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script with Input Validation
+
+## Background
+
+In Windmill, when a script raises a Python exception, the step fails and the error is surfaced in the UI or routed to an error handler in a flow. Writing scripts that validate inputs and raise informative exceptions makes debugging and flow error-handling much easier.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/parse_age.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(age_str: str) -> dict:
+  ```
+- Behaviour:
+  - Convert `age_str` to an integer.
+  - If the value is not a valid integer, raise `ValueError(f"Invalid age: '{age_str}' is not an integer")`
+  - If the integer is less than 0 or greater than 150, raise `ValueError(f"Age {age} is out of valid range (0–150)")`
+  - Otherwise return `{"age": age, "category": category}` where category is:
+    - `"minor"` if age < 18
+    - `"adult"` if 18 <= age < 65
+    - `"senior"` if age >= 65
+- Create the metadata file at `/home/user/windmill-project/f/scripts/parse_age.script.yaml` with:
+  - `summary: "Parse and categorize an age string"`
+  - `language: python3`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Raise `ValueError` (not a generic Exception) for invalid inputs
+- Category strings must be exactly: `"minor"`, `"adult"`, `"senior"`
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo python_nested_dict__Uc8m2yQ > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script — Nested Dictionary Transformer
+
+## Background
+
+Windmill Python scripts that process webhook payloads or API responses often receive deeply nested JSON structures. Flattening or restructuring these nested dicts is a common pre-processing step before passing data to downstream scripts.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/flatten_config.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(config: dict, prefix: str = "") -> dict:
+  ```
+- The function must flatten a nested dict into a single-level dict with dot-notation keys.
+  - e.g., `{"a": {"b": 1, "c": {"d": 2}}}` → `{"a.b": 1, "a.c.d": 2}`
+  - If `prefix` is provided, prepend it: `{"x": 1}` with `prefix="ns"` → `{"ns.x": 1}`
+- Non-dict values are written as-is (string, int, float, bool, list).
+- Create the metadata file at `/home/user/windmill-project/f/scripts/flatten_config.script.yaml` with:
+  - `summary: "Flatten a nested dictionary into dot-notation keys"`
+  - `language: python3`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Key separator is `.` (dot)
+- Lists are NOT recursed into — kept as-is
+
+## Integrations
+
+None.
+
+EOF
+Running command: echo python_return_dict__fDUVgAM > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script Returning a Dictionary
+
+## Background
+
+Windmill scripts can return Python dictionaries which are serialized to JSON and passed to downstream flow steps. This pattern is common for scripts that compute and return multiple related values together.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/stats.py`.
+- The `main` function must accept one parameter: `numbers` of type `list[float]`.
+- The function must return a dict with exactly these keys:
+  - `count`: the number of elements in `numbers` (int)
+  - `total`: the sum of all elements (float)
+  - `average`: `total / count`, or `0.0` if `numbers` is empty (float)
+- Create the metadata file at `/home/user/windmill-project/f/scripts/stats.script.yaml` with:
+  - `summary: "Compute basic statistics for a list of numbers"`
+  - `language: python3`
+
+## Implementation Guide
+
+1. Create `f/scripts/stats.py`:
+   ```python
+   def main(numbers: list[float]) -> dict:
+       count = len(numbers)
+       total = sum(numbers)
+       average = total / count if count > 0 else 0.0
+       return {"count": count, "total": total, "average": average}
+   ```
+2. Create `f/scripts/stats.script.yaml`:
+   ```yaml
+   summary: "Compute basic statistics for a list of numbers"
+   language: python3
+   ```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Script path: `/home/user/windmill-project/f/scripts/stats.py`
+- Metadata path: `/home/user/windmill-project/f/scripts/stats.script.yaml`
+- Return key names must be exactly `count`, `total`, `average`
+- Handle empty list by returning `average: 0.0`
+
+## Integrations
+
+None.
+
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo typescript_basic_script__8aMpSeb > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Create a TypeScript Windmill Script
+
+## Background
+
+Windmill is an open-source workflow engine and developer platform that allows you to write scripts in TypeScript, Python, and other languages. Each Windmill script is a file that exports a `main` function, and is accompanied by a metadata YAML file describing its properties.
+
+In this task you will use the Windmill CLI (`wmill`) to create a TypeScript script and its accompanying metadata file inside a local Windmill project directory.
+
+## Requirements
+
+- Create a TypeScript script at `/home/user/windmill-project/f/scripts/greet.ts` that exports an async `main` function.
+- The `main` function must accept two parameters:
+  - `name`: a `string` (required)
+  - `greeting`: a `string` with a default value of `"Hello"`
+- The function must return the string `` `${greeting}, ${name}!` ``.
+- Create the accompanying metadata file at `/home/user/windmill-project/f/scripts/greet.script.yaml` with:
+  - `summary: "Greet a user"`
+  - `language: typescript`
+
+## Implementation Guide
+
+1. Navigate to the project directory:
+   ```bash
+   cd /home/user/windmill-project
+   ```
+
+2. Create the scripts directory if it does not already exist:
+   ```bash
+   mkdir -p f/scripts
+   ```
+
+3. Create the TypeScript script file `f/scripts/greet.ts` with the following structure:
+   ```typescript
+   export async function main(name: string, greeting: string = "Hello") {
+     return `${greeting}, ${name}!`;
+   }
+   ```
+
+4. Create the metadata file `f/scripts/greet.script.yaml` with:
+   ```yaml
+   summary: "Greet a user"
+   language: typescript
+   ```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Script path: `/home/user/windmill-project/f/scripts/greet.ts`
+- Metadata path: `/home/user/windmill-project/f/scripts/greet.script.yaml`
+- The `main` function signature must match exactly: `main(name: string, greeting: string = "Hello")`
+- The return value must use a template literal: `` `${greeting}, ${name}!` ``
+- Do not add a Windmill server — this is a local file creation task only.
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo python_optional_params__8yp4ot7 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script with Optional Parameters
+
+## Background
+
+Windmill Python scripts support optional parameters with default values, just like TypeScript scripts. When a parameter has a default, it becomes optional in Windmill's auto-generated UI form. This is useful for building configurable scripts that work out-of-the-box with sensible defaults.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/send_notification.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(
+      message: str,
+      recipient: str = "admin@example.com",
+      subject: str = "Notification",
+      priority: int = 1
+  ) -> dict:
+  ```
+- The function must return a dict:
+  ```python
+  {
+      "to": recipient,
+      "subject": subject,
+      "body": message,
+      "priority": priority,
+      "sent": False   # simulated — no real email is sent
+  }
+  ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/send_notification.script.yaml` with:
+  - `summary: "Prepare a notification payload"`
+  - `language: python3`
+
+## Implementation Guide
+
+1. Create `f/scripts/send_notification.py` with the function above.
+2. Create `f/scripts/send_notification.script.yaml`.
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- `sent` must always be `False` (simulation only — no real sending)
+- Return dict keys must be exactly: `to`, `subject`, `body`, `priority`, `sent`
+
+## Integrations
+
+None.
+
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo python_webhook_handler__T8XoSYg > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script — Webhook Payload Dispatcher
+
+## Background
+
+Windmill is frequently triggered by webhooks from GitHub, Stripe, Slack, and other platforms. A Windmill script that acts as a webhook handler must inspect the event type, route to the appropriate logic, and return a structured response. This task builds a GitHub-style webhook handler.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/handle_webhook.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(event_type: str, payload: dict) -> dict:
+  ```
+- Dispatch based on `event_type`:
+  - `"push"`: extract `payload["repository"]["name"]` and `payload["commits"]` (list). Return `{"action": "push", "repo": repo_name, "commit_count": len(commits), "handled": True}`.
+  - `"pull_request"`: extract `payload["action"]` (e.g., `"opened"`) and `payload["pull_request"]["title"]`. Return `{"action": "pull_request", "pr_action": pr_action, "title": title, "handled": True}`.
+  - `"ping"`: return `{"action": "ping", "message": "pong", "handled": True}`.
+  - Any other event: return `{"action": event_type, "handled": False, "message": f"Unhandled event type: {event_type}"}`.
+- Create the metadata file at `/home/user/windmill-project/f/scripts/handle_webhook.script.yaml` with:
+  - `summary: "Dispatch and process incoming GitHub webhook events"`
+  - `language: python3`
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Return key `handled` must be `True` for known events, `False` for unknown
+- Use stdlib only (no third-party packages)
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo flow_sequential_steps__LUS5Zqe > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Create a Windmill Flow with Two Sequential Script Steps
+
+## Background
+
+Windmill flows are YAML definitions that chain scripts into pipelines. Each flow module has an `id`, a `value` describing what to run, and `input_transforms` that wire outputs from previous steps into the current step's inputs. The flow file lives in a `.flow/` directory or as a single `.yaml` file.
+
+## Requirements
+
+Create two TypeScript scripts and a flow that chains them:
+
+### Script 1: `/home/user/windmill-project/f/scripts/generate_message.ts`
+```typescript
+export async function main(name: string) {
+  return { message: `Hello, ${name}!`, timestamp: new Date().toISOString() };
+}
+```
+With metadata `generate_message.script.yaml`: `summary: "Generate a greeting message"`, `language: typescript`
+
+### Script 2: `/home/user/windmill-project/f/scripts/wrap_message.ts`
+```typescript
+export async function main(message: string, prefix: string = ">>>") {
+  return `${prefix} ${message}`;
+}
+```
+With metadata `wrap_message.script.yaml`: `summary: "Wrap a message with a prefix"`, `language: typescript`
+
+### Flow: `/home/user/windmill-project/f/flows/greet_and_wrap.yaml`
+A flow with two sequential steps:
+- **Step `a`**: runs `f/scripts/generate_message` with a static input `name: "Windmill"`
+- **Step `b`**: runs `f/scripts/wrap_message`, wiring `message` from `results.a.message` via a JavaScript expression input transform
+
+The flow YAML must follow the Windmill flow format:
+```yaml
+summary: "Greet and wrap a message"
+value:
+  modules:
+    - id: a
+      value:
+        type: script
+        path: f/scripts/generate_message
+        input_transforms:
+          name:
+            type: static
+            value: "Windmill"
+    - id: b
+      value:
+        type: script
+        path: f/scripts/wrap_message
+        input_transforms:
+          message:
+            type: javascript
+            expr: "results.a.message"
+```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Flows directory: `/home/user/windmill-project/f/flows/`
+- Flow file: `/home/user/windmill-project/f/flows/greet_and_wrap.yaml`
+- Script step ids must be `a` and `b`
+- Input transform for `message` in step `b` must use `type: javascript` with `expr: "results.a.message"`
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

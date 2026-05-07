@@ -1,0 +1,162 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 4ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 7 items
+
+tests/test_final_state.py ..FFF..                                        [100%]
+
+=================================== FAILURES ===================================
+____________________ test_parse_filter_transform_aggregate _____________________
+
+    def test_parse_filter_transform_aggregate():
+        """Priority 1: full pipeline — parse error, filter by category, multiply."""
+>       r = _eval_etl(RAW_RECORDS, filter_cat="x", multiplier=2)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+records = [{'category': 'x', 'name': 'A', 'value': '10'}, {'category': 'x', 'name': 'B', 'value': 'bad'}, {'category': 'y', 'name': 'C', 'value': '20'}]
+filter_cat = 'x', multiplier = 2
+
+    def _eval_etl(records: list, filter_cat: str = "", multiplier: float = 1) -> dict:
+        with open(ETL_TS) as fh:
+            src = fh.read()
+        js = re.sub(r"Array<[^>]+>", "", src)
+        js = re.sub(r"Record<[^>]+>", "", js)
+        js = re.sub(r":\s*(number|string|boolean)", "", js)
+        js = js.replace("export async function", "async function")
+        call = (
+            f"main({json.dumps(records)}, {repr(filter_cat)}, {multiplier})"
+            f".then(r => console.log(JSON.stringify(r)));"
+        )
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed: {result.stderr}"
+E       AssertionError: node failed: [eval]:3
+E         type RawRecord = {
+E              ^^^^^^^^^
+E         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (
+E         
+E         SyntaxError: Unexpected identifier 'RawRecord'
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', '// Multi-stage ETL pipeline: parse, filter, transform, aggregate\n\ntype RawReco...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n").returncode
+
+tests/test_final_state.py:38: AssertionError
+___________________________ test_no_filter_all_valid ___________________________
+
+    def test_no_filter_all_valid():
+        """Priority 1: no filter, all valid records included."""
+        records = [{"name": "X", "value": "5", "category": "a"}, {"name": "Y", "value": "15", "category": "b"}]
+>       r = _eval_etl(records, filter_cat="", multiplier=1)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+records = [{'category': 'a', 'name': 'X', 'value': '5'}, {'category': 'b', 'name': 'Y', 'value': '15'}]
+filter_cat = '', multiplier = 1
+
+    def _eval_etl(records: list, filter_cat: str = "", multiplier: float = 1) -> dict:
+        with open(ETL_TS) as fh:
+            src = fh.read()
+        js = re.sub(r"Array<[^>]+>", "", src)
+        js = re.sub(r"Record<[^>]+>", "", js)
+        js = re.sub(r":\s*(number|string|boolean)", "", js)
+        js = js.replace("export async function", "async function")
+        call = (
+            f"main({json.dumps(records)}, {repr(filter_cat)}, {multiplier})"
+            f".then(r => console.log(JSON.stringify(r)));"
+        )
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed: {result.stderr}"
+E       AssertionError: node failed: [eval]:3
+E         type RawRecord = {
+E              ^^^^^^^^^
+E         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (
+E         
+E         SyntaxError: Unexpected identifier 'RawRecord'
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', '// Multi-stage ETL pipeline: parse, filter, transform, aggregate\n\ntype RawReco...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n").returncode
+
+tests/test_final_state.py:38: AssertionError
+_______________________________ test_empty_input _______________________________
+
+    def test_empty_input():
+        """Priority 1: empty input → all zeros."""
+>       r = _eval_etl([])
+            ^^^^^^^^^^^^^
+
+tests/test_final_state.py:67: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+records = [], filter_cat = '', multiplier = 1
+
+    def _eval_etl(records: list, filter_cat: str = "", multiplier: float = 1) -> dict:
+        with open(ETL_TS) as fh:
+            src = fh.read()
+        js = re.sub(r"Array<[^>]+>", "", src)
+        js = re.sub(r"Record<[^>]+>", "", js)
+        js = re.sub(r":\s*(number|string|boolean)", "", js)
+        js = js.replace("export async function", "async function")
+        call = (
+            f"main({json.dumps(records)}, {repr(filter_cat)}, {multiplier})"
+            f".then(r => console.log(JSON.stringify(r)));"
+        )
+        result = subprocess.run(["node", "-e", js + "\n" + call], capture_output=True, text=True, timeout=15)
+>       assert result.returncode == 0, f"node failed: {result.stderr}"
+E       AssertionError: node failed: [eval]:3
+E         type RawRecord = {
+E              ^^^^^^^^^
+E         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (
+E         
+E         SyntaxError: Unexpected identifier 'RawRecord'
+E             at makeContextifyScript (node:internal/vm:194:14)
+E             at compileScript (node:internal/process/execution:388:10)
+E             at evalTypeScript (node:internal/process/execution:260:22)
+E             at node:internal/main/eval_string:71:3
+E         
+E         Node.js v24.15.0
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', '-e', '// Multi-stage ETL pipeline: parse, filter, transform, aggregate\n\ntype RawReco...TypeScript (node:internal/process/execution:260:22)\n    at node:internal/main/eval_string:71:3\n\nNode.js v24.15.0\n").returncode
+
+tests/test_final_state.py:38: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_etl_ts_exists
+PASSED tests/test_final_state.py::test_etl_yaml_exists
+PASSED tests/test_final_state.py::test_yaml_language
+PASSED tests/test_final_state.py::test_yaml_summary
+FAILED tests/test_final_state.py::test_parse_filter_transform_aggregate - Ass...
+FAILED tests/test_final_state.py::test_no_filter_all_valid - AssertionError: ...
+FAILED tests/test_final_state.py::test_empty_input - AssertionError: node fai...
+========================= 3 failed, 4 passed in 0.17s ==========================

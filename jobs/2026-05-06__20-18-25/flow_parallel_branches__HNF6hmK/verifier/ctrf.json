@@ -1,0 +1,110 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 10,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778124192.7022376,
+            "stop": 1778124192.7556078
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_word_count_ts_exists",
+                "status": "passed",
+                "duration": 0.00044975103810429573,
+                "start": 1778124192.7084575,
+                "stop": 1778124192.7091064,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_char_count_ts_exists",
+                "status": "passed",
+                "duration": 0.00034578004851937294,
+                "start": 1778124192.7091968,
+                "stop": 1778124192.7096992,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_line_count_ts_exists",
+                "status": "passed",
+                "duration": 0.0002930449554696679,
+                "start": 1778124192.7097635,
+                "stop": 1778124192.7101798,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_exists",
+                "status": "passed",
+                "duration": 0.00031224696431308985,
+                "start": 1778124192.7102392,
+                "stop": 1778124192.7106743,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_word_count_runtime",
+                "status": "passed",
+                "duration": 0.015947937965393066,
+                "start": 1778124192.710732,
+                "stop": 1778124192.7270255,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_char_count_runtime",
+                "status": "passed",
+                "duration": 0.013069315114989877,
+                "start": 1778124192.7271435,
+                "stop": 1778124192.7405107,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_line_count_runtime",
+                "status": "passed",
+                "duration": 0.012834463035687804,
+                "start": 1778124192.7406473,
+                "stop": 1778124192.753734,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_uses_branchall",
+                "status": "passed",
+                "duration": 0.0003498209407553077,
+                "start": 1778124192.7538352,
+                "stop": 1778124192.7543175,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_has_parallel_true",
+                "status": "passed",
+                "duration": 0.00035773508716374636,
+                "start": 1778124192.7543783,
+                "stop": 1778124192.754894,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_references_all_three_scripts",
+                "status": "passed",
+                "duration": 0.000355027848854661,
+                "start": 1778124192.754952,
+                "stop": 1778124192.7554238,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

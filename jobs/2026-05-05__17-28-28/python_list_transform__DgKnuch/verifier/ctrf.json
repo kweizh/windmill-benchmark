@@ -1,0 +1,89 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 5,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778027795.659618,
+            "stop": 1778027795.716092
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_orders_py_exists",
+                "status": "passed",
+                "duration": 0.0009676070185378194,
+                "start": 1778027795.6687334,
+                "stop": 1778027795.6699002,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_orders_yaml_exists",
+                "status": "passed",
+                "duration": 0.0004974700277671218,
+                "start": 1778027795.6699874,
+                "stop": 1778027795.670594,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_filter_by_min_amount",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.013333529117517173,
+                "start": 1778027795.6706922,
+                "stop": 1778027795.6906302,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_filter_by_min_amount():\n        \"\"\"Priority 1: min_amount=10 filters out Widget C (amount=5).\"\"\"\n>       r = _run_main(SAMPLE_ORDERS, min_amount=10.0)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:40: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\norders = [{'amount': 10.0, 'id': 1, 'product': 'Widget A', 'shipped': True}, {'amount': 50.0, 'id': 2, 'product': 'Widget B', 'shipped': False}, {'amount': 5.0, 'id': 3, 'product': 'Widget C', 'shipped': True}]\nmin_amount = 10.0\n\n    def _run_main(orders: list, min_amount: float = 0.0) -> dict:\n        script = (\n            f\"import importlib.util, json\\n\"\n            f\"spec = importlib.util.spec_from_file_location('po', '{ORDERS_PY}')\\n\"\n            f\"mod = importlib.util.module_from_spec(spec)\\n\"\n            f\"spec.loader.exec_module(mod)\\n\"\n            f\"print(json.dumps(mod.main({json.dumps(orders)}, {min_amount})))\\n\"\n        )\n        result = subprocess.run([\"python3\", \"-c\", script], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"python3 failed: {result.stderr}\"\nE       AssertionError: python3 failed: Traceback (most recent call last):\nE           File \"<string>\", line 5, in <module>\nE         NameError: name 'true' is not defined. Did you mean: 'True'?\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['python3', '-c', 'import importlib.util, json\\nspec = importlib.util.spec_from_file_location(\\'...ll last):\\n  File \"<string>\", line 5, in <module>\\nNameError: name \\'true\\' is not defined. Did you mean: \\'True\\'?\\n').returncode\n\ntests/test_final_state.py:34: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_no_filter",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.012047206982970238,
+                "start": 1778027795.6907504,
+                "stop": 1778027795.7048585,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_no_filter():\n        \"\"\"Priority 1: min_amount=0 returns all 3 orders.\"\"\"\n>       r = _run_main(SAMPLE_ORDERS, min_amount=0.0)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:50: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\norders = [{'amount': 10.0, 'id': 1, 'product': 'Widget A', 'shipped': True}, {'amount': 50.0, 'id': 2, 'product': 'Widget B', 'shipped': False}, {'amount': 5.0, 'id': 3, 'product': 'Widget C', 'shipped': True}]\nmin_amount = 0.0\n\n    def _run_main(orders: list, min_amount: float = 0.0) -> dict:\n        script = (\n            f\"import importlib.util, json\\n\"\n            f\"spec = importlib.util.spec_from_file_location('po', '{ORDERS_PY}')\\n\"\n            f\"mod = importlib.util.module_from_spec(spec)\\n\"\n            f\"spec.loader.exec_module(mod)\\n\"\n            f\"print(json.dumps(mod.main({json.dumps(orders)}, {min_amount})))\\n\"\n        )\n        result = subprocess.run([\"python3\", \"-c\", script], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"python3 failed: {result.stderr}\"\nE       AssertionError: python3 failed: Traceback (most recent call last):\nE           File \"<string>\", line 5, in <module>\nE         NameError: name 'true' is not defined. Did you mean: 'True'?\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['python3', '-c', 'import importlib.util, json\\nspec = importlib.util.spec_from_file_location(\\'...ll last):\\n  File \"<string>\", line 5, in <module>\\nNameError: name \\'true\\' is not defined. Did you mean: \\'True\\'?\\n').returncode\n\ntests/test_final_state.py:34: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_empty_list",
+                "status": "passed",
+                "duration": 0.009876903844997287,
+                "start": 1778027795.704951,
+                "stop": 1778027795.7149906,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_language",
+                "status": "passed",
+                "duration": 0.00034738308750092983,
+                "start": 1778027795.7150722,
+                "stop": 1778027795.7155263,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_summary",
+                "status": "passed",
+                "duration": 0.00022613094188272953,
+                "start": 1778027795.7155907,
+                "stop": 1778027795.715906,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

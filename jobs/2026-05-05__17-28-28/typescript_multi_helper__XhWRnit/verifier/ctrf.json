@@ -1,0 +1,89 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 5,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778027420.2867098,
+            "stop": 1778027420.4690645
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_invoice_ts_exists",
+                "status": "passed",
+                "duration": 0.00039446691516786814,
+                "start": 1778027420.294373,
+                "stop": 1778027420.2949407,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_invoice_yaml_exists",
+                "status": "passed",
+                "duration": 0.00037321599666029215,
+                "start": 1778027420.2950299,
+                "stop": 1778027420.2955081,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_single_line_item",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.05592194607015699,
+                "start": 1778027420.2956293,
+                "stop": 1778027420.372232,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_single_line_item():\n        \"\"\"Priority 1: qty=2, unit_price=5, tax=10% \u2192 subtotal=$10, tax=$1, total=$11.\"\"\"\n>       r = _eval_invoice([{\"name\": \"Widget\", \"qty\": 2, \"unit_price\": 5}], 0.1, \"USD\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:37: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nitems = [{'name': 'Widget', 'qty': 2, 'unit_price': 5}], tax_rate = 0.1\ncurrency = 'USD'\n\n    def _eval_invoice(items: list, tax_rate: float = 0.1, currency: str = \"USD\") -> dict:\n        with open(INVOICE_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\"Array<[^>]+>\", \"\", src)\n        js = re.sub(r\":\\s*(number|string|boolean)\", \"\", js)\n        js = js.replace(\"export async function\", \"async function\")\n        call = (\n            f\"main({json.dumps(items)}, {tax_rate}, {repr(currency)})\"\n            f\".then(r => console.log(JSON.stringify(r)));\"\n        )\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:5\nE         function computeSubtotal(items: ) {\nE                                       ^\nE         Unexpected token `)`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (\nE         \nE         SyntaxError: Unexpected token ':'\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'function formatCurrency(amount, currency) {\\n  return `${currency} ${amount.toFi...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n\").returncode\n\ntests/test_final_state.py:31: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_two_line_items",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.08405735995620489,
+                "start": 1778027420.372354,
+                "stop": 1778027420.4618094,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_two_line_items():\n        \"\"\"Priority 1: A:$100 + B:$60 = $160 subtotal.\"\"\"\n        items = [{\"name\": \"A\", \"qty\": 1, \"unit_price\": 100}, {\"name\": \"B\", \"qty\": 3, \"unit_price\": 20}]\n>       r = _eval_invoice(items, 0.1, \"USD\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:50: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nitems = [{'name': 'A', 'qty': 1, 'unit_price': 100}, {'name': 'B', 'qty': 3, 'unit_price': 20}]\ntax_rate = 0.1, currency = 'USD'\n\n    def _eval_invoice(items: list, tax_rate: float = 0.1, currency: str = \"USD\") -> dict:\n        with open(INVOICE_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\"Array<[^>]+>\", \"\", src)\n        js = re.sub(r\":\\s*(number|string|boolean)\", \"\", js)\n        js = js.replace(\"export async function\", \"async function\")\n        call = (\n            f\"main({json.dumps(items)}, {tax_rate}, {repr(currency)})\"\n            f\".then(r => console.log(JSON.stringify(r)));\"\n        )\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:5\nE         function computeSubtotal(items: ) {\nE                                       ^\nE         Unexpected token `)`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (\nE         \nE         SyntaxError: Unexpected token ':'\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'function formatCurrency(amount, currency) {\\n  return `${currency} ${amount.toFi...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n\").returncode\n\ntests/test_final_state.py:31: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_helper_not_exported",
+                "status": "passed",
+                "duration": 0.0014476579381152987,
+                "start": 1778027420.461953,
+                "stop": 1778027420.463794,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_language",
+                "status": "passed",
+                "duration": 0.002250257064588368,
+                "start": 1778027420.4638884,
+                "stop": 1778027420.4662936,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_summary",
+                "status": "passed",
+                "duration": 0.002239924855530262,
+                "start": 1778027420.4663775,
+                "stop": 1778027420.4687798,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

@@ -1,0 +1,92 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 4,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778027683.0604558,
+            "stop": 1778027683.1937203
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_enrich_ts_exists",
+                "status": "passed",
+                "duration": 0.0002638810547068715,
+                "start": 1778027683.06709,
+                "stop": 1778027683.0674896,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_enrich_yaml_exists",
+                "status": "passed",
+                "duration": 0.00023233902174979448,
+                "start": 1778027683.0675623,
+                "stop": 1778027683.0679286,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_single_product",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.03729338198900223,
+                "start": 1778027683.0679982,
+                "stop": 1778027683.1111872,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_single_product():\n        \"\"\"Priority 1: single product with 10% tax.\"\"\"\n>       r = _eval_enrich([{\"id\": 1, \"name\": \"Widget\", \"price\": 10}], 0.1)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:37: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nproducts = [{'id': 1, 'name': 'Widget', 'price': 10}], tax_rate = 0.1\n\n    def _eval_enrich(products: list, tax_rate: float = 0.1) -> dict:\n        with open(ENRICH_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\"Array<[^>]+>\", \"\", src)\n        js = re.sub(r\":\\s*(number|string|boolean)\", \"\", js)\n        js = js.replace(\"export async function\", \"async function\")\n        call = (\n            f\"main({json.dumps(products)}, {tax_rate})\"\n            f\".then(r => console.log(JSON.stringify(r)));\"\n        )\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:2\nE           products: ,\nE                   ^\nE         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (\nE         \nE         SyntaxError: Unexpected token ':'\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(\\n  products: ,\\n  tax_rate = 0.1\\n) {\\n  const enriched = a...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n\").returncode\n\ntests/test_final_state.py:31: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_two_products",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.03859761997591704,
+                "start": 1778027683.1112766,
+                "stop": 1778027683.1518755,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_two_products():\n        \"\"\"Priority 1: two products, 20% tax.\"\"\"\n>       r = _eval_enrich([{\"id\": 1, \"name\": \"A\", \"price\": 100}, {\"id\": 2, \"name\": \"B\", \"price\": 200}], 0.2)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:50: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nproducts = [{'id': 1, 'name': 'A', 'price': 100}, {'id': 2, 'name': 'B', 'price': 200}]\ntax_rate = 0.2\n\n    def _eval_enrich(products: list, tax_rate: float = 0.1) -> dict:\n        with open(ENRICH_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\"Array<[^>]+>\", \"\", src)\n        js = re.sub(r\":\\s*(number|string|boolean)\", \"\", js)\n        js = js.replace(\"export async function\", \"async function\")\n        call = (\n            f\"main({json.dumps(products)}, {tax_rate})\"\n            f\".then(r => console.log(JSON.stringify(r)));\"\n        )\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:2\nE           products: ,\nE                   ^\nE         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (\nE         \nE         SyntaxError: Unexpected token ':'\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(\\n  products: ,\\n  tax_rate = 0.1\\n) {\\n  const enriched = a...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n\").returncode\n\ntests/test_final_state.py:31: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_empty_products",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.03876054217107594,
+                "start": 1778027683.151961,
+                "stop": 1778027683.1927547,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_empty_products():\n        \"\"\"Priority 1: empty input.\"\"\"\n>       r = _eval_enrich([])\n            ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:59: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nproducts = [], tax_rate = 0.1\n\n    def _eval_enrich(products: list, tax_rate: float = 0.1) -> dict:\n        with open(ENRICH_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\"Array<[^>]+>\", \"\", src)\n        js = re.sub(r\":\\s*(number|string|boolean)\", \"\", js)\n        js = js.replace(\"export async function\", \"async function\")\n        call = (\n            f\"main({json.dumps(products)}, {tax_rate})\"\n            f\".then(r => console.log(JSON.stringify(r)));\"\n        )\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:2\nE           products: ,\nE                   ^\nE         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (\nE         \nE         SyntaxError: Unexpected token ':'\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(\\n  products: ,\\n  tax_rate = 0.1\\n) {\\n  const enriched = a...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n\").returncode\n\ntests/test_final_state.py:31: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_language",
+                "status": "passed",
+                "duration": 0.0002507970202714205,
+                "start": 1778027683.1928482,
+                "stop": 1778027683.1932073,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_summary",
+                "status": "passed",
+                "duration": 0.00022500497289001942,
+                "start": 1778027683.1932638,
+                "stop": 1778027683.1935794,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

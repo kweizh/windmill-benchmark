@@ -1,0 +1,60 @@
+{
+    "id": "7be19ba4-564f-45d2-9bb7-103f8c28dcdc",
+    "started_at": "2026-05-06T20:38:16.859656",
+    "finished_at": "2026-05-06T21:38:34.554411",
+    "n_total_trials": 30,
+    "stats": {
+        "n_trials": 30,
+        "n_errors": 0,
+        "evals": {
+            "pochi__gemini-3-flash__windmill-tasks": {
+                "n_trials": 30,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.9333333333333333
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "typescript_date_utils__ttVLAeH",
+                            "flow_approval_step__h8DyJ8v",
+                            "typescript_string_builder__ibuSyxa",
+                            "python_json_processor__QcvzrbJ",
+                            "typescript_multi_helper__FwVARgY",
+                            "typescript_return_object__BZiSb2m",
+                            "flow_conditional_branch__wjar6ur",
+                            "python_batch_processor__nCgYady",
+                            "typescript_object_param__FWQe9y4",
+                            "flow_parallel_branches__e2k66CG",
+                            "python_class_script__KkypMLo",
+                            "full_script_workspace__5i86yND",
+                            "typescript_async_transform__5kecqiR",
+                            "typescript_error_handling__nLcnJeH",
+                            "flow_error_handler__399VQkj",
+                            "python_basic_script__DBdR68L",
+                            "python_list_transform__DVNg94k",
+                            "typescript_with_defaults__zfdV4CH",
+                            "python_math_utils__7koBaSC",
+                            "typescript_array_filter__59he8hG",
+                            "python_data_validation__TYv72vK",
+                            "typescript_environment_config__svZGaPq",
+                            "python_return_dict__xiywejV",
+                            "python_nested_dict__9YhecJn",
+                            "typescript_basic_script__SHg3QeP",
+                            "python_optional_params__fxXShiU",
+                            "python_webhook_handler__UgPCJUp",
+                            "flow_sequential_steps__GM6oc72"
+                        ],
+                        "0.0": [
+                            "typescript_data_pipeline__ubTBXoN",
+                            "python_error_handling__jWcPs8r"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}

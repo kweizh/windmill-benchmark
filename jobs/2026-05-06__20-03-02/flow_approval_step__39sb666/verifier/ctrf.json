@@ -1,0 +1,101 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 9,
+            "passed": 9,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778123056.8708513,
+            "stop": 1778123056.9538171
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_prepare_ts_exists",
+                "status": "passed",
+                "duration": 0.0005263630300760269,
+                "start": 1778123056.8804622,
+                "stop": 1778123056.881211,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_execute_ts_exists",
+                "status": "passed",
+                "duration": 0.000364718958735466,
+                "start": 1778123056.881308,
+                "stop": 1778123056.881897,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_exists",
+                "status": "passed",
+                "duration": 0.000342128099873662,
+                "start": 1778123056.8819687,
+                "stop": 1778123056.8824732,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_prepare_deployment",
+                "status": "passed",
+                "duration": 0.025099150137975812,
+                "start": 1778123056.882537,
+                "stop": 1778123056.9084263,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_execute_deployment_approved",
+                "status": "passed",
+                "duration": 0.0205497860442847,
+                "start": 1778123056.9086525,
+                "stop": 1778123056.9297924,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_execute_deployment_not_approved",
+                "status": "passed",
+                "duration": 0.019929222879000008,
+                "start": 1778123056.930004,
+                "stop": 1778123056.950259,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_has_approval_step",
+                "status": "passed",
+                "duration": 0.0011706020450219512,
+                "start": 1778123056.950461,
+                "stop": 1778123056.952045,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_has_correct_step_ids",
+                "status": "passed",
+                "duration": 0.0005870530148968101,
+                "start": 1778123056.9522223,
+                "stop": 1778123056.953019,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_wires_deploy_command",
+                "status": "passed",
+                "duration": 0.00031866005156189203,
+                "start": 1778123056.9531167,
+                "stop": 1778123056.9535902,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

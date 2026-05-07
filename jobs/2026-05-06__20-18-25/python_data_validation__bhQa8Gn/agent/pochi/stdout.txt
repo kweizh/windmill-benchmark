@@ -1,0 +1,47 @@
+- Initializing MCP connections...
+You
+# Preserving your work Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable. --- # Python Windmill Script — Input Data Validator ## Background Windmill scripts often act as validation gates in a flow — they inspect incoming data, collect all validation errors, and either return a clean validated object or raise an error listing every problem. This prevents bad data from propagating to downstream steps. ## Requirements - Create a Python script at `/home/user/windmill-project/f/scripts/validate_user.py`. - The `main` function must have this signature: ```python def main(user: dict) -> dict: ``` The `user` dict may contain: `name` (str), `email` (str), `age` (int). - Validation rules: - `name`: required, must be a non-empty string - `email`: required, must contain `@` and `.` - `age`: optional; if present, must be an integer between 0 and 150 - Collect ALL validation errors into a list. - If there are any errors, raise `ValueError(f"Validation failed: {'; '.join(errors)}")` - If valid, return: ```python {"valid": True, "name": user["name"].strip(), "email": user["email"].lower(), "age": user.get("age")} ``` - Create the metadata file at `/home/user/windmill-project/f/scripts/validate_user.script.yaml` with: - `summary: "Validate and normalize a user input dict"` - `language: python3` ## Constraints - Project path: `/home/user/windmill-project` - Collect ALL errors before raising (not fail-fast) - `email` must be lowercased in output - `name` must be stripped in output ## Integrations None.   
+
+Pochi
+💭 Thinking for 1291 characters   
+I'll create a Python Windmill script for validating user input data. Let me break this down into steps.   
+📋 Updating todo list (3 items) ✔ 
+💭 Thinking for 76 characters   
+📋 Updating todo list (3 items) ✔ 
+💭 Thinking for 390 characters   
+✏️  Writing /home/user/windmill-project/f/scripts/validate_user.py ✔ 
+💭 Thinking for 104 characters   
+📋 Updating todo list (3 items) ✔ 
+💭 Thinking for 66 characters   
+✏️  Writing /home/user/windmill-project/f/scripts/validate_user.script.yaml ✔ 
+💭 Thinking for 94 characters   
+📋 Updating todo list (3 items) ✔ 
+💭 Thinking for 112 characters   
+✏️  Writing /logs/artifacts/code/validate_user.py ✔ 
+💭 Thinking for 42 characters   
+✏️  Writing /logs/artifacts/code/validate_user.script.yaml ✔ 
+💭 Thinking for 123 characters   
+📋 Updating todo list (3 items) ✔ 
+💭 Thinking for 93 characters   
+🎉 Task Completed
+I've created the Python Windmill script for validating user input data with the following components:
+
+**Created files:**
+
+1. **`/home/user/windmill-project/f/scripts/validate_user.py`** - The main validation script with:
+   - `main(user: dict) -> dict` function signature
+   - Validates `name` (required, non-empty string)
+   - Validates `email` (required, must contain '@' and '.')
+   - Validates `age` (optional, integer between 0-150 if present)
+   - Collects ALL validation errors before raising (not fail-fast)
+   - Returns normalized data with `name` stripped and `email` lowercased
+   - Raises `ValueError` with all errors if validation fails
+
+2. **`/home/user/windmill-project/f/scripts/validate_user.script.yaml`** - Metadata file with:
+   - `summary: "Validate and normalize a user input dict"`
+   - `language: python3`
+
+**Artifacts saved to:** `/logs/artifacts/code/`
+
+The script implements all validation rules and follows the Windmill script conventions, making it ready for use as a validation gate in your flows.   
+  

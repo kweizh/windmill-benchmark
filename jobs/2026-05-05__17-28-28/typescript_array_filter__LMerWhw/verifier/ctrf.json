@@ -1,0 +1,104 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 4,
+            "failed": 4,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778027834.366684,
+            "stop": 1778027834.5484552
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_filter_users_ts_exists",
+                "status": "passed",
+                "duration": 0.0003212579758837819,
+                "start": 1778027834.3724275,
+                "stop": 1778027834.3729205,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_filter_users_yaml_exists",
+                "status": "passed",
+                "duration": 0.00030517391860485077,
+                "start": 1778027834.373006,
+                "stop": 1778027834.3734431,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_active_only_filter",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.04277899512089789,
+                "start": 1778027834.373519,
+                "stop": 1778027834.4224744,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_active_only_filter():\n        \"\"\"Priority 1: active_only=true returns only active users.\"\"\"\n>       out = _eval_filter(SAMPLE_USERS, active_only=True)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:43: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nusers = [{'active': True, 'id': 1, 'name': 'Alice'}, {'active': False, 'id': 2, 'name': 'Bob'}, {'active': True, 'id': 3, 'name': 'Carol'}]\nactive_only = True\n\n    def _eval_filter(users: list, active_only: bool = True) -> list:\n        with open(FILTER_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\"Array<[^>]+>\", \"\", src)\n        js = re.sub(r\":\\s*(number|string|boolean)\", \"\", js)\n        js = js.replace(\"export async function\", \"async function\")\n        call = (\n            f\"main({json.dumps(users)}, {'true' if active_only else 'false'})\"\n            f\".then(r => console.log(JSON.stringify(r)));\"\n        )\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:2\nE           users: ,\nE                ^\nE         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (\nE         \nE         SyntaxError: Unexpected token ':'\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(\\n  users: ,\\n  active_only = true\\n) {\\n  const filtered = ...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n\").returncode\n\ntests/test_final_state.py:37: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_display_format",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.03994063602294773,
+                "start": 1778027834.4225655,
+                "stop": 1778027834.4645703,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_display_format():\n        \"\"\"Priority 1: display field uses em-dash format.\"\"\"\n>       out = _eval_filter(SAMPLE_USERS, active_only=True)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:51: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nusers = [{'active': True, 'id': 1, 'name': 'Alice'}, {'active': False, 'id': 2, 'name': 'Bob'}, {'active': True, 'id': 3, 'name': 'Carol'}]\nactive_only = True\n\n    def _eval_filter(users: list, active_only: bool = True) -> list:\n        with open(FILTER_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\"Array<[^>]+>\", \"\", src)\n        js = re.sub(r\":\\s*(number|string|boolean)\", \"\", js)\n        js = js.replace(\"export async function\", \"async function\")\n        call = (\n            f\"main({json.dumps(users)}, {'true' if active_only else 'false'})\"\n            f\".then(r => console.log(JSON.stringify(r)));\"\n        )\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:2\nE           users: ,\nE                ^\nE         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (\nE         \nE         SyntaxError: Unexpected token ':'\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(\\n  users: ,\\n  active_only = true\\n) {\\n  const filtered = ...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n\").returncode\n\ntests/test_final_state.py:37: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_all_users_when_active_only_false",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.03808267309796065,
+                "start": 1778027834.4646761,
+                "stop": 1778027834.505182,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_all_users_when_active_only_false():\n        \"\"\"Priority 1: active_only=false returns all 3 users.\"\"\"\n>       out = _eval_filter(SAMPLE_USERS, active_only=False)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:61: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nusers = [{'active': True, 'id': 1, 'name': 'Alice'}, {'active': False, 'id': 2, 'name': 'Bob'}, {'active': True, 'id': 3, 'name': 'Carol'}]\nactive_only = False\n\n    def _eval_filter(users: list, active_only: bool = True) -> list:\n        with open(FILTER_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\"Array<[^>]+>\", \"\", src)\n        js = re.sub(r\":\\s*(number|string|boolean)\", \"\", js)\n        js = js.replace(\"export async function\", \"async function\")\n        call = (\n            f\"main({json.dumps(users)}, {'true' if active_only else 'false'})\"\n            f\".then(r => console.log(JSON.stringify(r)));\"\n        )\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:2\nE           users: ,\nE                ^\nE         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (\nE         \nE         SyntaxError: Unexpected token ':'\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(\\n  users: ,\\n  active_only = true\\n) {\\n  const filtered = ...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n\").returncode\n\ntests/test_final_state.py:37: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_empty_array",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.03979537996929139,
+                "start": 1778027834.5052648,
+                "stop": 1778027834.5472639,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_empty_array():\n        \"\"\"Priority 1: empty input returns empty array.\"\"\"\n>       out = _eval_filter([], active_only=True)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:67: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nusers = [], active_only = True\n\n    def _eval_filter(users: list, active_only: bool = True) -> list:\n        with open(FILTER_TS) as fh:\n            src = fh.read()\n        js = re.sub(r\"Array<[^>]+>\", \"\", src)\n        js = re.sub(r\":\\s*(number|string|boolean)\", \"\", js)\n        js = js.replace(\"export async function\", \"async function\")\n        call = (\n            f\"main({json.dumps(users)}, {'true' if active_only else 'false'})\"\n            f\".then(r => console.log(JSON.stringify(r)));\"\n        )\n        result = subprocess.run([\"node\", \"-e\", js + \"\\n\" + call], capture_output=True, text=True, timeout=15)\n>       assert result.returncode == 0, f\"node failed: {result.stderr}\"\nE       AssertionError: node failed: [eval]:2\nE           users: ,\nE                ^\nE         Unexpected token `,`. Expected an identifier, void, yield, null, await, break, a string literal, a numeric literal, true, false, `, -, import, this, typeof, {, [, (\nE         \nE         SyntaxError: Unexpected token ':'\nE             at makeContextifyScript (node:internal/vm:194:14)\nE             at compileScript (node:internal/process/execution:388:10)\nE             at evalTypeScript (node:internal/process/execution:260:22)\nE             at node:internal/main/eval_string:71:3\nE         \nE         Node.js v24.15.0\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['node', '-e', 'async function main(\\n  users: ,\\n  active_only = true\\n) {\\n  const filtered = ...TypeScript (node:internal/process/execution:260:22)\\n    at node:internal/main/eval_string:71:3\\n\\nNode.js v24.15.0\\n\").returncode\n\ntests/test_final_state.py:37: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_language",
+                "status": "passed",
+                "duration": 0.0003192170988768339,
+                "start": 1778027834.5473497,
+                "stop": 1778027834.5478199,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_summary",
+                "status": "passed",
+                "duration": 0.0002867990406230092,
+                "start": 1778027834.5478983,
+                "stop": 1778027834.5483093,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

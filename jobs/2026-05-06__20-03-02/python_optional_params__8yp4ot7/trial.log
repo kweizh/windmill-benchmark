@@ -1,0 +1,111 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo python_optional_params__8yp4ot7 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Python Windmill Script with Optional Parameters
+
+## Background
+
+Windmill Python scripts support optional parameters with default values, just like TypeScript scripts. When a parameter has a default, it becomes optional in Windmill's auto-generated UI form. This is useful for building configurable scripts that work out-of-the-box with sensible defaults.
+
+## Requirements
+
+- Create a Python script at `/home/user/windmill-project/f/scripts/send_notification.py`.
+- The `main` function must have this signature:
+  ```python
+  def main(
+      message: str,
+      recipient: str = "admin@example.com",
+      subject: str = "Notification",
+      priority: int = 1
+  ) -> dict:
+  ```
+- The function must return a dict:
+  ```python
+  {
+      "to": recipient,
+      "subject": subject,
+      "body": message,
+      "priority": priority,
+      "sent": False   # simulated — no real email is sent
+  }
+  ```
+- Create the metadata file at `/home/user/windmill-project/f/scripts/send_notification.script.yaml` with:
+  - `summary: "Prepare a notification payload"`
+  - `language: python3`
+
+## Implementation Guide
+
+1. Create `f/scripts/send_notification.py` with the function above.
+2. Create `f/scripts/send_notification.script.yaml`.
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- `sent` must always be `False` (simulation only — no real sending)
+- Return dict keys must be exactly: `to`, `subject`, `body`, `priority`, `sent`
+
+## Integrations
+
+None.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

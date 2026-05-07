@@ -1,0 +1,74 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778123102.8554823,
+            "stop": 1778123102.9043403
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_user_info_ts_exists",
+                "status": "passed",
+                "duration": 0.0005050960462540388,
+                "start": 1778123102.8629723,
+                "stop": 1778123102.8637204,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_user_info_yaml_exists",
+                "status": "passed",
+                "duration": 0.00035884114913642406,
+                "start": 1778123102.8638072,
+                "stop": 1778123102.864326,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_active_user_object",
+                "status": "passed",
+                "duration": 0.022748715011402965,
+                "start": 1778123102.8643978,
+                "stop": 1778123102.8879511,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_inactive_user_object",
+                "status": "passed",
+                "duration": 0.014516017050482333,
+                "start": 1778123102.8881004,
+                "stop": 1778123102.902875,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_language",
+                "status": "passed",
+                "duration": 0.00040792697109282017,
+                "start": 1778123102.9029932,
+                "stop": 1778123102.9035542,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_summary",
+                "status": "passed",
+                "duration": 0.000345214968547225,
+                "start": 1778123102.903643,
+                "stop": 1778123102.904129,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}
