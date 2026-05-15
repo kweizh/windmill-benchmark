@@ -1,57 +1,137 @@
-### 1. Library Overview
-* **Description**: `jj` (Jujutsu) is a modern, Git-compatible version control system (VCS) designed for speed, safety, and a superior developer experience. It simplifies the Git model by treating the working copy as a permanent commit, eliminating the staging area, and providing "first-class" conflict management where conflicts can be committed and resolved later.
-* **Ecosystem Role**: It acts as a powerful alternative CLI for Git repositories. It uses a Git backend by default, allowing developers to use `jj` locally while interacting with standard Git remotes (GitHub, GitLab, etc.). It competes with tools like `git-branchless` and `sl` (Sapling).
-* **Installation**: jj could be installed by following command:
+ 1. Library Overview
 
-```bash
-curl -fsSL \
-    https://github.com/jj-vcs/jj/releases/download/v0.38.0/jj-v0.38.0-x86_64-unknown-linux-musl.tar.gz | \
-    tar -xz -C /usr/local/bin ./jj && \
-    chmod +x /usr/local/bin/jj
-```
+*   **Description**: Windmill is an open-source, self-hostable developer platform and workflow engine designed to build internal tools, automate workflows, and create AI agents. It serves as a high-performance alternative to Retool, Temporal, and Airflow.
 
-* **Project Setup**:
-    * **Initialize a new Git-compatible repo**: `jj git init --colocate` (creates a `.jj` directory alongside a `.git` directory in the current folder).
-    * **Clone an existing repo**: `jj git clone <url>` (clones a Git repo and initializes it for `jj`).
-    * **Identity configuration**: `jj config set --user user.name "Your Name"` and `jj config set --user user.email "your@email.com"`.
-### 2. Core Primitives & APIs* **Working Copy as Commit (`@`)**: In `jj`, the working copy is always a commit. Any file change is automatically recorded in the current commit when you run any `jj` command.
-    * [Working Copy Docs](https://docs.jj-vcs.dev/latest/tutorial/#the-working-copy)
-* **Change ID vs. Commit ID**: A **Change ID** (e.g., `qpvz`) is stable and persists across rebases/rewrites. A **Commit ID** (Git SHA, e.g., `a1b2c3d4`) changes whenever the commit content or parent changes.
-    * [Change/Commit IDs](https://docs.jj-vcs.dev/latest/tutorial/#commit-ids-and-change-ids)
-* **Revsets**: A functional query language for selecting revisions.
-    * `jj log -r '@-'` (Parent of working copy)
-    * `jj log -r 'main..@'` (Commits in current branch not in main)
-    * `jj log -r 'author("Alice") & description("fix")'` (Search by author and message)
-    * [Revset Reference](https://docs.jj-vcs.dev/latest/revsets/)
-* **Operation Log & Undo**: Every repository operation (commit, rebase, push) is recorded and can be reverted.
-    * `jj op log` (View history of operations)
-    * `jj undo` (Undo the last operation)
-    * [Operation Log Docs](https://docs.jj-vcs.dev/latest/operation-log/)
-* **First-class Conflicts**: Conflicts are stored in the commit graph. You can rebase a commit with conflicts, and the conflicts will propagate to descendants until resolved.
-    * `jj resolve` (Tools to help resolve conflicts)
-    * [Conflict Management](https://docs.jj-vcs.dev/latest/conflicts/)
+*   **Ecosystem Role**: It acts as the orchestration layer for modern tech stacks, integrating with databases (Postgres, Snowflake), messaging (Slack, Discord), and AI services (OpenAI, Anthropic). It supports multiple languages (TypeScript, Python, Go, Rust, SQL) and offers both low-code and full-code development paths.
+
+*   **Project Setup**:
+
+    1.  **Install CLI**: `npm install -g windmill-cli` (requires Node > v20).
+
+    2.  **Authentication**: `wmill login` to connect to a Windmill instance (Cloud or Self-hosted).
+
+    3.  **Local Sync**: `wmill sync pull` to download the workspace structure to a local directory.
+
+    4.  **Development**: Create scripts (e.g., `f/my_folder/my_script.ts`) and accompanying metadata (`f/my_folder/my_script.script.yaml`).
+
+    5.  **Deployment**: `wmill sync push` or `wmill script push f/my_folder/my_script.ts` to deploy to the instance.
+
+### 2. Core Primitives & APIs
+
+*   **Scripts**: The fundamental unit of execution. Functions with typed arguments that Windmill automatically parses into a UI.
+
+    *   [TypeScript Quickstart](https://www.windmill.dev/docs/getting_started/scripts_quickstart/typescript)
+
+    *   ```typescript
+
+        // Basic Script Structure
+
+        import * as wmill from 'windmill-client';
+
+        export async function main(name: string, age: number) {
+
+          return `Hello ${name}, you are ${age} years old.`;
+
+        }
+
+        ```
+
+*   **Workflows as Code (WAC)**: Orchestrate multiple scripts using familiar language constructs with zero worker waste during waits.
+
+    *   [Workflows as Code Docs](https://www.windmill.dev/docs/core_concepts/workflows_as_code)
+
+    *   ```typescript
+
+        import { workflow, task, sleep, waitForApproval } from 'windmill-client';
+
+        export const main = workflow(async (data: string) => {
+
+          const result = await task(processData)(data);
+
+          await sleep(3600); // Suspends parent job, releases worker
+
+          const approval = await waitForApproval({ timeout: 1800 });
+
+          if (approval.approved) {
+
+            return await task(deploy)(result);
+
+          }
+
+        });
+
+        ```
+
+*   **Resources**: Structured JSON objects for credentials and configuration (e.g., Database connections, API keys).
+
+    *   [Resources & Types Docs](https://www.windmill.dev/docs/core_concepts/resources_and_types)
+
+    *   ```typescript
+
+        // Fetching a resource programmatically
+
+        const dbConfig = await wmill.getResource('u/user/my_db');
+
+        ```
+
+*   **States**: Persistent data that survives between different executions of the same script/trigger.
+
+    *   [State Management Docs](https://www.windmill.dev/docs/core_concepts/resources_and_types#states)
+
+    *   ```python
+
+        from wmill import get_state, set_state
+
+        def main():
+
+            last_run = get_state() or 0
+
+            set_state(time.time())
+
+        ```
+
 ### 3. Real-World Use Cases & Templates
-* **Stacking Changes for PRs**: `jj` makes it easy to manage a "stack" of small commits. You can edit any commit in the stack with `jj edit <change_id>`, and all descendants will automatically rebase.
-* **GitHub Workflow**: `jj` integrates with GitHub via bookmarks (branches). To push a PR:
-    1. `jj bookmark create my-feature`
-    2. `jj git push`
-* **Templates**: Customize output formatting (e.g., for `jj log`).
-    * `jj log -T 'commit_id.short() ++ " " ++ description.first_line()'`
-    * [Template Language](https://docs.jj-vcs.dev/latest/templates/)
+
+*   **ETL Pipelines**: Fetching data from APIs in parallel, transforming it, and loading it into a database ([Example](https://www.windmill.dev/docs/core_concepts/workflows_as_code#etl-pipeline-with-retry)).
+
+*   **Human-in-the-loop Deployments**: Running tests, deploying to staging, and waiting for Slack-based approval before production ([Example](https://www.windmill.dev/docs/core_concepts/workflows_as_code#deployment-with-approval-gate)).
+
+*   **Cron-based Monitoring**: Scheduled scripts that check service health and use `set_state` to alert only on status changes.
+
+*   **Windmill Hub**: A community repository of 200+ integrations and scripts (Slack, OpenAI, GSheets, etc.) at [hub.windmill.dev](https://hub.windmill.dev/).
+
 ### 4. Developer Friction Points
-* **Pushing requires Bookmarks**: Unlike Git, where you are always "on" a branch, `jj` allows "anonymous" commits. New users often forget to create a bookmark before trying to `jj git push`, leading to "nothing to push" errors.
-* **Conflict Markers in Commits**: Users might accidentally commit conflict markers (`<<<<<<<`) if they don't realize that `jj` allows committing "unresolved" states. Understanding that a commit *with* conflicts is valid but "broken" is a mental shift.
-* **Revset Syntax Complexity**: Distinguishing between `..` (range) and `::` (DAG range/ancestors) can be tricky for beginners.
+
+*   **Determinism in WAC**: Developers often forget that WAC replays on failure/suspension. Using non-deterministic code (like `Date.now()` or `Math.random()`) outside of a `step()` primitive will cause state mismatches. [WAC Determinism Rules](https://www.windmill.dev/docs/core_concepts/workflows_as_code#determinism-requirement).
+
+*   **Resource Permission Scoping**: In the App editor, dynamic resources (those not hardcoded in a select component) require a specific toggle "Resources from users allowed" to be enabled, which is a common source of "Permission Denied" errors. [App Resource Policy](https://www.windmill.dev/docs/core_concepts/resources_and_types#resources-in-apps).
+
+*   **Flow State vs. Persistent State**: Confusion between `getFlowUserState` (lives only for the duration of a flow) and `get_state` (persists across different job runs).
+
 ### 5. Evaluation Ideas
-* **Conflict Resolution**: Perform a rebase that creates a conflict, then resolve it by editing the file and observe the automatic "resolution" in the next `jj st`.
-* **History Rewriting**: Use `jj edit` on a commit 3 levels deep in a stack, change a file, and verify all 3 descendant commits were automatically rebased.
-* **Operation Recovery**: Accurately describe the state of the repo after performing 5 distinct operations, then use `jj undo` to return to the state after the 2nd operation.
-* **Revset Querying**: Write a revset to find all commits authored by "Bob" that are not reachable from the `main` bookmark but are ancestors of the current working copy.
-* **Commit Splitting**: Use `jj split` to take a single commit with changes in two different files and turn it into two separate commits.
-* **Git Integration**: Successfully clone a Git repo, create a bookmark, and push it to a remote using only `jj` commands.
+
+*   **Simple**: Create a TypeScript script that accepts a "Postgres" resource and returns the count of rows in a specific table.
+
+*   **Simple**: Implement a Python script that uses `set_state` to track the number of times it has been executed.
+
+*   **Medium**: Build a Workflow-as-Code that fetches a list of URLs in parallel (concurrency=3) and aggregates their status codes.
+
+*   **Medium**: Create a Windmill App with a text input and a button that triggers a script to send a message to a Slack channel defined in a Resource.
+
+*   **Complex**: Implement a multi-stage deployment workflow with an exponential backoff retry for the first step and a `waitForApproval` gate for the final step.
+
+*   **Complex**: Refactor a sequential Flow into a deterministic Workflow-as-Code, correctly using `step()` for ID generation and `taskScript()` for external calls.
+
 ### 6. Sources
-1. [Jujutsu Official Documentation](https://docs.jj-vcs.dev/latest/) - Primary source for all concepts and commands.
-2. [Jujutsu GitHub Repository](https://github.com/jj-vcs/jj) - Source for issue tracking and architecture details.
-3. [Jujutsu Tutorial (Bird's Eye View)](https://docs.jj-vcs.dev/latest/tutorial/) - Step-by-step guide for new users.
-4. [Revset Language Reference](https://docs.jj-vcs.dev/latest/revsets/) - Detailed syntax for the query language.
-5. [GitHub Discussions (Common Issues)](https://github.com/jj-vcs/jj/discussions) - Source for developer friction points and UX challenges.
+
+1.  [Windmill Documentation](https://www.windmill.dev/docs/intro) - Core documentation portal.
+
+2.  [Windmill llms.txt](https://www.windmill.dev/llms.txt) - Structured overview of the documentation.
+
+3.  [Workflows as Code Guide](https://www.windmill.dev/docs/core_concepts/workflows_as_code) - Detailed technical spec for the WAC engine.
+
+4.  [Windmill CLI Docs](https://www.windmill.dev/docs/advanced/cli) - Local development and syncing instructions.
+
+5.  [Windmill Hub](https://hub.windmill.dev/) - Repository of scripts and integrations.
+
+6.  [Windmill OpenAPI Spec](https://app.windmill.dev/api/openapi.json) - Full API reference for backend interactions.
