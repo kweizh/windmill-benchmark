@@ -1,0 +1,59 @@
+Trial workflow_sleep_primitive__qQvqKrt failed: Docker compose command failed for environment workflow_sleep_primitive. Command: docker compose --project-name workflow_sleep_primitive__qqvqkrt --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_sleep_primitive/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_sleep_primitive__qqvqkrt-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 696B done
+#1 DONE 0.0s
+
+#2 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.44kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [6/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#7 CACHED
+
+#8 [4/8] RUN npm install -g windmill-cli
+#8 CACHED
+
+#9 [5/8] RUN mkdir -p /home/user
+#9 CACHED
+
+#10 [7/8] RUN cat > /home/user/windmill-project/f/workflows/reminder.ts <<'EOF'
+#10 CACHED
+
+#11 [2/8] RUN apt-get update && apt-get install -y     curl     wget     ca-certificates     git     python3     python3-pip     python3-pytest     bash     && rm -rf /var/lib/apt/lists/*
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:ff6f52a3e20fc471cd1daf470d611f5294f0576868228e456c5848da2eb98f06 done
+#13 exporting config sha256:f28d3b04f89e0658b1ce10b37f5840b889a60d8561b1ac213215cb0b1b2913ab done
+#13 exporting attestation manifest sha256:ee1e4a36c8ed137167c3a557722cc63bcca7d501258ea54d46b5bae240e69043
+#13 exporting attestation manifest sha256:ee1e4a36c8ed137167c3a557722cc63bcca7d501258ea54d46b5bae240e69043 0.0s done
+#13 exporting manifest list sha256:600e871c35d45e5833f0a0ddc054bb8e1d031541a56fe899245edd3e6d268e5d 0.0s done
+#13 naming to docker.io/library/workflow_sleep_primitive__qqvqkrt-main:latest done
+#13 unpacking to docker.io/library/workflow_sleep_primitive__qqvqkrt-main:latest 0.0s done
+#13 DONE 0.2s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image workflow_sleep_primitive__qqvqkrt-main Built 
+ Network workflow_sleep_primitive__qqvqkrt_default Creating 
+ Network workflow_sleep_primitive__qqvqkrt_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_sleep_primitive__qqvqkrt_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 

@@ -1,0 +1,92 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778806822.472084,
+            "stop": 1778806822.4818575
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists",
+                "status": "passed",
+                "duration": 0.0003600029740482569,
+                "start": 1778806822.477193,
+                "stop": 1778806822.477739,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_imports_taskscript_from_windmill_client",
+                "status": "passed",
+                "duration": 0.0003762940177693963,
+                "start": 1778806822.477807,
+                "stop": 1778806822.4783432,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_calls_taskscript_extract_users",
+                "status": "passed",
+                "duration": 0.000375628937035799,
+                "start": 1778806822.4784257,
+                "stop": 1778806822.4789693,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_calls_taskscript_transform_records",
+                "status": "passed",
+                "duration": 0.0003380442503839731,
+                "start": 1778806822.4790435,
+                "stop": 1778806822.4795313,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_save_results_still_inline",
+                "status": "passed",
+                "duration": 0.0003336688969284296,
+                "start": 1778806822.4796154,
+                "stop": 1778806822.480093,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_extract_users_function_removed",
+                "status": "passed",
+                "duration": 0.00033375201746821404,
+                "start": 1778806822.480154,
+                "stop": 1778806822.480604,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_transform_records_function_removed",
+                "status": "passed",
+                "duration": 0.0003510437672957778,
+                "start": 1778806822.480671,
+                "stop": 1778806822.481136,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_wrapper_present",
+                "status": "passed",
+                "duration": 0.00032383587677031755,
+                "start": 1778806822.4812107,
+                "stop": 1778806822.4816737,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

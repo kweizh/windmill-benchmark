@@ -1,2 +1,0 @@
-summary: "Multi-stage ETL pipeline: parse, filter, transform, aggregate"
-language: typescript

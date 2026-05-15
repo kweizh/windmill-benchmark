@@ -1,0 +1,86 @@
+{
+    "id": "0891304c-9739-48c5-8d87-7112edcaf146",
+    "task_name": "workflow_parallel_items_concurrency",
+    "trial_name": "workflow_parallel_items_concurre__dod42Go",
+    "trial_uri": "file:///Users/warrenlow/Documents/projects/pochi-harbor/jobs/2026-05-14__17-53-04/workflow_parallel_items_concurre__dod42Go",
+    "task_id": {
+        "path": "windmill-tasks/workflow_parallel_items_concurrency"
+    },
+    "source": "windmill-tasks",
+    "task_checksum": "c468776b99c23b38dc999ac8d5c5955d62541acf78a05f68b430510fe53382b1",
+    "config": {
+        "task": {
+            "path": "windmill-tasks/workflow_parallel_items_concurrency",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "windmill-tasks"
+        },
+        "trial_name": "workflow_parallel_items_concurre__dod42Go",
+        "trials_dir": "jobs/2026-05-14__17-53-04",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "agents.pochi:Pochi",
+            "model_name": "zai/glm-4.7",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {},
+            "env": {}
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "mounts_json": null,
+            "env": {},
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "job_id": "a3d35984-557d-444e-b2ae-71e14a3cedcf"
+    },
+    "agent_info": {
+        "name": "pochi",
+        "version": "unknown",
+        "model_info": {
+            "name": "glm-4.7",
+            "provider": "zai"
+        }
+    },
+    "agent_result": null,
+    "verifier_result": null,
+    "exception_info": {
+        "exception_type": "RuntimeError",
+        "exception_message": "Docker compose command failed for environment workflow_parallel_items_concurrency. Command: docker compose --project-name workflow_parallel_items_concurre__dod42go --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_parallel_items_concurrency/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_parallel_items_concurre__dod42go-main Building \n#1 [internal] load local bake definitions\n#1 reading from stdin 734B done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile: 631B done\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/ubuntu:24.04\n#3 DONE 0.0s\n\n#4 [internal] load .dockerignore\n#4 transferring context: 2B done\n#4 DONE 0.0s\n\n#5 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b\n#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done\n#5 DONE 0.0s\n\n#6 [3/5] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*\n#6 CACHED\n\n#7 [4/5] RUN npm install -g windmill-cli\n#7 CACHED\n\n#8 [2/5] RUN apt-get update && apt-get install -y     curl     wget     ca-certificates     git     python3     python3-pip     python3-pytest     bash     && rm -rf /var/lib/apt/lists/*\n#8 CACHED\n\n#9 [5/5] RUN mkdir -p /home/user/windmill-project/f/workflows\n#9 CACHED\n\n#10 exporting to image\n#10 exporting layers done\n#10 exporting manifest sha256:041af5ba0a791b25df92893560b7c484e7e8b2b7f54d19c7ed2c93d06e15e2ef done\n#10 exporting config sha256:2dfefdc77fe0260a33c8e5737c5826e88f130533ccd9f50100c90976f62a4bd9 done\n#10 exporting attestation manifest sha256:d9436ff01d704ebbf09a7b8d02919912b2b7a727b576048c2c5293ed643c7799 0.0s done\n#10 exporting manifest list sha256:c46368f0b86736f6d39f2f12fc29c05b2e6c6973a7f842507d7563125f869e98\n#10 exporting manifest list sha256:c46368f0b86736f6d39f2f12fc29c05b2e6c6973a7f842507d7563125f869e98 0.0s done\n#10 naming to docker.io/library/workflow_parallel_items_concurre__dod42go-main:latest done\n#10 unpacking to docker.io/library/workflow_parallel_items_concurre__dod42go-main:latest done\n#10 DONE 0.1s\n\n#11 resolving provenance for metadata file\n#11 DONE 0.0s\n Image workflow_parallel_items_concurre__dod42go-main Built \n Network workflow_parallel_items_concurre__dod42go_default Creating \n Network workflow_parallel_items_concurre__dod42go_default Error Error response from daemon: all predefined address pools have been fully subnetted\nfailed to create network workflow_parallel_items_concurre__dod42go_default: Error response from daemon: all predefined address pools have been fully subnetted\n. Stderr: None. ",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 531, in run\n    await self._setup_environment()\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 238, in _setup_environment\n    await self._start_environment_with_retry()\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 193, in async_wrapped\n    return await copy(fn, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 112, in __call__\n    do = await self.iter(retry_state=retry_state)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 157, in iter\n    result = await action(retry_state)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/_utils.py\", line 111, in inner\n    return call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/__init__.py\", line 393, in <lambda>\n    self._add_action_func(lambda rs: rs.outcome.result())\n                                     ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 116, in __call__\n    result = await fn(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 250, in _start_environment_with_retry\n    await asyncio.wait_for(\n  File \"/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py\", line 349, in start\n    await self._run_docker_compose_command([\"up\", \"--detach\", \"--wait\"])\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py\", line 318, in _run_docker_compose_command\n    raise RuntimeError(\nRuntimeError: Docker compose command failed for environment workflow_parallel_items_concurrency. Command: docker compose --project-name workflow_parallel_items_concurre__dod42go --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_parallel_items_concurrency/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_parallel_items_concurre__dod42go-main Building \n#1 [internal] load local bake definitions\n#1 reading from stdin 734B done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile: 631B done\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/ubuntu:24.04\n#3 DONE 0.0s\n\n#4 [internal] load .dockerignore\n#4 transferring context: 2B done\n#4 DONE 0.0s\n\n#5 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b\n#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done\n#5 DONE 0.0s\n\n#6 [3/5] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*\n#6 CACHED\n\n#7 [4/5] RUN npm install -g windmill-cli\n#7 CACHED\n\n#8 [2/5] RUN apt-get update && apt-get install -y     curl     wget     ca-certificates     git     python3     python3-pip     python3-pytest     bash     && rm -rf /var/lib/apt/lists/*\n#8 CACHED\n\n#9 [5/5] RUN mkdir -p /home/user/windmill-project/f/workflows\n#9 CACHED\n\n#10 exporting to image\n#10 exporting layers done\n#10 exporting manifest sha256:041af5ba0a791b25df92893560b7c484e7e8b2b7f54d19c7ed2c93d06e15e2ef done\n#10 exporting config sha256:2dfefdc77fe0260a33c8e5737c5826e88f130533ccd9f50100c90976f62a4bd9 done\n#10 exporting attestation manifest sha256:d9436ff01d704ebbf09a7b8d02919912b2b7a727b576048c2c5293ed643c7799 0.0s done\n#10 exporting manifest list sha256:c46368f0b86736f6d39f2f12fc29c05b2e6c6973a7f842507d7563125f869e98\n#10 exporting manifest list sha256:c46368f0b86736f6d39f2f12fc29c05b2e6c6973a7f842507d7563125f869e98 0.0s done\n#10 naming to docker.io/library/workflow_parallel_items_concurre__dod42go-main:latest done\n#10 unpacking to docker.io/library/workflow_parallel_items_concurre__dod42go-main:latest done\n#10 DONE 0.1s\n\n#11 resolving provenance for metadata file\n#11 DONE 0.0s\n Image workflow_parallel_items_concurre__dod42go-main Built \n Network workflow_parallel_items_concurre__dod42go_default Creating \n Network workflow_parallel_items_concurre__dod42go_default Error Error response from daemon: all predefined address pools have been fully subnetted\nfailed to create network workflow_parallel_items_concurre__dod42go_default: Error response from daemon: all predefined address pools have been fully subnetted\n. Stderr: None. \n",
+        "occurred_at": "2026-05-14T17:53:19.533023"
+    },
+    "started_at": "2026-05-15T00:53:18.262135Z",
+    "finished_at": "2026-05-15T00:53:20.258366Z",
+    "environment_setup": {
+        "started_at": "2026-05-15T00:53:18.263676Z",
+        "finished_at": "2026-05-15T00:53:19.527231Z"
+    },
+    "agent_setup": null,
+    "agent_execution": null,
+    "verifier": null
+}

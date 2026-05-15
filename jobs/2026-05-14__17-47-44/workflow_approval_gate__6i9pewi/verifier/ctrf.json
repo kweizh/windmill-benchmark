@@ -1,0 +1,104 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 0,
+            "failed": 7,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778806244.372074,
+            "stop": 1778806244.3962877
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0006137948948889971,
+                "start": 1778806244.3779826,
+                "stop": 1778806244.384359,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_file_exists():\n        \"\"\"The workflow file must exist at the specified path.\"\"\"\n>       assert os.path.isfile(TARGET_FILE), (\n            f\"Expected file '{TARGET_FILE}' to exist, but it was not found.\"\n        )\nE       AssertionError: Expected file '/home/user/windmill-project/f/workflows/deploy_with_approval.ts' to exist, but it was not found.\nE       assert False\nE        +  where False = <function isfile at 0xfb4811210220>('/home/user/windmill-project/f/workflows/deploy_with_approval.ts')\nE        +    where <function isfile at 0xfb4811210220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\n/tests/test_final_state.py:29: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_wait_for_approval_imported",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003905440680682659,
+                "start": 1778806244.3844597,
+                "stop": 1778806244.3862784,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_wait_for_approval_imported():\n        \"\"\"waitForApproval must be imported from 'windmill-client'.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:40: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_approval.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_wait_for_approval_called_with_timeout",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.000342376995831728,
+                "start": 1778806244.3863742,
+                "stop": 1778806244.387973,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_wait_for_approval_called_with_timeout():\n        \"\"\"waitForApproval must be called with { timeout: 3600 }.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:56: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_approval.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_approval_approved_check_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00040666910354048014,
+                "start": 1778806244.388041,
+                "stop": 1778806244.3897235,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_approval_approved_check_present():\n        \"\"\"The workflow must branch on approval.approved.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:72: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_approval.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_task_deploy_to_prod_called",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00037725199945271015,
+                "start": 1778806244.3897963,
+                "stop": 1778806244.3917642,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_task_deploy_to_prod_called():\n        \"\"\"task(deployToProd) must be called for the approved deployment path.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:88: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_approval.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_rejected_status_returned",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00038283492904156446,
+                "start": 1778806244.3918335,
+                "stop": 1778806244.3943067,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_rejected_status_returned():\n        \"\"\"The rejection branch must return an object with status: 'rejected'.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:103: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_approval.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_task_run_tests_called_before_approval",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00040537805762141943,
+                "start": 1778806244.3943892,
+                "stop": 1778806244.3961098,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_task_run_tests_called_before_approval():\n        \"\"\"task(runTests) must be called before waitForApproval.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:119: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_approval.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

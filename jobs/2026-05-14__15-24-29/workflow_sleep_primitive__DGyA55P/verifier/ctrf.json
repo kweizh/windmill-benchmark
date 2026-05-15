@@ -1,0 +1,56 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 4,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778798312.4317539,
+            "stop": 1778798312.4382176
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_reminder_file_exists",
+                "status": "passed",
+                "duration": 0.00039149587973952293,
+                "start": 1778798312.4358861,
+                "stop": 1778798312.4364624,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_sleep_imported_from_windmill_client",
+                "status": "passed",
+                "duration": 0.00039541302248835564,
+                "start": 1778798312.4365501,
+                "stop": 1778798312.437072,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_await_sleep_delay_seconds_present",
+                "status": "passed",
+                "duration": 0.0003303710836917162,
+                "start": 1778798312.4371412,
+                "stop": 1778798312.4375935,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_settimeout_not_present",
+                "status": "passed",
+                "duration": 0.0002903310814872384,
+                "start": 1778798312.4376566,
+                "stop": 1778798312.4380636,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

@@ -1,0 +1,209 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 21,
+            "passed": 21,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778805598.4104474,
+            "stop": 1778805598.4290261
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists",
+                "status": "passed",
+                "duration": 0.00034891581162810326,
+                "start": 1778805598.4195397,
+                "stop": 1778805598.42006,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_companion_yaml_exists",
+                "status": "passed",
+                "duration": 0.00030095805414021015,
+                "start": 1778805598.4201326,
+                "stop": 1778805598.4205546,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_imports_workflow_from_windmill_client",
+                "status": "passed",
+                "duration": 0.00031454290729016066,
+                "start": 1778805598.4206088,
+                "stop": 1778805598.4210565,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_imports_task_from_windmill_client",
+                "status": "passed",
+                "duration": 0.0003157079918310046,
+                "start": 1778805598.4211175,
+                "stop": 1778805598.421554,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_exports_main_as_workflow",
+                "status": "passed",
+                "duration": 0.0002886679721996188,
+                "start": 1778805598.4216065,
+                "stop": 1778805598.422017,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_defines_validate_input_function",
+                "status": "passed",
+                "duration": 0.00029179092962294817,
+                "start": 1778805598.4220698,
+                "stop": 1778805598.4224775,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_defines_transform_data_function",
+                "status": "passed",
+                "duration": 0.00032050011213868856,
+                "start": 1778805598.422528,
+                "stop": 1778805598.422969,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_defines_format_output_function",
+                "status": "passed",
+                "duration": 0.00033391593024134636,
+                "start": 1778805598.4230185,
+                "stop": 1778805598.4234762,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_calls_task_validate_input",
+                "status": "passed",
+                "duration": 0.00027566496282815933,
+                "start": 1778805598.423525,
+                "stop": 1778805598.4239018,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_calls_task_transform_data",
+                "status": "passed",
+                "duration": 0.0002642078325152397,
+                "start": 1778805598.4239664,
+                "stop": 1778805598.4243262,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_calls_task_format_output",
+                "status": "passed",
+                "duration": 0.00025233207270503044,
+                "start": 1778805598.4243767,
+                "stop": 1778805598.424727,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_chain_order",
+                "status": "passed",
+                "duration": 0.0002531660720705986,
+                "start": 1778805598.4247777,
+                "stop": 1778805598.4251294,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_validate_input_uses_trim",
+                "status": "passed",
+                "duration": 0.00027404201682657003,
+                "start": 1778805598.425194,
+                "stop": 1778805598.4255774,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_validate_input_throws_on_empty",
+                "status": "passed",
+                "duration": 0.00025637587532401085,
+                "start": 1778805598.4256277,
+                "stop": 1778805598.4259796,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_transform_data_includes_original_key",
+                "status": "passed",
+                "duration": 0.00025900104083120823,
+                "start": 1778805598.4260275,
+                "stop": 1778805598.426384,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_transform_data_includes_upper_key",
+                "status": "passed",
+                "duration": 0.00029695802368223667,
+                "start": 1778805598.4264326,
+                "stop": 1778805598.4268289,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_transform_data_includes_word_count_key",
+                "status": "passed",
+                "duration": 0.0002537919208407402,
+                "start": 1778805598.4268775,
+                "stop": 1778805598.4272463,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_format_output_spreads_data",
+                "status": "passed",
+                "duration": 0.00025233300402760506,
+                "start": 1778805598.4272964,
+                "stop": 1778805598.4276464,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_format_output_includes_processed_at",
+                "status": "passed",
+                "duration": 0.0002532500075176358,
+                "start": 1778805598.4277115,
+                "stop": 1778805598.4280593,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_format_output_includes_status_complete",
+                "status": "passed",
+                "duration": 0.00024699990171939135,
+                "start": 1778805598.4281225,
+                "stop": 1778805598.428464,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_mentions_raw_input",
+                "status": "passed",
+                "duration": 0.0002530000638216734,
+                "start": 1778805598.4285123,
+                "stop": 1778805598.4288566,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

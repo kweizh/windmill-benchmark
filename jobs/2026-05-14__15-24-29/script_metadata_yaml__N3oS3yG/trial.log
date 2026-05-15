@@ -1,0 +1,126 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo script_metadata_yaml__N3oS3yG > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Windmill Script Metadata YAML
+
+## Background
+Windmill uses companion `.script.yaml` files to describe a script's schema, summary, description, language, and template status. These metadata files allow Windmill to validate inputs, render a UI form, and document the script without running it.
+
+You have a pre-existing TypeScript script at `/home/user/windmill-project/f/analytics/report.ts`:
+
+```typescript
+export async function main(start_date: string, end_date: string, limit: number = 100) {
+  return { start_date, end_date, limit, report: "placeholder" };
+}
+```
+
+## Requirements
+Create a companion metadata file `f/analytics/report.script.yaml` inside the project directory `/home/user/windmill-project` with the following content:
+
+1. `summary`: `"Generate analytics report"`
+2. `description`: `"Generates a date-range analytics report with configurable row limit"`
+3. `schema` with three properties:
+   - `start_date`: type `string`, required
+   - `end_date`: type `string`, required
+   - `limit`: type `integer`, default `100`, **not** required
+4. `language`: `bun`
+5. `is_template`: `false`
+
+## Implementation Guide
+
+1. Navigate to the project directory:
+   ```bash
+   cd /home/user/windmill-project
+   ```
+2. Create the metadata file `f/analytics/report.script.yaml` with the correct YAML content. You may write the file directly — no `wmill` CLI command is needed to produce a metadata file. Example structure:
+   ```yaml
+   summary: "Generate analytics report"
+   description: "Generates a date-range analytics report with configurable row limit"
+   schema:
+     $schema: "https://json-schema.org/draft/2020-12/schema"
+     type: object
+     properties:
+       start_date:
+         type: string
+         description: "Start date for the report range"
+       end_date:
+         type: string
+         description: "End date for the report range"
+       limit:
+         type: integer
+         description: "Maximum number of rows to return"
+         default: 100
+     required:
+       - start_date
+       - end_date
+   is_template: false
+   language: bun
+   ```
+
+## Constraints
+- Project path: `/home/user/windmill-project`
+- The metadata file must be located at `f/analytics/report.script.yaml` relative to the project root.
+- Do NOT modify `report.ts`.
+- No live Windmill server is required — only the local file needs to be created.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

@@ -1,0 +1,110 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 10,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778804307.1888113,
+            "stop": 1778804307.198784
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists",
+                "status": "passed",
+                "duration": 0.00028842210303992033,
+                "start": 1778804307.1941943,
+                "stop": 1778804307.1946507,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_gpu_tag_present_in_file",
+                "status": "passed",
+                "duration": 0.0002935900120064616,
+                "start": 1778804307.1947324,
+                "stop": 1778804307.1951294,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_gpu_tag_associated_with_train_model",
+                "status": "passed",
+                "duration": 0.00026596488896757364,
+                "start": 1778804307.1951897,
+                "stop": 1778804307.1955512,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_preprocess_data_task_has_no_tag",
+                "status": "passed",
+                "duration": 0.0002741740318015218,
+                "start": 1778804307.1956072,
+                "stop": 1778804307.1959813,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_preprocess_data_call_present",
+                "status": "passed",
+                "duration": 0.00020537897944450378,
+                "start": 1778804307.196036,
+                "stop": 1778804307.1963277,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_wrapper_intact",
+                "status": "passed",
+                "duration": 0.0004004260990768671,
+                "start": 1778804307.1963778,
+                "stop": 1778804307.1969242,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_train_model_task_still_referenced",
+                "status": "passed",
+                "duration": 0.0002447551814839244,
+                "start": 1778804307.1970108,
+                "stop": 1778804307.1973574,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_main_export_signature_intact",
+                "status": "passed",
+                "duration": 0.00023783789947628975,
+                "start": 1778804307.1974163,
+                "stop": 1778804307.1977463,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_windmill_client_import_intact",
+                "status": "passed",
+                "duration": 0.0002548370976001024,
+                "start": 1778804307.197802,
+                "stop": 1778804307.1981459,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_train_model_uses_options_object_form",
+                "status": "passed",
+                "duration": 0.00032296497374773026,
+                "start": 1778804307.1982236,
+                "stop": 1778804307.1986442,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

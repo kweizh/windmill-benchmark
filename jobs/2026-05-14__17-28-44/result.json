@@ -1,0 +1,56 @@
+{
+    "id": "9202f335-5879-4113-b0c0-a3eaf43b68f9",
+    "started_at": "2026-05-14T17:28:46.004332",
+    "finished_at": null,
+    "n_total_trials": 30,
+    "stats": {
+        "n_trials": 13,
+        "n_errors": 13,
+        "evals": {
+            "pochi__claude-4-5-sonnet__windmill-tasks": {
+                "n_trials": 9,
+                "n_errors": 13,
+                "metrics": [
+                    {
+                        "mean": 0.0
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "event_driven_etl_orchestrator__35R5nCk",
+                            "cron_monitor_with_state__gM5xzQC",
+                            "python_state_tracking_script__SJ7dv8F",
+                            "deterministic_wac_refactor__f3qX9dw",
+                            "resource_fetch_in_script__CSkuZgu",
+                            "workflow_parallel_fan_out_fan_in__QLSqK4w",
+                            "taskscript_external_reference__7UZFWB5",
+                            "script_metadata_yaml__ZjrWEux",
+                            "deployment_pipeline_with_rollbac__fTvmybp"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "NonZeroAgentExitCodeError": [
+                        "event_driven_etl_orchestrator__35R5nCk",
+                        "cron_monitor_with_state__gM5xzQC",
+                        "python_state_tracking_script__SJ7dv8F",
+                        "deterministic_wac_refactor__f3qX9dw",
+                        "resource_fetch_in_script__CSkuZgu",
+                        "workflow_parallel_fan_out_fan_in__QLSqK4w",
+                        "taskscript_external_reference__7UZFWB5",
+                        "script_metadata_yaml__ZjrWEux",
+                        "deployment_pipeline_with_rollbac__fTvmybp",
+                        "workflow_approval_gate__UGHCnPN",
+                        "workflow_task_with_worker_tag__4NtBpMu"
+                    ],
+                    "CancelledError": [
+                        "workflow_step_determinism__7AwDwqg",
+                        "self_healing_api_pipeline__psydZVn"
+                    ]
+                }
+            }
+        }
+    },
+    "trial_results": []
+}

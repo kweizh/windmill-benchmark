@@ -2,8 +2,8 @@ FROM ubuntu:24.04
 
 RUN apt-get update -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        curl ca-certificates git python3 python3-pip python3-pytest bash && \
-    curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && \
+        curl wget ca-certificates git python3 python3-pip python3-pytest bash && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y --no-install-recommends nodejs && \
     npm install -g windmill-cli && \
     apt-get clean && \
@@ -12,14 +12,14 @@ RUN apt-get update -y && \
 RUN mkdir -p /home/user && chmod 0755 /home/user
 
 LABEL Author="any-task-builder"
-LABEL Description="Windmill TypeScript script task environment with Node.js v24 and wmill CLI installed."
+LABEL Description="Windmill CLI task environment: Node.js v20, windmill-cli (wmill), and a scaffolded project directory at /home/user/windmill-project."
 
-RUN mkdir -p /home/user/windmill-project/f/scripts
+RUN mkdir -p /home/user/windmill-project
 
 # Container contents:
-#   - curl, ca-certificates, git, python3, python3-pip, python3-pytest, bash — always-required base packages
-#   - Node.js v24 (via nodesource setup_24.x)
-#   - windmill-cli (wmill) installed globally via npm
-#   - /home/user/windmill-project/f/scripts/ — empty scripts directory ready for the agent to populate
+#   - Node.js v20 and windmill-cli (wmill binary) installed globally via npm
+#   - python3, python3-pip, python3-pytest for running test harness
+#   - /home/user/windmill-project — empty scaffold directory for the Windmill project
+#   - User must create f/scripts/greet.ts and f/scripts/greet.script.yaml
 
 CMD ["/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"]

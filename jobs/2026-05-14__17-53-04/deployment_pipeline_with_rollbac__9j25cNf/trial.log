@@ -1,0 +1,59 @@
+Trial deployment_pipeline_with_rollbac__9j25cNf failed: Docker compose command failed for environment deployment_pipeline_with_rollback. Command: docker compose --project-name deployment_pipeline_with_rollbac__9j25cnf --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/deployment_pipeline_with_rollback/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image deployment_pipeline_with_rollbac__9j25cnf-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 730B done
+#1 DONE 0.0s
+
+#2 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.06kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [7/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#6 CACHED
+
+#7 [6/8] RUN wmill --version
+#7 CACHED
+
+#8 [2/8] RUN apt-get update && apt-get install -y     curl     ca-certificates     gnupg     python3     python3-pip     python3-pytest     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [4/8] RUN node --version && npm --version
+#10 CACHED
+
+#11 [5/8] RUN npm install -g windmill-client windmill-cli
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:4bfcab34ea9471592be44f06b524ab31ed5368025d8e7ab754963d9fdbb99f5c done
+#13 exporting config sha256:f124e29f38510a9dd03af9b94c192706b097093be1f9297ac28e37f297230f49 done
+#13 exporting attestation manifest sha256:a16aa858959ea18a51ed2bcdfc15c47a74df519db243094fe481db6366d30789 0.0s done
+#13 exporting manifest list sha256:a93d399d0e7382a9112973bc583f776b58d93a5b7bc95ea4b8a6e8e54e1e575a
+#13 exporting manifest list sha256:a93d399d0e7382a9112973bc583f776b58d93a5b7bc95ea4b8a6e8e54e1e575a 0.0s done
+#13 naming to docker.io/library/deployment_pipeline_with_rollbac__9j25cnf-main:latest done
+#13 unpacking to docker.io/library/deployment_pipeline_with_rollbac__9j25cnf-main:latest done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.1s
+ Image deployment_pipeline_with_rollbac__9j25cnf-main Built 
+ Network deployment_pipeline_with_rollbac__9j25cnf_default Creating 
+ Network deployment_pipeline_with_rollbac__9j25cnf_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network deployment_pipeline_with_rollbac__9j25cnf_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 

@@ -1,0 +1,128 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 11,
+            "passed": 8,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778807149.3728516,
+            "stop": 1778807149.3917978
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_pipeline_file_exists",
+                "status": "passed",
+                "duration": 0.0003158821491524577,
+                "start": 1778807149.3793638,
+                "stop": 1778807149.3798342,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wmill_imports",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0005548459012061357,
+                "start": 1778807149.3799174,
+                "stop": 1778807149.3858938,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_wmill_imports():\n        \"\"\"Must import workflow, task, and parallel from wmill.\"\"\"\n        source = _read_source()\n    \n        missing = []\n        # Accept either 'from wmill import ...' style or 'import wmill; wmill.workflow' etc.\n        # Most natural Windmill Python style uses 'from wmill import ...'\n        for symbol in (\"workflow\", \"task\", \"parallel\"):\n            pattern = rf\"from\\s+wmill\\s+import\\s+[^;\\n]*\\b{symbol}\\b|import\\s+wmill\"\n            if not re.search(pattern, source):\n                missing.append(symbol)\n    \n>       assert not missing, (\n            f\"Missing wmill imports for: {missing}. \"\n            \"The file must contain 'from wmill import workflow, task, parallel' \"\n            \"(or equivalent combined import).\"\n        )\nE       AssertionError: Missing wmill imports for: ['workflow', 'task']. The file must contain 'from wmill import workflow, task, parallel' (or equivalent combined import).\nE       assert not ['workflow', 'task']\n\n/tests/test_final_state.py:48: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_task_decorator_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003084661439061165,
+                "start": 1778807149.3859746,
+                "stop": 1778807149.3875,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_task_decorator_present():\n        \"\"\"At least one @task decorator must be present (fetch/retry function).\"\"\"\n        source = _read_source()\n>       assert re.search(r\"@task\\b\", source), (\n            \"@task decorator not found. \"\n            \"The fetch-with-retry function must be decorated with @task.\"\n        )\nE       AssertionError: @task decorator not found. The fetch-with-retry function must be decorated with @task.\nE       assert None\nE        +  where None = <function search at 0xfb1fc81cd3a0>('@task\\\\b', \"import asyncio\\nimport json\\nimport urllib.request\\nimport urllib.error\\nfrom typing import List, Dict, Any\\n\\n\\nasyn...son'\\n    with open(report_path, 'w') as f:\\n        json.dump(health_report, f, indent=2)\\n\\n    return health_report\")\nE        +    where <function search at 0xfb1fc81cd3a0> = re.search\n\n/tests/test_final_state.py:60: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_decorator_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00028659007512032986,
+                "start": 1778807149.387567,
+                "stop": 1778807149.3887696,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_decorator_present():\n        \"\"\"@workflow decorator must be present on the main orchestrator function.\"\"\"\n        source = _read_source()\n>       assert re.search(r\"@workflow\\b\", source), (\n            \"@workflow decorator not found. \"\n            \"The main pipeline orchestrator must be decorated with @workflow.\"\n        )\nE       AssertionError: @workflow decorator not found. The main pipeline orchestrator must be decorated with @workflow.\nE       assert None\nE        +  where None = <function search at 0xfb1fc81cd3a0>('@workflow\\\\b', \"import asyncio\\nimport json\\nimport urllib.request\\nimport urllib.error\\nfrom typing import List, Dict, Any\\n\\n\\nasyn...son'\\n    with open(report_path, 'w') as f:\\n        json.dump(health_report, f, indent=2)\\n\\n    return health_report\")\nE        +    where <function search at 0xfb1fc81cd3a0> = re.search\n\n/tests/test_final_state.py:71: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_asyncio_sleep_present",
+                "status": "passed",
+                "duration": 0.0002326308749616146,
+                "start": 1778807149.3888338,
+                "stop": 1778807149.389152,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_parallel_with_concurrency",
+                "status": "passed",
+                "duration": 0.0002889219904318452,
+                "start": 1778807149.3892124,
+                "stop": 1778807149.3895876,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_retry_loop_present",
+                "status": "passed",
+                "duration": 0.00030367402359843254,
+                "start": 1778807149.3896625,
+                "stop": 1778807149.3900437,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_error_handling_present",
+                "status": "passed",
+                "duration": 0.0002528808545321226,
+                "start": 1778807149.3900933,
+                "stop": 1778807149.3904657,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_pipeline_report_path_referenced",
+                "status": "passed",
+                "duration": 0.0002880078973248601,
+                "start": 1778807149.390523,
+                "stop": 1778807149.390894,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_success_rate_referenced",
+                "status": "passed",
+                "duration": 0.0002357539488002658,
+                "start": 1778807149.390978,
+                "stop": 1778807149.391296,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_json_write_pattern",
+                "status": "passed",
+                "duration": 0.00023421295918524265,
+                "start": 1778807149.3913507,
+                "stop": 1778807149.3916595,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

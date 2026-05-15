@@ -1,0 +1,35 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 16ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 10 items
+
+../../../tests/test_final_state.py ..........                            [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../../tests/test_final_state.py::test_workflow_file_exists
+PASSED ../../../tests/test_final_state.py::test_gpu_tag_present_in_file
+PASSED ../../../tests/test_final_state.py::test_gpu_tag_associated_with_train_model
+PASSED ../../../tests/test_final_state.py::test_preprocess_data_task_has_no_tag
+PASSED ../../../tests/test_final_state.py::test_preprocess_data_call_present
+PASSED ../../../tests/test_final_state.py::test_workflow_wrapper_intact
+PASSED ../../../tests/test_final_state.py::test_train_model_task_still_referenced
+PASSED ../../../tests/test_final_state.py::test_main_export_signature_intact
+PASSED ../../../tests/test_final_state.py::test_windmill_client_import_intact
+PASSED ../../../tests/test_final_state.py::test_train_model_uses_options_object_form
+============================== 10 passed in 0.01s ==============================

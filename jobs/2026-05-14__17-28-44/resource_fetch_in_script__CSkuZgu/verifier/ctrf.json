@@ -1,0 +1,128 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 9,
+            "passed": 0,
+            "failed": 9,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778805033.4563355,
+            "stop": 1778805033.4792478
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_file_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0005244910717010498,
+                "start": 1778805033.463114,
+                "stop": 1778805033.4690917,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_file_exists():\n        \"\"\"db_row_count.ts must exist at the required path.\"\"\"\n>       assert os.path.isfile(SCRIPT_FILE), (\n            f\"Script file not found at {SCRIPT_FILE!r}. \"\n            \"Create the TypeScript script at the specified path.\"\n        )\nE       AssertionError: Script file not found at '/home/user/windmill-project/f/scripts/db_row_count.ts'. Create the TypeScript script at the specified path.\nE       assert False\nE        +  where False = <function isfile at 0xfaeac1180220>('/home/user/windmill-project/f/scripts/db_row_count.ts')\nE        +    where <function isfile at 0xfaeac1180220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:15: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_postgresql_type_defined",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003815750824287534,
+                "start": 1778805033.4691784,
+                "stop": 1778805033.4707048,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_postgresql_type_defined():\n        \"\"\"db_row_count.ts must define a Postgresql type with the required fields.\"\"\"\n>       with open(SCRIPT_FILE) as f:\n             ^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/db_row_count.ts'\n\ntests/test_final_state.py:23: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_main_function_exported",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.000320577179081738,
+                "start": 1778805033.4707704,
+                "stop": 1778805033.471905,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_main_function_exported():\n        \"\"\"db_row_count.ts must export an async main function.\"\"\"\n>       with open(SCRIPT_FILE) as f:\n             ^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/db_row_count.ts'\n\ntests/test_final_state.py:40: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_main_accepts_db_parameter",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003215769538655877,
+                "start": 1778805033.4719644,
+                "stop": 1778805033.4730527,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_main_accepts_db_parameter():\n        \"\"\"main() must accept a db parameter typed as Postgresql.\"\"\"\n>       with open(SCRIPT_FILE) as f:\n             ^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/db_row_count.ts'\n\ntests/test_final_state.py:51: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_return_value_contains_required_keys",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003330338513478637,
+                "start": 1778805033.473115,
+                "stop": 1778805033.4741905,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_return_value_contains_required_keys():\n        \"\"\"main() must return an object with host, dbname, table, query, and note keys.\"\"\"\n>       with open(SCRIPT_FILE) as f:\n             ^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/db_row_count.ts'\n\ntests/test_final_state.py:66: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_return_note_value",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00036811805330216885,
+                "start": 1778805033.47427,
+                "stop": 1778805033.4754477,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_return_note_value():\n        \"\"\"The note field in the return value must equal 'Resource received successfully'.\"\"\"\n>       with open(SCRIPT_FILE) as f:\n             ^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/db_row_count.ts'\n\ntests/test_final_state.py:77: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_companion_yaml_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003607019316405058,
+                "start": 1778805033.4755073,
+                "stop": 1778805033.4767694,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_companion_yaml_exists():\n        \"\"\"db_row_count.script.yaml must exist alongside the TypeScript script.\"\"\"\n>       assert os.path.isfile(YAML_FILE), (\n            f\"Companion YAML file not found at {YAML_FILE!r}. \"\n            \"Create the script metadata YAML at the specified path.\"\n        )\nE       AssertionError: Companion YAML file not found at '/home/user/windmill-project/f/scripts/db_row_count.script.yaml'. Create the script metadata YAML at the specified path.\nE       assert False\nE        +  where False = <function isfile at 0xfaeac1180220>('/home/user/windmill-project/f/scripts/db_row_count.script.yaml')\nE        +    where <function isfile at 0xfaeac1180220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:88: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_contains_db_property_with_resource_format",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003144938964396715,
+                "start": 1778805033.47684,
+                "stop": 1778805033.4779508,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_yaml_contains_db_property_with_resource_format():\n        \"\"\"The companion YAML must declare a 'db' property with format 'resource-postgresql'.\"\"\"\n>       with open(YAML_FILE) as f:\n             ^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/db_row_count.script.yaml'\n\ntests/test_final_state.py:96: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_contains_table_name_property",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003034520195797086,
+                "start": 1778805033.478016,
+                "stop": 1778805033.4790564,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_yaml_contains_table_name_property():\n        \"\"\"The companion YAML must declare a 'table_name' string property.\"\"\"\n>       with open(YAML_FILE) as f:\n             ^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/db_row_count.script.yaml'\n\ntests/test_final_state.py:110: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

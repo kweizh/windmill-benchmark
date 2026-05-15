@@ -1,0 +1,58 @@
+Trial workflow_approval_gate__mArxNb6 failed: Docker compose command failed for environment workflow_approval_gate. Command: docker compose --project-name workflow_approval_gate__marxnb6 --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_approval_gate/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_approval_gate__marxnb6-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 688B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.06kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#5 DONE 0.0s
+
+#6 [7/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#6 CACHED
+
+#7 [5/8] RUN npm install -g windmill-client windmill-cli
+#7 CACHED
+
+#8 [2/8] RUN apt-get update && apt-get install -y     curl     ca-certificates     gnupg     python3     python3-pip     python3-pytest     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [4/8] RUN node --version && npm --version
+#10 CACHED
+
+#11 [6/8] RUN wmill --version
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+
+#14 exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:5864c786c7d83b74db4fc252f03ef26a18adeedefd1b63282dc41a77418295db done
+#14 exporting config sha256:68141ddbf84168792da8934d8c753b792a500420a38dfb459397b5b549b20d5e done
+#14 exporting attestation manifest sha256:5b88c3e9aa99f2c8f72862dd67d49bbee82b488e96f1195980145faae995616b done
+#14 exporting manifest list sha256:e59dcc42d6e7a4a1abe7cd0b391faea898177a50aa290581d34d1bc155d91793 done
+#14 naming to docker.io/library/workflow_approval_gate__marxnb6-main:latest done
+#14 unpacking to docker.io/library/workflow_approval_gate__marxnb6-main:latest done
+#14 DONE 0.0s
+ Image workflow_approval_gate__marxnb6-main Built 
+ Network workflow_approval_gate__marxnb6_default Creating 
+ Network workflow_approval_gate__marxnb6_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_approval_gate__marxnb6_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 

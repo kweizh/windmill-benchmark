@@ -1,0 +1,23 @@
+summary: Count rows in a database table using a PostgreSQL resource
+description: Accepts a Postgresql resource and table name, returns a mock query result object
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  order:
+    - db
+    - table_name
+  properties:
+    db:
+      description: PostgreSQL database resource
+      type: object
+      format: resource-postgresql
+    table_name:
+      description: Name of the table to count rows in
+      type: string
+      default: ''
+  required:
+    - db
+    - table_name
+language: ts
+kind: script
+tag: ''

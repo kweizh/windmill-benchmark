@@ -1,0 +1,92 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778798655.6573453,
+            "stop": 1778798655.6689396
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "passed",
+                "duration": 0.00032149802427738905,
+                "start": 1778798655.6640117,
+                "stop": 1778798655.6644971,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_imports_workflow_and_task_from_wmill",
+                "status": "passed",
+                "duration": 0.0005576619878411293,
+                "start": 1778798655.6645677,
+                "stop": 1778798655.6652856,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_decorator_used_at_least_twice",
+                "status": "passed",
+                "duration": 0.0004338290309533477,
+                "start": 1778798655.6653614,
+                "stop": 1778798655.6659062,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_decorator_used",
+                "status": "passed",
+                "duration": 0.00042541511356830597,
+                "start": 1778798655.6659696,
+                "stop": 1778798655.6665115,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_asyncio_gather_used",
+                "status": "passed",
+                "duration": 0.00023383100051432848,
+                "start": 1778798655.6665902,
+                "stop": 1778798655.6669214,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_check_url_has_error_fallback",
+                "status": "passed",
+                "duration": 0.0005382050294429064,
+                "start": 1778798655.6669717,
+                "stop": 1778798655.6676376,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_aggregate_function_exists",
+                "status": "passed",
+                "duration": 0.00037628901191055775,
+                "start": 1778798655.6677182,
+                "stop": 1778798655.6681871,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_aggregate_returns_required_keys",
+                "status": "passed",
+                "duration": 0.0004322879249230027,
+                "start": 1778798655.6682606,
+                "stop": 1778798655.668792,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

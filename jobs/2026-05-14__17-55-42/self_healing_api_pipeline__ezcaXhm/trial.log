@@ -1,0 +1,87 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo self_healing_api_pipeline__ezcaXhm > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model zai/glm-4.7 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Self-Healing API Data Pipeline
+
+## Instruction
+
+Build a Python Windmill workflow at `/home/user/windmill-project/f/workflows/api_pipeline.py` that fetches data from multiple API endpoints with automatic retry and self-healing behavior.
+
+The workflow must:
+1. Accept `endpoints: list` (list of URL strings) and `max_retries: int = 3` as parameters.
+2. For each endpoint, fetch data with exponential backoff retry: attempt up to `max_retries` times, with delays of `2^attempt` seconds (1s, 2s, 4s) between failures using the wmill `sleep()` equivalent (use `await asyncio.sleep()` for local sleep within a task, NOT the WAC sleep primitive - this is inside a @task).
+3. Process all endpoints in parallel with `concurrency=3` using `parallel()`.
+4. For any endpoint that fails all retries, record it as failed with `{'endpoint': url, 'status': 'failed', 'data': None}`.
+5. After all fetching, compute a health report: `{'total': len(endpoints), 'successful': count, 'failed': count, 'success_rate': successful/total}`.
+6. Write the health report as JSON to `/home/user/windmill-project/pipeline_report.json`.
+7. Return the health report dict.
+
+## Constraints
+- Project path: `/home/user/windmill-project`
+- Output file: `/home/user/windmill-project/f/workflows/api_pipeline.py`
+- Report file: `/home/user/windmill-project/pipeline_report.json`
+- Use `urllib.request` for HTTP requests (stdlib only)
+- Use `asyncio.sleep()` inside task functions for delays
+- Use `parallel()` from wmill with `concurrency=3`
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

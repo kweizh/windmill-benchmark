@@ -1,0 +1,2 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Trial multi_env_promotion_workflow__NKQrNjA cancelled

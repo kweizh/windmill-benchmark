@@ -1,0 +1,1658 @@
+Trial resource_fetch_in_script__d4nwp6R failed: Docker compose command failed for environment resource_fetch_in_script. Command: docker compose --project-name resource_fetch_in_script__d4nwp6r --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/resource_fetch_in_script/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image resource_fetch_in_script__d4nwp6r-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 696B done
+#1 DONE 0.0s
+
+#2 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.09kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [2/4] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl wget ca-certificates git python3 python3-pip python3-pytest bash &&     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     npm install -g windmill-cli &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/4] RUN mkdir -p /home/user && chmod 0755 /home/user
+#7 CACHED
+
+#8 [4/4] RUN mkdir -p /home/user/windmill-project/f/scripts
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:f3f9ecb48375d956c217449b9276a0df28ed2547d056e92a502417e54e482a6e done
+#9 exporting config sha256:01e0000ba397ea306231b00fc8d8a0d8206a4f192ec034b0208f80dcc25bff86 done
+#9 exporting attestation manifest sha256:1e04cea50ad8c872f7a80aebe95e3bbd0b05a2ac4599c60c59a232829e9aedd4 0.0s done
+#9 exporting manifest list sha256:18a63ad37164ccfb9727216dff5bba8d5d8efeca357e715253bc117143e55186 done
+#9 naming to docker.io/library/resource_fetch_in_script__d4nwp6r-main:latest done
+#9 unpacking to docker.io/library/resource_fetch_in_script__d4nwp6r-main:latest 0.0s done
+#9 DONE 0.1s
+
+#10 resolving provenance for metadata file
+#10 DONE 0.0s
+ Image resource_fetch_in_script__d4nwp6r-main Built 
+ Network resource_fetch_in_script__d4nwp6r_default Creating 
+ Network resource_fetch_in_script__d4nwp6r_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network resource_fetch_in_script__d4nwp6r_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial python_state_tracking_script__sSA9QN3 failed: Docker compose command failed for environment python_state_tracking_script. Command: docker compose --project-name python_state_tracking_script__ssa9qn3 --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/python_state_tracking_script/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image python_state_tracking_script__ssa9qn3-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 712B done
+#1 DONE 0.0s
+
+#2 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.32kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [2/4] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl wget ca-certificates git python3 python3-pip python3-pytest bash &&     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     npm install -g windmill-cli &&     pip3 install --break-system-packages wmill &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/4] RUN mkdir -p /home/user && chmod 0755 /home/user
+#7 CACHED
+
+#8 [4/4] RUN mkdir -p /home/user/windmill-project/f/scripts
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:c77f038e5c3c693aa6c31343f9580532c010588ae8f7cb1c26a412859772a739 done
+#9 exporting config sha256:7011547f9ae5cc7ec0336a8b4e67abc211e9403745e21f23d530d9c1f9a1fa0c done
+#9 exporting attestation manifest sha256:e4526bbd27f4089383646a35c67fdda2c1f23829d98f29696f22790704889192 0.0s done
+#9 exporting manifest list sha256:00c403afbfb831334415c6de547943a501ad57a9ea5bca8d70fab30515ccfc8b done
+#9 naming to docker.io/library/python_state_tracking_script__ssa9qn3-main:latest
+#9 naming to docker.io/library/python_state_tracking_script__ssa9qn3-main:latest done
+#9 unpacking to docker.io/library/python_state_tracking_script__ssa9qn3-main:latest done
+#9 DONE 0.1s
+
+#10 resolving provenance for metadata file
+#10 DONE 0.0s
+ Image python_state_tracking_script__ssa9qn3-main Built 
+ Network python_state_tracking_script__ssa9qn3_default Creating 
+ Network python_state_tracking_script__ssa9qn3_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network python_state_tracking_script__ssa9qn3_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial event_driven_etl_orchestrator__VNcPiU8 failed: Docker compose command failed for environment event_driven_etl_orchestrator. Command: docker compose --project-name event_driven_etl_orchestrator__vncpiu8 --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/event_driven_etl_orchestrator/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image event_driven_etl_orchestrator__vncpiu8-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 716B done
+#1 DONE 0.0s
+
+#2 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.75kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [4/8] RUN npm install -g windmill-cli
+#6 CACHED
+
+#7 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends     ca-certificates     curl     git     gnupg     python3     python3-pip     python3-pytest     unzip     wget     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y --no-install-recommends nodejs     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [5/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#9 CACHED
+
+#10 [6/8] RUN echo '[]' > /home/user/windmill-project/processed_events.json
+#10 CACHED
+
+#11 [7/8] RUN wmill --version
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:1aed9a4d0d6bfc4a6b62168cf31aac3c856e8d99a4e9ac6f80dd0345f144417a done
+#13 exporting config sha256:ba02922669bc2442f58899c863fbcff34a9cd5c6fc525169e8a95b16739ac874 done
+#13 exporting attestation manifest sha256:239cbf18d6f9c9e232e11f5c5ba73bb9d6708147baa5a32d0c405013ca455f37 0.0s done
+#13 exporting manifest list sha256:62a24f9b9f789b3f24cd58806a59e7ad8b9f95dc3a9430df5cd8f1416b9d75d1 0.0s done
+#13 naming to docker.io/library/event_driven_etl_orchestrator__vncpiu8-main:latest
+#13 naming to docker.io/library/event_driven_etl_orchestrator__vncpiu8-main:latest done
+#13 unpacking to docker.io/library/event_driven_etl_orchestrator__vncpiu8-main:latest done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image event_driven_etl_orchestrator__vncpiu8-main Built 
+ Network event_driven_etl_orchestrator__vncpiu8_default Creating 
+ Network event_driven_etl_orchestrator__vncpiu8_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network event_driven_etl_orchestrator__vncpiu8_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial cron_monitor_with_state__GqJbB7k failed: Docker compose command failed for environment cron_monitor_with_state. Command: docker compose --project-name cron_monitor_with_state__gqjbb7k --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/cron_monitor_with_state/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image cron_monitor_with_state__gqjbb7k-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 692B done
+#1 DONE 0.0s
+
+#2 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 2.46kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [7/8] RUN cat > /home/user/windmill-project/f/scripts/health_monitor.py << 'PYEOF'
+#6 CACHED
+
+#7 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends     python3     python3-pip     python3-venv     curl     ca-certificates     gnupg     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [5/8] RUN pip3 install --break-system-packages wmill
+#9 CACHED
+
+#10 [6/8] RUN mkdir -p /home/user/windmill-project/f/scripts
+#10 CACHED
+
+#11 [4/8] RUN npm install -g windmill-cli
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:24f4a753247b4baf6efefd0637847fa4187051d5619564f714c41672768aa6d9 done
+#13 exporting config sha256:1da356965a26e55413ac8940231c1f48ac5ab264329764435c68fda5333a0e74 done
+#13 exporting attestation manifest sha256:c78cb455eb86852a8319c90ec88b70ba67b8f1caf2a732025c29a47f6c330ad0 0.0s done
+#13 exporting manifest list sha256:fe3c61ddd8b4cef3e7125711d5344de5deee9234a2fa9af99a4a7075e79de68f 0.0s done
+#13 naming to docker.io/library/cron_monitor_with_state__gqjbb7k-main:latest done
+#13 unpacking to docker.io/library/cron_monitor_with_state__gqjbb7k-main:latest
+#13 unpacking to docker.io/library/cron_monitor_with_state__gqjbb7k-main:latest done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image cron_monitor_with_state__gqjbb7k-main Built 
+ Network cron_monitor_with_state__gqjbb7k_default Creating 
+ Network cron_monitor_with_state__gqjbb7k_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network cron_monitor_with_state__gqjbb7k_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Trial workflow_approval_gate__4LywUQt failed: Docker compose command failed for environment workflow_approval_gate. Command: docker compose --project-name workflow_approval_gate__4lywuqt --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_approval_gate/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_approval_gate__4lywuqt-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 688B done
+#1 DONE 0.0s
+
+#2 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.06kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [6/8] RUN wmill --version
+#7 CACHED
+
+#8 [7/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 [5/8] RUN npm install -g windmill-client windmill-cli
+#9 CACHED
+
+#10 [4/8] RUN node --version && npm --version
+#10 CACHED
+
+#11 [2/8] RUN apt-get update && apt-get install -y     curl     ca-certificates     gnupg     python3     python3-pip     python3-pytest     && rm -rf /var/lib/apt/lists/*
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:d3ddb188a4bd408ae0e1465c6dc89abe263e9cc1a21df1123e0e721f46db95fa done
+#13 exporting config sha256:5ce015816c38a971638a5c277ae7a7851b9b4e0031378360aec07b86ab803110 done
+#13 exporting attestation manifest sha256:756675cbfeefbddc9b245ec2f716310cbca91d77174cbdc0f3bc38169ac96877 0.0s done
+#13 exporting manifest list sha256:4eacbaeb3ddd72342220129cbade29a0846c5d176bdcc16ef3e88269c1c1dd50 done
+#13 naming to docker.io/library/workflow_approval_gate__4lywuqt-main:latest done
+#13 unpacking to docker.io/library/workflow_approval_gate__4lywuqt-main:latest 0.0s done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image workflow_approval_gate__4lywuqt-main Built 
+ Network workflow_approval_gate__4lywuqt_default Creating 
+ Network workflow_approval_gate__4lywuqt_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_approval_gate__4lywuqt_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Trial deployment_pipeline_with_rollbac__9j25cNf failed: Docker compose command failed for environment deployment_pipeline_with_rollback. Command: docker compose --project-name deployment_pipeline_with_rollbac__9j25cnf --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/deployment_pipeline_with_rollback/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image deployment_pipeline_with_rollbac__9j25cnf-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 730B done
+#1 DONE 0.0s
+
+#2 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.06kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [7/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#6 CACHED
+
+#7 [6/8] RUN wmill --version
+#7 CACHED
+
+#8 [2/8] RUN apt-get update && apt-get install -y     curl     ca-certificates     gnupg     python3     python3-pip     python3-pytest     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [4/8] RUN node --version && npm --version
+#10 CACHED
+
+#11 [5/8] RUN npm install -g windmill-client windmill-cli
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:4bfcab34ea9471592be44f06b524ab31ed5368025d8e7ab754963d9fdbb99f5c done
+#13 exporting config sha256:f124e29f38510a9dd03af9b94c192706b097093be1f9297ac28e37f297230f49 done
+#13 exporting attestation manifest sha256:a16aa858959ea18a51ed2bcdfc15c47a74df519db243094fe481db6366d30789 0.0s done
+#13 exporting manifest list sha256:a93d399d0e7382a9112973bc583f776b58d93a5b7bc95ea4b8a6e8e54e1e575a
+#13 exporting manifest list sha256:a93d399d0e7382a9112973bc583f776b58d93a5b7bc95ea4b8a6e8e54e1e575a 0.0s done
+#13 naming to docker.io/library/deployment_pipeline_with_rollbac__9j25cnf-main:latest done
+#13 unpacking to docker.io/library/deployment_pipeline_with_rollbac__9j25cnf-main:latest done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.1s
+ Image deployment_pipeline_with_rollbac__9j25cnf-main Built 
+ Network deployment_pipeline_with_rollbac__9j25cnf_default Creating 
+ Network deployment_pipeline_with_rollbac__9j25cnf_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network deployment_pipeline_with_rollbac__9j25cnf_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Trial workflow_parallel_fan_out_fan_in__5wKCbEq failed: Docker compose command failed for environment workflow_parallel_fan_out_fan_in. Command: docker compose --project-name workflow_parallel_fan_out_fan_in__5wkcbeq --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_parallel_fan_out_fan_in/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_parallel_fan_out_fan_in__5wkcbeq-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 728B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.75kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/6] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#5 DONE 0.0s
+
+#6 [2/6] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl wget ca-certificates git python3 python3-pip python3-pytest bash &&     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [5/6] RUN mkdir -p /home/user/windmill-project/f/workflows &&     cd /home/user/windmill-project &&     cat >wmill.yaml <<'EOF'
+#7 CACHED
+
+#8 [3/6] RUN npm install -g windmill-cli
+#8 CACHED
+
+#9 [4/6] RUN mkdir -p /home/user && chmod 0755 /home/user
+#9 CACHED
+
+#10 [6/6] RUN cd /home/user/windmill-project &&     npm init -y &&     npm install windmill-client
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:d57c5e984adb368599116ae9fe4fb51bf53276ec6140c658b4a3857d71079a95 done
+#11 exporting config sha256:f5fa121ea86331340d6277cf1dec6665b57cdc3c7154a2f19313f9e63dee09e8 done
+#11 exporting attestation manifest sha256:db323b3565a999dc466960387b649fc9d4a44c3483bc21c093916235c7469182 0.0s done
+#11 exporting manifest list sha256:953a4142c234246b13f9e65b6e5b822d85780859b24fe33ec6efcbaf7dfcaa29 done
+#11 naming to docker.io/library/workflow_parallel_fan_out_fan_in__5wkcbeq-main:latest done
+#11 unpacking to docker.io/library/workflow_parallel_fan_out_fan_in__5wkcbeq-main:latest done
+#11 DONE 0.1s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image workflow_parallel_fan_out_fan_in__5wkcbeq-main Built 
+ Network workflow_parallel_fan_out_fan_in__5wkcbeq_default Creating 
+ Network workflow_parallel_fan_out_fan_in__5wkcbeq_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_parallel_fan_out_fan_in__5wkcbeq_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial script_metadata_yaml__ZMjwtex failed: Docker compose command failed for environment script_metadata_yaml. Command: docker compose --project-name script_metadata_yaml__zmjwtex --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/script_metadata_yaml/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image script_metadata_yaml__zmjwtex-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 680B done
+#1 DONE 0.0s
+
+#2 [1/6] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.48kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [3/5] RUN pip3 install --break-system-packages pyyaml
+#6 CACHED
+
+#7 [2/5] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl wget ca-certificates git python3 python3-pip python3-pytest bash &&     curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     npm install -g windmill-cli &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [4/5] RUN mkdir -p /home/user && chmod 0755 /home/user
+#8 CACHED
+
+#9 [5/5] RUN mkdir -p /home/user/windmill-project/f/analytics &&     cat > /home/user/windmill-project/f/analytics/report.ts <<'EOF'
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:dd404f3f83cc1f7c3fd3760cc5393ad50031b74d9112d3a6787cc98c5b16df33 done
+#10 exporting config sha256:1b9c235ccb99c3e41bfe02778cd15b9e7a8bd9942bd77bd4e3124a12625024d8 done
+#10 exporting attestation manifest sha256:5276c63700fb976b2863966aed9ef929adffe9d56fa34e9e62e3fd53cb1070a3 0.0s done
+#10 exporting manifest list sha256:1e6608a53fae35751d98bc2667086f1a4dfeec1c36a6350d794f3365a2fd2211 0.0s done
+#10 naming to docker.io/library/script_metadata_yaml__zmjwtex-main:latest
+#10 naming to docker.io/library/script_metadata_yaml__zmjwtex-main:latest done
+#10 unpacking to docker.io/library/script_metadata_yaml__zmjwtex-main:latest done
+#10 DONE 0.1s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+ Image script_metadata_yaml__zmjwtex-main Built 
+ Network script_metadata_yaml__zmjwtex_default Creating 
+ Network script_metadata_yaml__zmjwtex_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network script_metadata_yaml__zmjwtex_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial taskscript_external_reference__BL9m5FA failed: Docker compose command failed for environment taskscript_external_reference. Command: docker compose --project-name taskscript_external_reference__bl9m5fa --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/taskscript_external_reference/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image taskscript_external_reference__bl9m5fa-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 716B done
+#1 DONE 0.0s
+
+#2 [1/6] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 2.68kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [3/6] RUN npm install -g windmill-cli
+#6 CACHED
+
+#7 [4/6] RUN mkdir -p /home/user && chmod 0755 /home/user
+#7 CACHED
+
+#8 [2/6] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl wget ca-certificates git python3 python3-pip python3-pytest bash &&     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [5/7] RUN mkdir -p /home/user/windmill-project &&     cd /home/user/windmill-project &&     cat >wmill.yaml <<'EOF'
+#9 CACHED
+
+#10 [6/7] RUN cd /home/user/windmill-project &&     npm init -y &&     npm install windmill-client
+#10 CACHED
+
+#11 [7/7] RUN mkdir -p /home/user/windmill-project/f/workflows &&     cat >/home/user/windmill-project/f/workflows/data_orchestrator.ts <<'EOF'
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:3680084049e127b65c9bd74a41410379d71d421a1912fcce2074f4c630f708f6 done
+#12 exporting config sha256:beca5d8c7e06c3e62e329ed863cba3bda2b1ab8ed6036c4783ed7889dfde6836 done
+#12 exporting attestation manifest sha256:0b3fd5432772ed3370d3d116beffa10cf359aaba9e8297eb8736137ddf2ea672 0.0s done
+#12 exporting manifest list sha256:17b9481a1ae7e8673814a0422df0748cf5a6cb2dbd9ea8632a37069e82d0e5be 0.0s done
+#12 naming to docker.io/library/taskscript_external_reference__bl9m5fa-main:latest
+#12 naming to docker.io/library/taskscript_external_reference__bl9m5fa-main:latest 0.0s done
+#12 unpacking to docker.io/library/taskscript_external_reference__bl9m5fa-main:latest 0.0s done
+#12 DONE 0.1s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ Image taskscript_external_reference__bl9m5fa-main Built 
+ Network taskscript_external_reference__bl9m5fa_default Creating 
+ Network taskscript_external_reference__bl9m5fa_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network taskscript_external_reference__bl9m5fa_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial deterministic_wac_refactor__vUSVbzL failed: Docker compose command failed for environment deterministic_wac_refactor. Command: docker compose --project-name deterministic_wac_refactor__vusvbzl --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/deterministic_wac_refactor/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image deterministic_wac_refactor__vusvbzl-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 704B done
+#1 DONE 0.0s
+
+#2 [1/6] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 2.16kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [6/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#6 CACHED
+
+#7 [7/8] RUN cat > /home/user/windmill-project/f/workflows/order_workflow.ts << 'TSEOF'
+#7 CACHED
+
+#8 [4/8] RUN npm install -g windmill-cli
+#8 CACHED
+
+#9 [5/8] RUN node --version && npm --version && wmill --version || true
+#9 CACHED
+
+#10 [2/8] RUN apt-get update && apt-get install -y     curl     ca-certificates     gnupg     git     python3     python3-pip     unzip     && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:b39c17c91c9ca5b6c8a7c468e3b1c3346205459826861461f0392a14513be24a done
+#13 exporting config sha256:0dc26273fbdc06eba197f84c9247a714b8cbb19a901f07649a154d8666b9f09c done
+#13 exporting attestation manifest sha256:bb716cabf38245c9565f0a62e65b7a6ba6f5c0a1458058b771645cbcf7ff5503 0.0s done
+#13 exporting manifest list sha256:03667a5ecbcb98fbc232afd190ad2236479b7d68df7a68d1c8b947a9518de849
+#13 exporting manifest list sha256:03667a5ecbcb98fbc232afd190ad2236479b7d68df7a68d1c8b947a9518de849 0.0s done
+#13 naming to docker.io/library/deterministic_wac_refactor__vusvbzl-main:latest done
+#13 unpacking to docker.io/library/deterministic_wac_refactor__vusvbzl-main:latest done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image deterministic_wac_refactor__vusvbzl-main Built 
+ Network deterministic_wac_refactor__vusvbzl_default Creating 
+ Network deterministic_wac_refactor__vusvbzl_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network deterministic_wac_refactor__vusvbzl_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial workflow_task_with_worker_tag__se35CFB failed: Docker compose command failed for environment workflow_task_with_worker_tag. Command: docker compose --project-name workflow_task_with_worker_tag__se35cfb --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_task_with_worker_tag/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_task_with_worker_tag__se35cfb-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 716B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.72kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b 0.0s done
+#5 DONE 0.0s
+
+#6 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends     curl     wget     ca-certificates     git     python3     python3-pip     python3-pytest     bash     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y --no-install-recommends nodejs     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [6/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 [4/8] RUN npm install -g windmill-cli
+#9 CACHED
+
+#10 [5/8] RUN mkdir -p /home/user
+#10 CACHED
+
+#11 [7/8] RUN cat > /home/user/windmill-project/f/workflows/ml_pipeline.ts << 'EOF'
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:ddc53e70a4c369ac28c64e263f7a04eaec9d5b301cf48e7041727bd9fb896d4a done
+#13 exporting config sha256:76bd3c170a7f684d8864820a69f9dfd0bd6139e012b5dc513499e72c472b2aa3 done
+#13 exporting attestation manifest sha256:20376f73f547640ee85bd4b9cbc89a001f94183a14a5e7d8745d0d310c60a7e8 0.0s done
+#13 exporting manifest list sha256:8aeebcd5c500f2669bfd08d2593131ad4a94cae9b192e25a9523932c363a1fd8 done
+#13 naming to docker.io/library/workflow_task_with_worker_tag__se35cfb-main:latest done
+#13 unpacking to docker.io/library/workflow_task_with_worker_tag__se35cfb-main:latest done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image workflow_task_with_worker_tag__se35cfb-main Built 
+ Network workflow_task_with_worker_tag__se35cfb_default Creating 
+ Network workflow_task_with_worker_tag__se35cfb_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_task_with_worker_tag__se35cfb_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Trial workflow_step_determinism__idNJhzG failed: Docker compose command failed for environment workflow_step_determinism. Command: docker compose --project-name workflow_step_determinism__idnjhzg --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_step_determinism/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_step_determinism__idnjhzg-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 700B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.78kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b 0.0s done
+#5 DONE 0.0s
+
+#6 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y --no-install-recommends nodejs     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [5/8] RUN mkdir -p /home/user
+#7 CACHED
+
+#8 [7/8] RUN cat > /home/user/windmill-project/f/workflows/order_processor.ts << 'EOF'
+#8 CACHED
+
+#9 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends     curl     wget     ca-certificates     git     python3     python3-pip     python3-pytest     bash     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [4/8] RUN npm install -g windmill-cli
+#10 CACHED
+
+#11 [6/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:0942e4cbf94cb0d9d02607947226ba70fe99f6730dc96519e3ddfae4ba5d88d0 done
+#13 exporting config sha256:d8fc8a15d6e95f5f801e8261e1d447bcb8fe6a5258a20aae96e835b50471f58f done
+#13 exporting attestation manifest sha256:c6b1346ef7b86ed21ecfdfa10ee4017bb0f8e95201f82af456401d8bc11229fd 0.0s done
+#13 exporting manifest list sha256:cabbec219023597f1ea6ea77b4b041a92d46dcafba8a330a73577f6d16c012c1 done
+#13 naming to docker.io/library/workflow_step_determinism__idnjhzg-main:latest done
+#13 unpacking to docker.io/library/workflow_step_determinism__idnjhzg-main:latest done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image workflow_step_determinism__idnjhzg-main Built 
+ Network workflow_step_determinism__idnjhzg_default Creating 
+ Network workflow_step_determinism__idnjhzg_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_step_determinism__idnjhzg_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Trial workflow_parallel_items_concurre__dod42Go failed: Docker compose command failed for environment workflow_parallel_items_concurrency. Command: docker compose --project-name workflow_parallel_items_concurre__dod42go --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_parallel_items_concurrency/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_parallel_items_concurre__dod42go-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 734B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 631B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#5 DONE 0.0s
+
+#6 [3/5] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [4/5] RUN npm install -g windmill-cli
+#7 CACHED
+
+#8 [2/5] RUN apt-get update && apt-get install -y     curl     wget     ca-certificates     git     python3     python3-pip     python3-pytest     bash     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [5/5] RUN mkdir -p /home/user/windmill-project/f/workflows
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:041af5ba0a791b25df92893560b7c484e7e8b2b7f54d19c7ed2c93d06e15e2ef done
+#10 exporting config sha256:2dfefdc77fe0260a33c8e5737c5826e88f130533ccd9f50100c90976f62a4bd9 done
+#10 exporting attestation manifest sha256:d9436ff01d704ebbf09a7b8d02919912b2b7a727b576048c2c5293ed643c7799 0.0s done
+#10 exporting manifest list sha256:c46368f0b86736f6d39f2f12fc29c05b2e6c6973a7f842507d7563125f869e98
+#10 exporting manifest list sha256:c46368f0b86736f6d39f2f12fc29c05b2e6c6973a7f842507d7563125f869e98 0.0s done
+#10 naming to docker.io/library/workflow_parallel_items_concurre__dod42go-main:latest done
+#10 unpacking to docker.io/library/workflow_parallel_items_concurre__dod42go-main:latest done
+#10 DONE 0.1s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+ Image workflow_parallel_items_concurre__dod42go-main Built 
+ Network workflow_parallel_items_concurre__dod42go_default Creating 
+ Network workflow_parallel_items_concurre__dod42go_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_parallel_items_concurre__dod42go_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial multi_env_promotion_workflow__czBf3kw failed: Docker compose command failed for environment multi_env_promotion_workflow. Command: docker compose --project-name multi_env_promotion_workflow__czbf3kw --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/multi_env_promotion_workflow/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image multi_env_promotion_workflow__czbf3kw-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 712B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.85kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#5 DONE 0.0s
+
+#6 [6/8] RUN pip3 install --no-cache-dir --break-system-packages pytest
+#6 CACHED
+
+#7 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y --no-install-recommends nodejs     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [4/8] RUN node --version && npm --version
+#8 CACHED
+
+#9 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends         ca-certificates         curl         gnupg         git         build-essential         python3         python3-pip         python3-venv         unzip         xz-utils     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [5/8] RUN npm install -g windmill-cli     && wmill --version
+#10 CACHED
+
+#11 [7/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:61f45db3a6108727abd64e3ad470e351a54ab3f23e99a769c502bd1e4f90b539 done
+#13 exporting config sha256:b239e6acb49ab1a9ad98eaa9f58e6e0a6582c1fa7b9d24c5980786333d746e2f done
+#13 exporting attestation manifest sha256:0348154087ad2ad952076382df72711a402245895a2a029aceba566e0ea04990 0.0s done
+#13 exporting manifest list sha256:571a304a2f4ff9234783fb5e8d54ffad2a1278f8c004c91017175d38baa7a382
+#13 exporting manifest list sha256:571a304a2f4ff9234783fb5e8d54ffad2a1278f8c004c91017175d38baa7a382 0.0s done
+#13 naming to docker.io/library/multi_env_promotion_workflow__czbf3kw-main:latest done
+#13 unpacking to docker.io/library/multi_env_promotion_workflow__czbf3kw-main:latest done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image multi_env_promotion_workflow__czbf3kw-main Built 
+ Network multi_env_promotion_workflow__czbf3kw_default Creating 
+ Network multi_env_promotion_workflow__czbf3kw_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network multi_env_promotion_workflow__czbf3kw_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial self_healing_api_pipeline__mjvBRSv failed: Docker compose command failed for environment self_healing_api_pipeline. Command: docker compose --project-name self_healing_api_pipeline__mjvbrsv --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/self_healing_api_pipeline/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image self_healing_api_pipeline__mjvbrsv-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 700B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 2.11kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#5 DONE 0.0s
+
+#6 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends     curl     ca-certificates     gnupg     python3     python3-pip     python3-venv     python3-dev     build-essential     git     jq     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [6/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#7 CACHED
+
+#8 [7/8] WORKDIR /home/user/windmill-project
+#8 CACHED
+
+#9 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y --no-install-recommends nodejs     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [4/8] RUN npm install -g windmill-cli
+#10 CACHED
+
+#11 [5/8] RUN pip3 install --no-cache-dir --break-system-packages wmill
+#11 CACHED
+
+#12 [8/8] RUN python3 --version && node --version && npm --version && wmill --version || true
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:d41a75f1d05a10e77aac55e500a8a128348fa6743771e94655020828dfe329ff done
+#13 exporting config sha256:342e2af3e83a683bf6a4ffecdd54728d4f3749ba575c53833b2d46fab828dcee done
+#13 exporting attestation manifest sha256:fd63332f5856573e171aef5fd265058ea8e09f853be187f635deb45586c88031 0.0s done
+#13 exporting manifest list sha256:66cb4c1bee03e048c33273ee8d0b8268fb5be0d89f618239d6822ff05311046a
+#13 exporting manifest list sha256:66cb4c1bee03e048c33273ee8d0b8268fb5be0d89f618239d6822ff05311046a 0.0s done
+#13 naming to docker.io/library/self_healing_api_pipeline__mjvbrsv-main:latest done
+#13 unpacking to docker.io/library/self_healing_api_pipeline__mjvbrsv-main:latest done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image self_healing_api_pipeline__mjvbrsv-main Built 
+ Network self_healing_api_pipeline__mjvbrsv_default Creating 
+ Network self_healing_api_pipeline__mjvbrsv_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network self_healing_api_pipeline__mjvbrsv_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial task_with_cache_ttl__KCmwRxR failed: Docker compose command failed for environment task_with_cache_ttl. Command: docker compose --project-name task_with_cache_ttl__kcmwrxr --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/task_with_cache_ttl/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image task_with_cache_ttl__kcmwrxr-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 676B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.69kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#5 DONE 0.0s
+
+#6 [3/5] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [5/8] RUN mkdir -p /home/user
+#7 CACHED
+
+#8 [7/8] RUN cat > /home/user/windmill-project/f/workflows/cached_enricher.ts << 'EOF'
+#8 CACHED
+
+#9 [4/5] RUN npm install -g windmill-cli
+#9 CACHED
+
+#10 [6/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#10 CACHED
+
+#11 [2/5] RUN apt-get update && apt-get install -y     curl     wget     ca-certificates     git     python3     python3-pip     python3-pytest     bash     && rm -rf /var/lib/apt/lists/*
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:cc45134e9864bdad2d79d308e6b7eaa25cbbd4b3639859ca0bedbe6495135efd done
+#13 exporting config sha256:74433cd67954fff326150b2ed54f54511f98ad041439f283348d6eddf435d924 done
+#13 exporting attestation manifest sha256:67ff7391516596ac5587c4677984e29987c32ea182e02d5d4ad2cc3b1e3dc129 0.0s done
+#13 exporting manifest list sha256:e86cf41082e64dc08677c685f3aa1a02adf58240b9595628927c465d40b22c09
+#13 exporting manifest list sha256:e86cf41082e64dc08677c685f3aa1a02adf58240b9595628927c465d40b22c09 0.0s done
+#13 naming to docker.io/library/task_with_cache_ttl__kcmwrxr-main:latest done
+#13 unpacking to docker.io/library/task_with_cache_ttl__kcmwrxr-main:latest done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image task_with_cache_ttl__kcmwrxr-main Built 
+ Network task_with_cache_ttl__kcmwrxr_default Creating 
+ Network task_with_cache_ttl__kcmwrxr_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network task_with_cache_ttl__kcmwrxr_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Trial workflow_exponential_backoff_ret__mKsZR88 failed: Docker compose command failed for environment workflow_exponential_backoff_retry. Command: docker compose --project-name workflow_exponential_backoff_ret__mkszr88 --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_exponential_backoff_retry/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_exponential_backoff_ret__mkszr88-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 732B done
+#1 DONE 0.0s
+
+#2 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 789B done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [3/7] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [6/7] RUN mkdir -p /home/user/windmill-project/f/workflows
+#7 CACHED
+
+#8 [4/7] RUN npm install -g windmill-cli
+#8 CACHED
+
+#9 [5/7] RUN mkdir -p /home/user
+#9 CACHED
+
+#10 [2/7] RUN apt-get update && apt-get install -y     curl     wget     ca-certificates     git     python3     python3-pip     python3-pytest     bash     && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [7/7] WORKDIR /home/user/windmill-project
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:78792b051b68f6d91af3334e1423a9dd98df94e02393cdca236839777e699e0e done
+#12 exporting config sha256:c4f9897f06a91a133b62b8551006d37584b67d63ca9c21da759f8cba0c4fdb30 done
+#12 exporting attestation manifest sha256:0c9d071c2a316202215ec3084512cd64bf4268ad4e4b3c334116fdb2ed384f9c 0.0s done
+#12 exporting manifest list sha256:d8400e97020bf9bce1d6d9af5e900b6c337320326dd69ebc888ba19ee24eb42d done
+#12 naming to docker.io/library/workflow_exponential_backoff_ret__mkszr88-main:latest done
+#12 unpacking to docker.io/library/workflow_exponential_backoff_ret__mkszr88-main:latest done
+#12 DONE 0.1s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ Image workflow_exponential_backoff_ret__mkszr88-main Built 
+ Network workflow_exponential_backoff_ret__mkszr88_default Creating 
+ Network workflow_exponential_backoff_ret__mkszr88_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_exponential_backoff_ret__mkszr88_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Trial workflow_sleep_primitive__qQvqKrt failed: Docker compose command failed for environment workflow_sleep_primitive. Command: docker compose --project-name workflow_sleep_primitive__qqvqkrt --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_sleep_primitive/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_sleep_primitive__qqvqkrt-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 696B done
+#1 DONE 0.0s
+
+#2 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.44kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [6/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#7 CACHED
+
+#8 [4/8] RUN npm install -g windmill-cli
+#8 CACHED
+
+#9 [5/8] RUN mkdir -p /home/user
+#9 CACHED
+
+#10 [7/8] RUN cat > /home/user/windmill-project/f/workflows/reminder.ts <<'EOF'
+#10 CACHED
+
+#11 [2/8] RUN apt-get update && apt-get install -y     curl     wget     ca-certificates     git     python3     python3-pip     python3-pytest     bash     && rm -rf /var/lib/apt/lists/*
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:ff6f52a3e20fc471cd1daf470d611f5294f0576868228e456c5848da2eb98f06 done
+#13 exporting config sha256:f28d3b04f89e0658b1ce10b37f5840b889a60d8561b1ac213215cb0b1b2913ab done
+#13 exporting attestation manifest sha256:ee1e4a36c8ed137167c3a557722cc63bcca7d501258ea54d46b5bae240e69043
+#13 exporting attestation manifest sha256:ee1e4a36c8ed137167c3a557722cc63bcca7d501258ea54d46b5bae240e69043 0.0s done
+#13 exporting manifest list sha256:600e871c35d45e5833f0a0ddc054bb8e1d031541a56fe899245edd3e6d268e5d 0.0s done
+#13 naming to docker.io/library/workflow_sleep_primitive__qqvqkrt-main:latest done
+#13 unpacking to docker.io/library/workflow_sleep_primitive__qqvqkrt-main:latest 0.0s done
+#13 DONE 0.2s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image workflow_sleep_primitive__qqvqkrt-main Built 
+ Network workflow_sleep_primitive__qqvqkrt_default Creating 
+ Network workflow_sleep_primitive__qqvqkrt_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_sleep_primitive__qqvqkrt_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial workflow_basic_task_chain__ARykrPL failed: Docker compose command failed for environment workflow_basic_task_chain. Command: docker compose --project-name workflow_basic_task_chain__arykrpl --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_basic_task_chain/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_basic_task_chain__arykrpl-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 700B done
+#1 DONE 0.0s
+
+#2 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.43kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [2/6] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl wget ca-certificates git python3 python3-pip python3-pytest bash &&     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/6] RUN npm install -g windmill-cli
+#7 CACHED
+
+#8 [5/6] RUN mkdir -p /home/user/windmill-project &&     cd /home/user/windmill-project &&     cat >wmill.yaml <<'EOF'
+#8 CACHED
+
+#9 [4/6] RUN mkdir -p /home/user && chmod 0755 /home/user
+#9 CACHED
+
+#10 [6/6] RUN cd /home/user/windmill-project &&     npm init -y &&     npm install windmill-client
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:8753e1cf4e5f41224bcdd90a598ca2c04bb498428318262c0cc479e9b238809a done
+#11 exporting config sha256:e1284164063b86d8ec4defe5b2d93b16f7fe9c42ac790ce6aa3a7956b7aec321 done
+#11 exporting attestation manifest sha256:4729f824e65a623775b7b84da88384f9ea6523ffd7dd175e0e210325df339f38 0.0s done
+#11 exporting manifest list sha256:9979129b7cb88d36348d57ccd471f8956ce41a3078a3aa36dc5c6875013c6c89 0.0s done
+#11 naming to docker.io/library/workflow_basic_task_chain__arykrpl-main:latest done
+#11 unpacking to docker.io/library/workflow_basic_task_chain__arykrpl-main:latest done
+#11 DONE 0.1s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image workflow_basic_task_chain__arykrpl-main Built 
+ Network workflow_basic_task_chain__arykrpl_default Creating 
+ Network workflow_basic_task_chain__arykrpl_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_basic_task_chain__arykrpl_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Trial workflow_module_split__oFWbSmM failed: Docker compose command failed for environment workflow_module_split. Command: docker compose --project-name workflow_module_split__ofwbsmm --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_module_split/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_module_split__ofwbsmm-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 684B done
+#1 DONE 0.0s
+
+#2 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 2.31kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [3/7] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y --no-install-recommends nodejs     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [4/7] RUN npm install -g windmill-cli
+#7 CACHED
+
+#8 [5/7] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 [2/7] RUN apt-get update && apt-get install -y --no-install-recommends     ca-certificates     curl     git     gnupg     python3     python3-pip     unzip     wget     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [6/7] RUN cat > /home/user/windmill-project/f/workflows/data_processor.ts << 'HEREDOC'
+#10 CACHED
+
+#11 [7/7] WORKDIR /home/user/windmill-project
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:1cb0924b3f80761422465d54139eedbd8ebd57e574917054331a4e0a2ec5dc57 done
+#12 exporting config sha256:8a7770d325acab5cea6c1352f9906ce133aeddc6054eae071ce614cbe8e571c9 done
+#12 exporting attestation manifest sha256:72d803d3bf710a4f39420c03f9845967e9e1667c449913d3eb9d287d9c4da404 0.0s done
+#12 exporting manifest list sha256:f1f5b417cce16c5b4156295f995cd91f7d5979c5f72faddf315f7dc78a3d8697 0.0s done
+#12 naming to docker.io/library/workflow_module_split__ofwbsmm-main:latest done
+#12 unpacking to docker.io/library/workflow_module_split__ofwbsmm-main:latest 0.0s done
+#12 DONE 0.1s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ Image workflow_module_split__ofwbsmm-main Built 
+ Network workflow_module_split__ofwbsmm_default Creating 
+ Network workflow_module_split__ofwbsmm_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_module_split__ofwbsmm_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial workflow_get_resume_urls_notify__ffkgpMG failed: Docker compose command failed for environment workflow_get_resume_urls_notify. Command: docker compose --project-name workflow_get_resume_urls_notify__ffkgpmg --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_get_resume_urls_notify/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_get_resume_urls_notify__ffkgpmg-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 724B done
+#1 DONE 0.0s
+
+#2 [1/5] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.28kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [2/7] RUN apt-get update && apt-get install -y     curl     ca-certificates     gnupg     python3     python3-pip     python3-pytest     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [6/7] RUN cat > /home/user/windmill-project/f/workflows/approval_notifier.ts << 'EOF'
+#7 CACHED
+
+#8 [5/7] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 [3/7] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [4/7] RUN npm install -g windmill-cli
+#10 CACHED
+
+#11 [7/7] WORKDIR /home/user/windmill-project
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:82d46448ff4c3fb72e5c1ed2e54ffa268d7a5a0cee484ffb767f6cb5743c9646 done
+#12 exporting config sha256:3643a58015147de49b34327b03ee65de3dfb6ed1cf6e6d3d34096a2c2bc70511 done
+#12 exporting attestation manifest sha256:669e845e9edb16276eca36839aa2fcf6cb9a9ac781adce99614e11333a36cdbe 0.0s done
+#12 exporting manifest list sha256:94e38f4ed6d1181cd638fe8138f8bf8cadbca28ced075051b4d51d19e668fe80 0.0s done
+#12 naming to docker.io/library/workflow_get_resume_urls_notify__ffkgpmg-main:latest done
+#12 unpacking to docker.io/library/workflow_get_resume_urls_notify__ffkgpmg-main:latest 0.0s done
+#12 DONE 0.1s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ Image workflow_get_resume_urls_notify__ffkgpmg-main Built 
+ Network workflow_get_resume_urls_notify__ffkgpmg_default Creating 
+ Network workflow_get_resume_urls_notify__ffkgpmg_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_get_resume_urls_notify__ffkgpmg_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Trial workflow_error_handling_fallback__J2ijQPb failed: Docker compose command failed for environment workflow_error_handling_fallback. Command: docker compose --project-name workflow_error_handling_fallback__j2ijqpb --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_error_handling_fallback/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_error_handling_fallback__j2ijqpb-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 728B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 932B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:22.04
+#3 DONE 1.7s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [1/8] FROM docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7
+#6 resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7
+#6 resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7 0.3s done
+#6 DONE 0.3s
+
+#5 [internal] load build context
+#5 transferring context: 38B done
+#5 DONE 0.0s
+
+#7 [3/8] RUN curl -fsSL https://raw.githubusercontent.com/windmill-labs/windmill/main/cli/install.sh | bash     || pip3 install wmill
+#7 CACHED
+
+#8 [6/8] COPY data_pipeline.ts /home/user/windmill-project/f/workflows/data_pipeline.ts
+#8 CACHED
+
+#9 [7/8] RUN useradd -m -s /bin/bash user && chown -R user:user /home/user/windmill-project
+#9 CACHED
+
+#10 [5/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#10 CACHED
+
+#11 [2/8] RUN apt-get update && apt-get install -y     curl     ca-certificates     python3     python3-pip     && rm -rf /var/lib/apt/lists/*
+#11 CACHED
+
+#12 [4/8] RUN pip3 install pytest
+#12 CACHED
+
+#13 [8/8] WORKDIR /home/user/windmill-project
+#13 CACHED
+
+#14 exporting to image
+#14 exporting layers 0.0s done
+#14 exporting manifest sha256:195921fcc6577261f33deb652c983af5d7490abe7f450f6e9ae58bb3b3342804 done
+#14 exporting config sha256:7bd803fbd5c3c388b3aedd47a79e0febbeaf23f27c68ea86ea9c409c94c77201 done
+#14 exporting attestation manifest sha256:6a5c7cf9cf7b7fd884755b05b7680866e64966e510d3dc76b9f007826345ebc0 0.0s done
+#14 exporting manifest list sha256:23d72c686a8c8191acd6f959e9fad118c9c56bf2c45fc9b0fad501697b8d82bd 0.0s done
+#14 naming to docker.io/library/workflow_error_handling_fallback__j2ijqpb-main:latest done
+#14 unpacking to docker.io/library/workflow_error_handling_fallback__j2ijqpb-main:latest done
+#14 DONE 0.1s
+
+#15 resolving provenance for metadata file
+#15 DONE 0.0s
+ Image workflow_error_handling_fallback__j2ijqpb-main Built 
+ Network workflow_error_handling_fallback__j2ijqpb_default Creating 
+ Network workflow_error_handling_fallback__j2ijqpb_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_error_handling_fallback__j2ijqpb_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial multi_stage_etl_with_approval__ZSWKpAo failed: Docker compose command failed for environment multi_stage_etl_with_approval. Command: docker compose --project-name multi_stage_etl_with_approval__zswkpao --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/multi_stage_etl_with_approval/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image multi_stage_etl_with_approval__zswkpao-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 716B done
+#1 DONE 0.0s
+
+#2 [1/4] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.33kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [3/4] RUN mkdir -p /home/user && chmod 0755 /home/user
+#6 CACHED
+
+#7 [2/4] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl         wget         ca-certificates         git         python3         python3-pip         python3-pytest         bash &&     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     npm install -g windmill-cli &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [4/4] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:ecb9f7f212451c8b566063eac12a389b28bf8851951e51284734c841864a63e7 done
+#9 exporting config sha256:1391d1e403d22b4b291c8a25c8535d68a7b9e96f691bdfdd7dd50cbe83b7d4d4 done
+#9 exporting attestation manifest sha256:c2682f414a8b37e8bc4e9a9ebd8e88d5085fd75453a6adf17a8cea7cab4b80b2 0.0s done
+#9 exporting manifest list sha256:afa4527a2af35c0d52cbe0c330012ade9171f0f853fb78e9bb3baf5f4c855225 done
+#9 naming to docker.io/library/multi_stage_etl_with_approval__zswkpao-main:latest done
+#9 unpacking to docker.io/library/multi_stage_etl_with_approval__zswkpao-main:latest done
+#9 DONE 0.1s
+
+#10 resolving provenance for metadata file
+#10 DONE 0.0s
+ Image multi_stage_etl_with_approval__zswkpao-main Built 
+ Network multi_stage_etl_with_approval__zswkpao_default Creating 
+ Network multi_stage_etl_with_approval__zswkpao_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network multi_stage_etl_with_approval__zswkpao_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Trial typescript_basic_script__7CHEWVf failed: Docker compose command failed for environment typescript_basic_script. Command: docker compose --project-name typescript_basic_script__7chewvf --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/typescript_basic_script/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image typescript_basic_script__7chewvf-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 692B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.14kB done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.1s
+
+#4 [1/4] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#4 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [2/4] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl wget ca-certificates git python3 python3-pip python3-pytest bash &&     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     npm install -g windmill-cli &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/4] RUN mkdir -p /home/user && chmod 0755 /home/user
+#7 CACHED
+
+#8 [4/4] RUN mkdir -p /home/user/windmill-project
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:5880fdeb1c7a1ccd75d72c44fa3e7a7337ebd998fd3cc9a0c273d714dc1ed8ec done
+#9 exporting config sha256:21e8068b1fd40a9b8a8c6f14d1cb3dfa93745b0faee3a4e923c26db2c21179f2 done
+#9 exporting attestation manifest sha256:db54c849bb1833dbe32b5c9e70dcc7ad48185b87f43793e1f3aceea441a13d53 0.0s done
+#9 exporting manifest list sha256:49aa9d63575613236a1252ad42f6dc654ea959921fa8b3dd75ad576ae69506b6 0.0s done
+#9 naming to docker.io/library/typescript_basic_script__7chewvf-main:latest done
+#9 unpacking to docker.io/library/typescript_basic_script__7chewvf-main:latest done
+#9 DONE 0.1s
+
+#10 resolving provenance for metadata file
+#10 DONE 0.0s
+ Image typescript_basic_script__7chewvf-main Built 
+ Network typescript_basic_script__7chewvf_default Creating 
+ Network typescript_basic_script__7chewvf_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network typescript_basic_script__7chewvf_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial full_saas_onboarding_workflow__gvAd4WR failed: Docker compose command failed for environment full_saas_onboarding_workflow. Command: docker compose --project-name full_saas_onboarding_workflow__gvad4wr --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/full_saas_onboarding_workflow/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image full_saas_onboarding_workflow__gvad4wr-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 716B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 737B done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.1s
+
+#4 [1/4] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#4 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [2/6] RUN apt-get update && apt-get install -y     curl     ca-certificates     gnupg     git     build-essential     python3     python3-pip     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [4/6] RUN npm install -g windmill-cli
+#7 CACHED
+
+#8 [5/6] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 [3/6] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [6/6] WORKDIR /home/user/windmill-project
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:75984da00380722cf0571ec851a06da5328212fcf7dafa252a2d4759d9e6ced8 done
+#11 exporting config sha256:c9e7ab9015c493e88c055b9ad09da222d67ea0601349486f17062a5103b4a92b done
+#11 exporting attestation manifest sha256:1d285726a35ce0e05ebd9a6b3caeaa720f651901ba69efea081eb293895efab0 0.0s done
+#11 exporting manifest list sha256:3f0217f37d65a56d2ad1e08a1ac8bf217be46527c33d02ee6138dfe63b10d932 done
+#11 naming to docker.io/library/full_saas_onboarding_workflow__gvad4wr-main:latest done
+#11 unpacking to docker.io/library/full_saas_onboarding_workflow__gvad4wr-main:latest done
+#11 DONE 0.1s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image full_saas_onboarding_workflow__gvad4wr-main Built 
+ Network full_saas_onboarding_workflow__gvad4wr_default Creating 
+ Network full_saas_onboarding_workflow__gvad4wr_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network full_saas_onboarding_workflow__gvad4wr_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Trial set_state_execution_counter__z5jK3b5 failed: Docker compose command failed for environment set_state_execution_counter. Command: docker compose --project-name set_state_execution_counter__z5jk3b5 --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/set_state_execution_counter/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image set_state_execution_counter__z5jk3b5-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 708B done
+#1 DONE 0.0s
+
+#2 [1/4] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.52kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [3/4] RUN mkdir -p /home/user && chmod 0755 /home/user
+#6 CACHED
+
+#7 [2/4] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl wget ca-certificates git python3 python3-pip python3-pytest bash &&     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     npm install -g windmill-cli &&     pip3 install --break-system-packages wmill &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [4/4] RUN mkdir -p /home/user/windmill-project/f/monitoring &&     cat > /home/user/windmill-project/f/monitoring/heartbeat.py <<'EOF'
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:6831c2352635c6d5f31af92f9d540db0dec6a5a5cdbf016c600b246ececcae21 done
+#9 exporting config sha256:ddf432185b999da3e5c2526a9218fa835377141256f70cd86652fa40c8c42920 done
+#9 exporting attestation manifest sha256:2ed1ac4311261310d62c00b381af5e5b8601c967b891fe8bea5361bc430e0223 0.0s done
+#9 exporting manifest list sha256:7435346edc07ff26cb942275e5e639f8b66d37405d3db8d20dab811060c6fbc0 0.0s done
+#9 naming to docker.io/library/set_state_execution_counter__z5jk3b5-main:latest done
+#9 unpacking to docker.io/library/set_state_execution_counter__z5jk3b5-main:latest done
+#9 DONE 0.1s
+
+#10 resolving provenance for metadata file
+#10 DONE 0.0s
+ Image set_state_execution_counter__z5jk3b5-main Built 
+ Network set_state_execution_counter__z5jk3b5_default Creating 
+ Network set_state_execution_counter__z5jk3b5_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network set_state_execution_counter__z5jk3b5_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Trial typescript_parallel_fetch__BnkKhJ4 failed: Docker compose command failed for environment typescript_parallel_fetch. Command: docker compose --project-name typescript_parallel_fetch__bnkkhj4 --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/typescript_parallel_fetch/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image typescript_parallel_fetch__bnkkhj4-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 700B done
+#1 DONE 0.0s
+
+#2 [1/4] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.10kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [3/4] RUN mkdir -p /home/user && chmod 0755 /home/user
+#6 CACHED
+
+#7 [2/4] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl wget ca-certificates git python3 python3-pip python3-pytest bash &&     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     npm install -g windmill-cli &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [4/4] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:b7a9b63db831152e836db94daf2654c7cfdcba5a252420e81c3c539d89e0f359 done
+#9 exporting config sha256:ef7b20dd63d9fee1d01961472b020f4d33500e864e64a818442af11637a2efa6 done
+#9 exporting attestation manifest sha256:fde7f05294a46339caa452795df825feec0b94e35c2f98dfffd513fda8def43b 0.0s done
+#9 exporting manifest list sha256:e67378ce16d100a75fc7e37b999e086fe685b0322f5184903c803c33272994e0 done
+#9 naming to docker.io/library/typescript_parallel_fetch__bnkkhj4-main:latest done
+#9 unpacking to docker.io/library/typescript_parallel_fetch__bnkkhj4-main:latest 0.0s done
+#9 DONE 0.1s
+
+#10 resolving provenance for metadata file
+#10 DONE 0.0s
+ Image typescript_parallel_fetch__bnkkhj4-main Built 
+ Network typescript_parallel_fetch__bnkkhj4_default Creating 
+ Network typescript_parallel_fetch__bnkkhj4_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network typescript_parallel_fetch__bnkkhj4_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Not retrying trial because the maximum number of retries has been reached
+Trial python_parallel_etl_pipeline__Ux3xDBy failed: Docker compose command failed for environment python_parallel_etl_pipeline. Command: docker compose --project-name python_parallel_etl_pipeline__ux3xdby --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/python_parallel_etl_pipeline/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image python_parallel_etl_pipeline__ux3xdby-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 712B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.14kB done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [1/4] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#4 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [2/4] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl wget ca-certificates git python3 python3-pip python3-pytest bash &&     pip3 install --break-system-packages wmill &&     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     npm install -g windmill-cli &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/4] RUN mkdir -p /home/user && chmod 0755 /home/user
+#7 CACHED
+
+#8 [4/4] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:bcb5e1a36ea8dbac3d3f2496fc0575a88404947fe0ad072da34a32983d1d5941 done
+#9 exporting config sha256:612475a72a0af40e18eaf385424915f13ad3ecc43b52d0c6f34b9f4b6452c610 done
+#9 exporting attestation manifest sha256:df9712eb1d46646536e10c53d45427557031e4cce5923cc19b91d392dffed75a 0.0s done
+#9 exporting manifest list sha256:abe25ee1e6ed3213b598bdf034c21091da18c0828edfa76ba727e41ffcca9739 0.0s done
+#9 naming to docker.io/library/python_parallel_etl_pipeline__ux3xdby-main:latest done
+#9 unpacking to docker.io/library/python_parallel_etl_pipeline__ux3xdby-main:latest done
+#9 DONE 0.1s
+
+#10 resolving provenance for metadata file
+#10 DONE 0.0s
+ Image python_parallel_etl_pipeline__ux3xdby-main Built 
+ Network python_parallel_etl_pipeline__ux3xdby_default Creating 
+ Network python_parallel_etl_pipeline__ux3xdby_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network python_parallel_etl_pipeline__ux3xdby_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Trial python_workflow_gather_urls__BsMeoA8 failed: Docker compose command failed for environment python_workflow_gather_urls. Command: docker compose --project-name python_workflow_gather_urls__bsmeoa8 --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/python_workflow_gather_urls/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image python_workflow_gather_urls__bsmeoa8-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 708B done
+#1 DONE 0.0s
+
+#2 [1/4] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.72kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [2/7] RUN apt-get update && apt-get install -y --no-install-recommends         curl         wget         ca-certificates         git         python3         python3-pip         python3-pytest         bash     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/7] RUN pip3 install --break-system-packages wmill
+#7 CACHED
+
+#8 [5/7] RUN npm install -g windmill-cli
+#8 CACHED
+
+#9 [6/7] RUN useradd -m -s /bin/bash user || true     && mkdir -p /home/user/windmill-project/f/workflows     && chown -R user:user /home/user
+#9 CACHED
+
+#10 [4/7] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y --no-install-recommends nodejs     && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [7/7] WORKDIR /home/user/windmill-project
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:16e5d44450131c05c435d24111bf96fd27ba42b75ab9634e0a4c0174b004b27a done
+#12 exporting config sha256:cecf7077bedd01b3f03550f45753a5b1b8162a5d96d60946b624a75ae02e6465 done
+#12 exporting attestation manifest sha256:5726cd3f9fd092cb59da9f82c6db5069f3255e3142fe0699fce70ecb532ea347 0.0s done
+#12 exporting manifest list sha256:2fd93249bc53a120e65d92ee6b6c6afcc985353c5744da7e654c5d0334a275a6 done
+#12 naming to docker.io/library/python_workflow_gather_urls__bsmeoa8-main:latest done
+#12 unpacking to docker.io/library/python_workflow_gather_urls__bsmeoa8-main:latest done
+#12 DONE 0.1s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ Image python_workflow_gather_urls__bsmeoa8-main Built 
+ Network python_workflow_gather_urls__bsmeoa8_default Creating 
+ Network python_workflow_gather_urls__bsmeoa8_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network python_workflow_gather_urls__bsmeoa8_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached
+Trial workflow_concurrent_batched_enri__Fd2hdCL failed: Docker compose command failed for environment workflow_concurrent_batched_enrichment. Command: docker compose --project-name workflow_concurrent_batched_enri__fd2hdcl --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_concurrent_batched_enrichment/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_concurrent_batched_enri__fd2hdcl-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 740B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.15kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/9] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#5 DONE 0.0s
+
+#6 [8/9] WORKDIR /home/user/windmill-project
+#6 CACHED
+
+#7 [6/9] RUN wmill --version
+#7 CACHED
+
+#8 [3/9] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y --no-install-recommends nodejs     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [2/9] RUN apt-get update && apt-get install -y --no-install-recommends     curl     ca-certificates     gnupg     build-essential     git     python3     python3-pip     python3-venv     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [4/9] RUN node --version && npm --version
+#10 CACHED
+
+#11 [7/9] RUN mkdir -p /home/user/windmill-project/f/workflows
+#11 CACHED
+
+#12 [5/9] RUN npm install -g windmill-cli
+#12 CACHED
+
+#13 [9/9] RUN pip3 install --break-system-packages pytest
+#13 CACHED
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+
+#15 exporting to image
+#15 exporting layers done
+#15 exporting manifest sha256:72560bd3bbfd390f8371bc2e4d7ddba7a8a5f42ce0ce03bd83f4ba8d6f911033 done
+#15 exporting config sha256:af81db422a0579649c5f7a4b5d58d9593d3c8f84030a9eb283682dbf34f69e8b done
+#15 exporting attestation manifest sha256:aea3d04f078b9a0f436c78121a6dd72a6683ebec81162bdb07312b9f09c4b0c8 done
+#15 exporting manifest list sha256:7ad4a8a67869d21171151dc70c997743ce9e591da6d00e912def9633587cc663 done
+#15 naming to docker.io/library/workflow_concurrent_batched_enri__fd2hdcl-main:latest done
+#15 unpacking to docker.io/library/workflow_concurrent_batched_enri__fd2hdcl-main:latest done
+#15 DONE 0.0s
+ Image workflow_concurrent_batched_enri__fd2hdcl-main Built 
+ Network workflow_concurrent_batched_enri__fd2hdcl_default Creating 
+ Network workflow_concurrent_batched_enri__fd2hdcl_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_concurrent_batched_enri__fd2hdcl_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached

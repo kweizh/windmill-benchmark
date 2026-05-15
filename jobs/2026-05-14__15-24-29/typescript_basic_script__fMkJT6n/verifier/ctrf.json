@@ -1,0 +1,92 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778798485.756563,
+            "stop": 1778798485.7716618
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_greet_ts_exists",
+                "status": "passed",
+                "duration": 0.0004089960129931569,
+                "start": 1778798485.766984,
+                "stop": 1778798485.7675924,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_greet_ts_exports_main",
+                "status": "passed",
+                "duration": 0.00027166493237018585,
+                "start": 1778798485.7677534,
+                "stop": 1778798485.7681353,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_greet_ts_has_name_string_param",
+                "status": "passed",
+                "duration": 0.0002795819891616702,
+                "start": 1778798485.7682009,
+                "stop": 1778798485.7685802,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_greet_ts_has_age_number_param",
+                "status": "passed",
+                "duration": 0.00034578994382172823,
+                "start": 1778798485.7686408,
+                "stop": 1778798485.7691195,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_greet_script_yaml_exists",
+                "status": "passed",
+                "duration": 0.0002323719672858715,
+                "start": 1778798485.7692,
+                "stop": 1778798485.769532,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_greet_script_yaml_has_summary",
+                "status": "passed",
+                "duration": 0.0002913312055170536,
+                "start": 1778798485.769596,
+                "stop": 1778798485.7699947,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_greet_script_yaml_has_name_in_schema",
+                "status": "passed",
+                "duration": 0.000829992932267487,
+                "start": 1778798485.7700992,
+                "stop": 1778798485.771081,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_greet_script_yaml_has_age_in_schema",
+                "status": "passed",
+                "duration": 0.0002248730743303895,
+                "start": 1778798485.771168,
+                "stop": 1778798485.7714868,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

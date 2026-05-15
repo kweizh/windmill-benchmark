@@ -1,0 +1,74 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778807087.7793264,
+            "stop": 1778807087.7863772
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_cached_enricher_file_exists",
+                "status": "passed",
+                "duration": 0.0003033829852938652,
+                "start": 1778807087.7837412,
+                "stop": 1778807087.784196,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_file_contains_cache_ttl_3600",
+                "status": "passed",
+                "duration": 0.00028892396949231625,
+                "start": 1778807087.784316,
+                "stop": 1778807087.7847009,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_enrich_record_still_present",
+                "status": "passed",
+                "duration": 0.00026350701227784157,
+                "start": 1778807087.7847853,
+                "stop": 1778807087.78515,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_save_results_still_present",
+                "status": "passed",
+                "duration": 0.00022458808962255716,
+                "start": 1778807087.7852159,
+                "stop": 1778807087.7855155,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_parallel_still_present",
+                "status": "passed",
+                "duration": 0.00025154894683510065,
+                "start": 1778807087.785578,
+                "stop": 1778807087.7859116,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_export_still_present",
+                "status": "passed",
+                "duration": 0.00022337993141263723,
+                "start": 1778807087.7859774,
+                "stop": 1778807087.7862747,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

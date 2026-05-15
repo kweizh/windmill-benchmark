@@ -1,0 +1,92 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778798147.7459874,
+            "stop": 1778798147.7557256
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_batch_processor_file_exists",
+                "status": "passed",
+                "duration": 0.00041033001616597176,
+                "start": 1778798147.7506676,
+                "stop": 1778798147.7512693,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_imports_parallel_from_windmill_client",
+                "status": "passed",
+                "duration": 0.00042132812086492777,
+                "start": 1778798147.751344,
+                "stop": 1778798147.751922,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_defines_checkurl_function",
+                "status": "passed",
+                "duration": 0.0003909538500010967,
+                "start": 1778798147.7519825,
+                "stop": 1778798147.7525148,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_defines_summarize_function",
+                "status": "passed",
+                "duration": 0.00040649494621902704,
+                "start": 1778798147.7525954,
+                "stop": 1778798147.7531464,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_uses_concurrency_3",
+                "status": "passed",
+                "duration": 0.0003695790655910969,
+                "start": 1778798147.753222,
+                "stop": 1778798147.7537167,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_exports_main_with_workflow",
+                "status": "passed",
+                "duration": 0.0004214540822431445,
+                "start": 1778798147.753779,
+                "stop": 1778798147.7544966,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wraps_checkurl_with_task",
+                "status": "passed",
+                "duration": 0.0003510800888761878,
+                "start": 1778798147.7545538,
+                "stop": 1778798147.7550356,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wraps_summarize_with_task",
+                "status": "passed",
+                "duration": 0.0003372881328687072,
+                "start": 1778798147.755091,
+                "stop": 1778798147.755547,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

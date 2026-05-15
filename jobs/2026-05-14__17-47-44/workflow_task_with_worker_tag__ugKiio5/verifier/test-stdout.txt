@@ -1,0 +1,101 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 21ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 10 items
+
+../../../tests/test_final_state.py .FF......F                            [100%]
+
+=================================== FAILURES ===================================
+_________________________ test_gpu_tag_present_in_file _________________________
+
+    def test_gpu_tag_present_in_file():
+        """
+        The file must contain `tag: 'gpu'` or `tag: "gpu"` after the fix.
+        """
+        content = WORKFLOW_FILE.read_text()
+>       assert re.search(r"tag\s*:\s*['\"]gpu['\"]", content), (
+            "Expected `tag: 'gpu'` (or double-quoted variant) to be present in ml_pipeline.ts. "
+            "Add `{ tag: 'gpu' }` as the second argument to `task(trainModel, { tag: 'gpu' })`."
+        )
+E       AssertionError: Expected `tag: 'gpu'` (or double-quoted variant) to be present in ml_pipeline.ts. Add `{ tag: 'gpu' }` as the second argument to `task(trainModel, { tag: 'gpu' })`.
+E       assert None
+E        +  where None = <function search at 0xf5051f42d3a0>('tag\\s*:\\s*[\'\\"]gpu[\'\\"]', "import { task, workflow } from 'windmill-client';\n\nasync function preprocessData(data: number[]) {\n  console.log(`...GPU workers but has no tag\n  const modelResult = await task(trainModel)(processedData);\n  return modelResult;\n});\n")
+E        +    where <function search at 0xf5051f42d3a0> = re.search
+
+/tests/test_final_state.py:31: AssertionError
+___________________ test_gpu_tag_associated_with_train_model ___________________
+
+    def test_gpu_tag_associated_with_train_model():
+        """
+        The `tag: 'gpu'` option must appear in the same task invocation as `trainModel`.
+        Checks that `task(trainModel` and `tag: 'gpu'` are within 120 characters of each other.
+        """
+        content = WORKFLOW_FILE.read_text()
+        # Find the position of task(trainModel
+        match_task = re.search(r"task\s*\(\s*trainModel", content)
+        assert match_task is not None, (
+            "`task(trainModel` not found in ml_pipeline.ts."
+        )
+        # Find the nearest tag: 'gpu' after task(trainModel
+        search_region = content[match_task.start():match_task.start() + 120]
+>       assert re.search(r"tag\s*:\s*['\"]gpu['\"]", search_region), (
+            "Expected `tag: 'gpu'` to appear within the `task(trainModel, { tag: 'gpu' })` call. "
+            "Make sure the options object `{ tag: 'gpu' }` is passed as the second argument to `task(trainModel, ...)`."
+        )
+E       AssertionError: Expected `tag: 'gpu'` to appear within the `task(trainModel, { tag: 'gpu' })` call. Make sure the options object `{ tag: 'gpu' }` is passed as the second argument to `task(trainModel, ...)`.
+E       assert None
+E        +  where None = <function search at 0xf5051f42d3a0>('tag\\s*:\\s*[\'\\"]gpu[\'\\"]', 'task(trainModel)(processedData);\n  return modelResult;\n});\n')
+E        +    where <function search at 0xf5051f42d3a0> = re.search
+
+/tests/test_final_state.py:50: AssertionError
+__________________ test_train_model_uses_options_object_form ___________________
+
+    def test_train_model_uses_options_object_form():
+        """
+        The fixed call must use `task(trainModel, { tag: 'gpu' })` — i.e. the options
+        object is the second positional argument to `task()`, not appended elsewhere.
+        Accepts single or double quotes for the tag value.
+        """
+        content = WORKFLOW_FILE.read_text()
+>       assert re.search(
+            r"task\s*\(\s*trainModel\s*,\s*\{[^}]*tag\s*:\s*['\"]gpu['\"][^}]*\}\s*\)",
+            content,
+        ), (
+            "Expected `task(trainModel, { tag: 'gpu' })` form not found. "
+            "The options object `{ tag: 'gpu' }` must be the second argument to `task()`: "
+            "`await task(trainModel, { tag: 'gpu' })(processedData)`."
+        )
+E       AssertionError: Expected `task(trainModel, { tag: 'gpu' })` form not found. The options object `{ tag: 'gpu' }` must be the second argument to `task()`: `await task(trainModel, { tag: 'gpu' })(processedData)`.
+E       assert None
+E        +  where None = <function search at 0xf5051f42d3a0>('task\\s*\\(\\s*trainModel\\s*,\\s*\\{[^}]*tag\\s*:\\s*[\'\\"]gpu[\'\\"][^}]*\\}\\s*\\)', "import { task, workflow } from 'windmill-client';\n\nasync function preprocessData(data: number[]) {\n  console.log(`...GPU workers but has no tag\n  const modelResult = await task(trainModel)(processedData);\n  return modelResult;\n});\n")
+E        +    where <function search at 0xf5051f42d3a0> = re.search
+
+/tests/test_final_state.py:139: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../../tests/test_final_state.py::test_workflow_file_exists
+PASSED ../../../tests/test_final_state.py::test_preprocess_data_task_has_no_tag
+PASSED ../../../tests/test_final_state.py::test_preprocess_data_call_present
+PASSED ../../../tests/test_final_state.py::test_workflow_wrapper_intact
+PASSED ../../../tests/test_final_state.py::test_train_model_task_still_referenced
+PASSED ../../../tests/test_final_state.py::test_main_export_signature_intact
+PASSED ../../../tests/test_final_state.py::test_windmill_client_import_intact
+FAILED ../../../tests/test_final_state.py::test_gpu_tag_present_in_file - Ass...
+FAILED ../../../tests/test_final_state.py::test_gpu_tag_associated_with_train_model
+FAILED ../../../tests/test_final_state.py::test_train_model_uses_options_object_form
+========================= 3 failed, 7 passed in 0.02s ==========================

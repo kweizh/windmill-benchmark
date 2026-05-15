@@ -1,0 +1,105 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 7ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 7 items
+
+../../../tests/test_final_state.py ......F                               [100%]
+
+=================================== FAILURES ===================================
+__________________ test_task_run_tests_called_before_approval __________________
+
+    def test_task_run_tests_called_before_approval():
+        """task(runTests) must be called before waitForApproval."""
+        content = _read_file()
+    
+        run_tests_pattern = r"task\s*\(\s*runTests\s*\)"
+        approval_pattern = r"waitForApproval"
+    
+        run_tests_match = re.search(run_tests_pattern, content)
+        approval_match = re.search(approval_pattern, content)
+    
+        assert run_tests_match is not None, (
+            "Expected 'task(runTests)' to be present in the file, "
+            "but it was not found.\n\n"
+            f"File content:\n{content}"
+        )
+    
+        assert approval_match is not None, (
+            "Expected 'waitForApproval' to be present in the file, "
+            "but it was not found.\n\n"
+            f"File content:\n{content}"
+        )
+    
+>       assert run_tests_match.start() < approval_match.start(), (
+            "Expected 'task(runTests)' to appear BEFORE 'waitForApproval' in the file, "
+            f"but 'task(runTests)' was found at position {run_tests_match.start()} "
+            f"and 'waitForApproval' at position {approval_match.start()}.\n\n"
+            f"File content:\n{content}"
+        )
+E       AssertionError: Expected 'task(runTests)' to appear BEFORE 'waitForApproval' in the file, but 'task(runTests)' was found at position 375 and 'waitForApproval' at position 25.
+E         
+E         File content:
+E         import { task, workflow, waitForApproval } from "windmill-client";
+E         
+E         async function runTests(branch: string) {
+E           return { branch, tests_passed: true, coverage: 98 };
+E         }
+E         
+E         async function deployToProd(branch: string) {
+E           return { branch, status: "deployed", url: "https://prod.example.com" };
+E         }
+E         
+E         export const main = workflow(async (branch: string) => {
+E           const testResult = await task(runTests)(branch);
+E         
+E           const approval = await waitForApproval({ timeout: 3600 });
+E         
+E           if (!approval.approved) {
+E             return {
+E               status: "rejected",
+E               approver: approval.approver,
+E               branch,
+E             };
+E           }
+E         
+E           const deployResult = await task(deployToProd)(branch);
+E         
+E           return {
+E             status: "deployed",
+E             ...deployResult,
+E             approver: approval.approver,
+E           };
+E         });
+E         
+E       assert 375 < 25
+E        +  where 375 = <built-in method start of re.Match object at 0xe49f082b6e40>()
+E        +    where <built-in method start of re.Match object at 0xe49f082b6e40> = <re.Match object; span=(375, 389), match='task(runTests)'>.start
+E        +  and   25 = <built-in method start of re.Match object at 0xe49f082b6a40>()
+E        +    where <built-in method start of re.Match object at 0xe49f082b6a40> = <re.Match object; span=(25, 40), match='waitForApproval'>.start
+
+/tests/test_final_state.py:139: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../../tests/test_final_state.py::test_file_exists
+PASSED ../../../tests/test_final_state.py::test_wait_for_approval_imported
+PASSED ../../../tests/test_final_state.py::test_wait_for_approval_called_with_timeout
+PASSED ../../../tests/test_final_state.py::test_approval_approved_check_present
+PASSED ../../../tests/test_final_state.py::test_task_deploy_to_prod_called
+PASSED ../../../tests/test_final_state.py::test_rejected_status_returned
+FAILED ../../../tests/test_final_state.py::test_task_run_tests_called_before_approval
+========================= 1 failed, 6 passed in 0.02s ==========================

@@ -1,0 +1,53 @@
+{
+    "id": "c7c162e9-0aa0-4db2-a081-4fc7462069ac",
+    "started_at": "2026-05-14T17:55:43.405290",
+    "finished_at": "2026-05-14T18:13:56.476442",
+    "n_total_trials": 23,
+    "stats": {
+        "n_trials": 23,
+        "n_errors": 0,
+        "evals": {
+            "pochi__glm-4.7__windmill-tasks": {
+                "n_trials": 23,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.9565217391304348
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "event_driven_etl_orchestrator__2H3rnqv"
+                        ],
+                        "1.0": [
+                            "resource_fetch_in_script__qsJMWie",
+                            "cron_monitor_with_state__XnAhfJJ",
+                            "python_state_tracking_script__46ghCf8",
+                            "taskscript_external_reference__UGrjiPS",
+                            "workflow_parallel_fan_out_fan_in__nexSbLy",
+                            "deployment_pipeline_with_rollbac__YmjA7Lf",
+                            "workflow_task_with_worker_tag__SVJbxJw",
+                            "workflow_step_determinism__46RGUnW",
+                            "workflow_parallel_items_concurre__Xbk8DNo",
+                            "task_with_cache_ttl__BuF2K22",
+                            "workflow_basic_task_chain__2wsgkaG",
+                            "workflow_exponential_backoff_ret__7yGxXnr",
+                            "workflow_error_handling_fallback__9H8wPHd",
+                            "workflow_sleep_primitive__FiFY9NX",
+                            "multi_stage_etl_with_approval__SztCNLF",
+                            "workflow_get_resume_urls_notify__yoQnnGU",
+                            "typescript_basic_script__CVnvhJs",
+                            "python_parallel_etl_pipeline__YNzdnxV",
+                            "workflow_concurrent_batched_enri__VdLVTBh",
+                            "python_workflow_gather_urls__chwoJae",
+                            "set_state_execution_counter__WVhYifn",
+                            "typescript_parallel_fetch__A2Zn4mT"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}

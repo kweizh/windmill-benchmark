@@ -1,0 +1,85 @@
+{
+  "task_name": "event_driven_etl_orchestrator",
+  "task_description": "# Build an Event-Driven ETL Orchestrator\n\n## Instruction\n\nBuild a TypeScript Windmill workflow at `/home/user/windmill-project/f/workflows/etl_orchestrator.ts` that:\n\n1. Accepts `events: Array<{ id: string, type: string, payload: any }>` and optional `warehouseTarget: string = 'main'` as parameters.\n2. Deduplicates events by reading previously processed event IDs from `/home/user/windmill-project/processed_events.json` (array of string IDs). Filter out any events whose `id` is already in this list.\n3. Enriches only the new (non-duplicate) events in parallel (max 5 concurrent) using a Windmill task.\n4. Obtains resume/approval URLs before requesting human approval, and logs the approval URL.\n5. Waits for human approval before writing to the data warehouse.\n6. On approval, writes to the warehouse, updates the processed_events.json file with the newly processed IDs, and returns a success summary.\n7. On rejection, returns a rejection summary without writing.\n\n## Constraints\n- Project path: `/home/user/windmill-project`\n- State file: `/home/user/windmill-project/processed_events.json`\n- Output file: `/home/user/windmill-project/f/workflows/etl_orchestrator.ts`",
+  "truth_verification_plan": {
+    "description": "Verify that the agent correctly implemented a sophisticated event-driven ETL orchestrator workflow using Windmill WAC primitives.",
+    "checks": [
+      {
+        "id": "file_exists",
+        "description": "The workflow file exists at the expected path",
+        "type": "file_exists",
+        "path": "/home/user/windmill-project/f/workflows/etl_orchestrator.ts"
+      },
+      {
+        "id": "wac_imports",
+        "description": "Imports WAC primitives: step, parallel, waitForApproval, getResumeUrls from windmill-client",
+        "type": "file_contains",
+        "path": "/home/user/windmill-project/f/workflows/etl_orchestrator.ts",
+        "patterns": ["step", "parallel", "waitForApproval", "getResumeUrls"]
+      },
+      {
+        "id": "deduplication",
+        "description": "References processed_events.json for deduplication",
+        "type": "file_contains",
+        "path": "/home/user/windmill-project/f/workflows/etl_orchestrator.ts",
+        "patterns": ["processed_events.json"]
+      },
+      {
+        "id": "parallel_concurrency",
+        "description": "Uses parallel() with a concurrency limit of 5",
+        "type": "file_contains",
+        "path": "/home/user/windmill-project/f/workflows/etl_orchestrator.ts",
+        "patterns": ["parallel(", "concurrency"]
+      },
+      {
+        "id": "get_resume_urls_in_step",
+        "description": "getResumeUrls() is called inside a step()",
+        "type": "file_contains",
+        "path": "/home/user/windmill-project/f/workflows/etl_orchestrator.ts",
+        "patterns": ["getResumeUrls()"]
+      },
+      {
+        "id": "wait_for_approval_timeout",
+        "description": "waitForApproval() is called with a timeout",
+        "type": "file_contains",
+        "path": "/home/user/windmill-project/f/workflows/etl_orchestrator.ts",
+        "patterns": ["waitForApproval(", "timeout"]
+      },
+      {
+        "id": "enrich_event_function",
+        "description": "enrichEvent function is defined",
+        "type": "file_contains",
+        "path": "/home/user/windmill-project/f/workflows/etl_orchestrator.ts",
+        "patterns": ["enrichEvent"]
+      },
+      {
+        "id": "write_to_warehouse_function",
+        "description": "writeToWarehouse function is defined",
+        "type": "file_contains",
+        "path": "/home/user/windmill-project/f/workflows/etl_orchestrator.ts",
+        "patterns": ["writeToWarehouse"]
+      },
+      {
+        "id": "workflow_main",
+        "description": "workflow() wrapping main function is present",
+        "type": "file_contains",
+        "path": "/home/user/windmill-project/f/workflows/etl_orchestrator.ts",
+        "patterns": ["workflow("]
+      },
+      {
+        "id": "rejection_branch",
+        "description": "A rejection branch checking approval status is present",
+        "type": "file_contains",
+        "path": "/home/user/windmill-project/f/workflows/etl_orchestrator.ts",
+        "patterns": ["approved"]
+      },
+      {
+        "id": "state_update_after_approval",
+        "description": "The state file is updated after approval (writeFile or JSON.stringify + write pattern)",
+        "type": "file_contains",
+        "path": "/home/user/windmill-project/f/workflows/etl_orchestrator.ts",
+        "patterns": ["writeFile", "JSON.stringify"]
+      }
+    ]
+  }
+}

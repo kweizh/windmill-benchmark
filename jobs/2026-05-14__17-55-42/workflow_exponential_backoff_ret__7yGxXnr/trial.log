@@ -1,0 +1,133 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo workflow_exponential_backoff_ret__7yGxXnr > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model zai/glm-4.7 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Create a Windmill Workflow with Exponential Backoff Retry Using `sleep()`
+
+## Background
+
+Windmill WAC provides a `sleep()` primitive from `windmill-client` that suspends a workflow **at the server level**, fully releasing the worker back to the pool for the duration of the delay. This makes `sleep()` ideal for retry patterns — the worker is not blocked during wait periods between attempts.
+
+You must create a new workflow at `/home/user/windmill-project/f/workflows/api_caller.ts` that calls an external API with exponential backoff retry logic using `sleep()`.
+
+## Requirements
+
+- Create the file `/home/user/windmill-project/f/workflows/api_caller.ts`.
+- Import `{ task, workflow, sleep }` from `'windmill-client'`.
+- Define an async function `callApi(payload: object)` that POSTs to `https://api.example.com/submit` (using `fetch`), throws an error on non-ok HTTP status.
+- Export a `main` workflow using `workflow(...)` that:
+  - Accepts `payload: object` and `maxRetries: number = 3` parameters.
+  - Tries calling `await task(callApi)(payload)` up to `maxRetries` times.
+  - On failure, waits using `await sleep(5 * Math.pow(2, attempt - 1))` before the next attempt (delays: 5s, 10s, 20s for attempts 1, 2, 3).
+  - If all retries are exhausted, throws the last caught error.
+  - Returns the API result on success.
+
+## Implementation Guide
+
+1. Create `/home/user/windmill-project/f/workflows/api_caller.ts`.
+2. Add the import:
+   ```typescript
+   import { task, workflow, sleep } from 'windmill-client';
+   ```
+3. Define `callApi`:
+   ```typescript
+   async function callApi(payload: object) {
+     const res = await fetch('https://api.example.com/submit', {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify(payload),
+     });
+     if (!res.ok) {
+       throw new Error(`API error: ${res.status} ${res.statusText}`);
+     }
+     return res.json();
+   }
+   ```
+4. Export `main` as a workflow with retry logic:
+   ```typescript
+   export const main = workflow(async (payload: object, maxRetries: number = 3) => {
+     let lastError: unknown;
+     for (let attempt = 1; attempt <= maxRetries; attempt++) {
+       try {
+         const result = await task(callApi)(payload);
+         return result;
+       } catch (e) {
+         lastError = e;
+         if (attempt < maxRetries) {
+           await sleep(5 * Math.pow(2, attempt - 1));
+         }
+       }
+     }
+     throw lastError;
+   });
+   ```
+5. Save the file.
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Output file: `/home/user/windmill-project/f/workflows/api_caller.ts`
+- Use `sleep()` from `windmill-client` for all delays — do NOT use `setTimeout`.
+- Maximum retries: 3 (delays 5s, 10s, 20s).
+- No live Windmill server is required; this is a pure code authoring task.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

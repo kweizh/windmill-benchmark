@@ -1,0 +1,86 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 6,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778802546.5152452,
+            "stop": 1778802546.5298464
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "passed",
+                "duration": 0.00037907809019088745,
+                "start": 1778802546.5203757,
+                "stop": 1778802546.5209653,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wait_for_approval_imported",
+                "status": "passed",
+                "duration": 0.00032082991674542427,
+                "start": 1778802546.521076,
+                "stop": 1778802546.5215135,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wait_for_approval_called_with_timeout",
+                "status": "passed",
+                "duration": 0.00031153601594269276,
+                "start": 1778802546.5215786,
+                "stop": 1778802546.5220063,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_approval_approved_check_present",
+                "status": "passed",
+                "duration": 0.00034807994961738586,
+                "start": 1778802546.5220888,
+                "stop": 1778802546.5225775,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_deploy_to_prod_called",
+                "status": "passed",
+                "duration": 0.00034995400346815586,
+                "start": 1778802546.522682,
+                "stop": 1778802546.5231583,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_rejected_status_returned",
+                "status": "passed",
+                "duration": 0.00027270393911749125,
+                "start": 1778802546.523222,
+                "stop": 1778802546.5236335,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_run_tests_called_before_approval",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00038632890209555626,
+                "start": 1778802546.5237,
+                "stop": 1778802546.529699,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_task_run_tests_called_before_approval():\n        \"\"\"task(runTests) must be called before waitForApproval.\"\"\"\n        content = _read_file()\n    \n        run_tests_pattern = r\"task\\s*\\(\\s*runTests\\s*\\)\"\n        approval_pattern = r\"waitForApproval\"\n    \n        run_tests_match = re.search(run_tests_pattern, content)\n        approval_match = re.search(approval_pattern, content)\n    \n        assert run_tests_match is not None, (\n            \"Expected 'task(runTests)' to be present in the file, \"\n            \"but it was not found.\\n\\n\"\n            f\"File content:\\n{content}\"\n        )\n    \n        assert approval_match is not None, (\n            \"Expected 'waitForApproval' to be present in the file, \"\n            \"but it was not found.\\n\\n\"\n            f\"File content:\\n{content}\"\n        )\n    \n>       assert run_tests_match.start() < approval_match.start(), (\n            \"Expected 'task(runTests)' to appear BEFORE 'waitForApproval' in the file, \"\n            f\"but 'task(runTests)' was found at position {run_tests_match.start()} \"\n            f\"and 'waitForApproval' at position {approval_match.start()}.\\n\\n\"\n            f\"File content:\\n{content}\"\n        )\nE       AssertionError: Expected 'task(runTests)' to appear BEFORE 'waitForApproval' in the file, but 'task(runTests)' was found at position 375 and 'waitForApproval' at position 25.\nE         \nE         File content:\nE         import { task, workflow, waitForApproval } from \"windmill-client\";\nE         \nE         async function runTests(branch: string) {\nE           return { branch, tests_passed: true, coverage: 98 };\nE         }\nE         \nE         async function deployToProd(branch: string) {\nE           return { branch, status: \"deployed\", url: \"https://prod.example.com\" };\nE         }\nE         \nE         export const main = workflow(async (branch: string) => {\nE           const testResult = await task(runTests)(branch);\nE         \nE           const approval = await waitForApproval({ timeout: 3600 });\nE         \nE           if (!approval.approved) {\nE             return {\nE               status: \"rejected\",\nE               approver: approval.approver,\nE               branch,\nE             };\nE           }\nE         \nE           const deployResult = await task(deployToProd)(branch);\nE         \nE           return {\nE             status: \"deployed\",\nE             ...deployResult,\nE             approver: approval.approver,\nE           };\nE         });\nE         \nE       assert 375 < 25\nE        +  where 375 = <built-in method start of re.Match object at 0xe49f082b6e40>()\nE        +    where <built-in method start of re.Match object at 0xe49f082b6e40> = <re.Match object; span=(375, 389), match='task(runTests)'>.start\nE        +  and   25 = <built-in method start of re.Match object at 0xe49f082b6a40>()\nE        +    where <built-in method start of re.Match object at 0xe49f082b6a40> = <re.Match object; span=(25, 40), match='waitForApproval'>.start\n\n/tests/test_final_state.py:139: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,143 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 11,
+            "passed": 3,
+            "failed": 8,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778797778.550901,
+            "stop": 1778797778.5817423
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "passed",
+                "duration": 0.00033328693825751543,
+                "start": 1778797778.55602,
+                "stop": 1778797778.5565147,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wac_imports",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0004281179280951619,
+                "start": 1778797778.5565836,
+                "stop": 1778797778.5637383,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_wac_imports():\n        \"\"\"Check 2 \u2013 imports step, parallel, waitForApproval, getResumeUrls from windmill-client.\"\"\"\n        source = _read_file()\n        for symbol in (\"step\", \"parallel\", \"waitForApproval\", \"getResumeUrls\"):\n>           _assert_pattern(\n                source,\n                rf\"\\b{re.escape(symbol)}\\b\",\n                msg=(\n                    f\"WAC primitive '{symbol}' not found in {WORKFLOW_FILE}. \"\n                    \"It must be imported (or used) from 'windmill-client'.\"\n                ),\n            )\n\n/tests/test_final_state.py:57: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsource = 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n'\npattern = '\\\\bstep\\\\b', flags = 0\nmsg = \"WAC primitive 'step' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. It must be imported (or used) from 'windmill-client'.\"\n\n    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = \"\") -> None:\n>       assert re.search(pattern, source, flags), (\n            msg or f\"Expected pattern not found in {WORKFLOW_FILE}:\\n  pattern: {pattern!r}\"\n        )\nE       AssertionError: WAC primitive 'step' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. It must be imported (or used) from 'windmill-client'.\nE       assert None\nE        +  where None = <function search at 0xe327d37fd3a0>('\\\\bstep\\\\b', 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n', 0)\nE        +    where <function search at 0xe327d37fd3a0> = re.search\n\n/tests/test_final_state.py:39: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_deduplication_state_file",
+                "status": "passed",
+                "duration": 0.00034603592939674854,
+                "start": 1778797778.563828,
+                "stop": 1778797778.5643234,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_parallel_with_concurrency",
+                "status": "passed",
+                "duration": 0.0002742450451478362,
+                "start": 1778797778.5643895,
+                "stop": 1778797778.564763,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_get_resume_urls_in_step",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003192857839167118,
+                "start": 1778797778.5648181,
+                "stop": 1778797778.5671644,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_get_resume_urls_in_step():\n        \"\"\"Check 5 \u2013 getResumeUrls() is called (inside a step).\"\"\"\n        source = _read_file()\n        _assert_pattern(\n            source,\n            r\"getResumeUrls\\s*\\(\\s*\\)\",\n            msg=(\n                f\"'getResumeUrls()' call not found in {WORKFLOW_FILE}. \"\n                \"The workflow must obtain approval/resume URLs before waiting.\"\n            ),\n        )\n        # getResumeUrls should appear inside (or near) a step() call\n>       _assert_pattern(\n            source,\n            r\"step\\s*\\(\",\n            msg=f\"'step(' not found in {WORKFLOW_FILE}. getResumeUrls should be called within a step.\",\n        )\n\n/tests/test_final_state.py:118: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsource = 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n'\npattern = 'step\\\\s*\\\\(', flags = 0\nmsg = \"'step(' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. getResumeUrls should be called within a step.\"\n\n    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = \"\") -> None:\n>       assert re.search(pattern, source, flags), (\n            msg or f\"Expected pattern not found in {WORKFLOW_FILE}:\\n  pattern: {pattern!r}\"\n        )\nE       AssertionError: 'step(' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. getResumeUrls should be called within a step.\nE       assert None\nE        +  where None = <function search at 0xe327d37fd3a0>('step\\\\s*\\\\(', 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n', 0)\nE        +    where <function search at 0xe327d37fd3a0> = re.search\n\n/tests/test_final_state.py:39: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_wait_for_approval_with_timeout",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00033699499908834696,
+                "start": 1778797778.5672314,
+                "stop": 1778797778.5696042,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_wait_for_approval_with_timeout():\n        \"\"\"Check 6 \u2013 waitForApproval() with a timeout is present.\"\"\"\n        source = _read_file()\n>       _assert_pattern(\n            source,\n            r\"waitForApproval\\s*\\(\",\n            msg=f\"'waitForApproval(' not found in {WORKFLOW_FILE}.\",\n        )\n\n/tests/test_final_state.py:128: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsource = 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n'\npattern = 'waitForApproval\\\\s*\\\\(', flags = 0\nmsg = \"'waitForApproval(' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts.\"\n\n    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = \"\") -> None:\n>       assert re.search(pattern, source, flags), (\n            msg or f\"Expected pattern not found in {WORKFLOW_FILE}:\\n  pattern: {pattern!r}\"\n        )\nE       AssertionError: 'waitForApproval(' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts.\nE       assert None\nE        +  where None = <function search at 0xe327d37fd3a0>('waitForApproval\\\\s*\\\\(', 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n', 0)\nE        +    where <function search at 0xe327d37fd3a0> = re.search\n\n/tests/test_final_state.py:39: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_enrich_event_function",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00032316206488758326,
+                "start": 1778797778.5696552,
+                "stop": 1778797778.5719585,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_enrich_event_function():\n        \"\"\"Check 7 \u2013 enrichEvent function is defined.\"\"\"\n        source = _read_file()\n>       _assert_pattern(\n            source,\n            r\"\\benrichEvent\\b\",\n            msg=(\n                f\"'enrichEvent' not found in {WORKFLOW_FILE}. \"\n                \"The workflow must define or reference an enrichEvent task/function.\"\n            ),\n        )\n\n/tests/test_final_state.py:146: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsource = 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n'\npattern = '\\\\benrichEvent\\\\b', flags = 0\nmsg = \"'enrichEvent' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The workflow must define or reference an enrichEvent task/function.\"\n\n    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = \"\") -> None:\n>       assert re.search(pattern, source, flags), (\n            msg or f\"Expected pattern not found in {WORKFLOW_FILE}:\\n  pattern: {pattern!r}\"\n        )\nE       AssertionError: 'enrichEvent' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The workflow must define or reference an enrichEvent task/function.\nE       assert None\nE        +  where None = <function search at 0xe327d37fd3a0>('\\\\benrichEvent\\\\b', 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n', 0)\nE        +    where <function search at 0xe327d37fd3a0> = re.search\n\n/tests/test_final_state.py:39: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_write_to_warehouse_function",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00030703702941536903,
+                "start": 1778797778.5720332,
+                "stop": 1778797778.5744948,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_write_to_warehouse_function():\n        \"\"\"Check 8 \u2013 writeToWarehouse function is defined.\"\"\"\n        source = _read_file()\n>       _assert_pattern(\n            source,\n            r\"\\bwriteToWarehouse\\b\",\n            msg=(\n                f\"'writeToWarehouse' not found in {WORKFLOW_FILE}. \"\n                \"The workflow must define or reference a writeToWarehouse task/function.\"\n            ),\n        )\n\n/tests/test_final_state.py:159: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsource = 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n'\npattern = '\\\\bwriteToWarehouse\\\\b', flags = 0\nmsg = \"'writeToWarehouse' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The workflow must define or reference a writeToWarehouse task/function.\"\n\n    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = \"\") -> None:\n>       assert re.search(pattern, source, flags), (\n            msg or f\"Expected pattern not found in {WORKFLOW_FILE}:\\n  pattern: {pattern!r}\"\n        )\nE       AssertionError: 'writeToWarehouse' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The workflow must define or reference a writeToWarehouse task/function.\nE       assert None\nE        +  where None = <function search at 0xe327d37fd3a0>('\\\\bwriteToWarehouse\\\\b', 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n', 0)\nE        +    where <function search at 0xe327d37fd3a0> = re.search\n\n/tests/test_final_state.py:39: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_main",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.000342995161190629,
+                "start": 1778797778.5745547,
+                "stop": 1778797778.576875,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_main():\n        \"\"\"Check 9 \u2013 workflow() wrapping the main export is present.\"\"\"\n        source = _read_file()\n>       _assert_pattern(\n            source,\n            r\"\\bworkflow\\s*\\(\",\n            msg=(\n                f\"'workflow(' not found in {WORKFLOW_FILE}. \"\n                \"The main function must be wrapped with workflow().\"\n            ),\n        )\n\n/tests/test_final_state.py:172: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsource = 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n'\npattern = '\\\\bworkflow\\\\s*\\\\(', flags = 0\nmsg = \"'workflow(' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The main function must be wrapped with workflow().\"\n\n    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = \"\") -> None:\n>       assert re.search(pattern, source, flags), (\n            msg or f\"Expected pattern not found in {WORKFLOW_FILE}:\\n  pattern: {pattern!r}\"\n        )\nE       AssertionError: 'workflow(' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The main function must be wrapped with workflow().\nE       assert None\nE        +  where None = <function search at 0xe327d37fd3a0>('\\\\bworkflow\\\\s*\\\\(', 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n', 0)\nE        +    where <function search at 0xe327d37fd3a0> = re.search\n\n/tests/test_final_state.py:39: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_rejection_branch",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003494109259918332,
+                "start": 1778797778.5769467,
+                "stop": 1778797778.579771,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_rejection_branch():\n        \"\"\"Check 10 \u2013 a rejection branch checking the approval result is present.\"\"\"\n        source = _read_file()\n>       _assert_pattern(\n            source,\n            r\"\\bapproved\\b\",\n            msg=(\n                f\"No 'approved' condition check found in {WORKFLOW_FILE}. \"\n                \"The workflow must branch on the approval result and handle rejection.\"\n            ),\n        )\n\n/tests/test_final_state.py:185: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsource = 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n'\npattern = '\\\\bapproved\\\\b', flags = 0\nmsg = \"No 'approved' condition check found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The workflow must branch on the approval result and handle rejection.\"\n\n    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = \"\") -> None:\n>       assert re.search(pattern, source, flags), (\n            msg or f\"Expected pattern not found in {WORKFLOW_FILE}:\\n  pattern: {pattern!r}\"\n        )\nE       AssertionError: No 'approved' condition check found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The workflow must branch on the approval result and handle rejection.\nE       assert None\nE        +  where None = <function search at 0xe327d37fd3a0>('\\\\bapproved\\\\b', 'import * as wmill from \"https://deno.land/x/windmill@v1.432.0/mod.ts\";\\n\\ninterface Event {\\n  id: string;\\n  type: s... Array.from({ length: Math.min(limit, items.length) }, worker);\\n  await Promise.all(workers);\\n  return results;\\n}\\n', 0)\nE        +    where <function search at 0xe327d37fd3a0> = re.search\n\n/tests/test_final_state.py:39: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_state_update_after_approval",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0004446590319275856,
+                "start": 1778797778.579855,
+                "stop": 1778797778.5815966,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_state_update_after_approval():\n        \"\"\"Check 11 \u2013 processed_events.json is updated after approval.\"\"\"\n        source = _read_file()\n        # Accept either writeFile (fs/promises) or a synchronous write pattern\n        has_write_file = bool(re.search(r\"\\bwriteFile\\b\", source))\n        has_stringify_write = bool(\n            re.search(r\"JSON\\.stringify\", source)\n            and re.search(r\"(writeFile|writeFileSync|fs\\.write)\", source)\n        )\n>       assert has_write_file or has_stringify_write, (\n            f\"State update pattern not found in {WORKFLOW_FILE}. \"\n            \"After approval, the workflow must write updated IDs back to processed_events.json \"\n            \"using writeFile or a JSON.stringify + write pattern.\"\n        )\nE       AssertionError: State update pattern not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. After approval, the workflow must write updated IDs back to processed_events.json using writeFile or a JSON.stringify + write pattern.\nE       assert (False or False)\n\n/tests/test_final_state.py:204: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

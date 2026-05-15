@@ -1,0 +1,21 @@
+{
+  "task_name": "cron_monitor_with_state",
+  "description": "Fix a broken Python health monitor script in a Windmill project so it only sends alerts when service status changes, using Windmill's persistent state API (get_state/set_state).",
+  "complexity": "much more complicated task which not easy to be fixed by llm agents",
+  "agent_instructions": "You are working inside a Windmill project environment. A health monitor script at `/home/user/windmill-project/f/scripts/health_monitor.py` is broken — it sends an alert on EVERY scheduled run regardless of whether the service status has changed. Your task is to fix the script so that it:\n1. Imports `get_state` (in addition to `set_state`) from the `wmill` package\n2. Reads the previous status at the start: `last_status = get_state() or 'unknown'`\n3. Only calls `send_alert()` when `current_status != last_status`\n4. Always calls `set_state(current_status)` to persist the new status\n5. Returns a dict: `{'status': current_status, 'changed': current_status != last_status, 'alerted': current_status != last_status}`\n\nDo not change the `check_endpoint` or `send_alert` helper functions. Only modify the `main` function and the imports.",
+  "files_to_edit": [
+    "/home/user/windmill-project/f/scripts/health_monitor.py"
+  ],
+  "initial_file_contents": {
+    "/home/user/windmill-project/f/scripts/health_monitor.py": "import urllib.request\nfrom wmill import set_state\n\ndef check_endpoint(url: str) -> str:\n    try:\n        with urllib.request.urlopen(url, timeout=5) as response:\n            return 'healthy' if response.status == 200 else 'degraded'\n    except Exception:\n        return 'down'\n\ndef send_alert(service: str, status: str):\n    print(f\"ALERT: {service} is {status}\")\n\ndef main(service_url: str = \"https://httpbin.org/status/200\", service_name: str = \"MyService\"):\n    # BUG: No get_state() - cannot detect status changes\n    current_status = check_endpoint(service_url)\n    # BUG: Always sends alert on every run, not just on change\n    send_alert(service_name, current_status)\n    set_state(current_status)\n    return {'status': current_status, 'alerted': True}\n"
+  },
+  "expected_fix": {
+    "description": "The fixed script must import get_state, read last_status from state, conditionally alert only on status change, always persist state, and return a dict with 'status', 'changed', and 'alerted' keys.",
+    "key_changes": [
+      "Add get_state to import from wmill",
+      "Call last_status = get_state() or 'unknown' at start of main",
+      "Wrap send_alert() call inside 'if current_status != last_status'",
+      "Return dict includes 'changed' and 'alerted' keys reflecting the conditional"
+    ]
+  }
+}

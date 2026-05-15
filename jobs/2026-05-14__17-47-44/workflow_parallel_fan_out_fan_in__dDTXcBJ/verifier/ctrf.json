@@ -1,0 +1,164 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 12,
+            "passed": 0,
+            "failed": 12,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778806271.2297132,
+            "stop": 1778806271.25814
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0004870019620284438,
+                "start": 1778806271.2358663,
+                "stop": 1778806271.2417035,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_file_exists():\n        \"\"\"report_generator.ts must exist at the expected path.\"\"\"\n>       assert os.path.isfile(WORKFLOW_FILE), (\n            f\"Workflow file not found at '{WORKFLOW_FILE}'. \"\n            \"Create 'f/workflows/report_generator.ts' inside the project directory.\"\n        )\nE       AssertionError: Workflow file not found at '/home/user/windmill-project/f/workflows/report_generator.ts'. Create 'f/workflows/report_generator.ts' inside the project directory.\nE       assert False\nE        +  where False = <function isfile at 0xf2f34bf30220>('/home/user/windmill-project/f/workflows/report_generator.ts')\nE        +    where <function isfile at 0xf2f34bf30220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:23: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_imports_task_and_workflow_from_windmill_client",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00029958586674183607,
+                "start": 1778806271.2417824,
+                "stop": 1778806271.2435899,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_imports_task_and_workflow_from_windmill_client():\n        \"\"\"The file must import both `task` and `workflow` from `windmill-client`.\"\"\"\n>       content = _read_workflow()\n                  ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:35: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_workflow() -> str:\n>       with open(WORKFLOW_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/report_generator.ts'\n\ntests/test_final_state.py:13: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_exports_main_as_workflow",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00026883487589657307,
+                "start": 1778806271.243658,
+                "stop": 1778806271.2450895,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_exports_main_as_workflow():\n        \"\"\"The file must export `main` assigned to a `workflow(...)` call.\"\"\"\n>       content = _read_workflow()\n                  ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:52: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_workflow() -> str:\n>       with open(WORKFLOW_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/report_generator.ts'\n\ntests/test_final_state.py:13: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_uses_promise_all_for_fan_out",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0002280429471284151,
+                "start": 1778806271.2451472,
+                "stop": 1778806271.246569,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_uses_promise_all_for_fan_out():\n        \"\"\"The workflow must use Promise.all() to dispatch parallel tasks (fan-out).\"\"\"\n>       content = _read_workflow()\n                  ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:65: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_workflow() -> str:\n>       with open(WORKFLOW_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/report_generator.ts'\n\ntests/test_final_state.py:13: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_dispatches_fetch_section_data_for_summary",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00027108483482152224,
+                "start": 1778806271.246634,
+                "stop": 1778806271.2481525,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_dispatches_fetch_section_data_for_summary():\n        \"\"\"task(fetchSectionData) must be called with 'summary'.\"\"\"\n>       content = _read_workflow()\n                  ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:78: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_workflow() -> str:\n>       with open(WORKFLOW_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/report_generator.ts'\n\ntests/test_final_state.py:13: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_dispatches_fetch_section_data_for_details",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00025716691743582487,
+                "start": 1778806271.2482111,
+                "stop": 1778806271.2495546,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_dispatches_fetch_section_data_for_details():\n        \"\"\"task(fetchSectionData) must be called with 'details'.\"\"\"\n>       content = _read_workflow()\n                  ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:87: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_workflow() -> str:\n>       with open(WORKFLOW_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/report_generator.ts'\n\ntests/test_final_state.py:13: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_dispatches_fetch_section_data_for_metrics",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00024845998268574476,
+                "start": 1778806271.2496133,
+                "stop": 1778806271.251037,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_dispatches_fetch_section_data_for_metrics():\n        \"\"\"task(fetchSectionData) must be called with 'metrics'.\"\"\"\n>       content = _read_workflow()\n                  ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:96: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_workflow() -> str:\n>       with open(WORKFLOW_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/report_generator.ts'\n\ntests/test_final_state.py:13: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_calls_task_compile_report_for_fan_in",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0002594591351225972,
+                "start": 1778806271.2510915,
+                "stop": 1778806271.2524486,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_calls_task_compile_report_for_fan_in():\n        \"\"\"task(compileReport) must be present \u2014 the fan-in aggregation step.\"\"\"\n>       content = _read_workflow()\n                  ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:109: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_workflow() -> str:\n>       with open(WORKFLOW_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/report_generator.ts'\n\ntests/test_final_state.py:13: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_compile_report_called_after_promise_all",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00026083504781126976,
+                "start": 1778806271.2525015,
+                "stop": 1778806271.2538934,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_compile_report_called_after_promise_all():\n        \"\"\"task(compileReport) must appear after Promise.all in the source.\"\"\"\n>       content = _read_workflow()\n                  ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:118: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_workflow() -> str:\n>       with open(WORKFLOW_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/report_generator.ts'\n\ntests/test_final_state.py:13: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_defines_fetch_section_data_function",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0002259190659970045,
+                "start": 1778806271.2539477,
+                "stop": 1778806271.2552938,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_defines_fetch_section_data_function():\n        \"\"\"fetchSectionData must be defined as a function in the file.\"\"\"\n>       content = _read_workflow()\n                  ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:139: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_workflow() -> str:\n>       with open(WORKFLOW_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/report_generator.ts'\n\ntests/test_final_state.py:13: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_defines_compile_report_function",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00022291892673820257,
+                "start": 1778806271.2553456,
+                "stop": 1778806271.2566304,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_defines_compile_report_function():\n        \"\"\"compileReport must be defined as a function in the file.\"\"\"\n>       content = _read_workflow()\n                  ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:147: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_workflow() -> str:\n>       with open(WORKFLOW_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/report_generator.ts'\n\ntests/test_final_state.py:13: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_section_strings_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.000229919096454978,
+                "start": 1778806271.256697,
+                "stop": 1778806271.2580106,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_section_strings_present():\n        \"\"\"All three section identifiers must appear in the file.\"\"\"\n>       content = _read_workflow()\n                  ^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:159: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_workflow() -> str:\n>       with open(WORKFLOW_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/report_generator.ts'\n\ntests/test_final_state.py:13: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

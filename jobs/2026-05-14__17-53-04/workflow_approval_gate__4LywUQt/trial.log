@@ -1,0 +1,58 @@
+Trial workflow_approval_gate__4LywUQt failed: Docker compose command failed for environment workflow_approval_gate. Command: docker compose --project-name workflow_approval_gate__4lywuqt --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_approval_gate/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_approval_gate__4lywuqt-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 688B done
+#1 DONE 0.0s
+
+#2 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#2 DONE 0.0s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.06kB done
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [6/8] RUN wmill --version
+#7 CACHED
+
+#8 [7/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 [5/8] RUN npm install -g windmill-client windmill-cli
+#9 CACHED
+
+#10 [4/8] RUN node --version && npm --version
+#10 CACHED
+
+#11 [2/8] RUN apt-get update && apt-get install -y     curl     ca-certificates     gnupg     python3     python3-pip     python3-pytest     && rm -rf /var/lib/apt/lists/*
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:d3ddb188a4bd408ae0e1465c6dc89abe263e9cc1a21df1123e0e721f46db95fa done
+#13 exporting config sha256:5ce015816c38a971638a5c277ae7a7851b9b4e0031378360aec07b86ab803110 done
+#13 exporting attestation manifest sha256:756675cbfeefbddc9b245ec2f716310cbca91d77174cbdc0f3bc38169ac96877 0.0s done
+#13 exporting manifest list sha256:4eacbaeb3ddd72342220129cbade29a0846c5d176bdcc16ef3e88269c1c1dd50 done
+#13 naming to docker.io/library/workflow_approval_gate__4lywuqt-main:latest done
+#13 unpacking to docker.io/library/workflow_approval_gate__4lywuqt-main:latest 0.0s done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image workflow_approval_gate__4lywuqt-main Built 
+ Network workflow_approval_gate__4lywuqt_default Creating 
+ Network workflow_approval_gate__4lywuqt_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_approval_gate__4lywuqt_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 

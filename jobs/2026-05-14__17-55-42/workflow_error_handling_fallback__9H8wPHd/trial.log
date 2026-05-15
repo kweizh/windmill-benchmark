@@ -1,0 +1,105 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo workflow_error_handling_fallback__9H8wPHd > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model zai/glm-4.7 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Add Error Handling and Fallback to a Windmill Workflow
+
+## Background
+
+In Windmill WAC, when a `task()` call fails, the error is propagated to the parent workflow as a thrown exception. You can handle it with a standard `try/catch` block and invoke a fallback task if needed.
+
+A data pipeline workflow at `/home/user/windmill-project/f/workflows/data_pipeline.ts` calls `task(fetchData)(source)` but has no error handling. If `fetchData` fails (e.g., network timeout), the entire workflow crashes. You must add a `try/catch` so that on failure, the workflow calls `task(fallbackData)(source)` and logs the error message, then returns the fallback result.
+
+## Requirements
+
+- Wrap the `await task(fetchData)(source)` call in a `try` block.
+- In the `catch` block, log the error: `console.log(`fetchData failed: ${e.message}`)`.
+- In the `catch` block, call `await task(fallbackData)(source)` and use its result.
+- Return the result from whichever path succeeded.
+- Do NOT modify the `fetchData`, `fallbackData`, or `transform` function definitions.
+
+## Implementation Guide
+
+1. Open `/home/user/windmill-project/f/workflows/data_pipeline.ts`.
+2. Locate the line `const data = await task(fetchData)(source);`.
+3. Wrap it in a try/catch:
+   ```typescript
+   let data;
+   try {
+     data = await task(fetchData)(source);
+   } catch (e) {
+     console.log(`fetchData failed: ${e.message}`);
+     data = await task(fallbackData)(source);
+   }
+   ```
+4. Ensure the subsequent `await task(transform)(data)` call uses this `data` variable.
+5. Save the file.
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- File to edit: `/home/user/windmill-project/f/workflows/data_pipeline.ts`
+- Do NOT rename any functions or change the exported `main` signature.
+- The `fallbackData` function is already defined in the file — do not redefine it.
+- No live Windmill server is required; the fix is purely a code change.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

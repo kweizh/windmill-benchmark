@@ -1,0 +1,119 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 11,
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778809237.5777125,
+            "stop": 1778809237.5893812
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists",
+                "status": "passed",
+                "duration": 0.00036522699519991875,
+                "start": 1778809237.5837233,
+                "stop": 1778809237.5842655,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_step_imported_from_windmill_client",
+                "status": "passed",
+                "duration": 0.00035389489494264126,
+                "start": 1778809237.5843384,
+                "stop": 1778809237.5848293,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_timestamp_wrapped_in_step",
+                "status": "passed",
+                "duration": 0.0003156879683956504,
+                "start": 1778809237.584901,
+                "stop": 1778809237.5853405,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_order_id_wrapped_in_step",
+                "status": "passed",
+                "duration": 0.0003598950570449233,
+                "start": 1778809237.5854042,
+                "stop": 1778809237.585887,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_no_bare_date_now_in_workflow_body",
+                "status": "passed",
+                "duration": 0.0002744400408118963,
+                "start": 1778809237.5859623,
+                "stop": 1778809237.5863688,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_no_bare_math_random_in_workflow_body",
+                "status": "passed",
+                "duration": 0.00027585693169385195,
+                "start": 1778809237.5864217,
+                "stop": 1778809237.5868137,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_process_order_call_intact",
+                "status": "passed",
+                "duration": 0.0003381449496373534,
+                "start": 1778809237.5869868,
+                "stop": 1778809237.5874655,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_notify_shipping_call_intact",
+                "status": "passed",
+                "duration": 0.00027727498672902584,
+                "start": 1778809237.587533,
+                "stop": 1778809237.5879226,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_main_export_signature_intact",
+                "status": "passed",
+                "duration": 0.0002544008893892169,
+                "start": 1778809237.5879767,
+                "stop": 1778809237.5883298,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_date_now_only_inside_step_callback",
+                "status": "passed",
+                "duration": 0.0003343129064887762,
+                "start": 1778809237.5883932,
+                "stop": 1778809237.5888374,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_math_random_only_inside_step_callback",
+                "status": "passed",
+                "duration": 0.00024677603505551815,
+                "start": 1778809237.5889003,
+                "stop": 1778809237.5892313,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

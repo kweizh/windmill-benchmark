@@ -1,0 +1,200 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 19ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 11 items
+
+../../../tests/test_final_state.py .FFFFF...FF                           [100%]
+
+=================================== FAILURES ===================================
+___________________ test_step_imported_from_windmill_client ____________________
+
+    def test_step_imported_from_windmill_client():
+        """
+        `step` must be imported from `windmill-client`.
+        Accepts both named and combined import forms, e.g.:
+          import { task, workflow, step } from 'windmill-client';
+        """
+        content = WORKFLOW_FILE.read_text()
+        # Look for an import statement from windmill-client that includes `step`
+>       assert re.search(
+            r"import\s*\{[^}]*\bstep\b[^}]*\}\s*from\s*['\"]windmill-client['\"]",
+            content,
+        ), (
+            "`step` is not imported from `windmill-client`. "
+            "Add `step` to the import statement, e.g.: "
+            "import { task, workflow, step } from 'windmill-client';"
+        )
+E       AssertionError: `step` is not imported from `windmill-client`. Add `step` to the import statement, e.g.: import { task, workflow, step } from 'windmill-client';
+E       assert None
+E        +  where None = <function search at 0xe5635a2fd3a0>('import\\s*\\{[^}]*\\bstep\\b[^}]*\\}\\s*from\\s*[\'\\"]windmill-client[\'\\"]', "import { task, workflow } from 'windmill-client';\n\nasync function processOrder(orderId: string, timestamp: number, ...(processOrder)(orderId, timestamp, product);\n  await task(notifyShipping)(orderId, product);\n  return result;\n});\n")
+E        +    where <function search at 0xe5635a2fd3a0> = re.search
+
+/tests/test_final_state.py:29: AssertionError
+________________________ test_timestamp_wrapped_in_step ________________________
+
+    def test_timestamp_wrapped_in_step():
+        """
+        `Date.now()` must be wrapped in a `step()` call with key 'timestamp'.
+        Expected pattern: await step('timestamp', () => Date.now())
+        """
+        content = WORKFLOW_FILE.read_text()
+>       assert re.search(
+            r"await\s+step\s*\(\s*['\"]timestamp['\"]",
+            content,
+        ), (
+            "Expected `await step('timestamp', ...)` wrapping `Date.now()`. "
+            "Replace `const timestamp = Date.now();` with "
+            "`const timestamp = await step('timestamp', () => Date.now());`"
+        )
+E       AssertionError: Expected `await step('timestamp', ...)` wrapping `Date.now()`. Replace `const timestamp = Date.now();` with `const timestamp = await step('timestamp', () => Date.now());`
+E       assert None
+E        +  where None = <function search at 0xe5635a2fd3a0>('await\\s+step\\s*\\(\\s*[\'\\"]timestamp[\'\\"]', "import { task, workflow } from 'windmill-client';\n\nasync function processOrder(orderId: string, timestamp: number, ...(processOrder)(orderId, timestamp, product);\n  await task(notifyShipping)(orderId, product);\n  return result;\n});\n")
+E        +    where <function search at 0xe5635a2fd3a0> = re.search
+
+/tests/test_final_state.py:45: AssertionError
+________________________ test_order_id_wrapped_in_step _________________________
+
+    def test_order_id_wrapped_in_step():
+        """
+        `Math.random()` must be wrapped in a `step()` call with key 'order_id'.
+        Expected pattern: await step('order_id', () => Math.random()...)
+        """
+        content = WORKFLOW_FILE.read_text()
+>       assert re.search(
+            r"await\s+step\s*\(\s*['\"]order_id['\"]",
+            content,
+        ), (
+            "Expected `await step('order_id', ...)` wrapping `Math.random()`. "
+            "Replace `const orderId = Math.random().toString(36).slice(2);` with "
+            "`const orderId = await step('order_id', () => Math.random().toString(36).slice(2));`"
+        )
+E       AssertionError: Expected `await step('order_id', ...)` wrapping `Math.random()`. Replace `const orderId = Math.random().toString(36).slice(2);` with `const orderId = await step('order_id', () => Math.random().toString(36).slice(2));`
+E       assert None
+E        +  where None = <function search at 0xe5635a2fd3a0>('await\\s+step\\s*\\(\\s*[\'\\"]order_id[\'\\"]', "import { task, workflow } from 'windmill-client';\n\nasync function processOrder(orderId: string, timestamp: number, ...(processOrder)(orderId, timestamp, product);\n  await task(notifyShipping)(orderId, product);\n  return result;\n});\n")
+E        +    where <function search at 0xe5635a2fd3a0> = re.search
+
+/tests/test_final_state.py:61: AssertionError
+____________________ test_no_bare_date_now_in_workflow_body ____________________
+
+    def test_no_bare_date_now_in_workflow_body():
+        """
+        Bare `Date.now()` (i.e., not inside a step() arrow-function callback)
+        must NOT appear in the workflow body as a direct assignment.
+        The pattern `const timestamp = Date.now()` must be gone.
+        """
+        content = WORKFLOW_FILE.read_text()
+        # Match the broken pattern: direct assignment without step()
+>       assert not re.search(
+            r"const\s+timestamp\s*=\s*Date\.now\(\)",
+            content,
+        ), (
+            "Found bare `const timestamp = Date.now()` in workflow body. "
+            "`Date.now()` must be wrapped in `step('timestamp', () => Date.now())`."
+        )
+E       AssertionError: Found bare `const timestamp = Date.now()` in workflow body. `Date.now()` must be wrapped in `step('timestamp', () => Date.now())`.
+E       assert not <re.Match object; span=(586, 614), match='const timestamp = Date.now()'>
+E        +  where <re.Match object; span=(586, 614), match='const timestamp = Date.now()'> = <function search at 0xe5635a2fd3a0>('const\\s+timestamp\\s*=\\s*Date\\.now\\(\\)', "import { task, workflow } from 'windmill-client';\n\nasync function processOrder(orderId: string, timestamp: number, ...(processOrder)(orderId, timestamp, product);\n  await task(notifyShipping)(orderId, product);\n  return result;\n});\n")
+E        +    where <function search at 0xe5635a2fd3a0> = re.search
+
+/tests/test_final_state.py:79: AssertionError
+__________________ test_no_bare_math_random_in_workflow_body ___________________
+
+    def test_no_bare_math_random_in_workflow_body():
+        """
+        Bare `Math.random()` (i.e., not inside a step() arrow-function callback)
+        must NOT appear in the workflow body as a direct assignment.
+        The pattern `const orderId = Math.random()` must be gone.
+        """
+        content = WORKFLOW_FILE.read_text()
+        # Match the broken pattern: direct assignment without step()
+>       assert not re.search(
+            r"const\s+orderId\s*=\s*Math\.random\(\)",
+            content,
+        ), (
+            "Found bare `const orderId = Math.random()` in workflow body. "
+            "`Math.random()` must be wrapped in `step('order_id', () => Math.random()...)`."
+        )
+E       AssertionError: Found bare `const orderId = Math.random()` in workflow body. `Math.random()` must be wrapped in `step('order_id', () => Math.random()...)`.
+E       assert not <re.Match object; span=(618, 647), match='const orderId = Math.random()'>
+E        +  where <re.Match object; span=(618, 647), match='const orderId = Math.random()'> = <function search at 0xe5635a2fd3a0>('const\\s+orderId\\s*=\\s*Math\\.random\\(\\)', "import { task, workflow } from 'windmill-client';\n\nasync function processOrder(orderId: string, timestamp: number, ...(processOrder)(orderId, timestamp, product);\n  await task(notifyShipping)(orderId, product);\n  return result;\n});\n")
+E        +    where <function search at 0xe5635a2fd3a0> = re.search
+
+/tests/test_final_state.py:96: AssertionError
+___________________ test_date_now_only_inside_step_callback ____________________
+
+    def test_date_now_only_inside_step_callback():
+        """
+        If `Date.now()` appears in the file at all, it must only appear inside
+        a step() arrow-function callback, never as a standalone expression in
+        the workflow body.
+        """
+        content = WORKFLOW_FILE.read_text()
+        # Find all occurrences of Date.now() and check each one is preceded by
+        # an arrow function inside step()
+        for match in re.finditer(r"Date\.now\(\)", content):
+            start = match.start()
+            # Look backwards for the step( pattern within a reasonable window
+            window = content[max(0, start - 60):start]
+>           assert re.search(r"step\s*\([^)]*,\s*\(\s*\)\s*=>", window), (
+                f"Found `Date.now()` at position {start} that does not appear to be "
+                "inside a step() arrow-function callback. All Date.now() calls must be "
+                "wrapped: step('timestamp', () => Date.now())"
+            )
+E           AssertionError: Found `Date.now()` at position 604 that does not appear to be inside a step() arrow-function callback. All Date.now() calls must be wrapped: step('timestamp', () => Date.now())
+E           assert None
+E            +  where None = <function search at 0xe5635a2fd3a0>('step\\s*\\([^)]*,\\s*\\(\\s*\\)\\s*=>', 'in workflow body - will break on replay\n  const timestamp = ')
+E            +    where <function search at 0xe5635a2fd3a0> = re.search
+
+/tests/test_final_state.py:142: AssertionError
+__________________ test_math_random_only_inside_step_callback __________________
+
+    def test_math_random_only_inside_step_callback():
+        """
+        If `Math.random()` appears in the file at all, it must only appear inside
+        a step() arrow-function callback, never as a standalone expression in
+        the workflow body.
+        """
+        content = WORKFLOW_FILE.read_text()
+        for match in re.finditer(r"Math\.random\(\)", content):
+            start = match.start()
+            window = content[max(0, start - 60):start]
+>           assert re.search(r"step\s*\([^)]*,\s*\(\s*\)\s*=>", window), (
+                f"Found `Math.random()` at position {start} that does not appear to be "
+                "inside a step() arrow-function callback. All Math.random() calls must be "
+                "wrapped: step('order_id', () => Math.random()...)"
+            )
+E           AssertionError: Found `Math.random()` at position 634 that does not appear to be inside a step() arrow-function callback. All Math.random() calls must be wrapped: step('order_id', () => Math.random()...)
+E           assert None
+E            +  where None = <function search at 0xe5635a2fd3a0>('step\\s*\\([^)]*,\\s*\\(\\s*\\)\\s*=>', 'on replay\n  const timestamp = Date.now();\n  const orderId = ')
+E            +    where <function search at 0xe5635a2fd3a0> = re.search
+
+/tests/test_final_state.py:159: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../../tests/test_final_state.py::test_workflow_file_exists
+PASSED ../../../tests/test_final_state.py::test_task_process_order_call_intact
+PASSED ../../../tests/test_final_state.py::test_task_notify_shipping_call_intact
+PASSED ../../../tests/test_final_state.py::test_main_export_signature_intact
+FAILED ../../../tests/test_final_state.py::test_step_imported_from_windmill_client
+FAILED ../../../tests/test_final_state.py::test_timestamp_wrapped_in_step - A...
+FAILED ../../../tests/test_final_state.py::test_order_id_wrapped_in_step - As...
+FAILED ../../../tests/test_final_state.py::test_no_bare_date_now_in_workflow_body
+FAILED ../../../tests/test_final_state.py::test_no_bare_math_random_in_workflow_body
+FAILED ../../../tests/test_final_state.py::test_date_now_only_inside_step_callback
+FAILED ../../../tests/test_final_state.py::test_math_random_only_inside_step_callback
+========================= 7 failed, 4 passed in 0.02s ==========================

@@ -1,0 +1,146 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo resource_fetch_in_script__BQh7FNs > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model anthropic/claude-4-6-sonnet --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Windmill Script with Typed Resource Parameter
+
+## Background
+
+Windmill allows scripts to receive pre-configured **resources** as typed parameters. A resource is a JSON object stored in Windmill at a path such as `u/user/my_db`. The script declares a matching TypeScript type and Windmill injects the resource at runtime.
+
+You must write a TypeScript Windmill script that accepts a PostgreSQL resource parameter and a table name, then returns a mock result object demonstrating the resource was received correctly.
+
+## Requirements
+
+- Create a TypeScript Windmill script at `/home/user/windmill-project/f/scripts/db_row_count.ts`.
+- Create its companion YAML metadata file at `/home/user/windmill-project/f/scripts/db_row_count.script.yaml`.
+
+## Implementation Guide
+
+1. Create the project directory structure:
+   ```
+   mkdir -p /home/user/windmill-project/f/scripts
+   ```
+
+2. Create `/home/user/windmill-project/f/scripts/db_row_count.ts` with the following structure:
+   - Define a `Postgresql` type inline:
+     ```typescript
+     type Postgresql = {
+       host: string;
+       port: number;
+       user: string;
+       dbname: string;
+       sslmode: string;
+       password: string;
+     };
+     ```
+   - Export a `main` function with signature:
+     ```typescript
+     export async function main(db: Postgresql, table_name: string)
+     ```
+   - The function must return:
+     ```typescript
+     {
+       host: db.host,
+       dbname: db.dbname,
+       table: table_name,
+       query: `SELECT COUNT(*) FROM ${table_name}`,
+       note: "Resource received successfully"
+     }
+     ```
+
+3. Create `/home/user/windmill-project/f/scripts/db_row_count.script.yaml` with the following content:
+   ```yaml
+   summary: Count rows in a database table using a PostgreSQL resource
+   description: Accepts a Postgresql resource and table name, returns a mock query result object
+   schema:
+     $schema: 'https://json-schema.org/draft/2020-12/schema'
+     type: object
+     order:
+       - db
+       - table_name
+     properties:
+       db:
+         description: PostgreSQL database resource
+         type: object
+         format: resource-postgresql
+       table_name:
+         description: Name of the table to count rows in
+         type: string
+         default: ''
+     required:
+       - db
+       - table_name
+   language: ts
+   kind: script
+   tag: ''
+   ```
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Do not connect to any live database — this is a mock script.
+- Use TypeScript (`.ts` extension) as the script language.
+- Do not use `import * as wmill from 'windmill-client'` — the resource is passed directly as a typed parameter.
+- The `Postgresql` type must be defined in the script file itself.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

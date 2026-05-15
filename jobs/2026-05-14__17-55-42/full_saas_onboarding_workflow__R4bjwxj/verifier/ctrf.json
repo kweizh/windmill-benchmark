@@ -1,0 +1,152 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 14,
+            "passed": 12,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778807476.2775652,
+            "stop": 1778807476.298354
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_onboarding_workflow_file_exists",
+                "status": "passed",
+                "duration": 0.00033858814276754856,
+                "start": 1778807476.284369,
+                "stop": 1778807476.2848861,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_step_and_wait_for_approval_imported",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00041246600449085236,
+                "start": 1778807476.2849662,
+                "stop": 1778807476.2910528,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_step_and_wait_for_approval_imported():\n        \"\"\"2. Both `step` and `waitForApproval` must be imported from windmill-client.\"\"\"\n        content = _read_workflow()\n        assert \"step\" in content, (\n            \"'step' is not referenced \u2014 it must be imported from windmill-client\"\n        )\n        assert \"waitForApproval\" in content, (\n            \"'waitForApproval' is not referenced \u2014 it must be imported from windmill-client\"\n        )\n>       assert \"windmill-client\" in content, (\n            \"windmill-client import not found in the workflow file\"\n        )\nE       AssertionError: windmill-client import not found in the workflow file\nE       assert 'windmill-client' in \"// Windmill workflow for complete SaaS customer onboarding\\n// This workflow orchestrates the entire onboarding proce...lSent: emailResult.sent\\n  };\\n  \\n  console.log('Onboarding completed successfully:', summary);\\n  return summary;\\n}\"\n\n/tests/test_final_state.py:33: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_step_call_for_onboarding_id",
+                "status": "passed",
+                "duration": 0.0003894639667123556,
+                "start": 1778807476.2911336,
+                "stop": 1778807476.291655,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_promise_all_for_parallel_provisioning",
+                "status": "passed",
+                "duration": 0.00032671401277184486,
+                "start": 1778807476.291739,
+                "stop": 1778807476.292185,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_cleanup_call_on_error",
+                "status": "passed",
+                "duration": 0.0003481318708509207,
+                "start": 1778807476.292253,
+                "stop": 1778807476.2927284,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wait_for_approval_with_48h_timeout",
+                "status": "passed",
+                "duration": 0.0003134210128337145,
+                "start": 1778807476.2928019,
+                "stop": 1778807476.2932365,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_enterprise_plan_string_present",
+                "status": "passed",
+                "duration": 0.0003141718916594982,
+                "start": 1778807476.2933004,
+                "stop": 1778807476.293744,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_onboarding_id_referenced",
+                "status": "passed",
+                "duration": 0.0003237560158595443,
+                "start": 1778807476.2938032,
+                "stop": 1778807476.2942379,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_onboarding_report_path_referenced",
+                "status": "passed",
+                "duration": 0.00036067189648747444,
+                "start": 1778807476.294291,
+                "stop": 1778807476.294778,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_write_file_for_report",
+                "status": "passed",
+                "duration": 0.00036725704558193684,
+                "start": 1778807476.29486,
+                "stop": 1778807476.2953506,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_configure_integrations_task_called",
+                "status": "passed",
+                "duration": 0.00031121389474719763,
+                "start": 1778807476.2954075,
+                "stop": 1778807476.2958584,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_send_welcome_email_task_called",
+                "status": "passed",
+                "duration": 0.0003310880856588483,
+                "start": 1778807476.2959132,
+                "stop": 1778807476.2963634,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_rejected_at_review_status_present",
+                "status": "passed",
+                "duration": 0.0002891299081966281,
+                "start": 1778807476.2964191,
+                "stop": 1778807476.2968206,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_function_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00035471515730023384,
+                "start": 1778807476.2968752,
+                "stop": 1778807476.2982016,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_function_present():\n        \"\"\"14. A `workflow(` declaration must be present \u2014 the main entry point must be a Windmill workflow.\"\"\"\n        content = _read_workflow()\n>       assert re.search(r\"workflow\\s*\\(\", content), (\n            \"'workflow(' declaration not found \u2014 the main function must be declared as a Windmill workflow\"\n        )\nE       AssertionError: 'workflow(' declaration not found \u2014 the main function must be declared as a Windmill workflow\nE       assert None\nE        +  where None = <function search at 0xfd8ae92fd3a0>('workflow\\\\s*\\\\(', \"// Windmill workflow for complete SaaS customer onboarding\\n// This workflow orchestrates the entire onboarding proce...lSent: emailResult.sent\\n  };\\n  \\n  console.log('Onboarding completed successfully:', summary);\\n  return summary;\\n}\")\nE        +    where <function search at 0xfd8ae92fd3a0> = re.search\n\n/tests/test_final_state.py:153: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

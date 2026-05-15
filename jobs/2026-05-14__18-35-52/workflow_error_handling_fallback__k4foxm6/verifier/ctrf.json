@@ -1,0 +1,119 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 11,
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778809350.115647,
+            "stop": 1778809350.1272357
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "passed",
+                "duration": 0.0003619809867814183,
+                "start": 1778809350.122744,
+                "stop": 1778809350.1232927,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_has_try_block",
+                "status": "passed",
+                "duration": 0.0002844019327312708,
+                "start": 1778809350.1233647,
+                "stop": 1778809350.1237662,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_has_catch_block",
+                "status": "passed",
+                "duration": 0.00023427791893482208,
+                "start": 1778809350.1238236,
+                "stop": 1778809350.1241434,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_catch_invokes_fallback_data",
+                "status": "passed",
+                "duration": 0.0002981510479003191,
+                "start": 1778809350.1241941,
+                "stop": 1778809350.1245995,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_catch_logs_fetch_data_failed",
+                "status": "passed",
+                "duration": 0.0002265280345454812,
+                "start": 1778809350.1246622,
+                "stop": 1778809350.124983,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_transform_task_still_present",
+                "status": "passed",
+                "duration": 0.0002582359593361616,
+                "start": 1778809350.1250348,
+                "stop": 1778809350.125391,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_main_export_unchanged",
+                "status": "passed",
+                "duration": 0.0002084049629047513,
+                "start": 1778809350.1254447,
+                "stop": 1778809350.1257396,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_fetch_data_task_call_inside_try",
+                "status": "passed",
+                "duration": 0.0002470710314810276,
+                "start": 1778809350.1257913,
+                "stop": 1778809350.126132,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_fallback_data_function_definition_present",
+                "status": "passed",
+                "duration": 0.0002075310330837965,
+                "start": 1778809350.1261835,
+                "stop": 1778809350.1264775,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_fetch_data_function_definition_present",
+                "status": "passed",
+                "duration": 0.00019523908849805593,
+                "start": 1778809350.1265278,
+                "stop": 1778809350.1268072,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_transform_function_definition_present",
+                "status": "passed",
+                "duration": 0.00018636591266840696,
+                "start": 1778809350.1268582,
+                "stop": 1778809350.1271224,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

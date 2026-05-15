@@ -1,0 +1,95 @@
+Traceback (most recent call last):
+  File "/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 531, in run
+    await self._setup_environment()
+  File "/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 238, in _setup_environment
+    await self._start_environment_with_retry()
+  File "/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 193, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 112, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 157, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/_utils.py", line 111, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 393, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 116, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 250, in _start_environment_with_retry
+    await asyncio.wait_for(
+  File "/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 349, in start
+    await self._run_docker_compose_command(["up", "--detach", "--wait"])
+  File "/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 318, in _run_docker_compose_command
+    raise RuntimeError(
+RuntimeError: Docker compose command failed for environment deployment_pipeline_with_rollback. Command: docker compose --project-name deployment_pipeline_with_rollbac__kbzq3ez --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/deployment_pipeline_with_rollback/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image deployment_pipeline_with_rollbac__kbzq3ez-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 730B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.06kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#5 DONE 0.0s
+
+#6 [2/8] RUN apt-get update && apt-get install -y     curl     ca-certificates     gnupg     python3     python3-pip     python3-pytest     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [5/8] RUN npm install -g windmill-client windmill-cli
+#7 CACHED
+
+#8 [7/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 [4/8] RUN node --version && npm --version
+#9 CACHED
+
+#10 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [6/8] RUN wmill --version
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:8ee761a69bf65c41251eb600343eacd0095ddc28e0c7adc95a332a00ac38eae0 done
+#13 exporting config sha256:c992f02a0895e79adac115eee53f75041845d5d9a3f26326580c22431d19b09a done
+#13 exporting attestation manifest sha256:fb7fee6e0c94fa3f19b90d052c917cc1bade815ebd766abdf69ca56fe46893d1 done
+#13 exporting manifest list sha256:0e97bc8bee29c0a00e4ae53418e32ab225d6294d63453e15f5ecd07e4d699ad8 done
+#13 naming to docker.io/library/deployment_pipeline_with_rollbac__kbzq3ez-main:latest done
+#13 unpacking to docker.io/library/deployment_pipeline_with_rollbac__kbzq3ez-main:latest done
+#13 DONE 0.0s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image deployment_pipeline_with_rollbac__kbzq3ez-main Built 
+ Network deployment_pipeline_with_rollbac__kbzq3ez_default Creating 
+ Network deployment_pipeline_with_rollbac__kbzq3ez_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network deployment_pipeline_with_rollbac__kbzq3ez_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 

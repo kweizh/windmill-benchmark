@@ -1,0 +1,110 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 10,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778804753.8051064,
+            "stop": 1778804753.8151033
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "passed",
+                "duration": 0.00027467089239507914,
+                "start": 1778804753.8108366,
+                "stop": 1778804753.8112538,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_step_used_for_run_id",
+                "status": "passed",
+                "duration": 0.0002761299256235361,
+                "start": 1778804753.8113241,
+                "stop": 1778804753.811699,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_parallel_used",
+                "status": "passed",
+                "duration": 0.00025188003201037645,
+                "start": 1778804753.8117597,
+                "stop": 1778804753.812105,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_concurrency_limit_10",
+                "status": "passed",
+                "duration": 0.00025958800688385963,
+                "start": 1778804753.8121595,
+                "stop": 1778804753.8125114,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_concurrency_key_user_enrichment",
+                "status": "passed",
+                "duration": 0.0002740470226854086,
+                "start": 1778804753.8125653,
+                "stop": 1778804753.812931,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_enrich_user_function_defined",
+                "status": "passed",
+                "duration": 0.00030829699244350195,
+                "start": 1778804753.8129838,
+                "stop": 1778804753.8133817,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_aggregate_results_function_defined",
+                "status": "passed",
+                "duration": 0.00029967084992676973,
+                "start": 1778804753.813433,
+                "stop": 1778804753.8138256,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_loop_pattern_present",
+                "status": "passed",
+                "duration": 0.0002555039245635271,
+                "start": 1778804753.813877,
+                "stop": 1778804753.814219,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_aggregate_results_called",
+                "status": "passed",
+                "duration": 0.00024683692026883364,
+                "start": 1778804753.8142707,
+                "stop": 1778804753.8146064,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_wrapper_used",
+                "status": "passed",
+                "duration": 0.00024796207435429096,
+                "start": 1778804753.8146586,
+                "stop": 1778804753.8149903,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

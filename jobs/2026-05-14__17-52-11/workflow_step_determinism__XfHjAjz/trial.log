@@ -1,0 +1,58 @@
+Trial workflow_step_determinism__XfHjAjz failed: Docker compose command failed for environment workflow_step_determinism. Command: docker compose --project-name workflow_step_determinism__xfhjajz --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_step_determinism/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_step_determinism__xfhjajz-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 700B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.78kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done
+#5 DONE 0.0s
+
+#6 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y --no-install-recommends nodejs     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [7/8] RUN cat > /home/user/windmill-project/f/workflows/order_processor.ts << 'EOF'
+#7 CACHED
+
+#8 [4/8] RUN npm install -g windmill-cli
+#8 CACHED
+
+#9 [5/8] RUN mkdir -p /home/user
+#9 CACHED
+
+#10 [6/8] RUN mkdir -p /home/user/windmill-project/f/workflows
+#10 CACHED
+
+#11 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends     curl     wget     ca-certificates     git     python3     python3-pip     python3-pytest     bash     && rm -rf /var/lib/apt/lists/*
+#11 CACHED
+
+#12 [8/8] WORKDIR /home/user/windmill-project
+#12 CACHED
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+
+#14 exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:9ae1603c52a472dbbab147b36920ab9d4142393f806801a2af54e46b5dca5e3e done
+#14 exporting config sha256:1d7465d2c9e055123e7310b911ca0c281ac276e9ae97c643228f3a3737de8a97 done
+#14 exporting attestation manifest sha256:3cc13e49741cb274a3b7afe767477c102f3b567cf91c9ca90a75b1c842aae592 done
+#14 exporting manifest list sha256:d2b17c7c4b3b6b38d8f882e0adbfcc8737eb1456733d6ffbaa8017954507d3a6 done
+#14 naming to docker.io/library/workflow_step_determinism__xfhjajz-main:latest done
+#14 unpacking to docker.io/library/workflow_step_determinism__xfhjajz-main:latest done
+#14 DONE 0.0s
+ Image workflow_step_determinism__xfhjajz-main Built 
+ Network workflow_step_determinism__xfhjajz_default Creating 
+ Network workflow_step_determinism__xfhjajz_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network workflow_step_determinism__xfhjajz_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 

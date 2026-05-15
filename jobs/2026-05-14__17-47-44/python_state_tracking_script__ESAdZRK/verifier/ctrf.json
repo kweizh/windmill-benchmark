@@ -1,0 +1,116 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 0,
+            "failed": 8,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778806171.9937656,
+            "stop": 1778806172.023005
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_file_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0007916700560599566,
+                "start": 1778806172.0011368,
+                "stop": 1778806172.008953,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_file_exists():\n>       assert os.path.isfile(SCRIPT_PATH), (\n            f\"execution_counter.py not found at '{SCRIPT_PATH}'. \"\n            \"The file must be created as part of the task.\"\n        )\nE       AssertionError: execution_counter.py not found at '/home/user/windmill-project/f/scripts/execution_counter.py'. The file must be created as part of the task.\nE       assert False\nE        +  where False = <function isfile at 0xf004befc0220>('/home/user/windmill-project/f/scripts/execution_counter.py')\nE        +    where <function isfile at 0xf004befc0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:19: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_script_imports_get_state_and_set_state",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00033550208900123835,
+                "start": 1778806172.009122,
+                "stop": 1778806172.0111017,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_imports_get_state_and_set_state():\n>       with open(SCRIPT_PATH) as f:\n             ^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/execution_counter.py'\n\ntests/test_final_state.py:26: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_script_defines_main_function",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00042671209666877985,
+                "start": 1778806172.011209,
+                "stop": 1778806172.012915,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_defines_main_function():\n>       with open(SCRIPT_PATH) as f:\n             ^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/execution_counter.py'\n\ntests/test_final_state.py:35: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_script_calls_get_state",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00039866799488663673,
+                "start": 1778806172.0130713,
+                "stop": 1778806172.0145721,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_calls_get_state():\n>       with open(SCRIPT_PATH) as f:\n             ^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/execution_counter.py'\n\ntests/test_final_state.py:44: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_script_calls_set_state",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00046112912241369486,
+                "start": 1778806172.014682,
+                "stop": 1778806172.0164244,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_calls_set_state():\n>       with open(SCRIPT_PATH) as f:\n             ^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/execution_counter.py'\n\ntests/test_final_state.py:53: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_script_returns_correct_structure_on_first_run",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00039516889955848455,
+                "start": 1778806172.016515,
+                "stop": 1778806172.0195026,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_returns_correct_structure_on_first_run():\n        \"\"\"\n        Load execution_counter.py with a mocked wmill module so that get_state()\n        returns None (simulating first run) and set_state() is a no-op.\n        Then call main() and assert the returned dict has the correct keys and values.\n        \"\"\"\n        # Build a lightweight mock for the wmill module\n        mock_wmill = types.ModuleType(\"wmill\")\n        mock_wmill.get_state = lambda: None\n        mock_wmill.set_state = lambda v: None\n    \n        # Insert mock into sys.modules before importing the script\n        sys.modules[\"wmill\"] = mock_wmill\n    \n        try:\n            spec = importlib.util.spec_from_file_location(\"execution_counter\", SCRIPT_PATH)\n            module = importlib.util.module_from_spec(spec)\n>           spec.loader.exec_module(module)\n\ntests/test_final_state.py:78: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n<frozen importlib._bootstrap_external>:991: in exec_module\n    ???\n<frozen importlib._bootstrap_external>:1128: in get_code\n    ???\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <_frozen_importlib_external.SourceFileLoader object at 0xf004be57fbc0>\npath = '/home/user/windmill-project/f/scripts/execution_counter.py'\n\n>   ???\nE   FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/execution_counter.py'\n\n<frozen importlib._bootstrap_external>:1186: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_companion_yaml_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00042925297748297453,
+                "start": 1778806172.0196362,
+                "stop": 1778806172.0212646,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_companion_yaml_exists():\n>       assert os.path.isfile(YAML_PATH), (\n            f\"Companion metadata file not found at '{YAML_PATH}'. \"\n            \"Create 'execution_counter.script.yaml' alongside the Python script.\"\n        )\nE       AssertionError: Companion metadata file not found at '/home/user/windmill-project/f/scripts/execution_counter.script.yaml'. Create 'execution_counter.script.yaml' alongside the Python script.\nE       assert False\nE        +  where False = <function isfile at 0xf004befc0220>('/home/user/windmill-project/f/scripts/execution_counter.script.yaml')\nE        +    where <function isfile at 0xf004befc0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:107: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_companion_yaml_contains_python3_language",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.000412793830037117,
+                "start": 1778806172.02137,
+                "stop": 1778806172.0228224,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_companion_yaml_contains_python3_language():\n>       with open(YAML_PATH) as f:\n             ^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/scripts/execution_counter.script.yaml'\n\ntests/test_final_state.py:114: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

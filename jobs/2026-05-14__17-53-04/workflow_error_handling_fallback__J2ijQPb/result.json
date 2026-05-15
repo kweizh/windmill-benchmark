@@ -1,0 +1,86 @@
+{
+    "id": "99c4d4e7-9971-4aed-a2fb-9227ec613890",
+    "task_name": "workflow_error_handling_fallback",
+    "trial_name": "workflow_error_handling_fallback__J2ijQPb",
+    "trial_uri": "file:///Users/warrenlow/Documents/projects/pochi-harbor/jobs/2026-05-14__17-53-04/workflow_error_handling_fallback__J2ijQPb",
+    "task_id": {
+        "path": "windmill-tasks/workflow_error_handling_fallback"
+    },
+    "source": "windmill-tasks",
+    "task_checksum": "78ad8c32948a016e59381ed06d4553cb0a85a586df9107cfd77ce9baff7d94ee",
+    "config": {
+        "task": {
+            "path": "windmill-tasks/workflow_error_handling_fallback",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "windmill-tasks"
+        },
+        "trial_name": "workflow_error_handling_fallback__J2ijQPb",
+        "trials_dir": "jobs/2026-05-14__17-53-04",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "agents.pochi:Pochi",
+            "model_name": "zai/glm-4.7",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {},
+            "env": {}
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "mounts_json": null,
+            "env": {},
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "job_id": "a3d35984-557d-444e-b2ae-71e14a3cedcf"
+    },
+    "agent_info": {
+        "name": "pochi",
+        "version": "unknown",
+        "model_info": {
+            "name": "glm-4.7",
+            "provider": "zai"
+        }
+    },
+    "agent_result": null,
+    "verifier_result": null,
+    "exception_info": {
+        "exception_type": "RuntimeError",
+        "exception_message": "Docker compose command failed for environment workflow_error_handling_fallback. Command: docker compose --project-name workflow_error_handling_fallback__j2ijqpb --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_error_handling_fallback/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_error_handling_fallback__j2ijqpb-main Building \n#1 [internal] load local bake definitions\n#1 reading from stdin 728B done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile: 932B done\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/ubuntu:22.04\n#3 DONE 1.7s\n\n#4 [internal] load .dockerignore\n#4 transferring context: 2B done\n#4 DONE 0.0s\n\n#5 [internal] load build context\n#5 DONE 0.0s\n\n#6 [1/8] FROM docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7\n#6 resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7\n#6 resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7 0.3s done\n#6 DONE 0.3s\n\n#5 [internal] load build context\n#5 transferring context: 38B done\n#5 DONE 0.0s\n\n#7 [3/8] RUN curl -fsSL https://raw.githubusercontent.com/windmill-labs/windmill/main/cli/install.sh | bash     || pip3 install wmill\n#7 CACHED\n\n#8 [6/8] COPY data_pipeline.ts /home/user/windmill-project/f/workflows/data_pipeline.ts\n#8 CACHED\n\n#9 [7/8] RUN useradd -m -s /bin/bash user && chown -R user:user /home/user/windmill-project\n#9 CACHED\n\n#10 [5/8] RUN mkdir -p /home/user/windmill-project/f/workflows\n#10 CACHED\n\n#11 [2/8] RUN apt-get update && apt-get install -y     curl     ca-certificates     python3     python3-pip     && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [4/8] RUN pip3 install pytest\n#12 CACHED\n\n#13 [8/8] WORKDIR /home/user/windmill-project\n#13 CACHED\n\n#14 exporting to image\n#14 exporting layers 0.0s done\n#14 exporting manifest sha256:195921fcc6577261f33deb652c983af5d7490abe7f450f6e9ae58bb3b3342804 done\n#14 exporting config sha256:7bd803fbd5c3c388b3aedd47a79e0febbeaf23f27c68ea86ea9c409c94c77201 done\n#14 exporting attestation manifest sha256:6a5c7cf9cf7b7fd884755b05b7680866e64966e510d3dc76b9f007826345ebc0 0.0s done\n#14 exporting manifest list sha256:23d72c686a8c8191acd6f959e9fad118c9c56bf2c45fc9b0fad501697b8d82bd 0.0s done\n#14 naming to docker.io/library/workflow_error_handling_fallback__j2ijqpb-main:latest done\n#14 unpacking to docker.io/library/workflow_error_handling_fallback__j2ijqpb-main:latest done\n#14 DONE 0.1s\n\n#15 resolving provenance for metadata file\n#15 DONE 0.0s\n Image workflow_error_handling_fallback__j2ijqpb-main Built \n Network workflow_error_handling_fallback__j2ijqpb_default Creating \n Network workflow_error_handling_fallback__j2ijqpb_default Error Error response from daemon: all predefined address pools have been fully subnetted\nfailed to create network workflow_error_handling_fallback__j2ijqpb_default: Error response from daemon: all predefined address pools have been fully subnetted\n. Stderr: None. ",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 531, in run\n    await self._setup_environment()\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 238, in _setup_environment\n    await self._start_environment_with_retry()\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 193, in async_wrapped\n    return await copy(fn, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 112, in __call__\n    do = await self.iter(retry_state=retry_state)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 157, in iter\n    result = await action(retry_state)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/_utils.py\", line 111, in inner\n    return call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/__init__.py\", line 393, in <lambda>\n    self._add_action_func(lambda rs: rs.outcome.result())\n                                     ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 116, in __call__\n    result = await fn(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 250, in _start_environment_with_retry\n    await asyncio.wait_for(\n  File \"/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py\", line 349, in start\n    await self._run_docker_compose_command([\"up\", \"--detach\", \"--wait\"])\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py\", line 318, in _run_docker_compose_command\n    raise RuntimeError(\nRuntimeError: Docker compose command failed for environment workflow_error_handling_fallback. Command: docker compose --project-name workflow_error_handling_fallback__j2ijqpb --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/workflow_error_handling_fallback/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image workflow_error_handling_fallback__j2ijqpb-main Building \n#1 [internal] load local bake definitions\n#1 reading from stdin 728B done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile: 932B done\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/ubuntu:22.04\n#3 DONE 1.7s\n\n#4 [internal] load .dockerignore\n#4 transferring context: 2B done\n#4 DONE 0.0s\n\n#5 [internal] load build context\n#5 DONE 0.0s\n\n#6 [1/8] FROM docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7\n#6 resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7\n#6 resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7 0.3s done\n#6 DONE 0.3s\n\n#5 [internal] load build context\n#5 transferring context: 38B done\n#5 DONE 0.0s\n\n#7 [3/8] RUN curl -fsSL https://raw.githubusercontent.com/windmill-labs/windmill/main/cli/install.sh | bash     || pip3 install wmill\n#7 CACHED\n\n#8 [6/8] COPY data_pipeline.ts /home/user/windmill-project/f/workflows/data_pipeline.ts\n#8 CACHED\n\n#9 [7/8] RUN useradd -m -s /bin/bash user && chown -R user:user /home/user/windmill-project\n#9 CACHED\n\n#10 [5/8] RUN mkdir -p /home/user/windmill-project/f/workflows\n#10 CACHED\n\n#11 [2/8] RUN apt-get update && apt-get install -y     curl     ca-certificates     python3     python3-pip     && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [4/8] RUN pip3 install pytest\n#12 CACHED\n\n#13 [8/8] WORKDIR /home/user/windmill-project\n#13 CACHED\n\n#14 exporting to image\n#14 exporting layers 0.0s done\n#14 exporting manifest sha256:195921fcc6577261f33deb652c983af5d7490abe7f450f6e9ae58bb3b3342804 done\n#14 exporting config sha256:7bd803fbd5c3c388b3aedd47a79e0febbeaf23f27c68ea86ea9c409c94c77201 done\n#14 exporting attestation manifest sha256:6a5c7cf9cf7b7fd884755b05b7680866e64966e510d3dc76b9f007826345ebc0 0.0s done\n#14 exporting manifest list sha256:23d72c686a8c8191acd6f959e9fad118c9c56bf2c45fc9b0fad501697b8d82bd 0.0s done\n#14 naming to docker.io/library/workflow_error_handling_fallback__j2ijqpb-main:latest done\n#14 unpacking to docker.io/library/workflow_error_handling_fallback__j2ijqpb-main:latest done\n#14 DONE 0.1s\n\n#15 resolving provenance for metadata file\n#15 DONE 0.0s\n Image workflow_error_handling_fallback__j2ijqpb-main Built \n Network workflow_error_handling_fallback__j2ijqpb_default Creating \n Network workflow_error_handling_fallback__j2ijqpb_default Error Error response from daemon: all predefined address pools have been fully subnetted\nfailed to create network workflow_error_handling_fallback__j2ijqpb_default: Error response from daemon: all predefined address pools have been fully subnetted\n. Stderr: None. \n",
+        "occurred_at": "2026-05-14T17:53:30.331862"
+    },
+    "started_at": "2026-05-15T00:53:20.586881Z",
+    "finished_at": "2026-05-15T00:53:31.120092Z",
+    "environment_setup": {
+        "started_at": "2026-05-15T00:53:20.588567Z",
+        "finished_at": "2026-05-15T00:53:30.331032Z"
+    },
+    "agent_setup": null,
+    "agent_execution": null,
+    "verifier": null
+}

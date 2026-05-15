@@ -1,0 +1,134 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 12,
+            "passed": 10,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778807209.015422,
+            "stop": 1778807209.0345886
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "passed",
+                "duration": 0.0002669639652594924,
+                "start": 1778807209.0233715,
+                "stop": 1778807209.0237842,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_required_imports",
+                "status": "passed",
+                "duration": 0.00026063097175210714,
+                "start": 1778807209.0238636,
+                "stop": 1778807209.0242398,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_promotion_id_generated_in_step",
+                "status": "passed",
+                "duration": 0.00029771390836685896,
+                "start": 1778807209.0243087,
+                "stop": 1778807209.0247252,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_get_resume_urls_inside_step",
+                "status": "passed",
+                "duration": 0.00024771306198090315,
+                "start": 1778807209.0248039,
+                "stop": 1778807209.0251386,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wait_for_approval_with_timeout",
+                "status": "passed",
+                "duration": 0.00024350499734282494,
+                "start": 1778807209.0252209,
+                "stop": 1778807209.0255544,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_task_called_for_all_environments",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00028808810748159885,
+                "start": 1778807209.0256195,
+                "stop": 1778807209.0311363,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_deploy_task_called_for_all_environments():\n        \"\"\"deployToEnv (or equivalent) must be invoked for dev, staging, and production.\"\"\"\n        content = _read_file()\n>       assert \"deployToEnv\" in content, (\n            \"'deployToEnv' function reference not found in the workflow file.\"\n        )\nE       AssertionError: 'deployToEnv' function reference not found in the workflow file.\nE       assert 'deployToEnv' in \"// Windmill Workflow: Multi-Environment Promotion with Human Approval\\n// This workflow promotes a build artifact thr...    stoppedAt: 'dev',\\n      error: error instanceof Error ? error.message : 'Unknown error occurred',\\n    };\\n  }\\n}\"\n\n/tests/test_final_state.py:113: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_rollback_task_present",
+                "status": "passed",
+                "duration": 0.00019558798521757126,
+                "start": 1778807209.0312212,
+                "stop": 1778807209.0314999,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_try_catch_blocks",
+                "status": "passed",
+                "duration": 0.0003561329795047641,
+                "start": 1778807209.0315502,
+                "stop": 1778807209.0319843,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_rejection_object_fields",
+                "status": "passed",
+                "duration": 0.00022046302910894156,
+                "start": 1778807209.0320337,
+                "stop": 1778807209.032342,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_success_status_promoted",
+                "status": "passed",
+                "duration": 0.00018941995222121477,
+                "start": 1778807209.0324016,
+                "stop": 1778807209.032668,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_environments_array_complete",
+                "status": "passed",
+                "duration": 0.0002778799971565604,
+                "start": 1778807209.0327234,
+                "stop": 1778807209.0330906,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_function_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00028075510635972023,
+                "start": 1778807209.033142,
+                "stop": 1778807209.0344682,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_function_present():\n        \"\"\"The file must export a workflow() function as the Windmill entry point.\"\"\"\n        content = _read_file()\n>       assert \"workflow(\" in content, (\n            \"No 'workflow(' call/export found. \"\n            \"The file must define and export a Windmill workflow() function.\"\n        )\nE       AssertionError: No 'workflow(' call/export found. The file must define and export a Windmill workflow() function.\nE       assert 'workflow(' in \"// Windmill Workflow: Multi-Environment Promotion with Human Approval\\n// This workflow promotes a build artifact thr...    stoppedAt: 'dev',\\n      error: error instanceof Error ? error.message : 'Unknown error occurred',\\n    };\\n  }\\n}\"\n\n/tests/test_final_state.py:207: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

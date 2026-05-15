@@ -1,0 +1,93 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 15ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 11 items
+
+../../../tests/test_final_state.py .F.F.F.....                           [100%]
+
+=================================== FAILURES ===================================
+______________________________ test_wmill_imports ______________________________
+
+    def test_wmill_imports():
+        """Must import workflow, task, and parallel from wmill."""
+        source = _read_source()
+    
+        missing = []
+        # Accept either 'from wmill import ...' style or 'import wmill; wmill.workflow' etc.
+        # Most natural Windmill Python style uses 'from wmill import ...'
+        for symbol in ("workflow", "task", "parallel"):
+            pattern = rf"from\s+wmill\s+import\s+[^;\n]*\b{symbol}\b|import\s+wmill"
+            if not re.search(pattern, source):
+                missing.append(symbol)
+    
+>       assert not missing, (
+            f"Missing wmill imports for: {missing}. "
+            "The file must contain 'from wmill import workflow, task, parallel' "
+            "(or equivalent combined import)."
+        )
+E       AssertionError: Missing wmill imports for: ['workflow']. The file must contain 'from wmill import workflow, task, parallel' (or equivalent combined import).
+E       assert not ['workflow']
+
+/tests/test_final_state.py:48: AssertionError
+_______________________ test_workflow_decorator_present ________________________
+
+    def test_workflow_decorator_present():
+        """@workflow decorator must be present on the main orchestrator function."""
+        source = _read_source()
+>       assert re.search(r"@workflow\b", source), (
+            "@workflow decorator not found. "
+            "The main pipeline orchestrator must be decorated with @workflow."
+        )
+E       AssertionError: @workflow decorator not found. The main pipeline orchestrator must be decorated with @workflow.
+E       assert None
+E        +  where None = <function search at 0xe6724922d3a0>('@workflow\\b', "import asyncio\nimport json\nimport urllib.request\nimport urllib.error\nfrom wmill import task, parallel\n\n@task\na...rt.json'\n    with open(report_path, 'w') as f:\n        json.dump(report, f, indent=4)\n        \n    return report\n")
+E        +    where <function search at 0xe6724922d3a0> = re.search
+
+/tests/test_final_state.py:71: AssertionError
+________________________ test_parallel_with_concurrency ________________________
+
+    def test_parallel_with_concurrency():
+        """parallel() must be called with concurrency=3."""
+        source = _read_source()
+        # Match parallel(...concurrency=3...) allowing for other args
+        pattern = r"parallel\s*\([^)]*concurrency\s*=\s*3[^)]*\)"
+>       assert re.search(pattern, source), (
+            "parallel() with concurrency=3 not found. "
+            "The workflow must call parallel(..., concurrency=3) to process endpoints "
+            "in bounded concurrency."
+        )
+E       AssertionError: parallel() with concurrency=3 not found. The workflow must call parallel(..., concurrency=3) to process endpoints in bounded concurrency.
+E       assert None
+E        +  where None = <function search at 0xe6724922d3a0>('parallel\\s*\\([^)]*concurrency\\s*=\\s*3[^)]*\\)', "import asyncio\nimport json\nimport urllib.request\nimport urllib.error\nfrom wmill import task, parallel\n\n@task\na...rt.json'\n    with open(report_path, 'w') as f:\n        json.dump(report, f, indent=4)\n        \n    return report\n")
+E        +    where <function search at 0xe6724922d3a0> = re.search
+
+/tests/test_final_state.py:96: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../../tests/test_final_state.py::test_pipeline_file_exists
+PASSED ../../../tests/test_final_state.py::test_task_decorator_present
+PASSED ../../../tests/test_final_state.py::test_asyncio_sleep_present
+PASSED ../../../tests/test_final_state.py::test_retry_loop_present
+PASSED ../../../tests/test_final_state.py::test_error_handling_present
+PASSED ../../../tests/test_final_state.py::test_pipeline_report_path_referenced
+PASSED ../../../tests/test_final_state.py::test_success_rate_referenced
+PASSED ../../../tests/test_final_state.py::test_json_write_pattern
+FAILED ../../../tests/test_final_state.py::test_wmill_imports - AssertionErro...
+FAILED ../../../tests/test_final_state.py::test_workflow_decorator_present - ...
+FAILED ../../../tests/test_final_state.py::test_parallel_with_concurrency - A...
+========================= 3 failed, 8 passed in 0.03s ==========================

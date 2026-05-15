@@ -1,0 +1,56 @@
+- Initializing MCP connections...
+You
+# Preserving your work Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable. --- # Full SaaS Customer Onboarding Workflow ## Instruction Build a TypeScript Windmill workflow at `/home/user/windmill-project/f/workflows/onboarding.ts` that orchestrates the complete customer onboarding process for a SaaS product. The workflow accepts: - `companyName: string` - `adminEmail: string` - `plan: 'starter' | 'pro' | 'enterprise'` It must orchestrate the following sequence with proper error handling and human review for enterprise plans: 1. Generate a unique `onboardingId` using `step()`. 2. In parallel, provision the following resources simultaneously (use `Promise.all()`): - Create a workspace (returns `{ workspaceId, companyName }`) - Create the admin user account (returns `{ userId, email }`) - Configure billing for the plan (returns `{ billingId, plan }`) 3. If provisioning any resource fails, call a `cleanupPartialProvisioning(onboardingId)` task and return a failure object. 4. If the plan is `'enterprise'`, pause for human review using `waitForApproval({ timeout: 172800 })` (48 hours). On rejection, call cleanup and return `{ onboardingId, status: 'rejected_at_review' }`. 5. Run post-provisioning setup tasks sequentially: - Configure integrations for the plan: `configureIntegrations(workspaceId, plan)` — returns a list of enabled integrations - Send welcome email: `sendWelcomeEmail(adminEmail, workspaceId, plan)` — returns `{ sent: true }` 6. Write an onboarding report to `/home/user/windmill-project/onboarding_report.json` containing: `{ onboardingId, companyName, adminEmail, plan, workspaceId, userId, billingId }`. 7. Return the full onboarding summary. ## Constraints - Project path: `/home/user/windmill-project` - Output file: `/home/user/windmill-project/f/workflows/onboarding.ts` - Report file: `/home/user/windmill-project/onboarding_report.json` - For enterprise plans, `waitForApproval` is REQUIRED with timeout 172800 (48h) - Provisioning MUST use `Promise.all()` for the 3 parallel tasks   
+
+Pochi
+💭 Thinking for 1491 characters   
+I'll build a TypeScript Windmill workflow for the complete SaaS customer onboarding process. Let me first check the project structure to understand the setup.   
+📂 Listing files in /home/user/windmill-project recursively ✔ 
+💭 Thinking for 134 characters   
+📂 Listing files in /home/user/windmill-project/f/workflows ✔ 
+💭 Thinking for 518 characters   
+✏️  Writing /home/user/windmill-project/f/workflows/onboarding.ts ✔ 
+💭 Thinking for 129 characters   
+💫 Executing mkdir -p /logs/artifacts/code ✔ 
+💭 Thinking for 62 characters   
+💫 Executing cp /home/user/windmill-project/f/workflows/onboarding.ts /logs/artifacts/code/onboarding.ts ✔ 
+💭 Thinking for 129 characters   
+✏️  Writing /logs/artifacts/workflow_documentation.md ✔ 
+💭 Thinking for 141 characters   
+✏️  Writing /logs/artifacts/test_examples.md ✔ 
+💭 Thinking for 1384 characters   
+✏️  Writing /logs/artifacts/implementation_summary.md ✔ 
+💭 Thinking for 126 characters   
+🎉 Task Completed
+Successfully built the TypeScript Windmill workflow for complete SaaS customer onboarding at `/home/user/windmill-project/f/workflows/onboarding.ts`.
+
+## Implementation Summary
+
+### Workflow Features
+- **Input Parameters**: `companyName`, `adminEmail`, `plan` ('starter' | 'pro' | 'enterprise')
+- **Unique Onboarding ID**: Generated using `step()` with timestamp and random string
+- **Parallel Resource Provisioning**: Uses `Promise.all()` to simultaneously create workspace, admin user, and billing
+- **Error Handling**: Automatic cleanup via `cleanupPartialProvisioning()` on any provisioning failure
+- **Enterprise Review**: 48-hour human approval using `waitForApproval({ timeout: 172800 })`
+- **Post-Provisioning Setup**: Sequential execution of integration configuration and welcome email
+- **Onboarding Report**: Written to `/home/user/windmill-project/onboarding_report.json` with all IDs and status
+
+### Integration Configuration by Plan
+- **Starter**: email, basic_analytics
+- **Pro**: email, basic_analytics, advanced_analytics, api_access
+- **Enterprise**: All pro integrations + sso, custom_integrations, webhooks
+
+### Return Objects
+- **Success**: Complete summary with all IDs, status, integrations, and email confirmation
+- **Provisioning Failure**: Failure object with error details and cleanup confirmation
+- **Enterprise Rejection**: Rejection status with reason
+
+### Files Created
+- `/home/user/windmill-project/f/workflows/onboarding.ts` - Main workflow implementation
+- `/logs/artifacts/code/onboarding.ts` - Backup copy
+- `/logs/artifacts/workflow_documentation.md` - Comprehensive documentation
+- `/logs/artifacts/test_examples.md` - Test cases and usage examples
+- `/logs/artifacts/implementation_summary.md` - Technical implementation details
+
+All constraints satisfied: parallel provisioning with `Promise.all()`, enterprise review with 48-hour timeout, proper error handling with cleanup, and complete onboarding reporting.   
+  

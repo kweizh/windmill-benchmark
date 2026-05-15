@@ -1,0 +1,74 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778802647.326351,
+            "stop": 1778802647.3345218
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_imports_get_state_and_set_state",
+                "status": "passed",
+                "duration": 0.00031324499286711216,
+                "start": 1778802647.3320997,
+                "stop": 1778802647.3325663,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_calls_get_state",
+                "status": "passed",
+                "duration": 0.00024770607706159353,
+                "start": 1778802647.332637,
+                "stop": 1778802647.333007,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_calls_set_state",
+                "status": "passed",
+                "duration": 0.0001910399878397584,
+                "start": 1778802647.3330772,
+                "stop": 1778802647.3333519,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_broken_reset_pattern_removed",
+                "status": "passed",
+                "duration": 0.0001752888783812523,
+                "start": 1778802647.3334057,
+                "stop": 1778802647.3336592,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_return_dict_keys_preserved",
+                "status": "passed",
+                "duration": 0.00022237293887883425,
+                "start": 1778802647.3337145,
+                "stop": 1778802647.3340578,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_import_time_preserved",
+                "status": "passed",
+                "duration": 0.00019983004312962294,
+                "start": 1778802647.3341284,
+                "stop": 1778802647.334413,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

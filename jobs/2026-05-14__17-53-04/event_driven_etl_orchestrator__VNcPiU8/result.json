@@ -1,0 +1,86 @@
+{
+    "id": "5b1fab6a-f04c-4e7e-8193-4967232e010f",
+    "task_name": "event_driven_etl_orchestrator",
+    "trial_name": "event_driven_etl_orchestrator__VNcPiU8",
+    "trial_uri": "file:///Users/warrenlow/Documents/projects/pochi-harbor/jobs/2026-05-14__17-53-04/event_driven_etl_orchestrator__VNcPiU8",
+    "task_id": {
+        "path": "windmill-tasks/event_driven_etl_orchestrator"
+    },
+    "source": "windmill-tasks",
+    "task_checksum": "806e852464d4bc4656bb9c6402446ec68b3b80a908144b76488eae081e195622",
+    "config": {
+        "task": {
+            "path": "windmill-tasks/event_driven_etl_orchestrator",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "windmill-tasks"
+        },
+        "trial_name": "event_driven_etl_orchestrator__VNcPiU8",
+        "trials_dir": "jobs/2026-05-14__17-53-04",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "agents.pochi:Pochi",
+            "model_name": "zai/glm-4.7",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {},
+            "env": {}
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "mounts_json": null,
+            "env": {},
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "job_id": "a3d35984-557d-444e-b2ae-71e14a3cedcf"
+    },
+    "agent_info": {
+        "name": "pochi",
+        "version": "unknown",
+        "model_info": {
+            "name": "glm-4.7",
+            "provider": "zai"
+        }
+    },
+    "agent_result": null,
+    "verifier_result": null,
+    "exception_info": {
+        "exception_type": "RuntimeError",
+        "exception_message": "Docker compose command failed for environment event_driven_etl_orchestrator. Command: docker compose --project-name event_driven_etl_orchestrator__vncpiu8 --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/event_driven_etl_orchestrator/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image event_driven_etl_orchestrator__vncpiu8-main Building \n#1 [internal] load local bake definitions\n#1 reading from stdin 716B done\n#1 DONE 0.0s\n\n#2 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b\n#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done\n#2 DONE 0.0s\n\n#3 [internal] load build definition from Dockerfile\n#3 transferring dockerfile: 1.75kB done\n#3 DONE 0.0s\n\n#4 [internal] load metadata for docker.io/library/ubuntu:24.04\n#4 DONE 0.0s\n\n#5 [internal] load .dockerignore\n#5 transferring context: 2B done\n#5 DONE 0.0s\n\n#6 [4/8] RUN npm install -g windmill-cli\n#6 CACHED\n\n#7 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends     ca-certificates     curl     git     gnupg     python3     python3-pip     python3-pytest     unzip     wget     && rm -rf /var/lib/apt/lists/*\n#7 CACHED\n\n#8 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y --no-install-recommends nodejs     && rm -rf /var/lib/apt/lists/*\n#8 CACHED\n\n#9 [5/8] RUN mkdir -p /home/user/windmill-project/f/workflows\n#9 CACHED\n\n#10 [6/8] RUN echo '[]' > /home/user/windmill-project/processed_events.json\n#10 CACHED\n\n#11 [7/8] RUN wmill --version\n#11 CACHED\n\n#12 [8/8] WORKDIR /home/user/windmill-project\n#12 CACHED\n\n#13 exporting to image\n#13 exporting layers done\n#13 exporting manifest sha256:1aed9a4d0d6bfc4a6b62168cf31aac3c856e8d99a4e9ac6f80dd0345f144417a done\n#13 exporting config sha256:ba02922669bc2442f58899c863fbcff34a9cd5c6fc525169e8a95b16739ac874 done\n#13 exporting attestation manifest sha256:239cbf18d6f9c9e232e11f5c5ba73bb9d6708147baa5a32d0c405013ca455f37 0.0s done\n#13 exporting manifest list sha256:62a24f9b9f789b3f24cd58806a59e7ad8b9f95dc3a9430df5cd8f1416b9d75d1 0.0s done\n#13 naming to docker.io/library/event_driven_etl_orchestrator__vncpiu8-main:latest\n#13 naming to docker.io/library/event_driven_etl_orchestrator__vncpiu8-main:latest done\n#13 unpacking to docker.io/library/event_driven_etl_orchestrator__vncpiu8-main:latest done\n#13 DONE 0.1s\n\n#14 resolving provenance for metadata file\n#14 DONE 0.0s\n Image event_driven_etl_orchestrator__vncpiu8-main Built \n Network event_driven_etl_orchestrator__vncpiu8_default Creating \n Network event_driven_etl_orchestrator__vncpiu8_default Error Error response from daemon: all predefined address pools have been fully subnetted\nfailed to create network event_driven_etl_orchestrator__vncpiu8_default: Error response from daemon: all predefined address pools have been fully subnetted\n. Stderr: None. ",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 531, in run\n    await self._setup_environment()\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 238, in _setup_environment\n    await self._start_environment_with_retry()\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 193, in async_wrapped\n    return await copy(fn, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 112, in __call__\n    do = await self.iter(retry_state=retry_state)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 157, in iter\n    result = await action(retry_state)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/_utils.py\", line 111, in inner\n    return call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/__init__.py\", line 393, in <lambda>\n    self._add_action_func(lambda rs: rs.outcome.result())\n                                     ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 116, in __call__\n    result = await fn(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 250, in _start_environment_with_retry\n    await asyncio.wait_for(\n  File \"/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py\", line 349, in start\n    await self._run_docker_compose_command([\"up\", \"--detach\", \"--wait\"])\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py\", line 318, in _run_docker_compose_command\n    raise RuntimeError(\nRuntimeError: Docker compose command failed for environment event_driven_etl_orchestrator. Command: docker compose --project-name event_driven_etl_orchestrator__vncpiu8 --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/event_driven_etl_orchestrator/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image event_driven_etl_orchestrator__vncpiu8-main Building \n#1 [internal] load local bake definitions\n#1 reading from stdin 716B done\n#1 DONE 0.0s\n\n#2 [1/8] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b\n#2 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b done\n#2 DONE 0.0s\n\n#3 [internal] load build definition from Dockerfile\n#3 transferring dockerfile: 1.75kB done\n#3 DONE 0.0s\n\n#4 [internal] load metadata for docker.io/library/ubuntu:24.04\n#4 DONE 0.0s\n\n#5 [internal] load .dockerignore\n#5 transferring context: 2B done\n#5 DONE 0.0s\n\n#6 [4/8] RUN npm install -g windmill-cli\n#6 CACHED\n\n#7 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends     ca-certificates     curl     git     gnupg     python3     python3-pip     python3-pytest     unzip     wget     && rm -rf /var/lib/apt/lists/*\n#7 CACHED\n\n#8 [3/8] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y --no-install-recommends nodejs     && rm -rf /var/lib/apt/lists/*\n#8 CACHED\n\n#9 [5/8] RUN mkdir -p /home/user/windmill-project/f/workflows\n#9 CACHED\n\n#10 [6/8] RUN echo '[]' > /home/user/windmill-project/processed_events.json\n#10 CACHED\n\n#11 [7/8] RUN wmill --version\n#11 CACHED\n\n#12 [8/8] WORKDIR /home/user/windmill-project\n#12 CACHED\n\n#13 exporting to image\n#13 exporting layers done\n#13 exporting manifest sha256:1aed9a4d0d6bfc4a6b62168cf31aac3c856e8d99a4e9ac6f80dd0345f144417a done\n#13 exporting config sha256:ba02922669bc2442f58899c863fbcff34a9cd5c6fc525169e8a95b16739ac874 done\n#13 exporting attestation manifest sha256:239cbf18d6f9c9e232e11f5c5ba73bb9d6708147baa5a32d0c405013ca455f37 0.0s done\n#13 exporting manifest list sha256:62a24f9b9f789b3f24cd58806a59e7ad8b9f95dc3a9430df5cd8f1416b9d75d1 0.0s done\n#13 naming to docker.io/library/event_driven_etl_orchestrator__vncpiu8-main:latest\n#13 naming to docker.io/library/event_driven_etl_orchestrator__vncpiu8-main:latest done\n#13 unpacking to docker.io/library/event_driven_etl_orchestrator__vncpiu8-main:latest done\n#13 DONE 0.1s\n\n#14 resolving provenance for metadata file\n#14 DONE 0.0s\n Image event_driven_etl_orchestrator__vncpiu8-main Built \n Network event_driven_etl_orchestrator__vncpiu8_default Creating \n Network event_driven_etl_orchestrator__vncpiu8_default Error Error response from daemon: all predefined address pools have been fully subnetted\nfailed to create network event_driven_etl_orchestrator__vncpiu8_default: Error response from daemon: all predefined address pools have been fully subnetted\n. Stderr: None. \n",
+        "occurred_at": "2026-05-14T17:53:07.977962"
+    },
+    "started_at": "2026-05-15T00:53:06.627493Z",
+    "finished_at": "2026-05-15T00:53:08.907289Z",
+    "environment_setup": {
+        "started_at": "2026-05-15T00:53:06.628522Z",
+        "finished_at": "2026-05-15T00:53:07.977269Z"
+    },
+    "agent_setup": null,
+    "agent_execution": null,
+    "verifier": null
+}

@@ -1,0 +1,164 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 12,
+            "passed": 0,
+            "failed": 12,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778806291.1258023,
+            "stop": 1778806291.153714
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003637520130723715,
+                "start": 1778806291.1318834,
+                "stop": 1778806291.1373658,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_file_exists():\n        \"\"\"The workflow file must exist at the specified path.\"\"\"\n>       assert os.path.isfile(TARGET_FILE), (\n            f\"Expected file '{TARGET_FILE}' to exist, but it was not found.\"\n        )\nE       AssertionError: Expected file '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts' to exist, but it was not found.\nE       assert False\nE        +  where False = <function isfile at 0xe5ec26a80220>('/home/user/windmill-project/f/workflows/deploy_with_rollback.ts')\nE        +    where <function isfile at 0xe5ec26a80220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\n/tests/test_final_state.py:29: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_step_and_wait_for_approval_imported",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003063769545406103,
+                "start": 1778806291.1374385,
+                "stop": 1778806291.1391962,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_step_and_wait_for_approval_imported():\n        \"\"\"Both `step` and `waitForApproval` must be imported from 'windmill-client'.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:40: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_step_deploy_id_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00019829394295811653,
+                "start": 1778806291.1392627,
+                "stop": 1778806291.1406555,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_step_deploy_id_present():\n        \"\"\"The workflow must use await step('deploy_id', ...) to capture the deploy ID.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:66: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_crypto_random_uuid_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0002464180579409003,
+                "start": 1778806291.1407225,
+                "stop": 1778806291.1421216,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_crypto_random_uuid_present():\n        \"\"\"crypto.randomUUID() must be used to generate the deploy ID.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:82: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_task_run_tests_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00019662582781165838,
+                "start": 1778806291.1421747,
+                "stop": 1778806291.1435976,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_task_run_tests_present():\n        \"\"\"task(runTests) must be called to run tests before deployment.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:98: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_task_deploy_to_staging_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0002024179557338357,
+                "start": 1778806291.1436696,
+                "stop": 1778806291.1451154,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_task_deploy_to_staging_present():\n        \"\"\"task(deployToStaging) must be called to deploy to the staging environment.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:113: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_task_rollback_staging_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0002061259001493454,
+                "start": 1778806291.145175,
+                "stop": 1778806291.1465173,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_task_rollback_staging_present():\n        \"\"\"task(rollbackStaging) must be called in rollback scenarios.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:128: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_wait_for_approval_with_timeout_7200",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00019854202400892973,
+                "start": 1778806291.1465824,
+                "stop": 1778806291.1478612,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_wait_for_approval_with_timeout_7200():\n        \"\"\"waitForApproval must be called with { timeout: 7200 }.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:144: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_task_deploy_to_production_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00019991898443549871,
+                "start": 1778806291.1479158,
+                "stop": 1778806291.149282,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_task_deploy_to_production_present():\n        \"\"\"task(deployToProduction) must be called to deploy to the production environment.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:159: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_task_rollback_production_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00019991688895970583,
+                "start": 1778806291.149336,
+                "stop": 1778806291.1507242,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_task_rollback_production_present():\n        \"\"\"task(rollbackProduction) must be called in the production error catch block.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:174: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_at_least_two_try_blocks_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00022150191944092512,
+                "start": 1778806291.1507773,
+                "stop": 1778806291.152287,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_at_least_two_try_blocks_present():\n        \"\"\"At least 2 try { blocks must be present \u2014 one for staging, one for production.\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:190: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_call_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00018741784151643515,
+                "start": 1778806291.1523485,
+                "stop": 1778806291.1536086,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_call_present():\n        \"\"\"The main export must be wrapped with workflow().\"\"\"\n>       content = _read_file()\n                  ^^^^^^^^^^^^\n\n/tests/test_final_state.py:206: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_file() -> str:\n        \"\"\"Read and return the content of the target file.\"\"\"\n>       with open(TARGET_FILE, \"r\", encoding=\"utf-8\") as fh:\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/windmill-project/f/workflows/deploy_with_rollback.ts'\n\n/tests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

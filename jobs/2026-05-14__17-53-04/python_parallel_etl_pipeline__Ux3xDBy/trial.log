@@ -1,0 +1,46 @@
+Trial python_parallel_etl_pipeline__Ux3xDBy failed: Docker compose command failed for environment python_parallel_etl_pipeline. Command: docker compose --project-name python_parallel_etl_pipeline__ux3xdby --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/python_parallel_etl_pipeline/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image python_parallel_etl_pipeline__ux3xdby-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 712B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.14kB done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.0s
+
+#4 [1/4] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#4 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [2/4] RUN apt-get update -y &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl wget ca-certificates git python3 python3-pip python3-pytest bash &&     pip3 install --break-system-packages wmill &&     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&     apt-get install -y --no-install-recommends nodejs &&     npm install -g windmill-cli &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/4] RUN mkdir -p /home/user && chmod 0755 /home/user
+#7 CACHED
+
+#8 [4/4] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:bcb5e1a36ea8dbac3d3f2496fc0575a88404947fe0ad072da34a32983d1d5941 done
+#9 exporting config sha256:612475a72a0af40e18eaf385424915f13ad3ecc43b52d0c6f34b9f4b6452c610 done
+#9 exporting attestation manifest sha256:df9712eb1d46646536e10c53d45427557031e4cce5923cc19b91d392dffed75a 0.0s done
+#9 exporting manifest list sha256:abe25ee1e6ed3213b598bdf034c21091da18c0828edfa76ba727e41ffcca9739 0.0s done
+#9 naming to docker.io/library/python_parallel_etl_pipeline__ux3xdby-main:latest done
+#9 unpacking to docker.io/library/python_parallel_etl_pipeline__ux3xdby-main:latest done
+#9 DONE 0.1s
+
+#10 resolving provenance for metadata file
+#10 DONE 0.0s
+ Image python_parallel_etl_pipeline__ux3xdby-main Built 
+ Network python_parallel_etl_pipeline__ux3xdby_default Creating 
+ Network python_parallel_etl_pipeline__ux3xdby_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network python_parallel_etl_pipeline__ux3xdby_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 

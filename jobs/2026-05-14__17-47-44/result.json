@@ -1,0 +1,61 @@
+{
+    "id": "d38b15fe-4108-4a86-93ad-60d36751c3b6",
+    "started_at": "2026-05-14T17:47:45.949742",
+    "finished_at": null,
+    "n_total_trials": 30,
+    "stats": {
+        "n_trials": 16,
+        "n_errors": 16,
+        "evals": {
+            "pochi__gpt-5.2-codex__windmill-tasks": {
+                "n_trials": 11,
+                "n_errors": 16,
+                "metrics": [
+                    {
+                        "mean": 0.0
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "deterministic_wac_refactor__PP4BqBB",
+                            "cron_monitor_with_state__FEitwqG",
+                            "resource_fetch_in_script__yX8SnPn",
+                            "event_driven_etl_orchestrator__jBbcVK3",
+                            "python_state_tracking_script__ESAdZRK",
+                            "taskscript_external_reference__7zBSHaH",
+                            "script_metadata_yaml__ZZqQgYr",
+                            "workflow_approval_gate__6i9pewi",
+                            "workflow_parallel_fan_out_fan_in__dDTXcBJ",
+                            "deployment_pipeline_with_rollbac__7ujuaj3",
+                            "workflow_step_determinism__uN732XP"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "NonZeroAgentExitCodeError": [
+                        "deterministic_wac_refactor__PP4BqBB",
+                        "cron_monitor_with_state__FEitwqG",
+                        "resource_fetch_in_script__yX8SnPn",
+                        "event_driven_etl_orchestrator__jBbcVK3",
+                        "python_state_tracking_script__ESAdZRK",
+                        "taskscript_external_reference__7zBSHaH",
+                        "script_metadata_yaml__ZZqQgYr",
+                        "workflow_approval_gate__6i9pewi",
+                        "workflow_parallel_fan_out_fan_in__dDTXcBJ",
+                        "deployment_pipeline_with_rollbac__7ujuaj3",
+                        "workflow_step_determinism__uN732XP",
+                        "workflow_task_with_worker_tag__ugKiio5"
+                    ],
+                    "CancelledError": [
+                        "multi_env_promotion_workflow__NKQrNjA",
+                        "self_healing_api_pipeline__c9rYFaq",
+                        "task_with_cache_ttl__bJJQQ4u",
+                        "workflow_parallel_items_concurre__E8Em38H"
+                    ]
+                }
+            }
+        }
+    },
+    "trial_results": []
+}

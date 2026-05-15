@@ -1,0 +1,107 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 3,
+            "failed": 5,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778805082.0561934,
+            "stop": 1778805082.0743644
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists",
+                "status": "passed",
+                "duration": 0.0005036580841988325,
+                "start": 1778805082.061383,
+                "stop": 1778805082.0620708,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_imports_taskscript_from_windmill_client",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0011491059558466077,
+                "start": 1778805082.06215,
+                "stop": 1778805082.0682871,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_imports_taskscript_from_windmill_client():\n        content = _read_file()\n>       assert \"taskScript\" in content, (\n            \"Expected 'taskScript' to be imported from 'windmill-client'. \"\n            \"Add 'taskScript' to the import statement, e.g.: \"\n            \"import { task, taskScript, workflow } from 'windmill-client';\"\n        )\nE       AssertionError: Expected 'taskScript' to be imported from 'windmill-client'. Add 'taskScript' to the import statement, e.g.: import { task, taskScript, workflow } from 'windmill-client';\nE       assert 'taskScript' in \"import { task, workflow } from 'windmill-client';\\n\\nasync function extractUsers(params: { limit: number }) {\\n  cons...transformed = await task(transformRecords)({ records: users });\\n  return await task(saveResults)(transformed);\\n});\\n\"\n\ntests/test_final_state.py:34: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_calls_taskscript_extract_users",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00040316011290997267,
+                "start": 1778805082.068353,
+                "stop": 1778805082.0695572,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_calls_taskscript_extract_users():\n        content = _read_file()\n>       assert \"taskScript('f/data/extract_users')\" in content or \\\n               'taskScript(\"f/data/extract_users\")' in content, (\n            \"Expected 'taskScript('f/data/extract_users')' to be present in data_orchestrator.ts. \"\n            \"Replace the inline task(extractUsers) call with taskScript('f/data/extract_users').\"\n        )\nE       AssertionError: Expected 'taskScript('f/data/extract_users')' to be present in data_orchestrator.ts. Replace the inline task(extractUsers) call with taskScript('f/data/extract_users').\nE       assert (\"taskScript('f/data/extract_users')\" in \"import { task, workflow } from 'windmill-client';\\n\\nasync function extractUsers(params: { limit: number }) {\\n  cons...transformed = await task(transformRecords)({ records: users });\\n  return await task(saveResults)(transformed);\\n});\\n\" or 'taskScript(\"f/data/extract_users\")' in \"import { task, workflow } from 'windmill-client';\\n\\nasync function extractUsers(params: { limit: number }) {\\n  cons...transformed = await task(transformRecords)({ records: users });\\n  return await task(saveResults)(transformed);\\n});\\n\")\n\ntests/test_final_state.py:50: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_calls_taskscript_transform_records",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00037041003815829754,
+                "start": 1778805082.0696287,
+                "stop": 1778805082.070762,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_calls_taskscript_transform_records():\n        content = _read_file()\n>       assert \"taskScript('f/data/transform_records')\" in content or \\\n               'taskScript(\"f/data/transform_records\")' in content, (\n            \"Expected 'taskScript('f/data/transform_records')' to be present in data_orchestrator.ts. \"\n            \"Replace the inline task(transformRecords) call with taskScript('f/data/transform_records').\"\n        )\nE       AssertionError: Expected 'taskScript('f/data/transform_records')' to be present in data_orchestrator.ts. Replace the inline task(transformRecords) call with taskScript('f/data/transform_records').\nE       assert (\"taskScript('f/data/transform_records')\" in \"import { task, workflow } from 'windmill-client';\\n\\nasync function extractUsers(params: { limit: number }) {\\n  cons...transformed = await task(transformRecords)({ records: users });\\n  return await task(saveResults)(transformed);\\n});\\n\" or 'taskScript(\"f/data/transform_records\")' in \"import { task, workflow } from 'windmill-client';\\n\\nasync function extractUsers(params: { limit: number }) {\\n  cons...transformed = await task(transformRecords)({ records: users });\\n  return await task(saveResults)(transformed);\\n});\\n\")\n\ntests/test_final_state.py:59: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_save_results_still_inline",
+                "status": "passed",
+                "duration": 0.0003712859470397234,
+                "start": 1778805082.0708256,
+                "stop": 1778805082.0713248,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_extract_users_function_removed",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0004676179960370064,
+                "start": 1778805082.071402,
+                "stop": 1778805082.0726316,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_extract_users_function_removed():\n        content = _read_file()\n        count = content.count(\"async function extractUsers\")\n>       assert count == 0, (\n            f\"Found {count} occurrence(s) of 'async function extractUsers' in data_orchestrator.ts. \"\n            \"The inline extractUsers function definition must be completely removed after refactoring.\"\n        )\nE       AssertionError: Found 1 occurrence(s) of 'async function extractUsers' in data_orchestrator.ts. The inline extractUsers function definition must be completely removed after refactoring.\nE       assert 1 == 0\n\ntests/test_final_state.py:85: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_transform_records_function_removed",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00035690993536263704,
+                "start": 1778805082.072705,
+                "stop": 1778805082.0737307,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_transform_records_function_removed():\n        content = _read_file()\n        count = content.count(\"async function transformRecords\")\n>       assert count == 0, (\n            f\"Found {count} occurrence(s) of 'async function transformRecords' in data_orchestrator.ts. \"\n            \"The inline transformRecords function definition must be completely removed after refactoring.\"\n        )\nE       AssertionError: Found 1 occurrence(s) of 'async function transformRecords' in data_orchestrator.ts. The inline transformRecords function definition must be completely removed after refactoring.\nE       assert 1 == 0\n\ntests/test_final_state.py:94: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_wrapper_present",
+                "status": "passed",
+                "duration": 0.00030474504455924034,
+                "start": 1778805082.0738008,
+                "stop": 1778805082.0742235,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

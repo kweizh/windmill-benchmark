@@ -1,0 +1,2 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Trial event_driven_etl_orchestrator__xSdpMCp cancelled

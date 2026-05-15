@@ -1,0 +1,92 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778806672.7787948,
+            "stop": 1778806672.7884514
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_file_exists",
+                "status": "passed",
+                "duration": 0.00025187607388943434,
+                "start": 1778806672.7851796,
+                "stop": 1778806672.7855706,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_get_state_imported",
+                "status": "passed",
+                "duration": 0.00021879503037780523,
+                "start": 1778806672.7856433,
+                "stop": 1778806672.7859404,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_get_state_called",
+                "status": "passed",
+                "duration": 0.00022166804410517216,
+                "start": 1778806672.7859936,
+                "stop": 1778806672.7863395,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_set_state_called",
+                "status": "passed",
+                "duration": 0.00024370907340198755,
+                "start": 1778806672.786395,
+                "stop": 1778806672.7867486,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_status_change_condition_present",
+                "status": "passed",
+                "duration": 0.00022212602198123932,
+                "start": 1778806672.7868035,
+                "stop": 1778806672.7871177,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_return_dict_has_changed_key",
+                "status": "passed",
+                "duration": 0.00021354295313358307,
+                "start": 1778806672.7871883,
+                "stop": 1778806672.7875562,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_return_dict_has_alerted_key",
+                "status": "passed",
+                "duration": 0.000256710103712976,
+                "start": 1778806672.7876158,
+                "stop": 1778806672.7879777,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_send_alert_is_conditional",
+                "status": "passed",
+                "duration": 0.00020941696129739285,
+                "start": 1778806672.7880328,
+                "stop": 1778806672.7883363,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

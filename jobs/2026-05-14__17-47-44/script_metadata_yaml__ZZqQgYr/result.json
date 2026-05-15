@@ -1,0 +1,106 @@
+{
+    "id": "91a3ba81-589e-4f78-95d8-b4aefc7bed6b",
+    "task_name": "script_metadata_yaml",
+    "trial_name": "script_metadata_yaml__ZZqQgYr",
+    "trial_uri": "file:///Users/warrenlow/Documents/projects/pochi-harbor/jobs/2026-05-14__17-47-44/script_metadata_yaml__ZZqQgYr",
+    "task_id": {
+        "path": "windmill-tasks/script_metadata_yaml"
+    },
+    "source": "windmill-tasks",
+    "task_checksum": "488cd10a6181a2b9d0e1a1b9d2e4d82bbf582085416be69bf690360abad6fbac",
+    "config": {
+        "task": {
+            "path": "windmill-tasks/script_metadata_yaml",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "windmill-tasks"
+        },
+        "trial_name": "script_metadata_yaml__ZZqQgYr",
+        "trials_dir": "jobs/2026-05-14__17-47-44",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "agents.pochi:Pochi",
+            "model_name": "opnai/gpt-5.2-codex",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {},
+            "env": {}
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "mounts_json": null,
+            "env": {},
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "job_id": "d38b15fe-4108-4a86-93ad-60d36751c3b6"
+    },
+    "agent_info": {
+        "name": "pochi",
+        "version": "0.6.8",
+        "model_info": {
+            "name": "gpt-5.2-codex",
+            "provider": "opnai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 0,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 0,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "exception_info": {
+        "exception_type": "NonZeroAgentExitCodeError",
+        "exception_message": "Command failed (exit 1): export PATH=\"$HOME/.pochi/bin:$PATH\"; pochi --model opnai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'\n# Preserving your work\n\nSave a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.\n\n---\n\n# Windmill Script Metadata YAML\n\n## Background\nWindmill uses companion `.script.yaml` files to describe a script's schema, summary, description, language, and template status. These metadata files allow Windmill to validate inputs, render a UI form, and document the script without running it.\n\nYou have a pre-existing TypeScript script at `/home/user/windmill-project/f/analytics/report.ts`:\n\n```typescript\nexport async function main(start_date: string, end_date: string, limit: number = 100) {\n  return { start_date, end_date, limit, report: \"placeholder\" };\n}\n```\n\n## Requirements\nCreate a companion metadata file `f/analytics/report.script.yaml` inside the project directory `/home/user/windmill-project` with the following content:\n\n1. `summary`: `\"Generate analytics report\"`\n2. `description`: `\"Generates a date-range analytics report with configurable row limit\"`\n3. `schema` with three properties:\n   - `start_date`: type `string`, required\n   - `end_date`: type `string`, required\n   - `limit`: type `integer`, default `100`, **not** required\n4. `language`: `bun`\n5. `is_template`: `false`\n\n## Implementation Guide\n\n1. Navigate to the project directory:\n   ```bash\n   cd /home/user/windmill-project\n   ```\n2. Create the metadata file `f/analytics/report.script.yaml` with the correct YAML content. You may write the file directly — no `wmill` CLI command is needed to produce a metadata file. Example structure:\n   ```yaml\n   summary: \"Generate analytics report\"\n   description: \"Generates a date-range analytics report with configurable row limit\"\n   schema:\n     $schema: \"https://json-schema.org/draft/2020-12/schema\"\n     type: object\n     properties:\n       start_date:\n         type: string\n         description: \"Start date for the report range\"\n       end_date:\n         type: string\n         description: \"End date for the report range\"\n       limit:\n         type: integer\n         description: \"Maximum number of rows to return\"\n         default: 100\n     required:\n       - start_date\n       - end_date\n   is_template: false\n   language: bun\n   ```\n\n## Constraints\n- Project path: `/home/user/windmill-project`\n- The metadata file must be located at `f/analytics/report.script.yaml` relative to the project root.\n- Do NOT modify `report.ts`.\n- No live Windmill server is required — only the local file needs to be created.\n\nEOF\nstdout: \u001b[37m2026-05-15 00:50:23.309\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b[22m\u001b[39m\u001b[0m\u001b[0m\t\u001b[37mnative:1\u001b[39m\u001b[0m\u001b[0m\u001b[1m\u001b[37m\tPochi\u001b[39m\u001b[22m\u001b[0m\u001b[0m\tpochi v0.6.8\n\u001b[37m2026-05-15 00:50:23.581\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b[22m\u001b[39m\u001b[0m\u001b[0m\t\u001b[37m$bunfs/root/pochi:519633\u001b[39m\u001b[0m\u001b[0m\u001b[1m\u001b[37m\tloadAgents\u001b[39m\u001b[22m\u001b[0m\u001b[0m\tLoaded 6 custom agents (6 valid, 0 invalid)\n\u001b[37m2026-05-15 00:50:23.585\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b[22m\u001b[39m\u001b[0m\u001b[0m\t\u001b[37m$bunfs/root/pochi:519634\u001b[39m\u001b[0m\u001b[0m\u001b[1m\u001b[37m\tloadSkills\u001b[39m\u001b[22m\u001b[0m\u001b[0m\tLoaded 2 skills (2 valid, 0 invalid)\n\u001b[37m2026-05-15 00:50:23.610\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b[22m\u001b[39m\u001b[0m\u001b[0m\t\u001b[37m$bunfs/root/pochi:444677\u001b[39m\u001b[0m\u001b[0m\u001b[1m\u001b[37m\tPochiVendor\u001b[39m\u001b[22m\u001b[0m\u001b[0m\tJWT is expiring or missing, fetching a new one\n\u001b[37m2026-05-15 00:50:27.892\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b[22m\u001b[39m\u001b[0m\u001b[0m\t\u001b[37m$bunfs/root/pochi:416517\u001b[39m\u001b[0m\u001b[0m\u001b[1m\u001b[37m\tMCPHub\u001b[39m\u001b[22m\u001b[0m\u001b[0m\tMCP servers configuration changed via signal:\n\u001b[37m2026-05-15 00:50:27.893\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b ... [truncated]\nstderr: None",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 538, in run\n    await self._execute_agent()\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 285, in _execute_agent\n    await asyncio.wait_for(\n  File \"/Users/warrenlow/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/agents/installed/base.py\", line 41, in wrapper\n    return await fn(self, instruction, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/agents/pochi.py\", line 214, in run\n    await self.exec_as_agent(\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/agents/installed/base.py\", line 358, in exec_as_agent\n    return await self._exec(\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/agents/installed/base.py\", line 321, in _exec\n    raise NonZeroAgentExitCodeError(\nharbor.agents.installed.base.NonZeroAgentExitCodeError: Command failed (exit 1): export PATH=\"$HOME/.pochi/bin:$PATH\"; pochi --model opnai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'\n# Preserving your work\n\nSave a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.\n\n---\n\n# Windmill Script Metadata YAML\n\n## Background\nWindmill uses companion `.script.yaml` files to describe a script's schema, summary, description, language, and template status. These metadata files allow Windmill to validate inputs, render a UI form, and document the script without running it.\n\nYou have a pre-existing TypeScript script at `/home/user/windmill-project/f/analytics/report.ts`:\n\n```typescript\nexport async function main(start_date: string, end_date: string, limit: number = 100) {\n  return { start_date, end_date, limit, report: \"placeholder\" };\n}\n```\n\n## Requirements\nCreate a companion metadata file `f/analytics/report.script.yaml` inside the project directory `/home/user/windmill-project` with the following content:\n\n1. `summary`: `\"Generate analytics report\"`\n2. `description`: `\"Generates a date-range analytics report with configurable row limit\"`\n3. `schema` with three properties:\n   - `start_date`: type `string`, required\n   - `end_date`: type `string`, required\n   - `limit`: type `integer`, default `100`, **not** required\n4. `language`: `bun`\n5. `is_template`: `false`\n\n## Implementation Guide\n\n1. Navigate to the project directory:\n   ```bash\n   cd /home/user/windmill-project\n   ```\n2. Create the metadata file `f/analytics/report.script.yaml` with the correct YAML content. You may write the file directly — no `wmill` CLI command is needed to produce a metadata file. Example structure:\n   ```yaml\n   summary: \"Generate analytics report\"\n   description: \"Generates a date-range analytics report with configurable row limit\"\n   schema:\n     $schema: \"https://json-schema.org/draft/2020-12/schema\"\n     type: object\n     properties:\n       start_date:\n         type: string\n         description: \"Start date for the report range\"\n       end_date:\n         type: string\n         description: \"End date for the report range\"\n       limit:\n         type: integer\n         description: \"Maximum number of rows to return\"\n         default: 100\n     required:\n       - start_date\n       - end_date\n   is_template: false\n   language: bun\n   ```\n\n## Constraints\n- Project path: `/home/user/windmill-project`\n- The metadata file must be located at `f/analytics/report.script.yaml` relative to the project root.\n- Do NOT modify `report.ts`.\n- No live Windmill server is required — only the local file needs to be created.\n\nEOF\nstdout: \u001b[37m2026-05-15 00:50:23.309\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b[22m\u001b[39m\u001b[0m\u001b[0m\t\u001b[37mnative:1\u001b[39m\u001b[0m\u001b[0m\u001b[1m\u001b[37m\tPochi\u001b[39m\u001b[22m\u001b[0m\u001b[0m\tpochi v0.6.8\n\u001b[37m2026-05-15 00:50:23.581\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b[22m\u001b[39m\u001b[0m\u001b[0m\t\u001b[37m$bunfs/root/pochi:519633\u001b[39m\u001b[0m\u001b[0m\u001b[1m\u001b[37m\tloadAgents\u001b[39m\u001b[22m\u001b[0m\u001b[0m\tLoaded 6 custom agents (6 valid, 0 invalid)\n\u001b[37m2026-05-15 00:50:23.585\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b[22m\u001b[39m\u001b[0m\u001b[0m\t\u001b[37m$bunfs/root/pochi:519634\u001b[39m\u001b[0m\u001b[0m\u001b[1m\u001b[37m\tloadSkills\u001b[39m\u001b[22m\u001b[0m\u001b[0m\tLoaded 2 skills (2 valid, 0 invalid)\n\u001b[37m2026-05-15 00:50:23.610\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b[22m\u001b[39m\u001b[0m\u001b[0m\t\u001b[37m$bunfs/root/pochi:444677\u001b[39m\u001b[0m\u001b[0m\u001b[1m\u001b[37m\tPochiVendor\u001b[39m\u001b[22m\u001b[0m\u001b[0m\tJWT is expiring or missing, fetching a new one\n\u001b[37m2026-05-15 00:50:27.892\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b[22m\u001b[39m\u001b[0m\u001b[0m\t\u001b[37m$bunfs/root/pochi:416517\u001b[39m\u001b[0m\u001b[0m\u001b[1m\u001b[37m\tMCPHub\u001b[39m\u001b[22m\u001b[0m\u001b[0m\tMCP servers configuration changed via signal:\n\u001b[37m2026-05-15 00:50:27.893\u001b[39m\u001b[0m\u001b[0m\t\u001b[32m\u001b[1mDEBUG\u001b ... [truncated]\nstderr: None\n",
+        "occurred_at": "2026-05-14T17:50:27.987015"
+    },
+    "started_at": "2026-05-15T00:49:22.831360Z",
+    "finished_at": "2026-05-15T00:50:43.950148Z",
+    "environment_setup": {
+        "started_at": "2026-05-15T00:49:22.832941Z",
+        "finished_at": "2026-05-15T00:49:26.455779Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-05-15T00:49:26.455811Z",
+        "finished_at": "2026-05-15T00:50:22.664259Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-05-15T00:50:22.664409Z",
+        "finished_at": "2026-05-15T00:50:27.986613Z"
+    },
+    "verifier": {
+        "started_at": "2026-05-15T00:50:27.988777Z",
+        "finished_at": "2026-05-15T00:50:33.191690Z"
+    }
+}

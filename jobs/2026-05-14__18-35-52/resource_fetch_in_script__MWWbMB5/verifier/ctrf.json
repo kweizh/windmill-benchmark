@@ -1,0 +1,101 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 9,
+            "passed": 9,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778809064.2329607,
+            "stop": 1778809064.2446516
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_file_exists",
+                "status": "passed",
+                "duration": 0.0004899578634649515,
+                "start": 1778809064.2397957,
+                "stop": 1778809064.2405097,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_postgresql_type_defined",
+                "status": "passed",
+                "duration": 0.00043208710849285126,
+                "start": 1778809064.2406318,
+                "stop": 1778809064.2412353,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_main_function_exported",
+                "status": "passed",
+                "duration": 0.00033509708009660244,
+                "start": 1778809064.2413251,
+                "stop": 1778809064.241796,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_main_accepts_db_parameter",
+                "status": "passed",
+                "duration": 0.00022681406699120998,
+                "start": 1778809064.241874,
+                "stop": 1778809064.2422009,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_return_value_contains_required_keys",
+                "status": "passed",
+                "duration": 0.0002366050612181425,
+                "start": 1778809064.242259,
+                "stop": 1778809064.2425897,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_return_note_value",
+                "status": "passed",
+                "duration": 0.00022252078633755445,
+                "start": 1778809064.2426548,
+                "stop": 1778809064.242967,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_companion_yaml_exists",
+                "status": "passed",
+                "duration": 0.00023956212680786848,
+                "start": 1778809064.2430189,
+                "stop": 1778809064.2433927,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_contains_db_property_with_resource_format",
+                "status": "passed",
+                "duration": 0.00034838682040572166,
+                "start": 1778809064.243459,
+                "stop": 1778809064.2439342,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_yaml_contains_table_name_property",
+                "status": "passed",
+                "duration": 0.00034188712015748024,
+                "start": 1778809064.2439883,
+                "stop": 1778809064.2444584,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

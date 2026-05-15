@@ -1,0 +1,87 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 15ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 14 items
+
+../../../tests/test_final_state.py .FF..........F                        [100%]
+
+=================================== FAILURES ===================================
+___________________ test_step_and_wait_for_approval_imported ___________________
+
+    def test_step_and_wait_for_approval_imported():
+        """2. Both `step` and `waitForApproval` must be imported from windmill-client."""
+        content = _read_workflow()
+        assert "step" in content, (
+            "'step' is not referenced — it must be imported from windmill-client"
+        )
+        assert "waitForApproval" in content, (
+            "'waitForApproval' is not referenced — it must be imported from windmill-client"
+        )
+>       assert "windmill-client" in content, (
+            "windmill-client import not found in the workflow file"
+        )
+E       AssertionError: windmill-client import not found in the workflow file
+E       assert 'windmill-client' in 'import * as w from "https://deno.land/x/windmill@v1/mod.ts";\nimport { writeFileSync } from "node:fs";\n\n/**\n * Com...mail(adminEmail: string, workspaceId: string, plan: string) {\n  // Mock implementation\n  return { sent: true };\n}\n'
+
+/tests/test_final_state.py:33: AssertionError
+_______________________ test_step_call_for_onboarding_id _______________________
+
+    def test_step_call_for_onboarding_id():
+        """3. `await step(` must be used for onboarding ID generation."""
+        content = _read_workflow()
+        # accept: await step( ... randomUUID or similar UUID / id generation
+>       assert re.search(r"await\s+step\(", content), (
+            "'await step(' not found — onboardingId generation must use step()"
+        )
+E       AssertionError: 'await step(' not found — onboardingId generation must use step()
+E       assert None
+E        +  where None = <function search at 0xf5017397d3a0>('await\\s+step\\(', 'import * as w from "https://deno.land/x/windmill@v1/mod.ts";\nimport { writeFileSync } from "node:fs";\n\n/**\n * Com...mail(adminEmail: string, workspaceId: string, plan: string) {\n  // Mock implementation\n  return { sent: true };\n}\n')
+E        +    where <function search at 0xf5017397d3a0> = re.search
+
+/tests/test_final_state.py:42: AssertionError
+________________________ test_workflow_function_present ________________________
+
+    def test_workflow_function_present():
+        """14. A `workflow(` declaration must be present — the main entry point must be a Windmill workflow."""
+        content = _read_workflow()
+>       assert re.search(r"workflow\s*\(", content), (
+            "'workflow(' declaration not found — the main function must be declared as a Windmill workflow"
+        )
+E       AssertionError: 'workflow(' declaration not found — the main function must be declared as a Windmill workflow
+E       assert None
+E        +  where None = <function search at 0xf5017397d3a0>('workflow\\s*\\(', 'import * as w from "https://deno.land/x/windmill@v1/mod.ts";\nimport { writeFileSync } from "node:fs";\n\n/**\n * Com...mail(adminEmail: string, workspaceId: string, plan: string) {\n  // Mock implementation\n  return { sent: true };\n}\n')
+E        +    where <function search at 0xf5017397d3a0> = re.search
+
+/tests/test_final_state.py:153: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../../tests/test_final_state.py::test_onboarding_workflow_file_exists
+PASSED ../../../tests/test_final_state.py::test_promise_all_for_parallel_provisioning
+PASSED ../../../tests/test_final_state.py::test_cleanup_call_on_error
+PASSED ../../../tests/test_final_state.py::test_wait_for_approval_with_48h_timeout
+PASSED ../../../tests/test_final_state.py::test_enterprise_plan_string_present
+PASSED ../../../tests/test_final_state.py::test_onboarding_id_referenced
+PASSED ../../../tests/test_final_state.py::test_onboarding_report_path_referenced
+PASSED ../../../tests/test_final_state.py::test_write_file_for_report
+PASSED ../../../tests/test_final_state.py::test_configure_integrations_task_called
+PASSED ../../../tests/test_final_state.py::test_send_welcome_email_task_called
+PASSED ../../../tests/test_final_state.py::test_rejected_at_review_status_present
+FAILED ../../../tests/test_final_state.py::test_step_and_wait_for_approval_imported
+FAILED ../../../tests/test_final_state.py::test_step_call_for_onboarding_id
+FAILED ../../../tests/test_final_state.py::test_workflow_function_present - A...
+========================= 3 failed, 11 passed in 0.03s =========================

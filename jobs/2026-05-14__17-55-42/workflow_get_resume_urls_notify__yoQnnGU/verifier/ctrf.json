@@ -1,0 +1,101 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 9,
+            "passed": 9,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778807380.9108324,
+            "stop": 1778807380.9204555
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "passed",
+                "duration": 0.0002977140247821808,
+                "start": 1778807380.9166574,
+                "stop": 1778807380.9171064,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_get_resume_urls_imported",
+                "status": "passed",
+                "duration": 0.000309338909573853,
+                "start": 1778807380.9171822,
+                "stop": 1778807380.9175923,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_step_imported",
+                "status": "passed",
+                "duration": 0.00030300579965114594,
+                "start": 1778807380.9176543,
+                "stop": 1778807380.918062,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_step_approval_urls_pattern_present",
+                "status": "passed",
+                "duration": 0.0002862979890778661,
+                "start": 1778807380.9181204,
+                "stop": 1778807380.918501,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_urls_approval_page_referenced",
+                "status": "passed",
+                "duration": 0.00022729486227035522,
+                "start": 1778807380.9185572,
+                "stop": 1778807380.91887,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_log_approval_url_step_present",
+                "status": "passed",
+                "duration": 0.00021108717191964388,
+                "start": 1778807380.918924,
+                "stop": 1778807380.919223,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wait_for_approval_unchanged",
+                "status": "passed",
+                "duration": 0.0002114620292559266,
+                "start": 1778807380.9192734,
+                "stop": 1778807380.919571,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_deploy_intact",
+                "status": "passed",
+                "duration": 0.0002167129423469305,
+                "start": 1778807380.9196224,
+                "stop": 1778807380.9199226,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_get_resume_urls_before_wait_for_approval",
+                "status": "passed",
+                "duration": 0.00027738092467188835,
+                "start": 1778807380.9199736,
+                "stop": 1778807380.9203372,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

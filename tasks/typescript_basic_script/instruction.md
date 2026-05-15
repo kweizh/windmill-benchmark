@@ -1,21 +1,21 @@
-# Create a TypeScript Windmill Script
+# Write a Basic TypeScript (Bun) Windmill Script
 
 ## Background
+Windmill is a developer platform for running scripts and workflows. Scripts are plain TypeScript files (executed via Bun) that export a `main` function. Each script has a companion `.script.yaml` metadata file that describes its schema, summary, and tags.
 
-Windmill is an open-source workflow engine and developer platform that allows you to write scripts in TypeScript, Python, and other languages. Each Windmill script is a file that exports a `main` function, and is accompanied by a metadata YAML file describing its properties.
-
-In this task you will use the Windmill CLI (`wmill`) to create a TypeScript script and its accompanying metadata file inside a local Windmill project directory.
+You have a Windmill project scaffolded at `/home/user/windmill-project`. Your task is to write a simple TypeScript script and its companion metadata file — no running Windmill server is required.
 
 ## Requirements
-
-- Create a TypeScript script at `/home/user/windmill-project/f/scripts/greet.ts` that exports an async `main` function.
-- The `main` function must accept two parameters:
-  - `name`: a `string` (required)
-  - `greeting`: a `string` with a default value of `"Hello"`
-- The function must return the string `` `${greeting}, ${name}!` ``.
-- Create the accompanying metadata file at `/home/user/windmill-project/f/scripts/greet.script.yaml` with:
-  - `summary: "Greet a user"`
-  - `language: typescript`
+- Create a TypeScript script file at `f/scripts/greet.ts` inside the project directory.
+- The script must export a `main` function with the following signature:
+  ```typescript
+  export async function main(name: string, age: number): Promise<string>
+  ```
+- The function must return a greeting string that includes both the `name` and `age` values, e.g. `"Hello, Alice! You are 30 years old."`
+- Create a companion metadata file at `f/scripts/greet.script.yaml` with at minimum the following fields:
+  - `summary`: a short description of what the script does
+  - `description`: a longer description
+  - `schema`: a JSON Schema object describing the function's input parameters (`name` as `string`, `age` as `integer`)
 
 ## Implementation Guide
 
@@ -23,34 +23,41 @@ In this task you will use the Windmill CLI (`wmill`) to create a TypeScript scri
    ```bash
    cd /home/user/windmill-project
    ```
-
-2. Create the scripts directory if it does not already exist:
+2. Create the directory for your script:
    ```bash
    mkdir -p f/scripts
    ```
-
-3. Create the TypeScript script file `f/scripts/greet.ts` with the following structure:
+3. Create `f/scripts/greet.ts` with the following content:
    ```typescript
-   export async function main(name: string, greeting: string = "Hello") {
-     return `${greeting}, ${name}!`;
+   export async function main(name: string, age: number): Promise<string> {
+     return `Hello, ${name}! You are ${age} years old.`;
    }
    ```
-
-4. Create the metadata file `f/scripts/greet.script.yaml` with:
+4. Create `f/scripts/greet.script.yaml` with valid metadata, for example:
    ```yaml
-   summary: "Greet a user"
-   language: typescript
+   summary: Greet a user by name and age
+   description: Returns a greeting string given a name and an age.
+   schema:
+     $schema: 'https://json-schema.org/draft/2020-12/schema'
+     type: object
+     properties:
+       name:
+         type: string
+         description: The user's name
+       age:
+         type: integer
+         description: The user's age
+     required:
+       - name
+       - age
+   is_template: false
+   tags: []
    ```
 
 ## Constraints
-
 - Project path: `/home/user/windmill-project`
-- Script path: `/home/user/windmill-project/f/scripts/greet.ts`
-- Metadata path: `/home/user/windmill-project/f/scripts/greet.script.yaml`
-- The `main` function signature must match exactly: `main(name: string, greeting: string = "Hello")`
-- The return value must use a template literal: `` `${greeting}, ${name}!` ``
-- Do not add a Windmill server — this is a local file creation task only.
-
-## Integrations
-
-None.
+- Script path (relative to project): `f/scripts/greet.ts`
+- Metadata path (relative to project): `f/scripts/greet.script.yaml`
+- The script must use TypeScript (Bun) syntax — it must be a `.ts` file exporting `main`.
+- No live Windmill server is required; this is a purely local file creation task.
+- Do not modify any other files in the project directory.

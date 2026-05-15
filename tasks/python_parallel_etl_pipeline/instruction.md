@@ -1,0 +1,50 @@
+# Build a Python Windmill Parallel ETL Pipeline
+
+## Background
+
+Windmill supports Python WAC (Workflows as Code). Use `@task` on functions that run as separate child jobs and `@workflow` on the entry function. The `parallel()` function runs tasks concurrently with optional concurrency limits.
+
+```python
+from wmill import workflow, task, parallel
+
+@task
+async def extract(endpoint: str) -> dict:
+    ...
+
+@workflow
+async def main(endpoints: list) -> dict:
+    results = await parallel(endpoints, lambda ep: extract(ep), concurrency=5)
+    ...
+```
+
+## Requirements
+
+Create a workflow at `/home/user/windmill-project/f/workflows/etl_pipeline.py` that:
+
+1. Defines an `extract(endpoint: str) -> dict` task (with `@task`) that fetches JSON from a URL using `urllib.request.urlopen` with a 5-second timeout. Returns the parsed JSON dict. On any exception, returns `{'endpoint': endpoint, 'error': str(e), 'data': []}`.
+2. Defines a `transform(record: dict) -> dict` task (with `@task`) that returns `{**record, 'transformed': True, 'source': record.get('endpoint', 'unknown')}`.
+3. Defines a `load(records: list) -> dict` task (with `@task`) that returns `{'loaded': len(records), 'status': 'success'}`.
+4. Defines a `main(endpoints: list) -> dict` function (with `@workflow`) that:
+   - Uses `parallel(endpoints, lambda ep: extract(ep), concurrency=4)` to extract.
+   - Uses `parallel(raw_data, lambda r: transform(r), concurrency=10)` to transform.
+   - Calls `await load(transformed)` for the final load step.
+   - Returns the load result.
+
+## Implementation Guide
+
+1. Create `/home/user/windmill-project/f/workflows/etl_pipeline.py`.
+2. Import `workflow`, `task`, `parallel` from `wmill`; import `urllib.request` and `json`.
+3. Implement `extract` with `@task` and try/except.
+4. Implement `transform` with `@task`.
+5. Implement `load` with `@task`.
+6. Implement `main` with `@workflow` using two `parallel()` calls.
+
+## Constraints
+
+- Project path: `/home/user/windmill-project`
+- Output file: `/home/user/windmill-project/f/workflows/etl_pipeline.py`
+- Extract concurrency must be exactly `4`.
+- Transform concurrency must be exactly `10`.
+- Use `urllib.request` (stdlib only, no `requests` or `httpx`).
+- The `extract` function MUST handle exceptions with try/except.
+- No live Windmill server is required.

@@ -1,0 +1,203 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 16ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 11 items
+
+../../../tests/test_final_state.py .F.FFF..F..                           [100%]
+
+=================================== FAILURES ===================================
+_______________________________ test_wac_imports _______________________________
+
+    def test_wac_imports():
+        """Check 2 – imports step, parallel, waitForApproval, getResumeUrls from windmill-client."""
+        source = _read_file()
+        for symbol in ("step", "parallel", "waitForApproval", "getResumeUrls"):
+>           _assert_pattern(
+                source,
+                rf"\b{re.escape(symbol)}\b",
+                msg=(
+                    f"WAC primitive '{symbol}' not found in {WORKFLOW_FILE}. "
+                    "It must be imported (or used) from 'windmill-client'."
+                ),
+            )
+
+/tests/test_final_state.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'import * as wmill from "windmill";\n\ninterface Event {\n  id: string;\n  type: string;\n  payload: any;\n}\n\ninterf...updatedIds, null, 2)\n  );\n  \n  console.log(`Updated processed_events.json with ${newIds.length} new event IDs`);\n}'
+pattern = '\\bstep\\b', flags = 0
+msg = "WAC primitive 'step' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. It must be imported (or used) from 'windmill-client'."
+
+    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = "") -> None:
+>       assert re.search(pattern, source, flags), (
+            msg or f"Expected pattern not found in {WORKFLOW_FILE}:\n  pattern: {pattern!r}"
+        )
+E       AssertionError: WAC primitive 'step' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. It must be imported (or used) from 'windmill-client'.
+E       assert None
+E        +  where None = <function search at 0xed012d97d3a0>('\\bstep\\b', 'import * as wmill from "windmill";\n\ninterface Event {\n  id: string;\n  type: string;\n  payload: any;\n}\n\ninterf...updatedIds, null, 2)\n  );\n  \n  console.log(`Updated processed_events.json with ${newIds.length} new event IDs`);\n}', 0)
+E        +    where <function search at 0xed012d97d3a0> = re.search
+
+/tests/test_final_state.py:39: AssertionError
+________________________ test_parallel_with_concurrency ________________________
+
+    def test_parallel_with_concurrency():
+        """Check 4 – parallel() call with concurrency limit present."""
+        source = _read_file()
+        _assert_pattern(
+            source,
+            r"parallel\s*\(",
+            msg=f"'parallel(' not found in {WORKFLOW_FILE}.",
+        )
+>       _assert_pattern(
+            source,
+            r"concurrency",
+            msg=(
+                f"'concurrency' option not found in {WORKFLOW_FILE}. "
+                "parallel() must be called with a concurrency limit (e.g. concurrency: 5)."
+            ),
+        )
+
+/tests/test_final_state.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'import * as wmill from "windmill";\n\ninterface Event {\n  id: string;\n  type: string;\n  payload: any;\n}\n\ninterf...updatedIds, null, 2)\n  );\n  \n  console.log(`Updated processed_events.json with ${newIds.length} new event IDs`);\n}'
+pattern = 'concurrency', flags = 0
+msg = "'concurrency' option not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. parallel() must be called with a concurrency limit (e.g. concurrency: 5)."
+
+    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = "") -> None:
+>       assert re.search(pattern, source, flags), (
+            msg or f"Expected pattern not found in {WORKFLOW_FILE}:\n  pattern: {pattern!r}"
+        )
+E       AssertionError: 'concurrency' option not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. parallel() must be called with a concurrency limit (e.g. concurrency: 5).
+E       assert None
+E        +  where None = <function search at 0xed012d97d3a0>('concurrency', 'import * as wmill from "windmill";\n\ninterface Event {\n  id: string;\n  type: string;\n  payload: any;\n}\n\ninterf...updatedIds, null, 2)\n  );\n  \n  console.log(`Updated processed_events.json with ${newIds.length} new event IDs`);\n}', 0)
+E        +    where <function search at 0xed012d97d3a0> = re.search
+
+/tests/test_final_state.py:39: AssertionError
+_________________________ test_get_resume_urls_in_step _________________________
+
+    def test_get_resume_urls_in_step():
+        """Check 5 – getResumeUrls() is called (inside a step)."""
+        source = _read_file()
+>       _assert_pattern(
+            source,
+            r"getResumeUrls\s*\(\s*\)",
+            msg=(
+                f"'getResumeUrls()' call not found in {WORKFLOW_FILE}. "
+                "The workflow must obtain approval/resume URLs before waiting."
+            ),
+        )
+
+/tests/test_final_state.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'import * as wmill from "windmill";\n\ninterface Event {\n  id: string;\n  type: string;\n  payload: any;\n}\n\ninterf...updatedIds, null, 2)\n  );\n  \n  console.log(`Updated processed_events.json with ${newIds.length} new event IDs`);\n}'
+pattern = 'getResumeUrls\\s*\\(\\s*\\)', flags = 0
+msg = "'getResumeUrls()' call not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The workflow must obtain approval/resume URLs before waiting."
+
+    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = "") -> None:
+>       assert re.search(pattern, source, flags), (
+            msg or f"Expected pattern not found in {WORKFLOW_FILE}:\n  pattern: {pattern!r}"
+        )
+E       AssertionError: 'getResumeUrls()' call not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The workflow must obtain approval/resume URLs before waiting.
+E       assert None
+E        +  where None = <function search at 0xed012d97d3a0>('getResumeUrls\\s*\\(\\s*\\)', 'import * as wmill from "windmill";\n\ninterface Event {\n  id: string;\n  type: string;\n  payload: any;\n}\n\ninterf...updatedIds, null, 2)\n  );\n  \n  console.log(`Updated processed_events.json with ${newIds.length} new event IDs`);\n}', 0)
+E        +    where <function search at 0xed012d97d3a0> = re.search
+
+/tests/test_final_state.py:39: AssertionError
+_____________________ test_wait_for_approval_with_timeout ______________________
+
+    def test_wait_for_approval_with_timeout():
+        """Check 6 – waitForApproval() with a timeout is present."""
+        source = _read_file()
+        _assert_pattern(
+            source,
+            r"waitForApproval\s*\(",
+            msg=f"'waitForApproval(' not found in {WORKFLOW_FILE}.",
+        )
+>       _assert_pattern(
+            source,
+            r"timeout",
+            msg=(
+                f"'timeout' not found near waitForApproval in {WORKFLOW_FILE}. "
+                "waitForApproval must be called with a timeout option."
+            ),
+        )
+
+/tests/test_final_state.py:133: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'import * as wmill from "windmill";\n\ninterface Event {\n  id: string;\n  type: string;\n  payload: any;\n}\n\ninterf...updatedIds, null, 2)\n  );\n  \n  console.log(`Updated processed_events.json with ${newIds.length} new event IDs`);\n}'
+pattern = 'timeout', flags = 0
+msg = "'timeout' not found near waitForApproval in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. waitForApproval must be called with a timeout option."
+
+    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = "") -> None:
+>       assert re.search(pattern, source, flags), (
+            msg or f"Expected pattern not found in {WORKFLOW_FILE}:\n  pattern: {pattern!r}"
+        )
+E       AssertionError: 'timeout' not found near waitForApproval in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. waitForApproval must be called with a timeout option.
+E       assert None
+E        +  where None = <function search at 0xed012d97d3a0>('timeout', 'import * as wmill from "windmill";\n\ninterface Event {\n  id: string;\n  type: string;\n  payload: any;\n}\n\ninterf...updatedIds, null, 2)\n  );\n  \n  console.log(`Updated processed_events.json with ${newIds.length} new event IDs`);\n}', 0)
+E        +    where <function search at 0xed012d97d3a0> = re.search
+
+/tests/test_final_state.py:39: AssertionError
+______________________________ test_workflow_main ______________________________
+
+    def test_workflow_main():
+        """Check 9 – workflow() wrapping the main export is present."""
+        source = _read_file()
+>       _assert_pattern(
+            source,
+            r"\bworkflow\s*\(",
+            msg=(
+                f"'workflow(' not found in {WORKFLOW_FILE}. "
+                "The main function must be wrapped with workflow()."
+            ),
+        )
+
+/tests/test_final_state.py:172: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'import * as wmill from "windmill";\n\ninterface Event {\n  id: string;\n  type: string;\n  payload: any;\n}\n\ninterf...updatedIds, null, 2)\n  );\n  \n  console.log(`Updated processed_events.json with ${newIds.length} new event IDs`);\n}'
+pattern = '\\bworkflow\\s*\\(', flags = 0
+msg = "'workflow(' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The main function must be wrapped with workflow()."
+
+    def _assert_pattern(source: str, pattern: str, flags: int = 0, msg: str = "") -> None:
+>       assert re.search(pattern, source, flags), (
+            msg or f"Expected pattern not found in {WORKFLOW_FILE}:\n  pattern: {pattern!r}"
+        )
+E       AssertionError: 'workflow(' not found in /home/user/windmill-project/f/workflows/etl_orchestrator.ts. The main function must be wrapped with workflow().
+E       assert None
+E        +  where None = <function search at 0xed012d97d3a0>('\\bworkflow\\s*\\(', 'import * as wmill from "windmill";\n\ninterface Event {\n  id: string;\n  type: string;\n  payload: any;\n}\n\ninterf...updatedIds, null, 2)\n  );\n  \n  console.log(`Updated processed_events.json with ${newIds.length} new event IDs`);\n}', 0)
+E        +    where <function search at 0xed012d97d3a0> = re.search
+
+/tests/test_final_state.py:39: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../../tests/test_final_state.py::test_file_exists
+PASSED ../../../tests/test_final_state.py::test_deduplication_state_file
+PASSED ../../../tests/test_final_state.py::test_enrich_event_function
+PASSED ../../../tests/test_final_state.py::test_write_to_warehouse_function
+PASSED ../../../tests/test_final_state.py::test_rejection_branch
+PASSED ../../../tests/test_final_state.py::test_state_update_after_approval
+FAILED ../../../tests/test_final_state.py::test_wac_imports - AssertionError:...
+FAILED ../../../tests/test_final_state.py::test_parallel_with_concurrency - A...
+FAILED ../../../tests/test_final_state.py::test_get_resume_urls_in_step - Ass...
+FAILED ../../../tests/test_final_state.py::test_wait_for_approval_with_timeout
+FAILED ../../../tests/test_final_state.py::test_workflow_main - AssertionErro...
+========================= 5 failed, 6 passed in 0.02s ==========================

@@ -1,0 +1,14 @@
+{
+  "task": "workflow_get_resume_urls_notify",
+  "description": "A broken workflow at `/home/user/windmill-project/f/workflows/approval_notifier.ts` calls `waitForApproval()` but does NOT call `getResumeUrls()` before it and does NOT log/notify the approval URL. Fix the workflow by: (1) adding `getResumeUrls` and `step` to imports from `windmill-client`; (2) before the `waitForApproval()` call, adding `const urls = await step('approval_urls', () => getResumeUrls());` and `await step('log_approval_url', () => console.log(\\`Approval required. Visit: ${urls.approvalPage}\\`));`; (3) keeping `waitForApproval({ timeout: 7200 })` unchanged; (4) keeping the rest of the workflow intact.",
+  "hints": [
+    "Use `getResumeUrls` from `windmill-client` to obtain approval, resume, and cancel URLs before calling `waitForApproval()`.",
+    "Wrap `getResumeUrls()` in a `step()` call with key `'approval_urls'` to make it deterministic and replay-safe.",
+    "Add a second `step()` with key `'log_approval_url'` that logs `urls.approvalPage` so approvers receive the link.",
+    "Both new steps must appear BEFORE the `waitForApproval({ timeout: 7200 })` call.",
+    "Do not modify the `waitForApproval({ timeout: 7200 })` call or the `task(deploy)` call."
+  ],
+  "files_to_edit": [
+    "/home/user/windmill-project/f/workflows/approval_notifier.ts"
+  ]
+}

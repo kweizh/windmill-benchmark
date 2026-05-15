@@ -1,0 +1,128 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 12,
+            "passed": 12,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778805368.1350338,
+            "stop": 1778805368.1463315
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists",
+                "status": "passed",
+                "duration": 0.00033970701042562723,
+                "start": 1778805368.1410599,
+                "stop": 1778805368.1415741,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_imports_task_and_workflow_from_windmill_client",
+                "status": "passed",
+                "duration": 0.00045078888069838285,
+                "start": 1778805368.1416464,
+                "stop": 1778805368.142236,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_exports_main_as_workflow",
+                "status": "passed",
+                "duration": 0.00025616504717618227,
+                "start": 1778805368.1423047,
+                "stop": 1778805368.1426687,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_uses_promise_all_for_fan_out",
+                "status": "passed",
+                "duration": 0.00023670494556427002,
+                "start": 1778805368.1427314,
+                "stop": 1778805368.1430726,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dispatches_fetch_section_data_for_summary",
+                "status": "passed",
+                "duration": 0.00023962289560586214,
+                "start": 1778805368.1431358,
+                "stop": 1778805368.1434646,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dispatches_fetch_section_data_for_details",
+                "status": "passed",
+                "duration": 0.00022979010827839375,
+                "start": 1778805368.1435173,
+                "stop": 1778805368.1438303,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dispatches_fetch_section_data_for_metrics",
+                "status": "passed",
+                "duration": 0.00024220708291977644,
+                "start": 1778805368.143878,
+                "stop": 1778805368.1442266,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_calls_task_compile_report_for_fan_in",
+                "status": "passed",
+                "duration": 0.0002878319937735796,
+                "start": 1778805368.1442847,
+                "stop": 1778805368.1446753,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_compile_report_called_after_promise_all",
+                "status": "passed",
+                "duration": 0.00024358194787055254,
+                "start": 1778805368.1447365,
+                "stop": 1778805368.1450777,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_defines_fetch_section_data_function",
+                "status": "passed",
+                "duration": 0.00022124906536191702,
+                "start": 1778805368.1451318,
+                "stop": 1778805368.145441,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_defines_compile_report_function",
+                "status": "passed",
+                "duration": 0.0002387911081314087,
+                "start": 1778805368.1455724,
+                "stop": 1778805368.145899,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_section_strings_present",
+                "status": "passed",
+                "duration": 0.00018862297292798758,
+                "start": 1778805368.1459513,
+                "stop": 1778805368.1462188,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

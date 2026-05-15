@@ -1,0 +1,119 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 7,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778806321.2330544,
+            "stop": 1778806321.2502382
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists",
+                "status": "passed",
+                "duration": 0.0003352939384058118,
+                "start": 1778806321.238391,
+                "stop": 1778806321.2388933,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_gpu_tag_present_in_file",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0004323768662288785,
+                "start": 1778806321.238975,
+                "stop": 1778806321.2444878,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_gpu_tag_present_in_file():\n        \"\"\"\n        The file must contain `tag: 'gpu'` or `tag: \"gpu\"` after the fix.\n        \"\"\"\n        content = WORKFLOW_FILE.read_text()\n>       assert re.search(r\"tag\\s*:\\s*['\\\"]gpu['\\\"]\", content), (\n            \"Expected `tag: 'gpu'` (or double-quoted variant) to be present in ml_pipeline.ts. \"\n            \"Add `{ tag: 'gpu' }` as the second argument to `task(trainModel, { tag: 'gpu' })`.\"\n        )\nE       AssertionError: Expected `tag: 'gpu'` (or double-quoted variant) to be present in ml_pipeline.ts. Add `{ tag: 'gpu' }` as the second argument to `task(trainModel, { tag: 'gpu' })`.\nE       assert None\nE        +  where None = <function search at 0xf5051f42d3a0>('tag\\\\s*:\\\\s*[\\'\\\\\"]gpu[\\'\\\\\"]', \"import { task, workflow } from 'windmill-client';\\n\\nasync function preprocessData(data: number[]) {\\n  console.log(`...GPU workers but has no tag\\n  const modelResult = await task(trainModel)(processedData);\\n  return modelResult;\\n});\\n\")\nE        +    where <function search at 0xf5051f42d3a0> = re.search\n\n/tests/test_final_state.py:31: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_gpu_tag_associated_with_train_model",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00039091799408197403,
+                "start": 1778806321.2446306,
+                "stop": 1778806321.2461197,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_gpu_tag_associated_with_train_model():\n        \"\"\"\n        The `tag: 'gpu'` option must appear in the same task invocation as `trainModel`.\n        Checks that `task(trainModel` and `tag: 'gpu'` are within 120 characters of each other.\n        \"\"\"\n        content = WORKFLOW_FILE.read_text()\n        # Find the position of task(trainModel\n        match_task = re.search(r\"task\\s*\\(\\s*trainModel\", content)\n        assert match_task is not None, (\n            \"`task(trainModel` not found in ml_pipeline.ts.\"\n        )\n        # Find the nearest tag: 'gpu' after task(trainModel\n        search_region = content[match_task.start():match_task.start() + 120]\n>       assert re.search(r\"tag\\s*:\\s*['\\\"]gpu['\\\"]\", search_region), (\n            \"Expected `tag: 'gpu'` to appear within the `task(trainModel, { tag: 'gpu' })` call. \"\n            \"Make sure the options object `{ tag: 'gpu' }` is passed as the second argument to `task(trainModel, ...)`.\"\n        )\nE       AssertionError: Expected `tag: 'gpu'` to appear within the `task(trainModel, { tag: 'gpu' })` call. Make sure the options object `{ tag: 'gpu' }` is passed as the second argument to `task(trainModel, ...)`.\nE       assert None\nE        +  where None = <function search at 0xf5051f42d3a0>('tag\\\\s*:\\\\s*[\\'\\\\\"]gpu[\\'\\\\\"]', 'task(trainModel)(processedData);\\n  return modelResult;\\n});\\n')\nE        +    where <function search at 0xf5051f42d3a0> = re.search\n\n/tests/test_final_state.py:50: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_preprocess_data_task_has_no_tag",
+                "status": "passed",
+                "duration": 0.0003309177700430155,
+                "start": 1778806321.2461941,
+                "stop": 1778806321.2466612,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_preprocess_data_call_present",
+                "status": "passed",
+                "duration": 0.00024787604343146086,
+                "start": 1778806321.2467358,
+                "stop": 1778806321.247102,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_wrapper_intact",
+                "status": "passed",
+                "duration": 0.0002673340495675802,
+                "start": 1778806321.2471716,
+                "stop": 1778806321.2475367,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_train_model_task_still_referenced",
+                "status": "passed",
+                "duration": 0.000190000981092453,
+                "start": 1778806321.2475889,
+                "stop": 1778806321.247859,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_main_export_signature_intact",
+                "status": "passed",
+                "duration": 0.00018987595103681087,
+                "start": 1778806321.2479131,
+                "stop": 1778806321.2482123,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_windmill_client_import_intact",
+                "status": "passed",
+                "duration": 0.0001934189349412918,
+                "start": 1778806321.2482738,
+                "stop": 1778806321.248555,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_train_model_uses_options_object_form",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003796281525865197,
+                "start": 1778806321.2486064,
+                "stop": 1778806321.2501276,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_train_model_uses_options_object_form():\n        \"\"\"\n        The fixed call must use `task(trainModel, { tag: 'gpu' })` \u2014 i.e. the options\n        object is the second positional argument to `task()`, not appended elsewhere.\n        Accepts single or double quotes for the tag value.\n        \"\"\"\n        content = WORKFLOW_FILE.read_text()\n>       assert re.search(\n            r\"task\\s*\\(\\s*trainModel\\s*,\\s*\\{[^}]*tag\\s*:\\s*['\\\"]gpu['\\\"][^}]*\\}\\s*\\)\",\n            content,\n        ), (\n            \"Expected `task(trainModel, { tag: 'gpu' })` form not found. \"\n            \"The options object `{ tag: 'gpu' }` must be the second argument to `task()`: \"\n            \"`await task(trainModel, { tag: 'gpu' })(processedData)`.\"\n        )\nE       AssertionError: Expected `task(trainModel, { tag: 'gpu' })` form not found. The options object `{ tag: 'gpu' }` must be the second argument to `task()`: `await task(trainModel, { tag: 'gpu' })(processedData)`.\nE       assert None\nE        +  where None = <function search at 0xf5051f42d3a0>('task\\\\s*\\\\(\\\\s*trainModel\\\\s*,\\\\s*\\\\{[^}]*tag\\\\s*:\\\\s*[\\'\\\\\"]gpu[\\'\\\\\"][^}]*\\\\}\\\\s*\\\\)', \"import { task, workflow } from 'windmill-client';\\n\\nasync function preprocessData(data: number[]) {\\n  console.log(`...GPU workers but has no tag\\n  const modelResult = await task(trainModel)(processedData);\\n  return modelResult;\\n});\\n\")\nE        +    where <function search at 0xf5051f42d3a0> = re.search\n\n/tests/test_final_state.py:139: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

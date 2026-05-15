@@ -1,0 +1,128 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 12,
+            "passed": 12,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778805459.9022286,
+            "stop": 1778805459.9149845
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "passed",
+                "duration": 0.0005424140254035592,
+                "start": 1778805459.908449,
+                "stop": 1778805459.9091768,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_step_and_wait_for_approval_imported",
+                "status": "passed",
+                "duration": 0.0003812480717897415,
+                "start": 1778805459.909334,
+                "stop": 1778805459.9098613,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_step_deploy_id_present",
+                "status": "passed",
+                "duration": 0.00031662394758313894,
+                "start": 1778805459.9099271,
+                "stop": 1778805459.9103549,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_crypto_random_uuid_present",
+                "status": "passed",
+                "duration": 0.0004019980551674962,
+                "start": 1778805459.9104154,
+                "stop": 1778805459.910938,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_run_tests_present",
+                "status": "passed",
+                "duration": 0.0003275820054113865,
+                "start": 1778805459.9109979,
+                "stop": 1778805459.9114332,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_deploy_to_staging_present",
+                "status": "passed",
+                "duration": 0.0003168330295011401,
+                "start": 1778805459.9114876,
+                "stop": 1778805459.9119139,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_rollback_staging_present",
+                "status": "passed",
+                "duration": 0.000310581992380321,
+                "start": 1778805459.911967,
+                "stop": 1778805459.9123814,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wait_for_approval_with_timeout_7200",
+                "status": "passed",
+                "duration": 0.000297873979434371,
+                "start": 1778805459.9124377,
+                "stop": 1778805459.9128487,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_deploy_to_production_present",
+                "status": "passed",
+                "duration": 0.00031708204187452793,
+                "start": 1778805459.912899,
+                "stop": 1778805459.9133296,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_task_rollback_production_present",
+                "status": "passed",
+                "duration": 0.0003006651531904936,
+                "start": 1778805459.9133956,
+                "stop": 1778805459.913809,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_at_least_two_try_blocks_present",
+                "status": "passed",
+                "duration": 0.00029391609132289886,
+                "start": 1778805459.9138594,
+                "stop": 1778805459.914294,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_call_present",
+                "status": "passed",
+                "duration": 0.00034641590900719166,
+                "start": 1778805459.9143536,
+                "stop": 1778805459.9148257,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

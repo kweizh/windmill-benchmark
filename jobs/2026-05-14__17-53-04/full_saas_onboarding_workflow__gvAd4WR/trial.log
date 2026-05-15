@@ -1,0 +1,52 @@
+Trial full_saas_onboarding_workflow__gvAd4WR failed: Docker compose command failed for environment full_saas_onboarding_workflow. Command: docker compose --project-name full_saas_onboarding_workflow__gvad4wr --project-directory /Users/warrenlow/Documents/projects/pochi-harbor/windmill-tasks/full_saas_onboarding_workflow/environment -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/warrenlow/Documents/projects/pochi-harbor/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image full_saas_onboarding_workflow__gvad4wr-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 716B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 737B done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.1s
+
+#4 [1/4] FROM docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+#4 resolve docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [2/6] RUN apt-get update && apt-get install -y     curl     ca-certificates     gnupg     git     build-essential     python3     python3-pip     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [4/6] RUN npm install -g windmill-cli
+#7 CACHED
+
+#8 [5/6] RUN mkdir -p /home/user/windmill-project/f/workflows
+#8 CACHED
+
+#9 [3/6] RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -     && apt-get install -y nodejs     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [6/6] WORKDIR /home/user/windmill-project
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:75984da00380722cf0571ec851a06da5328212fcf7dafa252a2d4759d9e6ced8 done
+#11 exporting config sha256:c9e7ab9015c493e88c055b9ad09da222d67ea0601349486f17062a5103b4a92b done
+#11 exporting attestation manifest sha256:1d285726a35ce0e05ebd9a6b3caeaa720f651901ba69efea081eb293895efab0 0.0s done
+#11 exporting manifest list sha256:3f0217f37d65a56d2ad1e08a1ac8bf217be46527c33d02ee6138dfe63b10d932 done
+#11 naming to docker.io/library/full_saas_onboarding_workflow__gvad4wr-main:latest done
+#11 unpacking to docker.io/library/full_saas_onboarding_workflow__gvad4wr-main:latest done
+#11 DONE 0.1s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image full_saas_onboarding_workflow__gvad4wr-main Built 
+ Network full_saas_onboarding_workflow__gvad4wr_default Creating 
+ Network full_saas_onboarding_workflow__gvad4wr_default Error Error response from daemon: all predefined address pools have been fully subnetted
+failed to create network full_saas_onboarding_workflow__gvad4wr_default: Error response from daemon: all predefined address pools have been fully subnetted
+. Stderr: None. 

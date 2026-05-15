@@ -1,0 +1,104 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 4,
+            "failed": 4,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778806148.9657187,
+            "stop": 1778806148.9850044
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_file_exists",
+                "status": "passed",
+                "duration": 0.00037950207479298115,
+                "start": 1778806148.97205,
+                "stop": 1778806148.9725788,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_get_state_imported",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0006381289567798376,
+                "start": 1778806148.972655,
+                "stop": 1778806148.978922,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_get_state_imported():\n        \"\"\"get_state must be imported from the wmill package.\"\"\"\n        content = _read_script()\n        assert \"get_state\" in content, (\n            \"get_state is not present in the file. \"\n            \"Expected: 'from wmill import get_state, set_state' (or similar).\"\n        )\n        # Confirm it's actually part of a wmill import, not just a string literal\n        assert \"from wmill import\" in content or \"import wmill\" in content, (\n            \"wmill is not imported at all.\"\n        )\n        # Ensure get_state appears alongside the wmill import\n        lines = _read_lines()\n        import_lines = [l for l in lines if \"wmill\" in l and \"import\" in l]\n>       assert any(\"get_state\" in l for l in import_lines), (\n            \"get_state is not imported from wmill. \"\n            f\"wmill import lines found: {import_lines}\"\n        )\nE       AssertionError: get_state is not imported from wmill. wmill import lines found: ['from wmill import set_state\\n']\nE       assert False\nE        +  where False = any(<generator object test_get_state_imported.<locals>.<genexpr> at 0xf22b24ca58a0>)\n\n/tests/test_final_state.py:53: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_get_state_called",
+                "status": "passed",
+                "duration": 0.00033166888169944286,
+                "start": 1778806148.9789922,
+                "stop": 1778806148.9794207,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_set_state_called",
+                "status": "passed",
+                "duration": 0.0002112099900841713,
+                "start": 1778806148.9794793,
+                "stop": 1778806148.9797785,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_status_change_condition_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0002706689992919564,
+                "start": 1778806148.9798334,
+                "stop": 1778806148.981395,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_status_change_condition_present():\n        \"\"\"The fix must include a condition checking for status change.\"\"\"\n        content = _read_script()\n>       assert \"current_status != last_status\" in content, (\n            \"Condition 'current_status != last_status' not found in the script. \"\n            \"The agent must add an if-guard so alerts only fire on status changes.\"\n        )\nE       AssertionError: Condition 'current_status != last_status' not found in the script. The agent must add an if-guard so alerts only fire on status changes.\nE       assert 'current_status != last_status' in \"import urllib.request\\nfrom wmill import set_state\\n\\ndef check_endpoint(url: str) -> str:\\n    try:\\n        with ur...service_name, current_status)\\n    set_state(current_status)\\n    return {'status': current_status, 'alerted': True}\\n\"\n\n/tests/test_final_state.py:86: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_return_dict_has_changed_key",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003187510883435607,
+                "start": 1778806148.9814599,
+                "stop": 1778806148.9828005,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_return_dict_has_changed_key():\n        \"\"\"The return value must include the 'changed' key.\"\"\"\n        content = _read_script()\n>       assert \"'changed'\" in content or '\"changed\"' in content, (\n            \"Return dict does not reference a 'changed' key. \"\n            \"Expected: return {'status': ..., 'changed': ..., 'alerted': ...}\"\n        )\nE       AssertionError: Return dict does not reference a 'changed' key. Expected: return {'status': ..., 'changed': ..., 'alerted': ...}\nE       assert (\"'changed'\" in \"import urllib.request\\nfrom wmill import set_state\\n\\ndef check_endpoint(url: str) -> str:\\n    try:\\n        with ur...service_name, current_status)\\n    set_state(current_status)\\n    return {'status': current_status, 'alerted': True}\\n\" or '\"changed\"' in \"import urllib.request\\nfrom wmill import set_state\\n\\ndef check_endpoint(url: str) -> str:\\n    try:\\n        with ur...service_name, current_status)\\n    set_state(current_status)\\n    return {'status': current_status, 'alerted': True}\\n\")\n\n/tests/test_final_state.py:97: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_return_dict_has_alerted_key",
+                "status": "passed",
+                "duration": 0.00021112605463713408,
+                "start": 1778806148.9828608,
+                "stop": 1778806148.983158,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_send_alert_is_conditional",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00030220893677324057,
+                "start": 1778806148.9832113,
+                "stop": 1778806148.9848003,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_send_alert_is_conditional():\n        \"\"\"\n        send_alert() must only be called inside a conditional block.\n        Verify by finding the line with send_alert( and ensuring that an 'if'\n        statement precedes it at a lower or equal indentation level within\n        the main function body.\n        \"\"\"\n        lines = _read_lines()\n    \n        send_alert_line_idx = None\n        for i, line in enumerate(lines):\n            stripped = line.strip()\n            if stripped.startswith(\"send_alert(\"):\n                send_alert_line_idx = i\n                break\n    \n        assert send_alert_line_idx is not None, (\n            \"send_alert( call not found in the script.\"\n        )\n    \n        # Walk backwards from send_alert line to find a preceding 'if' statement\n        # that is at a shallower or equal indentation (i.e., it guards the call).\n        send_alert_indent = len(lines[send_alert_line_idx]) - len(\n            lines[send_alert_line_idx].lstrip()\n        )\n    \n        found_if_guard = False\n        for i in range(send_alert_line_idx - 1, -1, -1):\n            line = lines[i]\n            stripped = line.strip()\n            if not stripped or stripped.startswith(\"#\"):\n                continue\n            indent = len(line) - len(line.lstrip())\n            if indent < send_alert_indent and stripped.startswith(\"if \"):\n                found_if_guard = True\n                break\n            # Stop if we've left the function body (dedented past function def)\n            if indent == 0 and not stripped.startswith(\"if \"):\n                break\n    \n>       assert found_if_guard, (\n            f\"send_alert() on line {send_alert_line_idx + 1} does not appear to be \"\n            \"inside a conditional (if) block. The alert must only fire when the \"\n            \"status has changed: 'if current_status != last_status: send_alert(...)'\"\n        )\nE       AssertionError: send_alert() on line 18 does not appear to be inside a conditional (if) block. The alert must only fire when the status has changed: 'if current_status != last_status: send_alert(...)'\nE       assert False\n\n/tests/test_final_state.py:156: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

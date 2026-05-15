@@ -1,0 +1,155 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 14,
+            "passed": 11,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1778798439.3879814,
+            "stop": 1778798439.4154098
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_onboarding_workflow_file_exists",
+                "status": "passed",
+                "duration": 0.00036874599754810333,
+                "start": 1778798439.3963883,
+                "stop": 1778798439.3969374,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_step_and_wait_for_approval_imported",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00038699700962752104,
+                "start": 1778798439.397033,
+                "stop": 1778798439.4042,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_step_and_wait_for_approval_imported():\n        \"\"\"2. Both `step` and `waitForApproval` must be imported from windmill-client.\"\"\"\n        content = _read_workflow()\n        assert \"step\" in content, (\n            \"'step' is not referenced \u2014 it must be imported from windmill-client\"\n        )\n        assert \"waitForApproval\" in content, (\n            \"'waitForApproval' is not referenced \u2014 it must be imported from windmill-client\"\n        )\n>       assert \"windmill-client\" in content, (\n            \"windmill-client import not found in the workflow file\"\n        )\nE       AssertionError: windmill-client import not found in the workflow file\nE       assert 'windmill-client' in 'import * as w from \"https://deno.land/x/windmill@v1/mod.ts\";\\nimport { writeFileSync } from \"node:fs\";\\n\\n/**\\n * Com...mail(adminEmail: string, workspaceId: string, plan: string) {\\n  // Mock implementation\\n  return { sent: true };\\n}\\n'\n\n/tests/test_final_state.py:33: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_step_call_for_onboarding_id",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0004512881860136986,
+                "start": 1778798439.4042952,
+                "stop": 1778798439.406132,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_step_call_for_onboarding_id():\n        \"\"\"3. `await step(` must be used for onboarding ID generation.\"\"\"\n        content = _read_workflow()\n        # accept: await step( ... randomUUID or similar UUID / id generation\n>       assert re.search(r\"await\\s+step\\(\", content), (\n            \"'await step(' not found \u2014 onboardingId generation must use step()\"\n        )\nE       AssertionError: 'await step(' not found \u2014 onboardingId generation must use step()\nE       assert None\nE        +  where None = <function search at 0xf5017397d3a0>('await\\\\s+step\\\\(', 'import * as w from \"https://deno.land/x/windmill@v1/mod.ts\";\\nimport { writeFileSync } from \"node:fs\";\\n\\n/**\\n * Com...mail(adminEmail: string, workspaceId: string, plan: string) {\\n  // Mock implementation\\n  return { sent: true };\\n}\\n')\nE        +    where <function search at 0xf5017397d3a0> = re.search\n\n/tests/test_final_state.py:42: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_promise_all_for_parallel_provisioning",
+                "status": "passed",
+                "duration": 0.0009006189648061991,
+                "start": 1778798439.4062216,
+                "stop": 1778798439.4074,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_cleanup_call_on_error",
+                "status": "passed",
+                "duration": 0.00038724695332348347,
+                "start": 1778798439.407477,
+                "stop": 1778798439.4080496,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wait_for_approval_with_48h_timeout",
+                "status": "passed",
+                "duration": 0.00041599711403250694,
+                "start": 1778798439.4081383,
+                "stop": 1778798439.4087105,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_enterprise_plan_string_present",
+                "status": "passed",
+                "duration": 0.0003871229710057378,
+                "start": 1778798439.4088085,
+                "stop": 1778798439.4093375,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_onboarding_id_referenced",
+                "status": "passed",
+                "duration": 0.0004189969040453434,
+                "start": 1778798439.40941,
+                "stop": 1778798439.4099822,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_onboarding_report_path_referenced",
+                "status": "passed",
+                "duration": 0.00037095590960234404,
+                "start": 1778798439.4100409,
+                "stop": 1778798439.4105506,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_write_file_for_report",
+                "status": "passed",
+                "duration": 0.0003700390225276351,
+                "start": 1778798439.410675,
+                "stop": 1778798439.4111814,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_configure_integrations_task_called",
+                "status": "passed",
+                "duration": 0.00036428996827453375,
+                "start": 1778798439.4112358,
+                "stop": 1778798439.4117377,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_send_welcome_email_task_called",
+                "status": "passed",
+                "duration": 0.00032966502476483583,
+                "start": 1778798439.411804,
+                "stop": 1778798439.4122772,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_rejected_at_review_status_present",
+                "status": "passed",
+                "duration": 0.00035457906778901815,
+                "start": 1778798439.41233,
+                "stop": 1778798439.4128304,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_function_present",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0004647469613701105,
+                "start": 1778798439.412886,
+                "stop": 1778798439.4152193,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_function_present():\n        \"\"\"14. A `workflow(` declaration must be present \u2014 the main entry point must be a Windmill workflow.\"\"\"\n        content = _read_workflow()\n>       assert re.search(r\"workflow\\s*\\(\", content), (\n            \"'workflow(' declaration not found \u2014 the main function must be declared as a Windmill workflow\"\n        )\nE       AssertionError: 'workflow(' declaration not found \u2014 the main function must be declared as a Windmill workflow\nE       assert None\nE        +  where None = <function search at 0xf5017397d3a0>('workflow\\\\s*\\\\(', 'import * as w from \"https://deno.land/x/windmill@v1/mod.ts\";\\nimport { writeFileSync } from \"node:fs\";\\n\\n/**\\n * Com...mail(adminEmail: string, workspaceId: string, plan: string) {\\n  // Mock implementation\\n  return { sent: true };\\n}\\n')\nE        +    where <function search at 0xf5017397d3a0> = re.search\n\n/tests/test_final_state.py:153: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}
