@@ -3,36 +3,6 @@
     "instruction": "# Windmill Workflow-as-Code: Parallel Fan-Out / Fan-In Report Generator\n\n## Background\nWindmill's Workflow-as-Code (WAC) supports fan-out/fan-in patterns using `Promise.all()` for parallel task dispatching. Fan-out dispatches multiple tasks simultaneously; fan-in collects all results after all tasks complete. This pattern is ideal for assembling composite documents (e.g., reports) whose sections can be fetched independently.\n\n## Requirements\nCreate a TypeScript Workflow-as-Code file that implements a fan-out/fan-in pattern to generate a weekly report:\n\n1. **`fetchSectionData(section: string)`** — Returns a data object for the given section:\n   ```typescript\n   { section, data: `Data for ${section}`, timestamp: new Date().toISOString() }\n   ```\n   Because `new Date().toISOString()` is non-deterministic, wrap this function with `step()` when calling it, OR define the timestamp inside the `task()` call so it runs inside the child job.\n\n2. **`compileReport(sections: any[])`** — Aggregates all section results into the final report:\n   ```typescript\n   { title: 'Weekly Report', sections: sections.length, content: sections }\n   ```\n\n3. **`main`** exported as `workflow()` with no parameters:\n   - Fan-out: dispatch `fetchSectionData` for all three sections — `'summary'`, `'details'`, and `'metrics'` — in parallel using `Promise.all([task(fetchSectionData)('summary'), task(fetchSectionData)('details'), task(fetchSectionData)('metrics')])`.\n   - Fan-in: collect all three results via `Promise.all()`.\n   - Then call `task(compileReport)(sections)` to merge the results.\n   - Return the compiled report.\n\n## Implementation Guide\n\n1. Create the file `/home/user/windmill-project/f/workflows/report_generator.ts` with the following structure:\n\n```typescript\nimport { task, workflow } from 'windmill-client';\n\nasync function fetchSectionData(section: string): Promise<{ section: string; data: string; timestamp: string }> {\n  return {\n    section,\n    data: `Data for ${section}`,\n    timestamp: new Date().toISOString(),\n  };\n}\n\nasync function compileReport(sections: any[]): Promise<{ title: string; sections: number; content: any[] }> {\n  return {\n    title: 'Weekly Report',\n    sections: sections.length,\n    content: sections,\n  };\n}\n\nexport const main = workflow(async () => {\n  const [summary, details, metrics] = await Promise.all([\n    task(fetchSectionData)('summary'),\n    task(fetchSectionData)('details'),\n    task(fetchSectionData)('metrics'),\n  ]);\n\n  const sections = [summary, details, metrics];\n  const report = await task(compileReport)(sections);\n  return report;\n});\n```\n\n## Constraints\n- Output file: `/home/user/windmill-project/f/workflows/report_generator.ts`\n- Import `task` and `workflow` from `windmill-client`.\n- MUST use `Promise.all([task(fetchSectionData)('summary'), task(fetchSectionData)('details'), task(fetchSectionData)('metrics')])` for the fan-out.\n- MUST call `task(compileReport)(sections)` after the fan-in.\n- The `main` export MUST use `workflow()` as its wrapper with no parameters.\n- No live Windmill server is required; the file is evaluated statically.\n\n## Integrations\n- None\n",
     "trials": [
       {
-        "job_name": "2026-05-14__17-28-44",
-        "trial_name": "workflow_parallel_fan_out_fan_in__QLSqK4w",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-5-sonnet",
-        "provider": "anthropic",
-        "passed": false,
-        "reward": 0,
-        "error": true,
-        "latency_sec": 82.497,
-        "latency_breakdown": {
-          "env_setup": 1.54,
-          "agent_setup": 42.452,
-          "agent_exec": 2.618,
-          "verifier": 24.944
-        },
-        "tokens": {
-          "input": 0,
-          "output": 0,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
         "job_name": "2026-05-14__17-13-38",
         "trial_name": "workflow_parallel_fan_out_fan_in__VQAKfgs",
         "agent": "pochi",
@@ -223,711 +193,9 @@
       }
     ]
   },
-  "cron_monitor_with_state": {
-    "instruction": "You are working inside a Windmill project environment. A health monitor script at `/home/user/windmill-project/f/scripts/health_monitor.py` is broken — it sends an alert on EVERY scheduled run regardless of whether the service status has changed. Your task is to fix the script so that it:\n1. Imports `get_state` (in addition to `set_state`) from the `wmill` package\n2. Reads the previous status at the start: `last_status = get_state() or 'unknown'`\n3. Only calls `send_alert()` when `current_status != last_status`\n4. Always calls `set_state(current_status)` to persist the new status\n5. Returns a dict: `{'status': current_status, 'changed': current_status != last_status, 'alerted': current_status != last_status}`\n\nDo not change the `check_endpoint` or `send_alert` helper functions. Only modify the `main` function and the imports.\n",
-    "trials": [
-      {
-        "job_name": "2026-05-14__17-28-44",
-        "trial_name": "cron_monitor_with_state__gM5xzQC",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-5-sonnet",
-        "provider": "anthropic",
-        "passed": false,
-        "reward": 0,
-        "error": true,
-        "latency_sec": 78.252,
-        "latency_breakdown": {
-          "env_setup": 2.657,
-          "agent_setup": 57.135,
-          "agent_exec": 2.335,
-          "verifier": 5.437
-        },
-        "tokens": {
-          "input": 0,
-          "output": 0,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-13-38",
-        "trial_name": "cron_monitor_with_state__PecTaxk",
-        "agent": "pochi",
-        "model": "google/gemini-3.1-pro",
-        "provider": "google",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 154.882,
-        "latency_breakdown": {
-          "env_setup": 3.228,
-          "agent_setup": 95.547,
-          "agent_exec": 31.709,
-          "verifier": 13.752
-        },
-        "tokens": {
-          "input": 0,
-          "output": 12091,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "health_monitor.py",
-                "type": "file",
-                "path": "artifacts/code/health_monitor.py"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-55-42",
-        "trial_name": "cron_monitor_with_state__XnAhfJJ",
-        "agent": "pochi",
-        "model": "zai/glm-4.7",
-        "provider": "zai",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 139.733,
-        "latency_breakdown": {
-          "env_setup": 2.862,
-          "agent_setup": 55.931,
-          "agent_exec": 58.253,
-          "verifier": 11.547
-        },
-        "tokens": {
-          "input": 0,
-          "output": 14544,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "health_monitor_fixed.py",
-            "type": "file",
-            "path": "artifacts/health_monitor_fixed.py"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__15-24-29",
-        "trial_name": "cron_monitor_with_state__SDEWgdD",
-        "agent": "pochi",
-        "model": "google/gemini-3-flash",
-        "provider": "google",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 290,
-        "latency_breakdown": {
-          "env_setup": 111.113,
-          "agent_setup": 107.704,
-          "agent_exec": 39.743,
-          "verifier": 20.424
-        },
-        "tokens": {
-          "input": 0,
-          "output": 13507,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "health_monitor.py",
-                "type": "file",
-                "path": "artifacts/code/health_monitor.py"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-32-25",
-        "trial_name": "cron_monitor_with_state__kHgvPz2",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-6-sonnet",
-        "provider": "anthropic",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 186.329,
-        "latency_breakdown": {
-          "env_setup": 2.901,
-          "agent_setup": 119.669,
-          "agent_exec": 39.104,
-          "verifier": 13.529
-        },
-        "tokens": {
-          "input": 0,
-          "output": 15997,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "health_monitor.py",
-            "type": "file",
-            "path": "artifacts/health_monitor.py"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__18-35-52",
-        "trial_name": "cron_monitor_with_state__RSdC27b",
-        "agent": "pochi",
-        "model": "openai/gpt-5.2-codex",
-        "provider": "openai",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 144.589,
-        "latency_breakdown": {
-          "env_setup": 3.119,
-          "agent_setup": 73.891,
-          "agent_exec": 42.601,
-          "verifier": 13.995
-        },
-        "tokens": {
-          "input": 0,
-          "output": 12747,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "health_monitor.py",
-            "type": "file",
-            "path": "artifacts/health_monitor.py"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      }
-    ]
-  },
-  "workflow_step_determinism": {
-    "instruction": "# Fix Windmill Workflow: Wrap Non-Deterministic Calls in `step()`\n\n## Background\n\nWindmill's Workflows-as-Code (WAC) engine uses a checkpoint/replay model. When a workflow is suspended and later resumed, the orchestration function replays from the beginning. If the workflow uses non-deterministic expressions like `Date.now()`, `Math.random()`, or `crypto.randomUUID()` directly in the workflow body, each replay will produce **different values** for these expressions, breaking checkpoint consistency and potentially causing incorrect behavior.\n\nThe correct fix is to wrap these non-deterministic calls in `step()`, which executes the function inline once and persists the result so that replays return the cached value.\n\nA broken order-processing workflow has been placed at `/home/user/windmill-project/f/workflows/order_processor.ts`. It uses `Date.now()` directly to generate a timestamp and `Math.random()` to generate an order ID. Both must be wrapped in `step()` calls.\n\n## Requirements\n\n- Wrap `Date.now()` in a `step()` call with key `'timestamp'`.\n- Wrap `Math.random().toString(36).slice(2)` in a `step()` call with key `'order_id'`.\n- Import `step` from `windmill-client` in addition to the existing imports.\n- Keep all other workflow logic intact (the `task(processOrder)` and `task(notifyShipping)` calls must remain unchanged).\n\n## Implementation Guide\n\n1. Open `/home/user/windmill-project/f/workflows/order_processor.ts`.\n2. Add `step` to the import from `windmill-client`.\n3. Replace:\n   ```typescript\n   const timestamp = Date.now();\n   const orderId = Math.random().toString(36).slice(2);\n   ```\n   With:\n   ```typescript\n   const timestamp = await step('timestamp', () => Date.now());\n   const orderId = await step('order_id', () => Math.random().toString(36).slice(2));\n   ```\n4. Save the file.\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- File to edit: `/home/user/windmill-project/f/workflows/order_processor.ts`\n- Do NOT rename any functions or change the exported `main` signature.\n- Do NOT use bare `Date.now()` or `Math.random()` calls outside of `step()` in the workflow body.\n- No live Windmill server is required; the fix is purely a code change.\n",
-    "trials": [
-      {
-        "job_name": "2026-05-14__17-28-44",
-        "trial_name": "workflow_step_determinism__7AwDwqg",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-5-sonnet",
-        "provider": "anthropic",
-        "passed": false,
-        "reward": null,
-        "error": true,
-        "latency_sec": 47.087,
-        "latency_breakdown": {
-          "env_setup": 1.455,
-          "agent_setup": 45.44,
-          "agent_exec": null,
-          "verifier": null
-        },
-        "tokens": {
-          "input": 0,
-          "output": 0,
-          "cache": 0
-        },
-        "browser_verification_cases": []
-      },
-      {
-        "job_name": "2026-05-14__17-13-38",
-        "trial_name": "workflow_step_determinism__G2qfb4Y",
-        "agent": "pochi",
-        "model": "google/gemini-3.1-pro",
-        "provider": "google",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 106.438,
-        "latency_breakdown": {
-          "env_setup": 2.056,
-          "agent_setup": 47.881,
-          "agent_exec": 33.17,
-          "verifier": 12.081
-        },
-        "tokens": {
-          "input": 0,
-          "output": 12767,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "order_processor.ts",
-            "type": "file",
-            "path": "artifacts/order_processor.ts"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-55-42",
-        "trial_name": "workflow_step_determinism__46RGUnW",
-        "agent": "pochi",
-        "model": "zai/glm-4.7",
-        "provider": "zai",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 168.118,
-        "latency_breakdown": {
-          "env_setup": 1.362,
-          "agent_setup": 91.708,
-          "agent_exec": 59.646,
-          "verifier": 4.442
-        },
-        "tokens": {
-          "input": 0,
-          "output": 14695,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "order_processor_fixed.ts",
-            "type": "file",
-            "path": "artifacts/order_processor_fixed.ts"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__15-24-29",
-        "trial_name": "workflow_step_determinism__NubYKue",
-        "agent": "pochi",
-        "model": "google/gemini-3-flash",
-        "provider": "google",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 224.493,
-        "latency_breakdown": {
-          "env_setup": 100.449,
-          "agent_setup": 70.892,
-          "agent_exec": 31.088,
-          "verifier": 11.037
-        },
-        "tokens": {
-          "input": 0,
-          "output": 12932,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "order_processor.ts",
-                "type": "file",
-                "path": "artifacts/code/order_processor.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-32-25",
-        "trial_name": "workflow_step_determinism__jwi9RPZ",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-6-sonnet",
-        "provider": "anthropic",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 130.346,
-        "latency_breakdown": {
-          "env_setup": 1.417,
-          "agent_setup": 66.735,
-          "agent_exec": 30.595,
-          "verifier": 20.987
-        },
-        "tokens": {
-          "input": 0,
-          "output": 16122,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "order_processor.ts",
-            "type": "file",
-            "path": "artifacts/order_processor.ts"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__18-35-52",
-        "trial_name": "workflow_step_determinism__JaAsZmb",
-        "agent": "pochi",
-        "model": "openai/gpt-5.2-codex",
-        "provider": "openai",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 131.6,
-        "latency_breakdown": {
-          "env_setup": 1.62,
-          "agent_setup": 70.424,
-          "agent_exec": 37.435,
-          "verifier": 10.893
-        },
-        "tokens": {
-          "input": 0,
-          "output": 13231,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "order_processor.ts",
-            "type": "file",
-            "path": "artifacts/order_processor.ts"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      }
-    ]
-  },
-  "deployment_pipeline_with_rollback": {
-    "instruction": "# Build a Windmill Deployment Pipeline with Rollback and Human Approval Gate\n\n## Background\n\nWindmill WAC (Workflows-as-Code) supports robust deployment pipelines through a combination of primitives:\n\n- `step()` — wraps a non-deterministic call so its value is computed once and cached across workflow replays. Used to generate a stable deployment ID.\n- `task()` — schedules a function as an isolated task step, enabling retries and distributed execution.\n- `waitForApproval()` — suspends the workflow until a human approves or rejects it via the Windmill UI, returning `{ approved: boolean, approver: string, value: any }`.\n- `try/catch` — standard error handling; on task failure, a rollback task can be called before rethrowing.\n\nCombining these primitives gives you a production-grade deployment pipeline: generate a stable deploy ID, run tests, deploy to staging (with rollback on failure), wait for human sign-off (with rollback on rejection), deploy to production (with rollback on failure), and return a success summary.\n\n## Requirements\n\nCreate a TypeScript workflow at `/home/user/windmill-project/f/workflows/deploy_with_rollback.ts` that:\n\n1. **Imports** `{ task, workflow, step, waitForApproval }` from `windmill-client`.\n2. **Imports** `crypto` from `node:crypto`.\n3. **Defines** the following plain async functions (used as task implementations):\n   - `runTests(branch: string)` — returns `{ branch, passed: true, tests: 42 }`\n   - `deployToStaging(branch: string, deployId: string)` — returns `{ deployId, env: 'staging', url: 'https://staging.example.com' }`\n   - `rollbackStaging(deployId: string)` — returns `{ deployId, rolled_back: 'staging' }`\n   - `deployToProduction(branch: string, deployId: string)` — returns `{ deployId, env: 'production', url: 'https://prod.example.com' }`\n   - `rollbackProduction(deployId: string)` — returns `{ deployId, rolled_back: 'production' }`\n4. **Exports** `main` as a `workflow()` that accepts `branch: string` and:\n   a. Captures a stable deploy ID: `const deployId = await step('deploy_id', () => crypto.randomUUID());`\n   b. Calls `const testResult = await task(runTests)(branch);` — if `testResult.passed === false`, throws `new Error('Tests failed')` immediately.\n   c. Wraps `await task(deployToStaging)(branch, deployId)` in a `try/catch`; on catch, calls `await task(rollbackStaging)(deployId)` and rethrows.\n   d. Calls `const approval = await waitForApproval({ timeout: 7200 });` — if `!approval.approved`, calls `await task(rollbackStaging)(deployId)` and returns `{ deployId, status: 'rejected', branch, approver: approval.approver }`.\n   e. Wraps `await task(deployToProduction)(branch, deployId)` in a `try/catch`; on catch, calls `await task(rollbackProduction)(deployId)` and rethrows.\n   f. Returns `{ deployId, status: 'deployed', branch, approver: approval.approver }`.\n\n## Implementation Guide\n\n1. Create `/home/user/windmill-project/f/workflows/deploy_with_rollback.ts`.\n2. Add the required imports at the top:\n   ```typescript\n   import { task, workflow, step, waitForApproval } from 'windmill-client';\n   import crypto from 'node:crypto';\n   ```\n3. Implement the five task functions (no decorator needed — they are plain async functions passed to `task()`).\n4. Implement `main` using `workflow()`. A full skeleton:\n   ```typescript\n   export const main = workflow('deploy_with_rollback', async (branch: string) => {\n     const deployId = await step('deploy_id', () => crypto.randomUUID());\n\n     const testResult = await task(runTests)(branch);\n     if (!testResult.passed) {\n       throw new Error('Tests failed');\n     }\n\n     try {\n       await task(deployToStaging)(branch, deployId);\n     } catch (e) {\n       await task(rollbackStaging)(deployId);\n       throw e;\n     }\n\n     const approval = await waitForApproval({ timeout: 7200 });\n     if (!approval.approved) {\n       await task(rollbackStaging)(deployId);\n       return { deployId, status: 'rejected', branch, approver: approval.approver };\n     }\n\n     try {\n       await task(deployToProduction)(branch, deployId);\n     } catch (e) {\n       await task(rollbackProduction)(deployId);\n       throw e;\n     }\n\n     return { deployId, status: 'deployed', branch, approver: approval.approver };\n   });\n   ```\n5. Save the file.\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Output file: `/home/user/windmill-project/f/workflows/deploy_with_rollback.ts`\n- `waitForApproval` timeout MUST be `7200`.\n- The `step()` key for the deploy ID MUST be `'deploy_id'`.\n- Both `task(deployToStaging)` and `task(deployToProduction)` calls MUST be wrapped in separate `try/catch` blocks.\n- On staging failure: call `rollbackStaging` then rethrow.\n- On approval rejection: call `rollbackStaging`, then return an object containing `status: 'rejected'`.\n- On production failure: call `rollbackProduction` then rethrow.\n- On success: return an object containing `status: 'deployed'` and `approver` from the approval result.\n- No live Windmill server is required; the implementation is purely a code artifact.\n",
-    "trials": [
-      {
-        "job_name": "2026-05-14__17-28-44",
-        "trial_name": "deployment_pipeline_with_rollbac__fTvmybp",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-5-sonnet",
-        "provider": "anthropic",
-        "passed": false,
-        "reward": 0,
-        "error": true,
-        "latency_sec": 95.443,
-        "latency_breakdown": {
-          "env_setup": 1.469,
-          "agent_setup": 64.036,
-          "agent_exec": 3.412,
-          "verifier": 20.772
-        },
-        "tokens": {
-          "input": 0,
-          "output": 0,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-13-38",
-        "trial_name": "deployment_pipeline_with_rollbac__PVvqjrU",
-        "agent": "pochi",
-        "model": "google/gemini-3.1-pro",
-        "provider": "google",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 97.678,
-        "latency_breakdown": {
-          "env_setup": 1.507,
-          "agent_setup": 33.828,
-          "agent_exec": 40.088,
-          "verifier": 10.995
-        },
-        "tokens": {
-          "input": 0,
-          "output": 13605,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "deploy_with_rollback.ts",
-                "type": "file",
-                "path": "artifacts/code/deploy_with_rollback.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-55-42",
-        "trial_name": "deployment_pipeline_with_rollbac__YmjA7Lf",
-        "agent": "pochi",
-        "model": "zai/glm-4.7",
-        "provider": "zai",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 150.644,
-        "latency_breakdown": {
-          "env_setup": 1.727,
-          "agent_setup": 46.394,
-          "agent_exec": 82.653,
-          "verifier": 9.221
-        },
-        "tokens": {
-          "input": 0,
-          "output": 15824,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "workflows",
-            "type": "dir",
-            "path": "artifacts/workflows",
-            "children": [
-              {
-                "name": "deploy_with_rollback.ts",
-                "type": "file",
-                "path": "artifacts/workflows/deploy_with_rollback.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__15-24-29",
-        "trial_name": "deployment_pipeline_with_rollbac__LvNdtBU",
-        "agent": "pochi",
-        "model": "google/gemini-3-flash",
-        "provider": "google",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 146.201,
-        "latency_breakdown": {
-          "env_setup": 30.835,
-          "agent_setup": 52.439,
-          "agent_exec": 43.083,
-          "verifier": 9.029
-        },
-        "tokens": {
-          "input": 0,
-          "output": 15261,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "deploy_with_rollback.ts",
-                "type": "file",
-                "path": "artifacts/code/deploy_with_rollback.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-32-25",
-        "trial_name": "deployment_pipeline_with_rollbac__KHpDY4w",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-6-sonnet",
-        "provider": "anthropic",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 130.543,
-        "latency_breakdown": {
-          "env_setup": 1.426,
-          "agent_setup": 66.621,
-          "agent_exec": 35.036,
-          "verifier": 16.703
-        },
-        "tokens": {
-          "input": 0,
-          "output": 17551,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "deploy_with_rollback.ts",
-            "type": "file",
-            "path": "artifacts/deploy_with_rollback.ts"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__18-35-52",
-        "trial_name": "deployment_pipeline_with_rollbac__zDnoXNp",
-        "agent": "pochi",
-        "model": "openai/gpt-5.2-codex",
-        "provider": "openai",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 150.476,
-        "latency_breakdown": {
-          "env_setup": 1.439,
-          "agent_setup": 88.261,
-          "agent_exec": 30.273,
-          "verifier": 19.567
-        },
-        "tokens": {
-          "input": 0,
-          "output": 13301,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "workflows",
-            "type": "dir",
-            "path": "artifacts/workflows",
-            "children": [
-              {
-                "name": "deploy_with_rollback.ts",
-                "type": "file",
-                "path": "artifacts/workflows/deploy_with_rollback.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      }
-    ]
-  },
   "resource_fetch_in_script": {
     "instruction": "# Windmill Script with Typed Resource Parameter\n\n## Background\n\nWindmill allows scripts to receive pre-configured **resources** as typed parameters. A resource is a JSON object stored in Windmill at a path such as `u/user/my_db`. The script declares a matching TypeScript type and Windmill injects the resource at runtime.\n\nYou must write a TypeScript Windmill script that accepts a PostgreSQL resource parameter and a table name, then returns a mock result object demonstrating the resource was received correctly.\n\n## Requirements\n\n- Create a TypeScript Windmill script at `/home/user/windmill-project/f/scripts/db_row_count.ts`.\n- Create its companion YAML metadata file at `/home/user/windmill-project/f/scripts/db_row_count.script.yaml`.\n\n## Implementation Guide\n\n1. Create the project directory structure:\n   ```\n   mkdir -p /home/user/windmill-project/f/scripts\n   ```\n\n2. Create `/home/user/windmill-project/f/scripts/db_row_count.ts` with the following structure:\n   - Define a `Postgresql` type inline:\n     ```typescript\n     type Postgresql = {\n       host: string;\n       port: number;\n       user: string;\n       dbname: string;\n       sslmode: string;\n       password: string;\n     };\n     ```\n   - Export a `main` function with signature:\n     ```typescript\n     export async function main(db: Postgresql, table_name: string)\n     ```\n   - The function must return:\n     ```typescript\n     {\n       host: db.host,\n       dbname: db.dbname,\n       table: table_name,\n       query: `SELECT COUNT(*) FROM ${table_name}`,\n       note: \"Resource received successfully\"\n     }\n     ```\n\n3. Create `/home/user/windmill-project/f/scripts/db_row_count.script.yaml` with the following content:\n   ```yaml\n   summary: Count rows in a database table using a PostgreSQL resource\n   description: Accepts a Postgresql resource and table name, returns a mock query result object\n   schema:\n     $schema: 'https://json-schema.org/draft/2020-12/schema'\n     type: object\n     order:\n       - db\n       - table_name\n     properties:\n       db:\n         description: PostgreSQL database resource\n         type: object\n         format: resource-postgresql\n       table_name:\n         description: Name of the table to count rows in\n         type: string\n         default: ''\n     required:\n       - db\n       - table_name\n   language: ts\n   kind: script\n   tag: ''\n   ```\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Do not connect to any live database — this is a mock script.\n- Use TypeScript (`.ts` extension) as the script language.\n- Do not use `import * as wmill from 'windmill-client'` — the resource is passed directly as a typed parameter.\n- The `Postgresql` type must be defined in the script file itself.\n",
     "trials": [
-      {
-        "job_name": "2026-05-14__17-28-44",
-        "trial_name": "resource_fetch_in_script__CSkuZgu",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-5-sonnet",
-        "provider": "anthropic",
-        "passed": false,
-        "reward": 0,
-        "error": true,
-        "latency_sec": 117.518,
-        "latency_breakdown": {
-          "env_setup": 8.764,
-          "agent_setup": 70.737,
-          "agent_exec": 3.526,
-          "verifier": 23.612
-        },
-        "tokens": {
-          "input": 0,
-          "output": 0,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
       {
         "job_name": "2026-05-14__17-13-38",
         "trial_name": "resource_fetch_in_script__kyG7hjY",
@@ -1199,516 +467,9 @@
       }
     ]
   },
-  "workflow_task_with_worker_tag": {
-    "instruction": "# Fix Windmill Workflow: Route GPU Task to Worker Tag\n\n## Background\n\nWindmill's Workflow-as-Code (WAC) `task()` primitive accepts an optional options object as its second argument. One key option is `tag`, which routes the dispatched child job to a specific worker group. For example:\n\n```typescript\nawait task(trainModel, { tag: 'gpu' })(data);\n```\n\nThis ensures that compute-intensive tasks like model training are executed on workers tagged with `'gpu'` (i.e., GPU-equipped machines), while lighter tasks like preprocessing can run on any standard worker.\n\nA broken ML pipeline workflow has been placed at `/home/user/windmill-project/f/workflows/ml_pipeline.ts`. It calls both `preprocessData` and `trainModel` without any routing tag. The `trainModel` task must be fixed to include `{ tag: 'gpu' }` so it is always dispatched to GPU workers.\n\n## Requirements\n\n- Keep `await task(preprocessData)(rawData)` **unchanged** (no tag should be added).\n- Change `await task(trainModel)(processedData)` to `await task(trainModel, { tag: 'gpu' })(processedData)`.\n- The `workflow(` wrapper and all function definitions must remain intact.\n\n## Implementation Guide\n\n1. Open `/home/user/windmill-project/f/workflows/ml_pipeline.ts`.\n2. Locate the line:\n   ```typescript\n   const modelResult = await task(trainModel)(processedData);\n   ```\n3. Replace it with:\n   ```typescript\n   const modelResult = await task(trainModel, { tag: 'gpu' })(processedData);\n   ```\n4. Save the file. Do **not** modify any other lines.\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- File to edit: `/home/user/windmill-project/f/workflows/ml_pipeline.ts`\n- `preprocessData` task must **NOT** have a tag — leave `task(preprocessData)(rawData)` as-is.\n- `trainModel` task **MUST** have `tag: 'gpu'` in its options object.\n- No live Windmill server is required; the fix is purely a code change.\n\n## Integrations\n- None\n",
-    "trials": [
-      {
-        "job_name": "2026-05-14__17-28-44",
-        "trial_name": "workflow_task_with_worker_tag__4NtBpMu",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-5-sonnet",
-        "provider": "anthropic",
-        "passed": false,
-        "reward": null,
-        "error": true,
-        "latency_sec": 52.401,
-        "latency_breakdown": {
-          "env_setup": 3.583,
-          "agent_setup": 44.022,
-          "agent_exec": 2.669,
-          "verifier": 1.931
-        },
-        "tokens": {
-          "input": 0,
-          "output": 0,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-13-38",
-        "trial_name": "workflow_task_with_worker_tag__fxdE8vb",
-        "agent": "pochi",
-        "model": "google/gemini-3.1-pro",
-        "provider": "google",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 85.314,
-        "latency_breakdown": {
-          "env_setup": 3.723,
-          "agent_setup": 29.165,
-          "agent_exec": 29.805,
-          "verifier": 11.893
-        },
-        "tokens": {
-          "input": 0,
-          "output": 12088,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "ml_pipeline.ts",
-                "type": "file",
-                "path": "artifacts/code/ml_pipeline.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-55-42",
-        "trial_name": "workflow_task_with_worker_tag__SVJbxJw",
-        "agent": "pochi",
-        "model": "zai/glm-4.7",
-        "provider": "zai",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 122.997,
-        "latency_breakdown": {
-          "env_setup": 1.622,
-          "agent_setup": 61.038,
-          "agent_exec": 40.955,
-          "verifier": 8.709
-        },
-        "tokens": {
-          "input": 0,
-          "output": 14316,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__15-24-29",
-        "trial_name": "workflow_task_with_worker_tag__koUY3kT",
-        "agent": "pochi",
-        "model": "google/gemini-3-flash",
-        "provider": "google",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 252.84,
-        "latency_breakdown": {
-          "env_setup": 127.306,
-          "agent_setup": 64.107,
-          "agent_exec": 28.008,
-          "verifier": 22.148
-        },
-        "tokens": {
-          "input": 0,
-          "output": 12690,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "workflows",
-            "type": "dir",
-            "path": "artifacts/workflows",
-            "children": [
-              {
-                "name": "ml_pipeline.ts",
-                "type": "file",
-                "path": "artifacts/workflows/ml_pipeline.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-32-25",
-        "trial_name": "workflow_task_with_worker_tag__KYTFYvH",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-6-sonnet",
-        "provider": "anthropic",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 140.717,
-        "latency_breakdown": {
-          "env_setup": 1.893,
-          "agent_setup": 86.189,
-          "agent_exec": 22.235,
-          "verifier": 19.714
-        },
-        "tokens": {
-          "input": 0,
-          "output": 15358,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "ml_pipeline.ts",
-            "type": "file",
-            "path": "artifacts/ml_pipeline.ts"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__18-35-52",
-        "trial_name": "workflow_task_with_worker_tag__DfGRrJg",
-        "agent": "pochi",
-        "model": "openai/gpt-5.2-codex",
-        "provider": "openai",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 125.259,
-        "latency_breakdown": {
-          "env_setup": 1.965,
-          "agent_setup": 75.985,
-          "agent_exec": 29.787,
-          "verifier": 6.512
-        },
-        "tokens": {
-          "input": 0,
-          "output": 12361,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "ml_pipeline.ts",
-            "type": "file",
-            "path": "artifacts/ml_pipeline.ts"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      }
-    ]
-  },
-  "event_driven_etl_orchestrator": {
-    "instruction": "# Build an Event-Driven ETL Orchestrator\n\n## Instruction\n\nBuild a TypeScript Windmill workflow at `/home/user/windmill-project/f/workflows/etl_orchestrator.ts` that:\n\n1. Accepts `events: Array<{ id: string, type: string, payload: any }>` and optional `warehouseTarget: string = 'main'` as parameters.\n2. Deduplicates events by reading previously processed event IDs from `/home/user/windmill-project/processed_events.json` (array of string IDs). Filter out any events whose `id` is already in this list.\n3. Enriches only the new (non-duplicate) events in parallel (max 5 concurrent) using a Windmill task.\n4. Obtains resume/approval URLs before requesting human approval, and logs the approval URL.\n5. Waits for human approval before writing to the data warehouse.\n6. On approval, writes to the warehouse, updates the processed_events.json file with the newly processed IDs, and returns a success summary.\n7. On rejection, returns a rejection summary without writing.\n\n## Constraints\n- Project path: `/home/user/windmill-project`\n- State file: `/home/user/windmill-project/processed_events.json`\n- Output file: `/home/user/windmill-project/f/workflows/etl_orchestrator.ts`\n",
-    "trials": [
-      {
-        "job_name": "2026-05-14__17-28-44",
-        "trial_name": "event_driven_etl_orchestrator__35R5nCk",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-5-sonnet",
-        "provider": "anthropic",
-        "passed": false,
-        "reward": 0,
-        "error": true,
-        "latency_sec": 72.709,
-        "latency_breakdown": {
-          "env_setup": 8.799,
-          "agent_setup": 40.818,
-          "agent_exec": 2.393,
-          "verifier": 9.86
-        },
-        "tokens": {
-          "input": 0,
-          "output": 0,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-13-38",
-        "trial_name": "event_driven_etl_orchestrator__vMQWrae",
-        "agent": "pochi",
-        "model": "google/gemini-3.1-pro",
-        "provider": "google",
-        "passed": false,
-        "reward": 0,
-        "error": false,
-        "latency_sec": 266.523,
-        "latency_breakdown": {
-          "env_setup": 8.779,
-          "agent_setup": 119.332,
-          "agent_exec": 118.665,
-          "verifier": 8.56
-        },
-        "tokens": {
-          "input": 0,
-          "output": 18899,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "etl_orchestrator.ts",
-                "type": "file",
-                "path": "artifacts/code/etl_orchestrator.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-55-42",
-        "trial_name": "event_driven_etl_orchestrator__2H3rnqv",
-        "agent": "pochi",
-        "model": "zai/glm-4.7",
-        "provider": "zai",
-        "passed": false,
-        "reward": 0,
-        "error": false,
-        "latency_sec": 277.066,
-        "latency_breakdown": {
-          "env_setup": 2.883,
-          "agent_setup": 67.824,
-          "agent_exec": 181.664,
-          "verifier": 14.059
-        },
-        "tokens": {
-          "input": 0,
-          "output": 21152,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "etl_orchestrator.ts",
-                "type": "file",
-                "path": "artifacts/code/etl_orchestrator.ts"
-              }
-            ]
-          },
-          {
-            "name": "example_usage.ts",
-            "type": "file",
-            "path": "artifacts/example_usage.ts"
-          },
-          {
-            "name": "README.md",
-            "type": "file",
-            "path": "artifacts/README.md"
-          },
-          {
-            "name": "SUMMARY.md",
-            "type": "file",
-            "path": "artifacts/SUMMARY.md"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__15-24-29",
-        "trial_name": "event_driven_etl_orchestrator__zfZCWns",
-        "agent": "pochi",
-        "model": "google/gemini-3-flash",
-        "provider": "google",
-        "passed": false,
-        "reward": 0,
-        "error": false,
-        "latency_sec": 316.872,
-        "latency_breakdown": {
-          "env_setup": 145.458,
-          "agent_setup": 69.479,
-          "agent_exec": 71.208,
-          "verifier": 19.419
-        },
-        "tokens": {
-          "input": 0,
-          "output": 18262,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "etl_orchestrator.ts",
-                "type": "file",
-                "path": "artifacts/code/etl_orchestrator.ts"
-              }
-            ]
-          },
-          {
-            "name": "processed_events.json",
-            "type": "file",
-            "path": "artifacts/processed_events.json"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-32-25",
-        "trial_name": "event_driven_etl_orchestrator__U9y9uXY",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-6-sonnet",
-        "provider": "anthropic",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 191.935,
-        "latency_breakdown": {
-          "env_setup": 9.156,
-          "agent_setup": 39.794,
-          "agent_exec": 123.261,
-          "verifier": 8.958
-        },
-        "tokens": {
-          "input": 0,
-          "output": 41473,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "etl_orchestrator.ts",
-            "type": "file",
-            "path": "artifacts/etl_orchestrator.ts"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__18-35-52",
-        "trial_name": "event_driven_etl_orchestrator__mrf49x2",
-        "agent": "pochi",
-        "model": "openai/gpt-5.2-codex",
-        "provider": "openai",
-        "passed": false,
-        "reward": 0,
-        "error": false,
-        "latency_sec": 206.652,
-        "latency_breakdown": {
-          "env_setup": 3.164,
-          "agent_setup": 75.529,
-          "agent_exec": 95.271,
-          "verifier": 21.596
-        },
-        "tokens": {
-          "input": 0,
-          "output": 18451,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "workflows",
-            "type": "dir",
-            "path": "artifacts/workflows",
-            "children": [
-              {
-                "name": "etl_orchestrator.ts",
-                "type": "file",
-                "path": "artifacts/workflows/etl_orchestrator.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      }
-    ]
-  },
   "python_state_tracking_script": {
     "instruction": "# Windmill Python State Tracking Script\n\n## Background\nWindmill is a developer platform for building internal tools and workflows. Python scripts in Windmill export a `main()` function and can persist state across executions using the `wmill` client library. The `get_state()` function retrieves the previously stored state (returns `None` on the very first run), and `set_state(value)` persists a new value for the next run.\n\nYou have a Windmill project scaffolded at `/home/user/windmill-project`. Your task is to create a Python script that acts as an execution counter — every time it runs, it reads the previous count, increments it, saves the new count, and returns a summary.\n\n## Requirements\n- Write a Python Windmill script at `/home/user/windmill-project/f/scripts/execution_counter.py`.\n- The script must import `get_state` and `set_state` from the `wmill` package.\n- Define a `main()` function (no parameters required).\n- Inside `main()`, read the current count from state using `get_state()`; if the value is `None` (first run), treat it as `0`.\n- Increment the count by `1`.\n- Persist the new count using `set_state(new_count)`.\n- Return a dict: `{\"count\": new_count, \"message\": f\"This script has been executed {new_count} time(s).\"}`.\n- Also create a companion metadata file at `/home/user/windmill-project/f/scripts/execution_counter.script.yaml` with the following content:\n\n```yaml\ndescription: Tracks the number of times this script has been executed using Windmill persistent state.\nlanguage: python3\n```\n\n## Implementation Guide\n\n1. Create the scripts directory if it does not already exist:\n   ```bash\n   mkdir -p /home/user/windmill-project/f/scripts\n   ```\n2. Write the script file `/home/user/windmill-project/f/scripts/execution_counter.py`:\n   ```python\n   from wmill import get_state, set_state\n\n   def main():\n       current_count = get_state()\n       if current_count is None:\n           current_count = 0\n       new_count = current_count + 1\n       set_state(new_count)\n       return {\n           \"count\": new_count,\n           \"message\": f\"This script has been executed {new_count} time(s).\"\n       }\n   ```\n3. Write the companion metadata file `/home/user/windmill-project/f/scripts/execution_counter.script.yaml`:\n   ```yaml\n   description: Tracks the number of times this script has been executed using Windmill persistent state.\n   language: python3\n   ```\n\n## Constraints\n- Project path: `/home/user/windmill-project`\n- Script path: `/home/user/windmill-project/f/scripts/execution_counter.py`\n- Metadata path: `/home/user/windmill-project/f/scripts/execution_counter.script.yaml`\n- The `wmill` Python package is already installed.\n- This is a local file creation task — no live Windmill server is required.\n- Do NOT rename the function; it must be called `main`.\n- The return value must be a `dict` with exactly the keys `count` (int) and `message` (str).\n",
     "trials": [
-      {
-        "job_name": "2026-05-14__17-28-44",
-        "trial_name": "python_state_tracking_script__SJ7dv8F",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-5-sonnet",
-        "provider": "anthropic",
-        "passed": false,
-        "reward": 0,
-        "error": true,
-        "latency_sec": 80.129,
-        "latency_breakdown": {
-          "env_setup": 8.764,
-          "agent_setup": 30.305,
-          "agent_exec": 3.482,
-          "verifier": 26.564
-        },
-        "tokens": {
-          "input": 0,
-          "output": 0,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
       {
         "job_name": "2026-05-14__17-13-38",
         "trial_name": "python_state_tracking_script__u6ycMbg",
@@ -1936,237 +697,6 @@
                 "path": "artifacts/windmill/execution_counter.script.yaml"
               }
             ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      }
-    ]
-  },
-  "taskscript_external_reference": {
-    "instruction": "# Windmill WAC: Refactor Inline Tasks to `taskScript()` External References\n\n## Background\nWindmill's Workflow-as-Code (WAC) supports two ways to dispatch child jobs:\n\n1. **`task(fn)(args)`** — dispatches an inline TypeScript function as a child job.\n2. **`taskScript(path, options?)(args)`** — dispatches an *existing workspace script* identified by its path (e.g. `'f/data/extract_users'`) as a child job.\n\nUsing `taskScript()` is preferred when the logic already exists as a reusable script in the workspace, because it lets multiple workflows share the same implementation without duplication.\n\n## Task\nThe file `/home/user/windmill-project/f/workflows/data_orchestrator.ts` currently defines two task functions inline (`extractUsers` and `transformRecords`) and dispatches them via `task()`. You must refactor it to call the corresponding pre-built workspace scripts via `taskScript()`, while leaving the third inline task (`saveResults`) unchanged.\n\n## Requirements\n\n### 1. Update imports\nAdd `taskScript` to the import statement from `'windmill-client'`:\n```typescript\nimport { task, taskScript, workflow } from 'windmill-client';\n```\n\n### 2. Remove the `extractUsers` inline function\nDelete the entire `async function extractUsers(...)` definition — it is no longer needed because the workflow will call the pre-built workspace script instead.\n\n### 3. Remove the `transformRecords` inline function\nDelete the entire `async function transformRecords(...)` definition for the same reason.\n\n### 4. Replace `task(extractUsers)` with `taskScript('f/data/extract_users')`\nChange:\n```typescript\nconst users = await task(extractUsers)({ limit });\n```\nTo:\n```typescript\nconst users = await taskScript('f/data/extract_users')({ limit });\n```\n\n### 5. Replace `task(transformRecords)` with `taskScript('f/data/transform_records')`\nChange:\n```typescript\nconst transformed = await task(transformRecords)({ records: users });\n```\nTo:\n```typescript\nconst transformed = await taskScript('f/data/transform_records')({ records: users });\n```\n\n### 6. Keep `saveResults` inline\nDo **not** change the `saveResults` function definition or its `task(saveResults)` call — it must remain as an inline task.\n\n## Constraints\n- Project path: `/home/user/windmill-project`\n- File to edit: `/home/user/windmill-project/f/workflows/data_orchestrator.ts`\n- The script paths passed to `taskScript()` must be exactly `'f/data/extract_users'` and `'f/data/transform_records'`\n- `taskScript` must be imported from `'windmill-client'`\n- `workflow(` must still wrap the exported `main` function\n- No live Windmill server is required; the file is evaluated statically\n\n## Integrations\n- None\n",
-    "trials": [
-      {
-        "job_name": "2026-05-14__17-28-44",
-        "trial_name": "taskscript_external_reference__7UZFWB5",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-5-sonnet",
-        "provider": "anthropic",
-        "passed": false,
-        "reward": 0,
-        "error": true,
-        "latency_sec": 93.365,
-        "latency_breakdown": {
-          "env_setup": 3.71,
-          "agent_setup": 54.426,
-          "agent_exec": 2.623,
-          "verifier": 21.761
-        },
-        "tokens": {
-          "input": 0,
-          "output": 0,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-13-38",
-        "trial_name": "taskscript_external_reference__XoLvELE",
-        "agent": "pochi",
-        "model": "google/gemini-3.1-pro",
-        "provider": "google",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 98.829,
-        "latency_breakdown": {
-          "env_setup": 3.792,
-          "agent_setup": 35.788,
-          "agent_exec": 37.429,
-          "verifier": 11.136
-        },
-        "tokens": {
-          "input": 0,
-          "output": 12499,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "data_orchestrator.ts",
-                "type": "file",
-                "path": "artifacts/code/data_orchestrator.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-55-42",
-        "trial_name": "taskscript_external_reference__UGrjiPS",
-        "agent": "pochi",
-        "model": "zai/glm-4.7",
-        "provider": "zai",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 149.284,
-        "latency_breakdown": {
-          "env_setup": 3.881,
-          "agent_setup": 75.644,
-          "agent_exec": 41.148,
-          "verifier": 17.869
-        },
-        "tokens": {
-          "input": 0,
-          "output": 14798,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "data_orchestrator.ts",
-                "type": "file",
-                "path": "artifacts/code/data_orchestrator.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__15-24-29",
-        "trial_name": "taskscript_external_reference__xyyApbv",
-        "agent": "pochi",
-        "model": "google/gemini-3-flash",
-        "provider": "google",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 134.372,
-        "latency_breakdown": {
-          "env_setup": 38.195,
-          "agent_setup": 49.023,
-          "agent_exec": 31.523,
-          "verifier": 4.022
-        },
-        "tokens": {
-          "input": 0,
-          "output": 12980,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "code",
-            "type": "dir",
-            "path": "artifacts/code",
-            "children": [
-              {
-                "name": "data_orchestrator.ts",
-                "type": "file",
-                "path": "artifacts/code/data_orchestrator.ts"
-              }
-            ]
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__17-32-25",
-        "trial_name": "taskscript_external_reference__9wKtSj7",
-        "agent": "pochi",
-        "model": "anthropic/claude-4-6-sonnet",
-        "provider": "anthropic",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 65.847,
-        "latency_breakdown": {
-          "env_setup": 5.207,
-          "agent_setup": 15.834,
-          "agent_exec": 29.655,
-          "verifier": 4.412
-        },
-        "tokens": {
-          "input": 0,
-          "output": 16008,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "data_orchestrator.ts",
-            "type": "file",
-            "path": "artifacts/data_orchestrator.ts"
-          },
-          {
-            "name": "trial_id",
-            "type": "file",
-            "path": "artifacts/trial_id"
-          }
-        ]
-      },
-      {
-        "job_name": "2026-05-14__18-35-52",
-        "trial_name": "taskscript_external_reference__RKxxNUD",
-        "agent": "pochi",
-        "model": "openai/gpt-5.2-codex",
-        "provider": "openai",
-        "passed": true,
-        "reward": 1,
-        "error": false,
-        "latency_sec": 124.801,
-        "latency_breakdown": {
-          "env_setup": 6.16,
-          "agent_setup": 69.439,
-          "agent_exec": 33.159,
-          "verifier": 5.304
-        },
-        "tokens": {
-          "input": 0,
-          "output": 12598,
-          "cache": 0
-        },
-        "browser_verification_cases": [],
-        "artifacts": [
-          {
-            "name": "data_orchestrator.ts",
-            "type": "file",
-            "path": "artifacts/data_orchestrator.ts"
           },
           {
             "name": "trial_id",
@@ -3020,6 +1550,435 @@
       }
     ]
   },
+  "event_driven_etl_orchestrator": {
+    "instruction": "# Build an Event-Driven ETL Orchestrator\n\n## Instruction\n\nBuild a TypeScript Windmill workflow at `/home/user/windmill-project/f/workflows/etl_orchestrator.ts` that:\n\n1. Accepts `events: Array<{ id: string, type: string, payload: any }>` and optional `warehouseTarget: string = 'main'` as parameters.\n2. Deduplicates events by reading previously processed event IDs from `/home/user/windmill-project/processed_events.json` (array of string IDs). Filter out any events whose `id` is already in this list.\n3. Enriches only the new (non-duplicate) events in parallel (max 5 concurrent) using a Windmill task.\n4. Obtains resume/approval URLs before requesting human approval, and logs the approval URL.\n5. Waits for human approval before writing to the data warehouse.\n6. On approval, writes to the warehouse, updates the processed_events.json file with the newly processed IDs, and returns a success summary.\n7. On rejection, returns a rejection summary without writing.\n\n## Constraints\n- Project path: `/home/user/windmill-project`\n- State file: `/home/user/windmill-project/processed_events.json`\n- Output file: `/home/user/windmill-project/f/workflows/etl_orchestrator.ts`\n",
+    "trials": [
+      {
+        "job_name": "2026-05-14__17-13-38",
+        "trial_name": "event_driven_etl_orchestrator__vMQWrae",
+        "agent": "pochi",
+        "model": "google/gemini-3.1-pro",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": false,
+        "latency_sec": 266.523,
+        "latency_breakdown": {
+          "env_setup": 8.779,
+          "agent_setup": 119.332,
+          "agent_exec": 118.665,
+          "verifier": 8.56
+        },
+        "tokens": {
+          "input": 0,
+          "output": 18899,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "etl_orchestrator.ts",
+                "type": "file",
+                "path": "artifacts/code/etl_orchestrator.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-55-42",
+        "trial_name": "event_driven_etl_orchestrator__2H3rnqv",
+        "agent": "pochi",
+        "model": "zai/glm-4.7",
+        "provider": "zai",
+        "passed": false,
+        "reward": 0,
+        "error": false,
+        "latency_sec": 277.066,
+        "latency_breakdown": {
+          "env_setup": 2.883,
+          "agent_setup": 67.824,
+          "agent_exec": 181.664,
+          "verifier": 14.059
+        },
+        "tokens": {
+          "input": 0,
+          "output": 21152,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "etl_orchestrator.ts",
+                "type": "file",
+                "path": "artifacts/code/etl_orchestrator.ts"
+              }
+            ]
+          },
+          {
+            "name": "example_usage.ts",
+            "type": "file",
+            "path": "artifacts/example_usage.ts"
+          },
+          {
+            "name": "README.md",
+            "type": "file",
+            "path": "artifacts/README.md"
+          },
+          {
+            "name": "SUMMARY.md",
+            "type": "file",
+            "path": "artifacts/SUMMARY.md"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__15-24-29",
+        "trial_name": "event_driven_etl_orchestrator__zfZCWns",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": false,
+        "reward": 0,
+        "error": false,
+        "latency_sec": 316.872,
+        "latency_breakdown": {
+          "env_setup": 145.458,
+          "agent_setup": 69.479,
+          "agent_exec": 71.208,
+          "verifier": 19.419
+        },
+        "tokens": {
+          "input": 0,
+          "output": 18262,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "etl_orchestrator.ts",
+                "type": "file",
+                "path": "artifacts/code/etl_orchestrator.ts"
+              }
+            ]
+          },
+          {
+            "name": "processed_events.json",
+            "type": "file",
+            "path": "artifacts/processed_events.json"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-32-25",
+        "trial_name": "event_driven_etl_orchestrator__U9y9uXY",
+        "agent": "pochi",
+        "model": "anthropic/claude-4-6-sonnet",
+        "provider": "anthropic",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 191.935,
+        "latency_breakdown": {
+          "env_setup": 9.156,
+          "agent_setup": 39.794,
+          "agent_exec": 123.261,
+          "verifier": 8.958
+        },
+        "tokens": {
+          "input": 0,
+          "output": 41473,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "etl_orchestrator.ts",
+            "type": "file",
+            "path": "artifacts/etl_orchestrator.ts"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__18-35-52",
+        "trial_name": "event_driven_etl_orchestrator__mrf49x2",
+        "agent": "pochi",
+        "model": "openai/gpt-5.2-codex",
+        "provider": "openai",
+        "passed": false,
+        "reward": 0,
+        "error": false,
+        "latency_sec": 206.652,
+        "latency_breakdown": {
+          "env_setup": 3.164,
+          "agent_setup": 75.529,
+          "agent_exec": 95.271,
+          "verifier": 21.596
+        },
+        "tokens": {
+          "input": 0,
+          "output": 18451,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "workflows",
+            "type": "dir",
+            "path": "artifacts/workflows",
+            "children": [
+              {
+                "name": "etl_orchestrator.ts",
+                "type": "file",
+                "path": "artifacts/workflows/etl_orchestrator.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "taskscript_external_reference": {
+    "instruction": "# Windmill WAC: Refactor Inline Tasks to `taskScript()` External References\n\n## Background\nWindmill's Workflow-as-Code (WAC) supports two ways to dispatch child jobs:\n\n1. **`task(fn)(args)`** — dispatches an inline TypeScript function as a child job.\n2. **`taskScript(path, options?)(args)`** — dispatches an *existing workspace script* identified by its path (e.g. `'f/data/extract_users'`) as a child job.\n\nUsing `taskScript()` is preferred when the logic already exists as a reusable script in the workspace, because it lets multiple workflows share the same implementation without duplication.\n\n## Task\nThe file `/home/user/windmill-project/f/workflows/data_orchestrator.ts` currently defines two task functions inline (`extractUsers` and `transformRecords`) and dispatches them via `task()`. You must refactor it to call the corresponding pre-built workspace scripts via `taskScript()`, while leaving the third inline task (`saveResults`) unchanged.\n\n## Requirements\n\n### 1. Update imports\nAdd `taskScript` to the import statement from `'windmill-client'`:\n```typescript\nimport { task, taskScript, workflow } from 'windmill-client';\n```\n\n### 2. Remove the `extractUsers` inline function\nDelete the entire `async function extractUsers(...)` definition — it is no longer needed because the workflow will call the pre-built workspace script instead.\n\n### 3. Remove the `transformRecords` inline function\nDelete the entire `async function transformRecords(...)` definition for the same reason.\n\n### 4. Replace `task(extractUsers)` with `taskScript('f/data/extract_users')`\nChange:\n```typescript\nconst users = await task(extractUsers)({ limit });\n```\nTo:\n```typescript\nconst users = await taskScript('f/data/extract_users')({ limit });\n```\n\n### 5. Replace `task(transformRecords)` with `taskScript('f/data/transform_records')`\nChange:\n```typescript\nconst transformed = await task(transformRecords)({ records: users });\n```\nTo:\n```typescript\nconst transformed = await taskScript('f/data/transform_records')({ records: users });\n```\n\n### 6. Keep `saveResults` inline\nDo **not** change the `saveResults` function definition or its `task(saveResults)` call — it must remain as an inline task.\n\n## Constraints\n- Project path: `/home/user/windmill-project`\n- File to edit: `/home/user/windmill-project/f/workflows/data_orchestrator.ts`\n- The script paths passed to `taskScript()` must be exactly `'f/data/extract_users'` and `'f/data/transform_records'`\n- `taskScript` must be imported from `'windmill-client'`\n- `workflow(` must still wrap the exported `main` function\n- No live Windmill server is required; the file is evaluated statically\n\n## Integrations\n- None\n",
+    "trials": [
+      {
+        "job_name": "2026-05-14__17-13-38",
+        "trial_name": "taskscript_external_reference__XoLvELE",
+        "agent": "pochi",
+        "model": "google/gemini-3.1-pro",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 98.829,
+        "latency_breakdown": {
+          "env_setup": 3.792,
+          "agent_setup": 35.788,
+          "agent_exec": 37.429,
+          "verifier": 11.136
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12499,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "data_orchestrator.ts",
+                "type": "file",
+                "path": "artifacts/code/data_orchestrator.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-55-42",
+        "trial_name": "taskscript_external_reference__UGrjiPS",
+        "agent": "pochi",
+        "model": "zai/glm-4.7",
+        "provider": "zai",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 149.284,
+        "latency_breakdown": {
+          "env_setup": 3.881,
+          "agent_setup": 75.644,
+          "agent_exec": 41.148,
+          "verifier": 17.869
+        },
+        "tokens": {
+          "input": 0,
+          "output": 14798,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "data_orchestrator.ts",
+                "type": "file",
+                "path": "artifacts/code/data_orchestrator.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__15-24-29",
+        "trial_name": "taskscript_external_reference__xyyApbv",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 134.372,
+        "latency_breakdown": {
+          "env_setup": 38.195,
+          "agent_setup": 49.023,
+          "agent_exec": 31.523,
+          "verifier": 4.022
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12980,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "data_orchestrator.ts",
+                "type": "file",
+                "path": "artifacts/code/data_orchestrator.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-32-25",
+        "trial_name": "taskscript_external_reference__9wKtSj7",
+        "agent": "pochi",
+        "model": "anthropic/claude-4-6-sonnet",
+        "provider": "anthropic",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 65.847,
+        "latency_breakdown": {
+          "env_setup": 5.207,
+          "agent_setup": 15.834,
+          "agent_exec": 29.655,
+          "verifier": 4.412
+        },
+        "tokens": {
+          "input": 0,
+          "output": 16008,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "data_orchestrator.ts",
+            "type": "file",
+            "path": "artifacts/data_orchestrator.ts"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__18-35-52",
+        "trial_name": "taskscript_external_reference__RKxxNUD",
+        "agent": "pochi",
+        "model": "openai/gpt-5.2-codex",
+        "provider": "openai",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 124.801,
+        "latency_breakdown": {
+          "env_setup": 6.16,
+          "agent_setup": 69.439,
+          "agent_exec": 33.159,
+          "verifier": 5.304
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12598,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "data_orchestrator.ts",
+            "type": "file",
+            "path": "artifacts/data_orchestrator.ts"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
   "python_workflow_gather_urls": {
     "instruction": "# Build a Python Windmill Workflow to Monitor URLs in Parallel\n\n## Background\n\nWindmill supports Python for Workflows-as-Code (WAC). Use the `@workflow` decorator on your entry function and `@task` on functions that should run as separate child jobs. Multiple tasks can be dispatched in parallel using `asyncio.gather()`.\n\n```python\nfrom wmill import workflow, task\nimport asyncio\n\n@task\nasync def check_url(url: str) -> dict:\n    # runs as a separate child job\n    ...\n\n@workflow\nasync def main(urls: list) -> dict:\n    results = await asyncio.gather(*[check_url(u) for u in urls])\n    ...\n```\n\n## Requirements\n\nCreate a workflow at `/home/user/windmill-project/f/workflows/url_monitor.py` that:\n\n1. Defines a `check_url` task (decorated with `@task`) that accepts `url: str` and returns `{'url': url, 'status': int, 'ok': bool}`. Use `urllib.request.urlopen` with a 5-second timeout to get the status code. On any exception, return `{'url': url, 'status': 0, 'ok': False}`.\n2. Defines an `aggregate` task (decorated with `@task`) that accepts a `results: list` and returns `{'total': len(results), 'successful': count of ok==True, 'failed': count of ok==False}`.\n3. Exports a `main` function (decorated with `@workflow`) that:\n   - Accepts `urls: list` as input.\n   - Uses `asyncio.gather(*[check_url(u) for u in urls])` to fetch all URLs in parallel.\n   - Passes the results list to `aggregate(results)` (awaited).\n   - Returns the summary dict.\n\n## Implementation Guide\n\n1. Create `/home/user/windmill-project/f/workflows/url_monitor.py`.\n2. Import `workflow`, `task` from `wmill`; import `asyncio` and `urllib.request`.\n3. Implement `check_url` with `@task` decorator.\n4. Implement `aggregate` with `@task` decorator.\n5. Implement `main` with `@workflow` decorator.\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Output file: `/home/user/windmill-project/f/workflows/url_monitor.py`\n- Use `urllib.request.urlopen` (stdlib only, no `requests` or `httpx`).\n- The `check_url` function MUST handle all exceptions with try/except and return `{'url': url, 'status': 0, 'ok': False}` on error.\n- No live Windmill server is required.\n",
     "trials": [
@@ -3398,6 +2357,195 @@
             "name": "heartbeat.py",
             "type": "file",
             "path": "artifacts/heartbeat.py"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "workflow_task_with_worker_tag": {
+    "instruction": "# Fix Windmill Workflow: Route GPU Task to Worker Tag\n\n## Background\n\nWindmill's Workflow-as-Code (WAC) `task()` primitive accepts an optional options object as its second argument. One key option is `tag`, which routes the dispatched child job to a specific worker group. For example:\n\n```typescript\nawait task(trainModel, { tag: 'gpu' })(data);\n```\n\nThis ensures that compute-intensive tasks like model training are executed on workers tagged with `'gpu'` (i.e., GPU-equipped machines), while lighter tasks like preprocessing can run on any standard worker.\n\nA broken ML pipeline workflow has been placed at `/home/user/windmill-project/f/workflows/ml_pipeline.ts`. It calls both `preprocessData` and `trainModel` without any routing tag. The `trainModel` task must be fixed to include `{ tag: 'gpu' }` so it is always dispatched to GPU workers.\n\n## Requirements\n\n- Keep `await task(preprocessData)(rawData)` **unchanged** (no tag should be added).\n- Change `await task(trainModel)(processedData)` to `await task(trainModel, { tag: 'gpu' })(processedData)`.\n- The `workflow(` wrapper and all function definitions must remain intact.\n\n## Implementation Guide\n\n1. Open `/home/user/windmill-project/f/workflows/ml_pipeline.ts`.\n2. Locate the line:\n   ```typescript\n   const modelResult = await task(trainModel)(processedData);\n   ```\n3. Replace it with:\n   ```typescript\n   const modelResult = await task(trainModel, { tag: 'gpu' })(processedData);\n   ```\n4. Save the file. Do **not** modify any other lines.\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- File to edit: `/home/user/windmill-project/f/workflows/ml_pipeline.ts`\n- `preprocessData` task must **NOT** have a tag — leave `task(preprocessData)(rawData)` as-is.\n- `trainModel` task **MUST** have `tag: 'gpu'` in its options object.\n- No live Windmill server is required; the fix is purely a code change.\n\n## Integrations\n- None\n",
+    "trials": [
+      {
+        "job_name": "2026-05-14__17-13-38",
+        "trial_name": "workflow_task_with_worker_tag__fxdE8vb",
+        "agent": "pochi",
+        "model": "google/gemini-3.1-pro",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 85.314,
+        "latency_breakdown": {
+          "env_setup": 3.723,
+          "agent_setup": 29.165,
+          "agent_exec": 29.805,
+          "verifier": 11.893
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12088,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "ml_pipeline.ts",
+                "type": "file",
+                "path": "artifacts/code/ml_pipeline.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-55-42",
+        "trial_name": "workflow_task_with_worker_tag__SVJbxJw",
+        "agent": "pochi",
+        "model": "zai/glm-4.7",
+        "provider": "zai",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 122.997,
+        "latency_breakdown": {
+          "env_setup": 1.622,
+          "agent_setup": 61.038,
+          "agent_exec": 40.955,
+          "verifier": 8.709
+        },
+        "tokens": {
+          "input": 0,
+          "output": 14316,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__15-24-29",
+        "trial_name": "workflow_task_with_worker_tag__koUY3kT",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 252.84,
+        "latency_breakdown": {
+          "env_setup": 127.306,
+          "agent_setup": 64.107,
+          "agent_exec": 28.008,
+          "verifier": 22.148
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12690,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "workflows",
+            "type": "dir",
+            "path": "artifacts/workflows",
+            "children": [
+              {
+                "name": "ml_pipeline.ts",
+                "type": "file",
+                "path": "artifacts/workflows/ml_pipeline.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-32-25",
+        "trial_name": "workflow_task_with_worker_tag__KYTFYvH",
+        "agent": "pochi",
+        "model": "anthropic/claude-4-6-sonnet",
+        "provider": "anthropic",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 140.717,
+        "latency_breakdown": {
+          "env_setup": 1.893,
+          "agent_setup": 86.189,
+          "agent_exec": 22.235,
+          "verifier": 19.714
+        },
+        "tokens": {
+          "input": 0,
+          "output": 15358,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "ml_pipeline.ts",
+            "type": "file",
+            "path": "artifacts/ml_pipeline.ts"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__18-35-52",
+        "trial_name": "workflow_task_with_worker_tag__DfGRrJg",
+        "agent": "pochi",
+        "model": "openai/gpt-5.2-codex",
+        "provider": "openai",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 125.259,
+        "latency_breakdown": {
+          "env_setup": 1.965,
+          "agent_setup": 75.985,
+          "agent_exec": 29.787,
+          "verifier": 6.512
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12361,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "ml_pipeline.ts",
+            "type": "file",
+            "path": "artifacts/ml_pipeline.ts"
           },
           {
             "name": "trial_id",
@@ -4272,6 +3420,387 @@
       }
     ]
   },
+  "workflow_step_determinism": {
+    "instruction": "# Fix Windmill Workflow: Wrap Non-Deterministic Calls in `step()`\n\n## Background\n\nWindmill's Workflows-as-Code (WAC) engine uses a checkpoint/replay model. When a workflow is suspended and later resumed, the orchestration function replays from the beginning. If the workflow uses non-deterministic expressions like `Date.now()`, `Math.random()`, or `crypto.randomUUID()` directly in the workflow body, each replay will produce **different values** for these expressions, breaking checkpoint consistency and potentially causing incorrect behavior.\n\nThe correct fix is to wrap these non-deterministic calls in `step()`, which executes the function inline once and persists the result so that replays return the cached value.\n\nA broken order-processing workflow has been placed at `/home/user/windmill-project/f/workflows/order_processor.ts`. It uses `Date.now()` directly to generate a timestamp and `Math.random()` to generate an order ID. Both must be wrapped in `step()` calls.\n\n## Requirements\n\n- Wrap `Date.now()` in a `step()` call with key `'timestamp'`.\n- Wrap `Math.random().toString(36).slice(2)` in a `step()` call with key `'order_id'`.\n- Import `step` from `windmill-client` in addition to the existing imports.\n- Keep all other workflow logic intact (the `task(processOrder)` and `task(notifyShipping)` calls must remain unchanged).\n\n## Implementation Guide\n\n1. Open `/home/user/windmill-project/f/workflows/order_processor.ts`.\n2. Add `step` to the import from `windmill-client`.\n3. Replace:\n   ```typescript\n   const timestamp = Date.now();\n   const orderId = Math.random().toString(36).slice(2);\n   ```\n   With:\n   ```typescript\n   const timestamp = await step('timestamp', () => Date.now());\n   const orderId = await step('order_id', () => Math.random().toString(36).slice(2));\n   ```\n4. Save the file.\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- File to edit: `/home/user/windmill-project/f/workflows/order_processor.ts`\n- Do NOT rename any functions or change the exported `main` signature.\n- Do NOT use bare `Date.now()` or `Math.random()` calls outside of `step()` in the workflow body.\n- No live Windmill server is required; the fix is purely a code change.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-14__17-13-38",
+        "trial_name": "workflow_step_determinism__G2qfb4Y",
+        "agent": "pochi",
+        "model": "google/gemini-3.1-pro",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 106.438,
+        "latency_breakdown": {
+          "env_setup": 2.056,
+          "agent_setup": 47.881,
+          "agent_exec": 33.17,
+          "verifier": 12.081
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12767,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "order_processor.ts",
+            "type": "file",
+            "path": "artifacts/order_processor.ts"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-55-42",
+        "trial_name": "workflow_step_determinism__46RGUnW",
+        "agent": "pochi",
+        "model": "zai/glm-4.7",
+        "provider": "zai",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 168.118,
+        "latency_breakdown": {
+          "env_setup": 1.362,
+          "agent_setup": 91.708,
+          "agent_exec": 59.646,
+          "verifier": 4.442
+        },
+        "tokens": {
+          "input": 0,
+          "output": 14695,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "order_processor_fixed.ts",
+            "type": "file",
+            "path": "artifacts/order_processor_fixed.ts"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__15-24-29",
+        "trial_name": "workflow_step_determinism__NubYKue",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 224.493,
+        "latency_breakdown": {
+          "env_setup": 100.449,
+          "agent_setup": 70.892,
+          "agent_exec": 31.088,
+          "verifier": 11.037
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12932,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "order_processor.ts",
+                "type": "file",
+                "path": "artifacts/code/order_processor.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-32-25",
+        "trial_name": "workflow_step_determinism__jwi9RPZ",
+        "agent": "pochi",
+        "model": "anthropic/claude-4-6-sonnet",
+        "provider": "anthropic",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 130.346,
+        "latency_breakdown": {
+          "env_setup": 1.417,
+          "agent_setup": 66.735,
+          "agent_exec": 30.595,
+          "verifier": 20.987
+        },
+        "tokens": {
+          "input": 0,
+          "output": 16122,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "order_processor.ts",
+            "type": "file",
+            "path": "artifacts/order_processor.ts"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__18-35-52",
+        "trial_name": "workflow_step_determinism__JaAsZmb",
+        "agent": "pochi",
+        "model": "openai/gpt-5.2-codex",
+        "provider": "openai",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 131.6,
+        "latency_breakdown": {
+          "env_setup": 1.62,
+          "agent_setup": 70.424,
+          "agent_exec": 37.435,
+          "verifier": 10.893
+        },
+        "tokens": {
+          "input": 0,
+          "output": 13231,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "order_processor.ts",
+            "type": "file",
+            "path": "artifacts/order_processor.ts"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "cron_monitor_with_state": {
+    "instruction": "You are working inside a Windmill project environment. A health monitor script at `/home/user/windmill-project/f/scripts/health_monitor.py` is broken — it sends an alert on EVERY scheduled run regardless of whether the service status has changed. Your task is to fix the script so that it:\n1. Imports `get_state` (in addition to `set_state`) from the `wmill` package\n2. Reads the previous status at the start: `last_status = get_state() or 'unknown'`\n3. Only calls `send_alert()` when `current_status != last_status`\n4. Always calls `set_state(current_status)` to persist the new status\n5. Returns a dict: `{'status': current_status, 'changed': current_status != last_status, 'alerted': current_status != last_status}`\n\nDo not change the `check_endpoint` or `send_alert` helper functions. Only modify the `main` function and the imports.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-14__17-13-38",
+        "trial_name": "cron_monitor_with_state__PecTaxk",
+        "agent": "pochi",
+        "model": "google/gemini-3.1-pro",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 154.882,
+        "latency_breakdown": {
+          "env_setup": 3.228,
+          "agent_setup": 95.547,
+          "agent_exec": 31.709,
+          "verifier": 13.752
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12091,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "health_monitor.py",
+                "type": "file",
+                "path": "artifacts/code/health_monitor.py"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-55-42",
+        "trial_name": "cron_monitor_with_state__XnAhfJJ",
+        "agent": "pochi",
+        "model": "zai/glm-4.7",
+        "provider": "zai",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 139.733,
+        "latency_breakdown": {
+          "env_setup": 2.862,
+          "agent_setup": 55.931,
+          "agent_exec": 58.253,
+          "verifier": 11.547
+        },
+        "tokens": {
+          "input": 0,
+          "output": 14544,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "health_monitor_fixed.py",
+            "type": "file",
+            "path": "artifacts/health_monitor_fixed.py"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__15-24-29",
+        "trial_name": "cron_monitor_with_state__SDEWgdD",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 290,
+        "latency_breakdown": {
+          "env_setup": 111.113,
+          "agent_setup": 107.704,
+          "agent_exec": 39.743,
+          "verifier": 20.424
+        },
+        "tokens": {
+          "input": 0,
+          "output": 13507,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "health_monitor.py",
+                "type": "file",
+                "path": "artifacts/code/health_monitor.py"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-32-25",
+        "trial_name": "cron_monitor_with_state__kHgvPz2",
+        "agent": "pochi",
+        "model": "anthropic/claude-4-6-sonnet",
+        "provider": "anthropic",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 186.329,
+        "latency_breakdown": {
+          "env_setup": 2.901,
+          "agent_setup": 119.669,
+          "agent_exec": 39.104,
+          "verifier": 13.529
+        },
+        "tokens": {
+          "input": 0,
+          "output": 15997,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "health_monitor.py",
+            "type": "file",
+            "path": "artifacts/health_monitor.py"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__18-35-52",
+        "trial_name": "cron_monitor_with_state__RSdC27b",
+        "agent": "pochi",
+        "model": "openai/gpt-5.2-codex",
+        "provider": "openai",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 144.589,
+        "latency_breakdown": {
+          "env_setup": 3.119,
+          "agent_setup": 73.891,
+          "agent_exec": 42.601,
+          "verifier": 13.995
+        },
+        "tokens": {
+          "input": 0,
+          "output": 12747,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "health_monitor.py",
+            "type": "file",
+            "path": "artifacts/health_monitor.py"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
   "workflow_basic_task_chain": {
     "instruction": "# Windmill Workflow-as-Code: Basic Task Chain\n\n## Background\nWindmill's Workflow-as-Code (WAC) lets you define multi-step data pipelines entirely in TypeScript. Each step is dispatched as an isolated child job via `task(fn)(args)`, giving it its own logs, worker, and timeline entry while the orchestration body suspends and consumes zero workers between tasks.\n\n## Requirements\nCreate a TypeScript Workflow-as-Code file that chains **three tasks** in sequence:\n\n1. **`validateInput(raw: string): string`** — Validates that the input is non-empty (throw an error if it is), then returns the trimmed string.\n2. **`transformData(input: string): object`** — Transforms the validated string into an object with the shape:\n   ```json\n   { \"original\": \"<input>\", \"upper\": \"<INPUT>\", \"word_count\": <number> }\n   ```\n   where `word_count` is the number of space-separated words.\n3. **`formatOutput(data: object): object`** — Adds metadata to produce the final result:\n   ```json\n   { ...data, \"processed_at\": \"<ISO timestamp>\", \"status\": \"complete\" }\n   ```\n   `new Date().toISOString()` is safe inside a `task()` because each task call is its own isolated child job.\n\nThe exported entry point must be:\n```typescript\nexport const main = workflow(async (raw_input: string) => { ... });\n```\nwhich chains the three tasks in sequence: `validateInput` → `transformData` → `formatOutput`.\n\nAlso create a companion YAML metadata file for the workflow script.\n\n## Implementation Guide\n\n1. Inside `/home/user/windmill-project`, create the directory `f/workflows/` if it does not already exist.\n2. Create the file `f/workflows/data_pipeline.ts` with the following structure:\n   ```typescript\n   import { task, workflow } from 'windmill-client';\n\n   async function validateInput(raw: string): Promise<string> {\n     if (!raw || raw.trim().length === 0) {\n       throw new Error('Input must be non-empty');\n     }\n     return raw.trim();\n   }\n\n   async function transformData(input: string): Promise<object> {\n     return {\n       original: input,\n       upper: input.toUpperCase(),\n       word_count: input.split(' ').length,\n     };\n   }\n\n   async function formatOutput(data: object): Promise<object> {\n     return {\n       ...data,\n       processed_at: new Date().toISOString(),\n       status: 'complete',\n     };\n   }\n\n   export const main = workflow(async (raw_input: string) => {\n     const validated  = await task(validateInput)(raw_input);\n     const transformed = await task(transformData)(validated);\n     return await task(formatOutput)(transformed);\n   });\n   ```\n3. Create the companion YAML file `f/workflows/data_pipeline.script.yaml`:\n   ```yaml\n   summary: Basic three-step data pipeline\n   description: Validates, transforms, and formats an input string through chained tasks.\n   schema:\n     $schema: 'https://json-schema.org/draft/2020-12/schema'\n     type: object\n     properties:\n       raw_input:\n         type: string\n         description: The raw input string to process\n         default: ''\n     required:\n       - raw_input\n   is_template: false\n   ```\n\n## Constraints\n- Project path: /home/user/windmill-project\n- Use `windmill-client` for `task` and `workflow` imports — do NOT import `step`.\n- The three task functions (`validateInput`, `transformData`, `formatOutput`) must be defined as standalone `async function` declarations (not lambdas), so they can be dispatched via `task()`.\n- The `main` export must use `workflow()` as its wrapper.\n- No live Windmill server is required; the files are evaluated statically.\n\n## Integrations\n- None\n",
     "trials": [
@@ -5105,6 +4634,214 @@
             "name": "etl_pipeline.py",
             "type": "file",
             "path": "artifacts/etl_pipeline.py"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      }
+    ]
+  },
+  "deployment_pipeline_with_rollback": {
+    "instruction": "# Build a Windmill Deployment Pipeline with Rollback and Human Approval Gate\n\n## Background\n\nWindmill WAC (Workflows-as-Code) supports robust deployment pipelines through a combination of primitives:\n\n- `step()` — wraps a non-deterministic call so its value is computed once and cached across workflow replays. Used to generate a stable deployment ID.\n- `task()` — schedules a function as an isolated task step, enabling retries and distributed execution.\n- `waitForApproval()` — suspends the workflow until a human approves or rejects it via the Windmill UI, returning `{ approved: boolean, approver: string, value: any }`.\n- `try/catch` — standard error handling; on task failure, a rollback task can be called before rethrowing.\n\nCombining these primitives gives you a production-grade deployment pipeline: generate a stable deploy ID, run tests, deploy to staging (with rollback on failure), wait for human sign-off (with rollback on rejection), deploy to production (with rollback on failure), and return a success summary.\n\n## Requirements\n\nCreate a TypeScript workflow at `/home/user/windmill-project/f/workflows/deploy_with_rollback.ts` that:\n\n1. **Imports** `{ task, workflow, step, waitForApproval }` from `windmill-client`.\n2. **Imports** `crypto` from `node:crypto`.\n3. **Defines** the following plain async functions (used as task implementations):\n   - `runTests(branch: string)` — returns `{ branch, passed: true, tests: 42 }`\n   - `deployToStaging(branch: string, deployId: string)` — returns `{ deployId, env: 'staging', url: 'https://staging.example.com' }`\n   - `rollbackStaging(deployId: string)` — returns `{ deployId, rolled_back: 'staging' }`\n   - `deployToProduction(branch: string, deployId: string)` — returns `{ deployId, env: 'production', url: 'https://prod.example.com' }`\n   - `rollbackProduction(deployId: string)` — returns `{ deployId, rolled_back: 'production' }`\n4. **Exports** `main` as a `workflow()` that accepts `branch: string` and:\n   a. Captures a stable deploy ID: `const deployId = await step('deploy_id', () => crypto.randomUUID());`\n   b. Calls `const testResult = await task(runTests)(branch);` — if `testResult.passed === false`, throws `new Error('Tests failed')` immediately.\n   c. Wraps `await task(deployToStaging)(branch, deployId)` in a `try/catch`; on catch, calls `await task(rollbackStaging)(deployId)` and rethrows.\n   d. Calls `const approval = await waitForApproval({ timeout: 7200 });` — if `!approval.approved`, calls `await task(rollbackStaging)(deployId)` and returns `{ deployId, status: 'rejected', branch, approver: approval.approver }`.\n   e. Wraps `await task(deployToProduction)(branch, deployId)` in a `try/catch`; on catch, calls `await task(rollbackProduction)(deployId)` and rethrows.\n   f. Returns `{ deployId, status: 'deployed', branch, approver: approval.approver }`.\n\n## Implementation Guide\n\n1. Create `/home/user/windmill-project/f/workflows/deploy_with_rollback.ts`.\n2. Add the required imports at the top:\n   ```typescript\n   import { task, workflow, step, waitForApproval } from 'windmill-client';\n   import crypto from 'node:crypto';\n   ```\n3. Implement the five task functions (no decorator needed — they are plain async functions passed to `task()`).\n4. Implement `main` using `workflow()`. A full skeleton:\n   ```typescript\n   export const main = workflow('deploy_with_rollback', async (branch: string) => {\n     const deployId = await step('deploy_id', () => crypto.randomUUID());\n\n     const testResult = await task(runTests)(branch);\n     if (!testResult.passed) {\n       throw new Error('Tests failed');\n     }\n\n     try {\n       await task(deployToStaging)(branch, deployId);\n     } catch (e) {\n       await task(rollbackStaging)(deployId);\n       throw e;\n     }\n\n     const approval = await waitForApproval({ timeout: 7200 });\n     if (!approval.approved) {\n       await task(rollbackStaging)(deployId);\n       return { deployId, status: 'rejected', branch, approver: approval.approver };\n     }\n\n     try {\n       await task(deployToProduction)(branch, deployId);\n     } catch (e) {\n       await task(rollbackProduction)(deployId);\n       throw e;\n     }\n\n     return { deployId, status: 'deployed', branch, approver: approval.approver };\n   });\n   ```\n5. Save the file.\n\n## Constraints\n\n- Project path: `/home/user/windmill-project`\n- Output file: `/home/user/windmill-project/f/workflows/deploy_with_rollback.ts`\n- `waitForApproval` timeout MUST be `7200`.\n- The `step()` key for the deploy ID MUST be `'deploy_id'`.\n- Both `task(deployToStaging)` and `task(deployToProduction)` calls MUST be wrapped in separate `try/catch` blocks.\n- On staging failure: call `rollbackStaging` then rethrow.\n- On approval rejection: call `rollbackStaging`, then return an object containing `status: 'rejected'`.\n- On production failure: call `rollbackProduction` then rethrow.\n- On success: return an object containing `status: 'deployed'` and `approver` from the approval result.\n- No live Windmill server is required; the implementation is purely a code artifact.\n",
+    "trials": [
+      {
+        "job_name": "2026-05-14__17-13-38",
+        "trial_name": "deployment_pipeline_with_rollbac__PVvqjrU",
+        "agent": "pochi",
+        "model": "google/gemini-3.1-pro",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 97.678,
+        "latency_breakdown": {
+          "env_setup": 1.507,
+          "agent_setup": 33.828,
+          "agent_exec": 40.088,
+          "verifier": 10.995
+        },
+        "tokens": {
+          "input": 0,
+          "output": 13605,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "deploy_with_rollback.ts",
+                "type": "file",
+                "path": "artifacts/code/deploy_with_rollback.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-55-42",
+        "trial_name": "deployment_pipeline_with_rollbac__YmjA7Lf",
+        "agent": "pochi",
+        "model": "zai/glm-4.7",
+        "provider": "zai",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 150.644,
+        "latency_breakdown": {
+          "env_setup": 1.727,
+          "agent_setup": 46.394,
+          "agent_exec": 82.653,
+          "verifier": 9.221
+        },
+        "tokens": {
+          "input": 0,
+          "output": 15824,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "workflows",
+            "type": "dir",
+            "path": "artifacts/workflows",
+            "children": [
+              {
+                "name": "deploy_with_rollback.ts",
+                "type": "file",
+                "path": "artifacts/workflows/deploy_with_rollback.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__15-24-29",
+        "trial_name": "deployment_pipeline_with_rollbac__LvNdtBU",
+        "agent": "pochi",
+        "model": "google/gemini-3-flash",
+        "provider": "google",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 146.201,
+        "latency_breakdown": {
+          "env_setup": 30.835,
+          "agent_setup": 52.439,
+          "agent_exec": 43.083,
+          "verifier": 9.029
+        },
+        "tokens": {
+          "input": 0,
+          "output": 15261,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "code",
+            "type": "dir",
+            "path": "artifacts/code",
+            "children": [
+              {
+                "name": "deploy_with_rollback.ts",
+                "type": "file",
+                "path": "artifacts/code/deploy_with_rollback.ts"
+              }
+            ]
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__17-32-25",
+        "trial_name": "deployment_pipeline_with_rollbac__KHpDY4w",
+        "agent": "pochi",
+        "model": "anthropic/claude-4-6-sonnet",
+        "provider": "anthropic",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 130.543,
+        "latency_breakdown": {
+          "env_setup": 1.426,
+          "agent_setup": 66.621,
+          "agent_exec": 35.036,
+          "verifier": 16.703
+        },
+        "tokens": {
+          "input": 0,
+          "output": 17551,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "deploy_with_rollback.ts",
+            "type": "file",
+            "path": "artifacts/deploy_with_rollback.ts"
+          },
+          {
+            "name": "trial_id",
+            "type": "file",
+            "path": "artifacts/trial_id"
+          }
+        ]
+      },
+      {
+        "job_name": "2026-05-14__18-35-52",
+        "trial_name": "deployment_pipeline_with_rollbac__zDnoXNp",
+        "agent": "pochi",
+        "model": "openai/gpt-5.2-codex",
+        "provider": "openai",
+        "passed": true,
+        "reward": 1,
+        "error": false,
+        "latency_sec": 150.476,
+        "latency_breakdown": {
+          "env_setup": 1.439,
+          "agent_setup": 88.261,
+          "agent_exec": 30.273,
+          "verifier": 19.567
+        },
+        "tokens": {
+          "input": 0,
+          "output": 13301,
+          "cache": 0
+        },
+        "browser_verification_cases": [],
+        "artifacts": [
+          {
+            "name": "workflows",
+            "type": "dir",
+            "path": "artifacts/workflows",
+            "children": [
+              {
+                "name": "deploy_with_rollback.ts",
+                "type": "file",
+                "path": "artifacts/workflows/deploy_with_rollback.ts"
+              }
+            ]
           },
           {
             "name": "trial_id",
