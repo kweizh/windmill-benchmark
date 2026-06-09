@@ -2,7 +2,7 @@
 
 This repository contains benchmarks for [Windmill](https://github.com/windmill-labs/windmill), an open-source developer platform and workflow engine.
 
-You can view the evaluation reports at [desu-club.github.io/windmill-benchmark](https://desu-club.github.io/windmill-benchmark/).
+You can view the evaluation reports at [kweizh.github.io/windmill-benchmark](https://kweizh.github.io/windmill-benchmark/).
 
 ## Project Structure
 
