@@ -56,14 +56,20 @@ export function TrajectoryPage({
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const [iframeLoading, setIframeLoading] = useState(true);
+  const [devModeEnabled, setDevModeEnabled] = useState(process.env.NODE_ENV === "development");
 
-  const experimentalArtifactsEnabled = searchParams.get("experimentalArtifacts") === "true";
+  useEffect(() => {
+    const isDev = process.env.NODE_ENV === "development" || 
+                  localStorage.getItem("devMode") === "true";
+    setDevModeEnabled(isDev);
+  }, []);
+
   const visibleTabsConfig = useMemo(
     () =>
-      experimentalArtifactsEnabled
+      devModeEnabled
         ? tabsConfig
         : tabsConfig.filter((t) => t.value !== "artifacts"),
-    [tabsConfig, experimentalArtifactsEnabled],
+    [tabsConfig, devModeEnabled],
   );
   const validTabs = visibleTabsConfig.map((t) => t.value);
   const [activeTab, setActiveTab] = useState(() => {
@@ -309,7 +315,7 @@ export function TrajectoryPage({
               )}
             </TabsContent>
 
-            {experimentalArtifactsEnabled && artifactTree && artifactTree.length > 0 && (
+            {devModeEnabled && artifactTree && artifactTree.length > 0 && (
               <TabsContent value="artifacts" className="min-h-0 flex-1 overflow-hidden" forceMount>
                 <ArtifactsPanel artifactTree={artifactTree} />
               </TabsContent>
