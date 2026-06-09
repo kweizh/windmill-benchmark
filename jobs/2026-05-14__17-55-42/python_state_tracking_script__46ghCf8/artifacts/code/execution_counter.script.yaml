@@ -1,2 +1,0 @@
-description: Tracks the number of times this script has been executed using Windmill persistent state.
-language: python3
