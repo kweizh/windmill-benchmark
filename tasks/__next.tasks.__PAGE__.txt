@@ -1,5 +1,212 @@
 1:"$Sreact.fragment"
-2:I[75049,["/windmill-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/windmill-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
-3:"$Sreact.suspense"
-0:{"buildId":"GNkbZcZLUKNnyrWAHMPyL","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","div",null,{"className":"container mx-auto px-4 sm:px-8 lg:px-12 py-8 max-w-screen-2xl h-[100dvh] flex flex-col overflow-hidden","children":[["$","div",null,{"className":"mb-6 space-y-4 shrink-0","children":[["$","div",null,{"className":"flex items-center gap-4","children":["$","a",null,{"href":"/","className":"text-sm text-muted-foreground hover:text-foreground transition-colors","children":"← Back to Leaderboard"}]}],["$","div",null,{"children":["$","h1",null,{"className":"text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50","children":"Task"}]}]]}],["$","div",null,{"className":"relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card/90 to-background/90 px-5 pb-10 pt-6 text-center shadow-[0_0_0_1px_hsl(var(--primary)/0.18),0_28px_72px_-32px_hsl(var(--foreground)/0.45)] backdrop-blur-sm sm:px-8 sm:pb-14 sm:pt-8","children":[["$","div",null,{"className":"pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-primary/20 blur-3xl sm:-right-14 sm:-top-14 sm:h-40 sm:w-40"}],["$","div",null,{"className":"pointer-events-none absolute -left-20 bottom-0 h-32 w-32 rounded-full bg-foreground/10 blur-3xl sm:h-36 sm:w-36"}],["$","div",null,{"className":"relative mx-auto mb-8 inline-flex items-center rounded-full border border-primary/40 bg-primary/15 px-3 py-1 text-xs font-semibold tracking-[0.12em] text-foreground sm:text-sm sm:tracking-[0.16em]","children":"⏳ PIPELINE PENDING REVIEW"}],["$","p",null,{"className":"relative mx-auto max-w-2xl px-4 text-center text-lg font-semibold tracking-wide text-foreground sm:px-5 sm:text-xl","children":[0," sample cases generated — pending review"]}],["$","p",null,{"className":"relative mx-auto mt-2 max-w-2xl px-4 text-left text-sm leading-relaxed text-muted-foreground sm:px-5","children":"Your sample cases are ready. Before moving forward, we do a quick review together to make sure everything looks right and aligns with real-world usage."}],["$","div",null,{"className":"relative mx-auto mt-8 max-w-2xl rounded-xl bg-primary/10 px-4 py-4 text-left sm:px-5","children":[["$","p",null,{"className":"text-base font-semibold text-foreground sm:text-lg text-center","children":"Next step: join Slack for review"}],["$","p",null,{"className":"mt-1 text-sm leading-relaxed text-muted-foreground","children":"We've sent you a Slack invitation to your registered email with Zealt. Please join and we'll walk through the next step together."}],["$","p",null,{"className":"mt-3 text-xs text-muted-foreground","children":["If you don't see it, just reach out at"," ",["$","a",null,{"href":"mailto:zealtdev@tabbyml.com","className":"font-normal text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary transition-colors","children":"zealtdev@tabbyml.com"}],"."]}]]}]]}]]}]]}],[["$","script","script-0",{"src":"/windmill-benchmark/_next/static/chunks/fd96387c7b98d8d4.js","async":true}],["$","script","script-1",{"src":"/windmill-benchmark/_next/static/chunks/f9f579c42c486944.js","async":true}]],["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"loading":null,"isPartial":false}
-4:null
+2:"$Sreact.suspense"
+3:I[42654,["/windmill-benchmark/_next/static/chunks/babff0e7418ab052.js","/windmill-benchmark/_next/static/chunks/3ecbb78a8ff87549.js","/windmill-benchmark/_next/static/chunks/fd96387c7b98d8d4.js","/windmill-benchmark/_next/static/chunks/f9f579c42c486944.js"],"TasksPageClient"]
+c:I[75049,["/windmill-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/windmill-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
+4:Te95,# Windmill: Read and Rotate a Secret Variable (TypeScript / Bun)
+
+## Background
+Windmill is an open-source, code-first workflow and serverless platform. Workspace variables (including encrypted secrets) are accessed from scripts through the `windmill-client` SDK and managed from the outside through the `wmill` CLI or REST API.
+
+In this task you will author a TypeScript (Bun) Windmill script that performs a simple secret-rotation routine. The script must read a pre-existing workspace variable, write back an updated value, and return both values to the caller.
+
+The target workspace is the public Windmill Cloud at https://app.windmill.dev. A workspace ID is exposed via the `WINDMILL_WORKSPACE` environment variable and an API token via the `WINDMILL_TOKEN` environment variable. The wmill CLI is already installed and the workspace `evaluation` is already configured against the cloud instance; you can run `wmill` commands directly from the project folder.
+
+A secret variable at the path `f/eval/session_token` has already been created in the workspace with the initial value `INITIAL_SECRET` (`is_secret: true`).
+
+## Requirements
+- Author a Windmill TypeScript (Bun) script that:
+  1. Imports the `windmill-client` SDK.
+  2. Reads the current value of the workspace variable at the path `f/eval/session_token` using `wmill.getVariable`.
+  3. Computes a rotated value by appending the literal suffix `_rotated` to the current value.
+  4. Writes the rotated value back to the same variable path using `wmill.setVariable`.
+  5. Returns a JSON object of the shape `{ "previous": <old value>, "next": <rotated value> }`.
+- Place the script on disk in the local workspace folder so that it deploys to the Windmill script path `f/eval/var_rotate`.
+- Deploy the script to the Windmill Cloud workspace so that it can be executed with `wmill script run f/eval/var_rotate`.
+
+## Implementation Hints
+- The project directory `/home/user/project` is already a Windmill workspace folder (already initialized with `wmill init` and the `evaluation` remote selected). You only need to add the script file and push it.
+- A Windmill TypeScript script is a plain `.ts` file that exports an async `main` function. Companion metadata files (such as `*.script.yaml`) can be generated automatically when the script is pushed.
+- The Windmill TypeScript client exposes `wmill.getVariable(path)` and `wmill.setVariable(path, value)` for variable I/O.
+- Use `wmill sync push --yes` (or `wmill script push`) to upload the script to the remote workspace, and `wmill script run <path>` to trigger an execution from the CLI. `wmill script run` prints the JSON result of the script's `main` return value to stdout on success.
+- The variable is a secret. The script still reads it with `wmill.getVariable` exactly like a non-secret variable; Windmill takes care of decryption and log masking.
+
+## Acceptance Criteria
+- Project path: /home/user/project
+- The agent is responsible for actually creating, deploying, and executing the script against the Windmill Cloud workspace.
+- A TypeScript script file is present at `/home/user/project/f/eval/var_rotate.ts` and:
+  - Imports from `windmill-client`.
+  - Contains at least one call to `getVariable(` and at least one call to `setVariable(`.
+- After deployment, the command `wmill script run f/eval/var_rotate` (executed from `/home/user/project`) exits with status code 0 and prints a JSON object on stdout that, when parsed, satisfies:
+  - `previous` equals the string `INITIAL_SECRET`.
+  - `next` equals the string `INITIAL_SECRET_rotated`.
+- After the script has been run, the workspace variable `f/eval/session_token` (queried via the Windmill CLI / API) has its value updated to `INITIAL_SECRET_rotated`.
+
+5:T19df,# Windmill WAC: Multi-Stage Deployment Pipeline with Suspend / Resume
+
+## Background
+
+You have an authenticated [Windmill](https://www.windmill.dev/) workspace on the cloud instance at `https://app.windmill.dev`. A Bearer API token and the target workspace ID are available in the environment variables `WINDMILL_TOKEN` and `WINDMILL_WORKSPACE`. The [windmill-cli](https://www.windmill.dev/docs/advanced/cli) (`wmill`) is preinstalled and already configured against this workspace under the local workspace name `evaluation-ws`.
+
+Your job is to build a multi-stage deployment pipeline using Windmill's [Workflows-as-Code](https://www.windmill.dev/docs/core_concepts/workflows_as_code) (WAC) primitives in TypeScript (Bun). The pipeline must run two stages, suspend itself for an external HTTP approval, and only then run a third stage. The verification harness will trigger this workflow via the async webhook, observe the suspended checkpoint, resume it programmatically via the Windmill HTTP API, and verify that the deterministic replay semantics of WAC were respected (no duplicated side effects, no re-execution of completed checkpoints).
+
+## Requirements
+
+1. Read the current evaluation run id from the `ZEALT_RUN_ID` environment variable. Call this value `RUN_ID`.
+2. Inside the project at `/home/user/wac-pipeline`, create a workspace folder layout that mirrors a Windmill workspace (i.e. paths under `f/...` relative to the project root). Author the workflow as a Bun TypeScript script at:
+   - Workspace path: `f/eval/deploy_pipeline_${RUN_ID}` (no language suffix)
+   - On-disk file: `/home/user/wac-pipeline/f/eval/deploy_pipeline_${RUN_ID}.ts`
+   - Companion metadata file: `/home/user/wac-pipeline/f/eval/deploy_pipeline_${RUN_ID}.script.yaml` (minimal valid metadata so the `wmill` CLI can deploy it; `bun` language)
+3. The workflow must use the `workflow()` wrapper from `windmill-client` and orchestrate, in order, exactly the following checkpoints:
+   1. `step("runTests", ...)` — appends the string `"tests-ran"` to an audit array. Inside this step you MUST also atomically increment a Windmill workspace [variable](https://www.windmill.dev/docs/core_concepts/variables_and_secrets) at path `f/eval/runtests_counter_${RUN_ID}` using `wmill.getVariable` + `wmill.setVariable` (the stored value is the integer count as a string).
+   2. `step("deployStaging", ...)` — appends `"staging-deployed"`.
+   3. `await waitForApproval({ ... })` from `windmill-client` — suspends execution until an external HTTP resume event is received. Use a generous timeout (at least 600 seconds).
+   4. `step("deployProduction", ...)` — appends `"production-deployed"`.
+   - Finally, the workflow MUST return the audit array directly (a JSON array of three strings in the order above).
+4. Deploy the workflow to the Windmill workspace by running the appropriate `wmill` command from the project root so that triggering the workflow's autogenerated async webhook actually executes your code on the cloud workers. The Windmill scripts API path on the deployed instance must end with `f/eval/deploy_pipeline_${RUN_ID}`.
+5. Write a short deployment log to `/home/user/wac-pipeline/output.log` containing two lines in the following exact formats (substituting `${RUN_ID}` for the actual run id):
+   ```
+   Script path: f/eval/deploy_pipeline_${RUN_ID}
+   Counter variable: f/eval/runtests_counter_${RUN_ID}
+   ```
+
+## Implementation Hints
+
+- Read `RUN_ID` from `ZEALT_RUN_ID` before authoring the file so the run id is hard-coded into the script content, the script path, and the counter variable path.
+- The Windmill TypeScript client exposes the WAC primitives directly: `import { workflow, step, waitForApproval } from "windmill-client"`. The same package also exposes `getVariable`/`setVariable`.
+- Remember that WAC uses a [checkpoint / replay model](https://www.windmill.dev/docs/core_concepts/workflows_as_code#how-it-works): the parent workflow body is re-invoked when the job resumes. Any code outside a `step()` (or `task()`) will run on every replay; results computed inside a `step()` are persisted and returned from cache on replay. Design the audit / counter logic accordingly.
+- The counter variable does not need to exist before the first run — `wmill.getVariable` will throw if missing; catch that case and treat the previous value as `0`. The verification harness will pre-create the variable as `"0"` to keep behaviour deterministic.
+- Deployment: with the cloud workspace already registered under the name `evaluation-ws`, `wmill sync push --yes` from the project root, or `wmill script push f/eval/deploy_pipeline_${RUN_ID}`, will publish the script. Make sure the companion `.script.yaml` exists and declares `language: bun`.
+- You do NOT need to trigger or resume the workflow yourself — the verification harness does that. You only have to author and deploy the script (and write the log file).
+
+## Acceptance Criteria
+
+- Project path: `/home/user/wac-pipeline`
+- Ensure the real Windmill deployment is executed and the script + log artifacts exist.
+- Log file: `/home/user/wac-pipeline/output.log`
+- The on-disk script file `/home/user/wac-pipeline/f/eval/deploy_pipeline_${RUN_ID}.ts` (where `${RUN_ID}` is read from `ZEALT_RUN_ID`) MUST exist and its contents MUST contain each of these substrings at least once:
+  - `workflow(`
+  - `step("runTests"`
+  - `step("deployStaging"`
+  - `waitForApproval(`
+  - `step("deployProduction"`
+- The script must be deployed to the cloud Windmill workspace at path `f/eval/deploy_pipeline_${RUN_ID}` and discoverable via the Windmill scripts API (`GET /api/w/${WINDMILL_WORKSPACE}/scripts/get/p/f/eval/deploy_pipeline_${RUN_ID}` must return 200).
+- Behaviourally, when the verifier triggers the deployed workflow via the async webhook `POST /api/w/${WINDMILL_WORKSPACE}/jobs/run/p/f/eval/deploy_pipeline_${RUN_ID}`, polls the job state via `GET /api/w/${WINDMILL_WORKSPACE}/jobs_u/get/{id}` until the job reports a suspended state, then resumes it by `POST /api/w/${WINDMILL_WORKSPACE}/jobs_u/flow/resume_suspended/{id}` with body `{"approved": true}` and polls until completion, the final job result MUST deep-equal:
+  ```json
+  ["tests-ran", "staging-deployed", "production-deployed"]
+  ```
+- After completion, the Windmill workspace variable at path `f/eval/runtests_counter_${RUN_ID}` MUST hold the string `"1"` (proving the `runTests` step ran exactly once across the suspend/resume replay).
+- The log file must contain the two lines specified in the requirements section, with `${RUN_ID}` substituted with the actual run id read from `ZEALT_RUN_ID`.
+
+6:Tebe,# Deploy a Cron Schedule Asset with the Windmill CLI
+
+## Background
+Windmill is an open-source workflow engine. Workspaces are managed code-first via the `wmill` CLI: scripts live as `f/<folder>/<name>.py` (or `.ts`, etc.) and schedules live as `*.schedule.yaml` files. `wmill sync push --yes` deploys the whole tree to the workspace. You will author a minimal Python heartbeat script, declare a cron schedule asset that runs it every minute at second 0 in `Asia/Shanghai`, and push both to the cloud Windmill workspace at https://app.windmill.dev.
+
+## Requirements
+- Author a minimal Python script with `def main(): return {"alive": True}`.
+- Author a schedule asset (Windmill `*.schedule.yaml` file) that triggers the heartbeat script every minute at second 0, in the `Asia/Shanghai` timezone, and is enabled.
+- Configure `wmill.yaml` so a single invocation of `wmill sync push --yes` deploys both the script and the schedule to the cloud Windmill workspace.
+- Use the cloud Windmill instance `https://app.windmill.dev` (do NOT try to start a local Windmill server).
+
+## Implementation Hints
+- The `wmill` CLI is preinstalled. Authenticate non-interactively against the cloud instance using the `WINDMILL_TOKEN` and `WINDMILL_WORKSPACE` environment variables (e.g. `wmill workspace add ... --token "$WINDMILL_TOKEN" https://app.windmill.dev/`). The workspace ID equals `WINDMILL_WORKSPACE`.
+- Read the current run id from the `ZEALT_RUN_ID` environment variable and append it to every Windmill path you create, so concurrent runs do not collide. Use the folder `f/eval_${ZEALT_RUN_ID}` for all assets in this task.
+- Use Windmill's documented cron syntax (croner) for "every minute at second 0". The seconds field is the first field. Document: https://www.windmill.dev/docs/core_concepts/scheduling .
+- A Windmill schedule file is a `*.schedule.yaml` whose path on disk maps directly to its workspace path (the filename without the `.schedule.yaml` suffix). Required keys are `schedule`, `timezone`, `enabled`, `script_path` (the path of the runnable to trigger), and `is_flow` (`false` for a plain script). Documented at https://www.windmill.dev/docs/core_concepts/scheduling and https://github.com/windmill-labs/windmill/tree/main/windmill-yaml-validator .
+- Schedules are skipped by default by `wmill sync push`. Enable them in `wmill.yaml` via `includeSchedules: true`, and make sure your `includes:` glob covers the folder that contains your script and schedule.
+- After `wmill sync push --yes` succeeds, write a short log line for each deployed asset to the log file under the project so the verifier can locate them.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Ensure the real `wmill sync push --yes` action is executed against `https://app.windmill.dev` and the workspace contains the deployed assets afterwards.
+- Log file: /home/user/myproject/output.log
+- In the log file, print two lines in this exact format (no extra whitespace inside the colons):
+  - `Script path: <script_path>`
+  - `Schedule path: <schedule_path>`
+  Both `<script_path>` and `<schedule_path>` MUST start with `f/eval_${ZEALT_RUN_ID}/`.
+- The deployed script asset must exist in the workspace and must be authored in Python (language reported by the Windmill API as `python3`).
+- The deployed schedule asset must satisfy ALL of:
+  - Its cron expression literal equals the croner 6-field form for "every minute at second 0": `0 * * * * *`.
+  - Its `timezone` field equals `Asia/Shanghai`.
+  - Its `script_path` field equals the deployed Python script's path (the same `f/eval_${ZEALT_RUN_ID}/...` path that was written to the log as `Script path:`).
+  - Its `enabled` field equals `true`.
+  - It targets a script (not a flow), i.e. `is_flow` is `false` on the schedule.
+
+7:Tded,# Windmill Python Execution Counter via `wmill.get_state` / `wmill.set_state`
+
+## Background
+Windmill is a self-hostable workflow engine that runs scripts authored in many languages on a managed worker pool. Scripts can persist values across distinct executions of the same script using the workspace-level **State** primitive, which is exposed through the Python SDK (`wmill`) as `wmill.get_state()` and `wmill.set_state(value)`.
+
+In this task, you will author a Python Windmill script that uses State to count how many times it has been executed against the **cloud-hosted Windmill instance** at `https://app.windmill.dev`, then deploy it to the configured workspace using the `wmill` CLI. The verifier will exercise the deployed script three times and assert that the persisted counter reaches `3`.
+
+## Requirements
+- The project root is `/home/user/myproject`. Treat that directory as a Windmill local workspace folder.
+- Author the script as a file pair on disk:
+  - `f/eval/exec_counter.py` — Python script entrypoint.
+  - `f/eval/exec_counter.script.yaml` — Windmill script metadata declaring the `python3` runtime (no input arguments).
+- The Python script MUST:
+  1. `import wmill`.
+  2. Define `def main():` (no arguments).
+  3. On each invocation, read the current state via `wmill.get_state()`; if it is `None`, treat it as `{"runs": 0}`.
+  4. Compute a new state by incrementing the `runs` field by one.
+  5. Persist the new state via `wmill.set_state(new_state)`.
+  6. Return the new state dict as the script result.
+- Deploy the script to the cloud workspace (the credentials are provided through environment variables) so that `wmill script run f/eval/exec_counter` works against it.
+
+## Implementation Hints
+- Install the CLI with `npm install -g windmill-cli` (Node >= 20 is preinstalled in the environment).
+- Authenticate non-interactively against `https://app.windmill.dev` using the `WINDMILL_TOKEN` and `WINDMILL_WORKSPACE` environment variables. The CLI accepts `wmill workspace add <name> <workspace_id> <remote> --token <token>` for headless setup.
+- Use `wmill script push <file>` or `wmill sync push --yes` from inside `/home/user/myproject` to deploy the script. The Windmill folder `f/eval/` must exist on the workspace; create it if necessary (a minimal `f/eval/folder.meta.yaml` or pushing via `sync push` will do).
+- The `.script.yaml` schema should declare `language: python3` plus an empty `schema.properties` since `main()` takes no arguments.
+- Reference the Python SDK State docs: https://www.windmill.dev/docs/core_concepts/resources_and_types#states .
+- Do **not** spin up any local Windmill instance — only the cloud version at `https://app.windmill.dev` is used.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- File `/home/user/myproject/f/eval/exec_counter.py` exists, imports `wmill`, and contains the literal substrings `get_state(` and `set_state(` in its body.
+- File `/home/user/myproject/f/eval/exec_counter.script.yaml` exists and declares `python3` as the script runtime.
+- The script must NOT hard-code the value `3` anywhere in its source. The counter value must be produced through `wmill.get_state` / `wmill.set_state` rather than literally written.
+- The script is deployed to the cloud workspace identified by the `WINDMILL_WORKSPACE` env var on `https://app.windmill.dev` at path `f/eval/exec_counter`.
+- After three sequential invocations of `wmill script run f/eval/exec_counter` (each exiting with code `0`), the JSON result printed by the third invocation must include `"runs": 3`.
+
+8:Te6f,# Windmill Rust Native Script
+
+## Background
+Windmill (https://app.windmill.dev) is an open-source developer platform that runs scripts authored in many languages (TypeScript, Python, Go, **Rust**, ...). Each Rust script is stored on disk as a pair of files: a `.rs` source containing a `main` function and a `.script.yaml` metadata companion. Cargo dependencies are declared inline through a partial `Cargo.toml` annotation embedded at the top of the Rust source so the worker can resolve them on first run.
+
+In this task you will author a tiny Rust-on-Windmill script, deploy it to the cloud workspace via the `wmill` CLI, and verify that it executes against the cloud workers.
+
+## Requirements
+- Author a Rust script at the path `f/eval/rust_doubler` inside the project workspace folder.
+- Declare an inline Cargo dependency on `serde_json = "1.0"` using Windmill's documented partial `Cargo.toml` annotation block (the `//! ` doc-comment block containing a ` ```cargo` fence).
+- The script's `main` function must accept two owned parameters, a `String` named `name` and an `i32` named `threshold`, and return a `serde_json::Value` (either directly or wrapped in `anyhow::Result<_>`).
+- The returned JSON payload must always have the shape `{ "status": "ok", "computed": <threshold * 2>, "target": <name> }`.
+- Provide a `.script.yaml` companion that declares `language: rust` so Windmill recognises the script as a Rust script when it is synchronised.
+- Synchronise the script to the cloud Windmill workspace using the `wmill` CLI so that `wmill script run f/eval/rust_doubler` succeeds against the real cloud workers.
+
+## Implementation Hints
+- The cloud Windmill instance URL is `https://app.windmill.dev`. The agent's `wmill` CLI has already been authenticated to a workspace whose ID is provided in the `WINDMILL_WORKSPACE` environment variable, using the token in `WINDMILL_TOKEN`.
+- Use the `wmill` CLI to bootstrap and/or push the script (`wmill script bootstrap`, `wmill sync push`, etc.). Consult `wmill --help` and the Windmill docs (https://www.windmill.dev/docs and https://www.windmill.dev/llms.txt) for exact subcommand usage.
+- Inline Cargo dependencies must use the doc-comment `//! ` prefix wrapping a ` ```cargo` ... ` ``` ` fenced block, e.g.:
+  ```
+  //! ```cargo
+  //! [dependencies]
+  //! serde_json = "1.0"
+  //! ```
+  ```
+- Rust scripts can return either `serde_json::Value` directly or `anyhow::Result<serde_json::Value>`; both forms are acceptable as long as the payload shape matches.
+- The first Rust execution on a fresh worker may need to compile dependencies, so allow generous time when invoking `wmill script run`.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- The Rust source file must exist at `/home/user/myproject/f/eval/rust_doubler.rs` and contain a `main` function whose signature takes a `String` parameter named `name` and an `i32` parameter named `threshold`.
+- A YAML companion must exist at `/home/user/myproject/f/eval/rust_doubler.script.yaml` and explicitly declare `language: rust`.
+- The Rust source must contain an inline partial Cargo manifest (the `//!` block with a ` ```cargo` fence) that lists `serde_json` as a dependency.
+- Command: `wmill script run f/eval/rust_doubler -d '{"name":"<name>","threshold":<threshold>}' -s` executed from `/home/user/myproject` must, within 180 seconds, exit with status 0 and print to stdout a single JSON object equal (by structural equality) to `{"status":"ok","computed":<threshold * 2>,"target":"<name>"}`.
+- The script must be deployed to the cloud workspace identified by the `WINDMILL_WORKSPACE` environment variable on `https://app.windmill.dev`, not merely created locally.
+
+0:{"buildId":"42kK9S3QPrQpA39Vs35Hl","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","$2",null,{"fallback":["$","div",null,{"className":"container mx-auto py-8 text-center","children":"Loading tasks..."}],"children":["$","$L3",null,{"tasksData":[{"taskName":"variable_read_rotate_ts","instruction":"$4","trials":[{"job_name":"2026-06-11__16-18-47","trial_name":"variable_read_rotate_ts__n2ykbLt","model":"glm-5.1","rawModel":"zai/glm-5.1","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":179.371,"latency_breakdown":{"env_setup":2.511,"agent_setup":13.07,"agent_exec":148.234,"verifier":2.433},"taskName":"variable_read_rotate_ts","jobId":"n2ykbLt","exec_duration":148.234},{"job_name":"2026-06-11__15-28-16","trial_name":"variable_read_rotate_ts__Ji8qzBL","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":183.497,"latency_breakdown":{"env_setup":61.022,"agent_setup":13.16,"agent_exec":91.215,"verifier":3.644},"taskName":"variable_read_rotate_ts","jobId":"Ji8qzBL","exec_duration":91.215},{"job_name":"2026-06-11__15-55-36","trial_name":"variable_read_rotate_ts__8bWZgJa","model":"claude-4-6-sonnet","rawModel":"anthropic/claude-4-6-sonnet","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":173.588,"latency_breakdown":{"env_setup":2.638,"agent_setup":13.823,"agent_exec":140.212,"verifier":3.646},"taskName":"variable_read_rotate_ts","jobId":"8bWZgJa","exec_duration":140.212},{"job_name":"2026-06-11__16-38-52","trial_name":"variable_read_rotate_ts__Mjpuvxn","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":246.46,"latency_breakdown":{"env_setup":2.511,"agent_setup":13.364,"agent_exec":214.281,"verifier":3.402},"taskName":"variable_read_rotate_ts","jobId":"Mjpuvxn","exec_duration":214.281},{"job_name":"2026-06-11__16-06-26","trial_name":"variable_read_rotate_ts__cS2wJRq","model":"gemini-3.1-pro","rawModel":"google/gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":146.265,"latency_breakdown":{"env_setup":4.039,"agent_setup":25.778,"agent_exec":100.204,"verifier":3.265},"taskName":"variable_read_rotate_ts","jobId":"cS2wJRq","exec_duration":100.204}]},{"taskName":"wac_approval_resume","instruction":"$5","trials":[{"job_name":"2026-06-11__16-18-47","trial_name":"wac_approval_resume__aFGprU5","model":"glm-5.1","rawModel":"zai/glm-5.1","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":686.351,"latency_breakdown":{"env_setup":2.667,"agent_setup":13.431,"agent_exec":647.096,"verifier":7.261},"taskName":"wac_approval_resume","jobId":"aFGprU5","exec_duration":647.096},{"job_name":"2026-06-11__15-28-16","trial_name":"wac_approval_resume__pnovzkz","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":282.235,"latency_breakdown":{"env_setup":57.208,"agent_setup":13.371,"agent_exec":184.726,"verifier":8.71},"taskName":"wac_approval_resume","jobId":"pnovzkz","exec_duration":184.726},{"job_name":"2026-06-11__15-55-36","trial_name":"wac_approval_resume__fhGzKLc","model":"claude-4-6-sonnet","rawModel":"anthropic/claude-4-6-sonnet","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":336.89,"latency_breakdown":{"env_setup":2.519,"agent_setup":13.874,"agent_exec":121.277,"verifier":184.042},"taskName":"wac_approval_resume","jobId":"fhGzKLc","exec_duration":121.277},{"job_name":"2026-06-11__16-38-52","trial_name":"wac_approval_resume__TRDfmiY","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":446.291,"latency_breakdown":{"env_setup":2.667,"agent_setup":15.522,"agent_exec":229.938,"verifier":183.748},"taskName":"wac_approval_resume","jobId":"TRDfmiY","exec_duration":229.938},{"job_name":"2026-06-11__16-06-26","trial_name":"wac_approval_resume__UidRKMv","model":"gemini-3.1-pro","rawModel":"google/gemini-3.1-pro","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":293.335,"latency_breakdown":{"env_setup":2.79,"agent_setup":13.432,"agent_exec":79.377,"verifier":182.965},"taskName":"wac_approval_resume","jobId":"UidRKMv","exec_duration":79.377}]},{"taskName":"windmill-cron-schedule-asset","instruction":"$6","trials":[{"job_name":"2026-06-11__16-18-47","trial_name":"windmill-cron-schedule-asset__GB2TxpF","model":"glm-5.1","rawModel":"zai/glm-5.1","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":306.963,"latency_breakdown":{"env_setup":3.525,"agent_setup":16.919,"agent_exec":271.872,"verifier":1.434},"taskName":"windmill-cron-schedule-asset","jobId":"GB2TxpF","exec_duration":271.872},{"job_name":"2026-06-11__15-28-16","trial_name":"windmill-cron-schedule-asset__GgAx9M8","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":353.366,"latency_breakdown":{"env_setup":79.617,"agent_setup":31.685,"agent_exec":226.98,"verifier":1.409},"taskName":"windmill-cron-schedule-asset","jobId":"GgAx9M8","exec_duration":226.98},{"job_name":"2026-06-11__15-55-36","trial_name":"windmill-cron-schedule-asset__SvL8owX","model":"claude-4-6-sonnet","rawModel":"anthropic/claude-4-6-sonnet","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":157.02,"latency_breakdown":{"env_setup":3.882,"agent_setup":17.718,"agent_exec":116.517,"verifier":2.928},"taskName":"windmill-cron-schedule-asset","jobId":"SvL8owX","exec_duration":116.517},{"job_name":"2026-06-11__16-38-52","trial_name":"windmill-cron-schedule-asset__aHvs48P","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":486.494,"latency_breakdown":{"env_setup":3.917,"agent_setup":17.726,"agent_exec":450.056,"verifier":1.523},"taskName":"windmill-cron-schedule-asset","jobId":"aHvs48P","exec_duration":450.056},{"job_name":"2026-06-11__16-06-26","trial_name":"windmill-cron-schedule-asset__Q6YxJQ2","model":"gemini-3.1-pro","rawModel":"google/gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":77.9,"latency_breakdown":{"env_setup":3.768,"agent_setup":16.756,"agent_exec":42.351,"verifier":1.417},"taskName":"windmill-cron-schedule-asset","jobId":"Q6YxJQ2","exec_duration":42.351}]},{"taskName":"windmill-python-state-counter","instruction":"$7","trials":[{"job_name":"2026-06-11__16-18-47","trial_name":"windmill-python-state-counter__ZaWXqZF","model":"glm-5.1","rawModel":"zai/glm-5.1","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":388.47,"latency_breakdown":{"env_setup":3.62,"agent_setup":15.186,"agent_exec":350.172,"verifier":6.154},"taskName":"windmill-python-state-counter","jobId":"ZaWXqZF","exec_duration":350.172},{"job_name":"2026-06-11__15-28-16","trial_name":"windmill-python-state-counter__WmL9M8g","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":228.8,"latency_breakdown":{"env_setup":79.458,"agent_setup":26.208,"agent_exec":103.155,"verifier":6.472},"taskName":"windmill-python-state-counter","jobId":"WmL9M8g","exec_duration":103.155},{"job_name":"2026-06-11__15-55-36","trial_name":"windmill-python-state-counter__MuNYV6Z","model":"claude-4-6-sonnet","rawModel":"anthropic/claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":167.227,"latency_breakdown":{"env_setup":3.836,"agent_setup":17.932,"agent_exec":121.788,"verifier":8.298},"taskName":"windmill-python-state-counter","jobId":"MuNYV6Z","exec_duration":121.788},{"job_name":"2026-06-11__16-38-52","trial_name":"windmill-python-state-counter__5WaJ2Bf","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":516.469,"latency_breakdown":{"env_setup":3.983,"agent_setup":17.706,"agent_exec":478.806,"verifier":1.864},"taskName":"windmill-python-state-counter","jobId":"5WaJ2Bf","exec_duration":478.806},{"job_name":"2026-06-11__16-06-26","trial_name":"windmill-python-state-counter__E34wcq7","model":"gemini-3.1-pro","rawModel":"google/gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":174.846,"latency_breakdown":{"env_setup":3.789,"agent_setup":17.497,"agent_exec":129.783,"verifier":8.003},"taskName":"windmill-python-state-counter","jobId":"E34wcq7","exec_duration":129.783}]},{"taskName":"windmill-rust-native-script","instruction":"$8","trials":[{"job_name":"2026-06-11__16-18-47","trial_name":"windmill-rust-native-script__SW4vMW3","model":"glm-5.1","rawModel":"zai/glm-5.1","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":201.124,"latency_breakdown":{"env_setup":2.579,"agent_setup":13.172,"agent_exec":169.008,"verifier":3.421},"taskName":"windmill-rust-native-script","jobId":"SW4vMW3","exec_duration":169.008},{"job_name":"2026-06-11__15-28-16","trial_name":"windmill-rust-native-script__MGu9DyJ","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":299.92,"latency_breakdown":{"env_setup":57.418,"agent_setup":13.12,"agent_exec":212.59,"verifier":3.833},"taskName":"windmill-rust-native-script","jobId":"MGu9DyJ","exec_duration":212.59},{"job_name":"2026-06-11__15-55-36","trial_name":"windmill-rust-native-script__KocbnAU","model":"claude-4-6-sonnet","rawModel":"anthropic/claude-4-6-sonnet","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":208.428,"latency_breakdown":{"env_setup":2.515,"agent_setup":13.015,"agent_exec":177.394,"verifier":2.125},"taskName":"windmill-rust-native-script","jobId":"KocbnAU","exec_duration":177.394},{"job_name":"2026-06-11__16-38-52","trial_name":"windmill-rust-native-script__QCs2TKo","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":310.124,"latency_breakdown":{"env_setup":2.709,"agent_setup":13.564,"agent_exec":277.37,"verifier":3.571},"taskName":"windmill-rust-native-script","jobId":"QCs2TKo","exec_duration":277.37},{"job_name":"2026-06-11__16-06-26","trial_name":"windmill-rust-native-script__6QehA4L","model":"gemini-3.1-pro","rawModel":"google/gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":174.714,"latency_breakdown":{"env_setup":3.802,"agent_setup":20.205,"agent_exec":120.167,"verifier":17.476},"taskName":"windmill-rust-native-script","jobId":"6QehA4L","exec_duration":120.167}]}]}]}]]}],["$L9","$La"],"$Lb"]}],"loading":null,"isPartial":false}
+9:["$","script","script-0",{"src":"/windmill-benchmark/_next/static/chunks/fd96387c7b98d8d4.js","async":true}]
+a:["$","script","script-1",{"src":"/windmill-benchmark/_next/static/chunks/f9f579c42c486944.js","async":true}]
+b:["$","$Lc",null,{"children":["$","$2",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null
