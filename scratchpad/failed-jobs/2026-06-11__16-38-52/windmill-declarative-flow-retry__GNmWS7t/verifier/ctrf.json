@@ -1,0 +1,107 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T16:57:57.816510+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 6,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781197075978,
+            "stop": 1781197077816
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_flaky_step_script_file_exists",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781197076045,
+                "stop": 1781197076047,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_finalize_script_file_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781197076047,
+                "stop": 1781197076048,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_exists_at_documented_layout",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781197076048,
+                "stop": 1781197076050,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_retry_exponential_exact_values",
+                "status": "passed",
+                "duration": 4,
+                "start": 1781197076050,
+                "stop": 1781197076054,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_finalize_input_transform_references_flaky_result",
+                "status": "passed",
+                "duration": 4,
+                "start": 1781197076055,
+                "stop": 1781197076059,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_output_log_contains_flow_result",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 21,
+                "start": 1781197076059,
+                "stop": 1781197076080,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_output_log_contains_flow_result():\n        assert os.path.isfile(LOG_FILE), f\"Expected log file at {LOG_FILE}.\"\n        content = Path(LOG_FILE).read_text()\n    \n        # Find the JSON portion following \"Flow result:\".\n        match = re.search(r\"Flow result:\\s*(\\{.*\\})\", content)\n>       assert match, (\n            \"Log file must contain a line beginning with 'Flow result:' followed by the \"\n            f\"JSON result of the flow run. Got contents:\\n{content}\"\n        )\nE       AssertionError: Log file must contain a line beginning with 'Flow result:' followed by the JSON result of the flow run. Got contents:\nE         {\"final\":true,\"previous_attempt\":3}\nE         \nE       assert None\n\ntests/test_final_state.py:150: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_flaky_counter_variable_equals_three",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 747,
+                "start": 1781197076080,
+                "stop": 1781197076827,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_flaky_counter_variable_equals_three():\n        \"\"\"Use the wmill CLI to read the variable; confirms exactly 3 attempts ran.\"\"\"\n        env = _windmill_env()\n        token = env[\"WINDMILL_TOKEN\"]\n        workspace = env[\"WINDMILL_WORKSPACE\"]\n        var_path = f\"{_folder()}/flaky_counter\"\n    \n        result = subprocess.run(\n            [\n                \"wmill\",\n                \"variable\",\n                \"get\",\n                var_path,\n                \"--token\",\n                token,\n                \"--workspace\",\n                workspace,\n                \"--base-url\",\n                WINDMILL_BASE_URL,\n            ],\n            capture_output=True,\n            text=True,\n            env=env,\n        )\n        assert result.returncode == 0, (\n            f\"`wmill variable get {var_path}` failed: stdout={result.stdout!r} \"\n            f\"stderr={result.stderr!r}\"\n        )\n        # The CLI typically prints the variable value (potentially with surrounding quotes\n        # or label). Extract the digits and compare against \"3\".\n        stdout = result.stdout.strip()\n        digits = re.findall(r\"-?\\d+\", stdout)\n        assert digits, (\n            f\"Could not find an integer in `wmill variable get` output: {stdout!r}\"\n        )\n        # The final integer printed is the variable value.\n>       assert digits[-1] == \"3\", (\n            f\"Expected `flaky_counter` variable to equal '3' after the flow run \"\n            f\"(exactly three attempts), got {digits[-1]!r} (full output: {stdout!r}).\"\n        )\nE       AssertionError: Expected `flaky_counter` variable to equal '3' after the flow run (exactly three attempts), got '22' (full output: '\\x1b[1mPath:\\x1b[22m f/eval_zr_gnmws7t/flaky_counter\\n\\x1b[1mValue:\\x1b[22m 3\\n\\x1b[1mIs Secret:\\x1b[22m false\\n\\x1b[1mDescription:\\x1b[22m Attempt counter for the flaky_step retry pipeline\\n\\x1b[1mAccount:\\x1b[22m -').\nE       assert '22' == '3'\nE         - 3\nE         + 22\n\ntests/test_final_state.py:197: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_finalize_script_deployed_and_callable",
+                "status": "passed",
+                "duration": 988,
+                "start": 1781197076827,
+                "stop": 1781197077815,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

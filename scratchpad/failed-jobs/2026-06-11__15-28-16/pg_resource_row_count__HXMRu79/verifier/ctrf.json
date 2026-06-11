@@ -1,0 +1,86 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T15:35:15.661384+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 5,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781192113103,
+            "stop": 1781192115661
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_file_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781192113142,
+                "stop": 1781192113143,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_metadata_file_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781192113143,
+                "stop": 1781192113144,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_imports_windmill_client",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781192113145,
+                "stop": 1781192113146,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_signature_main_pg_postgresql",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781192113146,
+                "stop": 1781192113147,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_push_succeeds",
+                "status": "passed",
+                "duration": 960,
+                "start": 1781192113147,
+                "stop": 1781192114107,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wmill_script_run_returns_nonnegative_integer_count",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1553,
+                "start": 1781192114107,
+                "stop": 1781192115660,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_wmill_script_run_returns_nonnegative_integer_count() -> None:\n        \"\"\"End-to-end: run the script remotely with the seeded resource and validate the JSON output.\"\"\"\n        env = _wmill_env()\n        result = subprocess.run(\n            [\n                \"wmill\",\n                \"script\",\n                \"run\",\n                \"f/eval/pg_row_count\",\n                \"-d\",\n                '{\"pg\": \"$res:f/eval/pg_resource\"}',\n                \"-s\",\n            ],\n            cwd=PROJECT_DIR,\n            capture_output=True,\n            text=True,\n            env=env,\n            timeout=300,\n        )\n>       assert result.returncode == 0, (\n            \"`wmill script run f/eval/pg_row_count` exited with non-zero code: \"\n            f\"code={result.returncode}, stdout={result.stdout[-1500:]!r}, \"\n            f\"stderr={result.stderr[-1500:]!r}\"\n        )\nE       AssertionError: `wmill script run f/eval/pg_row_count` exited with non-zero code: code=1, stdout='{\"error\":{\"name\":\"error\",\"extra\":{\"code\":\"53300\",\"file\":\"postinit.c\",\"length\":137,\"routine\":\"InitPostgres\",\"severity\":\"FATAL\"},\"stack\":\"error: remaining connection slots are reserved for roles with the SUPERUSER attribute\\\\n    at parseErrorMessage (/tmp/bun/main.js:2096:154)\\\\n    at handlePacket (/tmp/bun/main.js:1983:38)\\\\n    at parse (/tmp/bun/main.js:1903:42)\\\\n    at emit (node:events:95:22)\\\\n    at addChunk (internal:streams/readable:265:47)\\\\n    at readableAddChunkPushByteMode (internal:streams/readable:243:18)\\\\n    at data (node:net:280:52)\",\"message\":\"remaining connection slots are reserved for roles with the SUPERUSER attribute\"}}\\n', stderr=''\nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/pg_row_count', '-d', '{\"pg\": \"$res:f/eval/pg_resource\"}', '-s...et:280:52)\",\"message\":\"remaining connection slots are reserved for roles with the SUPERUSER attribute\"}}\\n', stderr='').returncode\n\ntests/test_final_state.py:108: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

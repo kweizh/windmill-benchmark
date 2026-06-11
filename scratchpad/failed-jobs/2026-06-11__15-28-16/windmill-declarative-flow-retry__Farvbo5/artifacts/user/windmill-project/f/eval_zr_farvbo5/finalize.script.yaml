@@ -1,0 +1,15 @@
+summary: Finalize step
+description: Accepts the output of flaky_step and returns final dict
+lock: '!inline f/eval_zr_farvbo5/finalize.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    previous:
+      type: object
+      description: Output from the flaky_step
+      default: null
+      properties: {}
+  required:
+    - previous

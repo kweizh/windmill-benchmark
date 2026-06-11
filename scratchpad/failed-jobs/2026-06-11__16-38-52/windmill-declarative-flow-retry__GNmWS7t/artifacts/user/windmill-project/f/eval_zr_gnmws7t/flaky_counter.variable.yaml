@@ -1,0 +1,7 @@
+value: "0"
+is_secret: false
+description: "Attempt counter for the flaky_step retry pipeline"
+extra_perms: {}
+account: null
+is_oauth: false
+is_expired: false

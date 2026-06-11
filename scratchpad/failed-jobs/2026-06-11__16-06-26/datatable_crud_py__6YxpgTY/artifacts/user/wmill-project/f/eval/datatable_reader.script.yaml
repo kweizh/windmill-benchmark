@@ -1,0 +1,7 @@
+summary: "datatable_reader"
+description: "Reads from datatable"
+kind: script
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: object
+  properties: {}

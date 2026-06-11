@@ -1,0 +1,62 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T16:27:11.499280+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 1,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781195229917,
+            "stop": 1781195231499
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_file_exists_and_uses_expected_apis",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781195229969,
+                "stop": 1781195229971,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wmill_script_run_returns_expected_rotation_payload",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1285,
+                "start": 1781195229972,
+                "stop": 1781195231257,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_wmill_script_run_returns_expected_rotation_payload():\n        \"\"\"`wmill script run f/eval/var_rotate` must succeed and report the previous/next pair.\"\"\"\n        env = os.environ.copy()\n        result = subprocess.run(\n            [\"wmill\", \"script\", \"run\", SCRIPT_PATH_REMOTE],\n            cwd=PROJECT_DIR,\n            capture_output=True,\n            text=True,\n            timeout=300,\n            env=env,\n        )\n        assert result.returncode == 0, (\n            f\"`wmill script run {SCRIPT_PATH_REMOTE}` failed with exit code {result.returncode}.\\n\"\n            f\"stdout={result.stdout!r}\\nstderr={result.stderr!r}\"\n        )\n    \n        combined = result.stdout + \"\\n\" + result.stderr\n        try:\n            payload = _extract_last_json_object(combined)\n        except ValueError as exc:\n            pytest.fail(\n                f\"Could not find a JSON object in the wmill output: {exc}\\n\"\n                f\"stdout={result.stdout!r}\\nstderr={result.stderr!r}\"\n            )\n    \n>       assert payload.get(\"previous\") == INITIAL_VALUE, (\n            f\"Expected JSON field `previous` to equal {INITIAL_VALUE!r}, got payload {payload!r}.\"\n        )\nE       AssertionError: Expected JSON field `previous` to equal 'INITIAL_SECRET', got payload {'next': 'INITIAL_SECRET_rotated_rotated', 'previous': 'INITIAL_SECRET_rotated'}.\nE       assert 'INITIAL_SECRET_rotated' == 'INITIAL_SECRET'\nE         - INITIAL_SECRET\nE         + INITIAL_SECRET_rotated\nE         ?               ++++++++\n\ntests/test_final_state.py:108: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_remote_variable_value_has_been_rotated",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 240,
+                "start": 1781195231258,
+                "stop": 1781195231498,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_remote_variable_value_has_been_rotated():\n        \"\"\"Re-read the workspace variable via the Windmill API and verify it was updated.\"\"\"\n        token = _required_env(\"WINDMILL_TOKEN\")\n        workspace = _required_env(\"WINDMILL_WORKSPACE\")\n        url = f\"{WINDMILL_BASE_URL}/api/w/{workspace}/variables/get_value/{VARIABLE_PATH}\"\n        req = urllib.request.Request(url, headers={\"Authorization\": f\"Bearer {token}\"})\n        try:\n            with urllib.request.urlopen(req, timeout=30) as resp:  # nosec - trusted external API\n                body = resp.read().decode(\"utf-8\")\n        except Exception as exc:  # noqa: BLE001\n            pytest.fail(\n                f\"Failed to query the post-rotation value of {VARIABLE_PATH} from Windmill Cloud: {exc!r}\"\n            )\n    \n        try:\n            decoded = json.loads(body)\n        except json.JSONDecodeError:\n            decoded = body\n    \n>       assert decoded == ROTATED_VALUE, (\n            f\"Expected workspace variable {VARIABLE_PATH} to be {ROTATED_VALUE!r} after rotation, \"\n            f\"got {decoded!r}.\"\n        )\nE       AssertionError: Expected workspace variable f/eval/session_token to be 'INITIAL_SECRET_rotated' after rotation, got 'INITIAL_SECRET_rotated_rotated'.\nE       assert 'INITIAL_SECR...tated_rotated' == 'INITIAL_SECRET_rotated'\nE         - INITIAL_SECRET_rotated\nE         + INITIAL_SECRET_rotated_rotated\nE         ?                       ++++++++\n\ntests/test_final_state.py:135: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

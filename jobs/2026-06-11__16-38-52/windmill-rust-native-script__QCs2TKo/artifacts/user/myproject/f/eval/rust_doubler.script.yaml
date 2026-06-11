@@ -1,0 +1,16 @@
+lock: '!inline f/eval/rust_doubler.script.lock'
+language: rust
+schema:
+  properties:
+    name:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    threshold:
+      type: integer
+      description: ''
+      default: null
+  required:
+    - name
+    - threshold

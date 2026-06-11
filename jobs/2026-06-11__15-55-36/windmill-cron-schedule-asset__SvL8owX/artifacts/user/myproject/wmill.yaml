@@ -1,0 +1,4 @@
+defaultTs: bun
+includes:
+  - "f/eval_zr-svl8owx/**"
+includeSchedules: true

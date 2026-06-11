@@ -1,0 +1,15 @@
+summary: Finalize step that wraps the previous result
+description: Accepts the output from the flaky step and returns a final result dict
+is_template: false
+lock: []
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    previous:
+      type: object
+      description: The result dict from the previous step
+  required:
+    - previous
+language: python3
+tag: ''

@@ -1,0 +1,243 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 7 items
+
+tests/test_final_state.py ...EEEE                                        [100%]
+
+==================================== ERRORS ====================================
+___________ ERROR at setup of test_workflow_reached_suspended_state ____________
+
+    @pytest.fixture(scope="session")
+    def workflow_run_artifacts() -> dict[str, Any]:
+        """Run the end-to-end async-trigger / suspend / resume / complete flow once."""
+        workspace = _workspace()
+        run_id = _run_id()
+        script_path = _script_path(run_id)
+        counter_path = _counter_path(run_id)
+    
+        # The script must be deployed before we can run it.
+        metadata = _get_script_metadata(workspace, script_path)
+        if metadata.status_code != 200:
+            pytest.fail(
+                f"Cannot run end-to-end tests: script {script_path} is not deployed "
+                f"(status={metadata.status_code} body={metadata.text[:300]!r})."
+            )
+    
+        # Pre-seed the counter variable to "0" for deterministic behaviour.
+        _set_counter_variable_to_zero(workspace, counter_path)
+    
+        job_id = _trigger_workflow_async(workspace, script_path)
+    
+>       suspended_state = _poll_until(
+            workspace, job_id, _is_suspended, SUSPEND_POLL_TIMEOUT_S
+        )
+
+tests/test_final_state.py:367: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+workspace = 'REDACTED', job_id = '019eb79a-bbf6-99e8-8bfb-1cb7dd3a6d3d'
+predicate = <function _is_suspended at 0x7f64f9960680>, timeout_s = 180.0
+interval_s = 2.0
+
+    def _poll_until(
+        workspace: str,
+        job_id: str,
+        predicate,
+        timeout_s: float,
+        interval_s: float = POLL_INTERVAL_S,
+    ) -> dict[str, Any]:
+        deadline = time.monotonic() + timeout_s
+        last_state: dict[str, Any] = {}
+        while time.monotonic() < deadline:
+            last_state = _get_job_state(workspace, job_id)
+            if predicate(last_state):
+                return last_state
+            time.sleep(interval_s)
+>       raise AssertionError(
+            f"Timed out after {timeout_s}s waiting for job {job_id}. "
+            f"Last observed state keys={list(last_state.keys())[:20]} "
+            f"type={last_state.get('type')!r} suspend={last_state.get('suspend')!r}"
+        )
+E       AssertionError: Timed out after 180.0s waiting for job 019eb79a-bbf6-99e8-8bfb-1cb7dd3a6d3d. Last observed state keys=['type', 'workspace_id', 'id', 'created_by', 'created_at', 'started_at', 'completed_at', 'duration_ms', 'success', 'script_hash', 'script_path', 'args', 'result', 'result_columns', 'logs', 'deleted', 'canceled', 'job_kind', 'permissioned_as', 'is_flow_step'] type='CompletedJob' suspend=None
+
+tests/test_final_state.py:289: AssertionError
+____________ ERROR at setup of test_workflow_completed_successfully ____________
+
+    @pytest.fixture(scope="session")
+    def workflow_run_artifacts() -> dict[str, Any]:
+        """Run the end-to-end async-trigger / suspend / resume / complete flow once."""
+        workspace = _workspace()
+        run_id = _run_id()
+        script_path = _script_path(run_id)
+        counter_path = _counter_path(run_id)
+    
+        # The script must be deployed before we can run it.
+        metadata = _get_script_metadata(workspace, script_path)
+        if metadata.status_code != 200:
+            pytest.fail(
+                f"Cannot run end-to-end tests: script {script_path} is not deployed "
+                f"(status={metadata.status_code} body={metadata.text[:300]!r})."
+            )
+    
+        # Pre-seed the counter variable to "0" for deterministic behaviour.
+        _set_counter_variable_to_zero(workspace, counter_path)
+    
+        job_id = _trigger_workflow_async(workspace, script_path)
+    
+>       suspended_state = _poll_until(
+            workspace, job_id, _is_suspended, SUSPEND_POLL_TIMEOUT_S
+        )
+
+tests/test_final_state.py:367: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+workspace = 'REDACTED', job_id = '019eb79a-bbf6-99e8-8bfb-1cb7dd3a6d3d'
+predicate = <function _is_suspended at 0x7f64f9960680>, timeout_s = 180.0
+interval_s = 2.0
+
+    def _poll_until(
+        workspace: str,
+        job_id: str,
+        predicate,
+        timeout_s: float,
+        interval_s: float = POLL_INTERVAL_S,
+    ) -> dict[str, Any]:
+        deadline = time.monotonic() + timeout_s
+        last_state: dict[str, Any] = {}
+        while time.monotonic() < deadline:
+            last_state = _get_job_state(workspace, job_id)
+            if predicate(last_state):
+                return last_state
+            time.sleep(interval_s)
+>       raise AssertionError(
+            f"Timed out after {timeout_s}s waiting for job {job_id}. "
+            f"Last observed state keys={list(last_state.keys())[:20]} "
+            f"type={last_state.get('type')!r} suspend={last_state.get('suspend')!r}"
+        )
+E       AssertionError: Timed out after 180.0s waiting for job 019eb79a-bbf6-99e8-8bfb-1cb7dd3a6d3d. Last observed state keys=['type', 'workspace_id', 'id', 'created_by', 'created_at', 'started_at', 'completed_at', 'duration_ms', 'success', 'script_hash', 'script_path', 'args', 'result', 'result_columns', 'logs', 'deleted', 'canceled', 'job_kind', 'permissioned_as', 'is_flow_step'] type='CompletedJob' suspend=None
+
+tests/test_final_state.py:289: AssertionError
+______________ ERROR at setup of test_workflow_result_audit_array ______________
+
+    @pytest.fixture(scope="session")
+    def workflow_run_artifacts() -> dict[str, Any]:
+        """Run the end-to-end async-trigger / suspend / resume / complete flow once."""
+        workspace = _workspace()
+        run_id = _run_id()
+        script_path = _script_path(run_id)
+        counter_path = _counter_path(run_id)
+    
+        # The script must be deployed before we can run it.
+        metadata = _get_script_metadata(workspace, script_path)
+        if metadata.status_code != 200:
+            pytest.fail(
+                f"Cannot run end-to-end tests: script {script_path} is not deployed "
+                f"(status={metadata.status_code} body={metadata.text[:300]!r})."
+            )
+    
+        # Pre-seed the counter variable to "0" for deterministic behaviour.
+        _set_counter_variable_to_zero(workspace, counter_path)
+    
+        job_id = _trigger_workflow_async(workspace, script_path)
+    
+>       suspended_state = _poll_until(
+            workspace, job_id, _is_suspended, SUSPEND_POLL_TIMEOUT_S
+        )
+
+tests/test_final_state.py:367: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+workspace = 'REDACTED', job_id = '019eb79a-bbf6-99e8-8bfb-1cb7dd3a6d3d'
+predicate = <function _is_suspended at 0x7f64f9960680>, timeout_s = 180.0
+interval_s = 2.0
+
+    def _poll_until(
+        workspace: str,
+        job_id: str,
+        predicate,
+        timeout_s: float,
+        interval_s: float = POLL_INTERVAL_S,
+    ) -> dict[str, Any]:
+        deadline = time.monotonic() + timeout_s
+        last_state: dict[str, Any] = {}
+        while time.monotonic() < deadline:
+            last_state = _get_job_state(workspace, job_id)
+            if predicate(last_state):
+                return last_state
+            time.sleep(interval_s)
+>       raise AssertionError(
+            f"Timed out after {timeout_s}s waiting for job {job_id}. "
+            f"Last observed state keys={list(last_state.keys())[:20]} "
+            f"type={last_state.get('type')!r} suspend={last_state.get('suspend')!r}"
+        )
+E       AssertionError: Timed out after 180.0s waiting for job 019eb79a-bbf6-99e8-8bfb-1cb7dd3a6d3d. Last observed state keys=['type', 'workspace_id', 'id', 'created_by', 'created_at', 'started_at', 'completed_at', 'duration_ms', 'success', 'script_hash', 'script_path', 'args', 'result', 'result_columns', 'logs', 'deleted', 'canceled', 'job_kind', 'permissioned_as', 'is_flow_step'] type='CompletedJob' suspend=None
+
+tests/test_final_state.py:289: AssertionError
+________________ ERROR at setup of test_runtests_counter_is_one ________________
+
+    @pytest.fixture(scope="session")
+    def workflow_run_artifacts() -> dict[str, Any]:
+        """Run the end-to-end async-trigger / suspend / resume / complete flow once."""
+        workspace = _workspace()
+        run_id = _run_id()
+        script_path = _script_path(run_id)
+        counter_path = _counter_path(run_id)
+    
+        # The script must be deployed before we can run it.
+        metadata = _get_script_metadata(workspace, script_path)
+        if metadata.status_code != 200:
+            pytest.fail(
+                f"Cannot run end-to-end tests: script {script_path} is not deployed "
+                f"(status={metadata.status_code} body={metadata.text[:300]!r})."
+            )
+    
+        # Pre-seed the counter variable to "0" for deterministic behaviour.
+        _set_counter_variable_to_zero(workspace, counter_path)
+    
+        job_id = _trigger_workflow_async(workspace, script_path)
+    
+>       suspended_state = _poll_until(
+            workspace, job_id, _is_suspended, SUSPEND_POLL_TIMEOUT_S
+        )
+
+tests/test_final_state.py:367: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+workspace = 'REDACTED', job_id = '019eb79a-bbf6-99e8-8bfb-1cb7dd3a6d3d'
+predicate = <function _is_suspended at 0x7f64f9960680>, timeout_s = 180.0
+interval_s = 2.0
+
+    def _poll_until(
+        workspace: str,
+        job_id: str,
+        predicate,
+        timeout_s: float,
+        interval_s: float = POLL_INTERVAL_S,
+    ) -> dict[str, Any]:
+        deadline = time.monotonic() + timeout_s
+        last_state: dict[str, Any] = {}
+        while time.monotonic() < deadline:
+            last_state = _get_job_state(workspace, job_id)
+            if predicate(last_state):
+                return last_state
+            time.sleep(interval_s)
+>       raise AssertionError(
+            f"Timed out after {timeout_s}s waiting for job {job_id}. "
+            f"Last observed state keys={list(last_state.keys())[:20]} "
+            f"type={last_state.get('type')!r} suspend={last_state.get('suspend')!r}"
+        )
+E       AssertionError: Timed out after 180.0s waiting for job 019eb79a-bbf6-99e8-8bfb-1cb7dd3a6d3d. Last observed state keys=['type', 'workspace_id', 'id', 'created_by', 'created_at', 'started_at', 'completed_at', 'duration_ms', 'success', 'script_hash', 'script_path', 'args', 'result', 'result_columns', 'logs', 'deleted', 'canceled', 'job_kind', 'permissioned_as', 'is_flow_step'] type='CompletedJob' suspend=None
+
+tests/test_final_state.py:289: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_local_script_file_contains_required_constructs
+PASSED tests/test_final_state.py::test_output_log_contains_expected_lines
+PASSED tests/test_final_state.py::test_script_is_deployed_to_workspace
+ERROR tests/test_final_state.py::test_workflow_reached_suspended_state - Asse...
+ERROR tests/test_final_state.py::test_workflow_completed_successfully - Asser...
+ERROR tests/test_final_state.py::test_workflow_result_audit_array - Assertion...
+ERROR tests/test_final_state.py::test_runtests_counter_is_one - AssertionErro...
+=================== 3 passed, 4 errors in 182.89s (0:03:02) ====================

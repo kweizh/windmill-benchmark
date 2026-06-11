@@ -1,0 +1,43 @@
+summary: 'Count public tables via PostgreSQL resource'
+description: 'Connects to a PostgreSQL database using a Windmill Postgresql resource and returns the number of tables in the public schema.'
+lock: '!inline f/eval/pg_row_count.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    pg:
+      type: object
+      description: ''
+      default: null
+      format: resource-postgresql
+      properties:
+        dbname:
+          type: string
+          description: ''
+          originalType: string
+        host:
+          type: string
+          description: ''
+          originalType: string
+        password:
+          type: string
+          description: ''
+          originalType: string
+        port:
+          type: number
+          description: ''
+        root_certificate_pem:
+          type: string
+          description: ''
+          originalType: string
+        sslmode:
+          type: string
+          description: ''
+          originalType: string
+        user:
+          type: string
+          description: ''
+          originalType: string
+  required:
+    - pg

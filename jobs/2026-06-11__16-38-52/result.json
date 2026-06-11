@@ -1,0 +1,56 @@
+{
+    "id": "56907476-8d30-44a1-b661-2b20e8264fcc",
+    "started_at": "2026-06-11T16:38:56.573751",
+    "updated_at": "2026-06-11T16:58:09.559487",
+    "finished_at": "2026-06-11T16:58:09.559487",
+    "n_total_trials": 10,
+    "stats": {
+        "n_completed_trials": 10,
+        "n_errored_trials": 3,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "pochi__deepseek-4-pro__pending-tasks": {
+                "n_trials": 10,
+                "n_errors": 3,
+                "metrics": [
+                    {
+                        "mean": 0.2
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "pg_resource_row_count__wJGTuqM",
+                            "datatable_crud_py__nRkiveS",
+                            "windmill-python-state-counter__5WaJ2Bf",
+                            "windmill-gitops-sync-excludes__3WSNHDF",
+                            "wac_bounded_parallel__vcoGr7B",
+                            "windmill-declarative-flow-retry__GNmWS7t",
+                            "variable_read_rotate_ts__Mjpuvxn",
+                            "wac_approval_resume__TRDfmiY"
+                        ],
+                        "1.0": [
+                            "windmill-cron-schedule-asset__aHvs48P",
+                            "windmill-rust-native-script__QCs2TKo"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "AgentTimeoutError": [
+                        "pg_resource_row_count__wJGTuqM",
+                        "datatable_crud_py__nRkiveS",
+                        "windmill-declarative-flow-retry__GNmWS7t"
+                    ]
+                }
+            }
+        },
+        "n_input_tokens": 0,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 183603,
+        "cost_usd": null
+    }
+}

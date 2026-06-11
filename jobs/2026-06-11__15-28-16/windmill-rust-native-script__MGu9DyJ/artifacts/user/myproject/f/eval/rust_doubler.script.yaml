@@ -1,0 +1,19 @@
+summary: Rust Doubler Script
+description: Doubles the threshold input
+lock: '!inline f/eval/rust_doubler.script.lock'
+kind: script
+language: rust
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    name:
+      type: string
+      default: null
+      originalType: string
+    threshold:
+      type: integer
+      default: null
+  required:
+    - name
+    - threshold

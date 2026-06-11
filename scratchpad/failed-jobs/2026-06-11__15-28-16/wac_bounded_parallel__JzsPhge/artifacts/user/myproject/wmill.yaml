@@ -1,0 +1,19 @@
+defaultTs: bun
+includes:
+  - 'f/**'
+excludes: []
+codebases: []
+skipScripts: false
+skipFlows: false
+skipApps: false
+skipFolders: false
+skipResources: false
+skipResourceTypes: false
+skipSecrets: false
+skipVariables: false
+skipSchedules: false
+includeSchedules: true
+includeUsers: false
+includeGroups: false
+includeSettings: false
+includeKey: false

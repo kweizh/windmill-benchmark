@@ -1,0 +1,44 @@
+summary: Count tables in public schema
+description: Connects to a PostgreSQL instance and returns the number of tables
+  in the public schema.
+lock: '!inline f/eval/pg_row_count.script.lock'
+kind: script
+language: bun
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    pg:
+      type: object
+      default: null
+      format: resource-postgresql
+      properties:
+        dbname:
+          type: string
+          description: ''
+          originalType: string
+        host:
+          type: string
+          description: ''
+          originalType: string
+        password:
+          type: string
+          description: ''
+          originalType: string
+        port:
+          type: number
+          description: ''
+        root_certificate_pem:
+          type: string
+          description: ''
+          originalType: string
+        sslmode:
+          type: string
+          description: ''
+          originalType: string
+        user:
+          type: string
+          description: ''
+          originalType: string
+  required:
+    - pg

@@ -1,0 +1,90 @@
+Skipping image OS validation for hb__wac_bounded_parallel: docker inspect returned 1
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo zr-cy2mdf7 > /logs/artifacts/run-id && echo wac_bounded_parallel__cY2mDF7 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Bounded-Concurrency Fan-Out with Workflows-as-Code
+
+## Background
+Windmill's Workflows-as-Code (WAC) lets you orchestrate distributed jobs in plain TypeScript on top of `windmill-client`. You are working inside a pre-initialised Windmill workspace directory that is already authenticated against the cloud instance at `REDACTED`. Your job is to author a single WAC script that fans out HTTP GET calls against a list of URLs with a strict concurrency cap, using only the canonical WAC primitives.
+
+## Requirements
+- Author a TypeScript Workflow-as-Code script that:
+  - Accepts a single parameter `urls: string[]`.
+  - Uses the `windmill-client` workflow primitives (`workflow`, `task`, `parallel`).
+  - Performs an HTTP `GET` against every URL in the input list using a `task(...)` wrapper so each call runs as a separate Windmill child job.
+  - Bounds the maximum in-flight fan-out to **3** concurrent tasks via the `parallel` utility's concurrency option.
+  - Returns an array of `{ url: string, status: number }` objects, preserving the order of the input `urls` array.
+- Do **not** introduce non-deterministic operations inside the workflow body (no `Math.random`, `Date.now`, ad-hoc `fetch` outside of a `task`, etc.). All side-effects must happen inside `task(...)` wrappers.
+
+## Implementation Hints
+- Read the verified API at https://www.windmill.dev/docs/core_concepts/workflows_as_code. The exact import surface is `import { workflow, task, parallel } from 'windmill-client'`.
+- `parallel(items, fn, options)` returns results in the same order as `items`, so you do not need to sort manually.
+- The concurrency cap is the `concurrency` option on `parallel` (e.g. `{ concurrency: 3 }`).
+- Wrap the per-URL HTTP call in `task(async () => { ... })()` so it executes as a child job; have the inner function return `{ url, status: response.status }`.
+- Do **not** push to the cloud yourself — the verifier will deploy a run-id-scoped copy of your file and invoke it via `wmill script run`. Just author the file locally.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Script path: /home/user/myproject/f/eval/fanout_workflow.ts
+- The script file must contain a top-level `export const main = workflow(...)` style entry point that takes a single `urls: string[]` argument.
+- The script must import `workflow`, `task`, and `parallel` from `windmill-client`.
+- The script must call `parallel(...)` with a concurrency option of `3` (e.g. `{ concurrency: 3 }` or `{ "concurrency": 3 }`).
+- Every HTTP GET in the workflow body must be wrapped in a `task(...)` call.
+- Command (run from /home/user/myproject by the verifier after a run-id-scoped deploy):
+  - `wmill script run f/eval/fanout_workflow_<run_id> -d '{"urls": [<u1>, ..., <u9>]}'`
+  - Input: `{"urls": string[]}` (9 distinct URLs).
+  - Expected stdout (parsed as JSON):
+    ```json
+    [
+      { "url": string, "status": number }
+    ]
+    ```
+    The output array length MUST equal the input `urls` length, MUST be in the same order as the input, and every `status` MUST be `200` when the URLs return 200.
+- When the 9 URLs are served by a server that records concurrent in-flight requests, the observed peak concurrency MUST be `<= 3` (concurrency cap honored) and `>= 2` (parallelism actually occurring — not serialised).
+
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

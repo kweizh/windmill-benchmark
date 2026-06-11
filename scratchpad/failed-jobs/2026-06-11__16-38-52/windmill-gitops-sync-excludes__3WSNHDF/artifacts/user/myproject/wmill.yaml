@@ -1,0 +1,21 @@
+defaultTs: bun
+includes:
+  - 'f/**'
+excludes:
+  - 'f/gitops_zr_3wsnhdf/legacy.*'
+extraIncludes: []
+codebases: []
+skipVariables: true
+skipResources: true
+skipResourceTypes: true
+skipSecrets: true
+skipScripts: false
+skipFlows: false
+skipApps: false
+skipFolders: false
+includeSchedules: false
+includeTriggers: false
+includeUsers: false
+includeGroups: false
+includeSettings: false
+includeKey: false

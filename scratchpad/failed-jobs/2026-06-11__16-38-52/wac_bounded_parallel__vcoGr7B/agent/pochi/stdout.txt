@@ -1,0 +1,32 @@
+- Initializing MCP connections...
+You
+# Bounded-Concurrency Fan-Out with Workflows-as-Code ## Background Windmill's Workflows-as-Code (WAC) lets you orchestrate distributed jobs in plain TypeScript on top of `windmill-client`. You are working inside a pre-initialised Windmill workspace directory that is already authenticated against the cloud instance at `REDACTED`. Your job is to author a single WAC script that fans out HTTP GET calls against a list of URLs with a strict concurrency cap, using only the canonical WAC primitives. ## Requirements * Author a TypeScript Workflow-as-Code script that: * Accepts a single parameter `urls: string[]`. * Uses the `windmill-client` workflow primitives (`workflow`, `task`, `parallel`). * Performs an HTTP `GET` against every URL in the input list using a `task(...)` wrapper so each call runs as a separate Windmill child job. * Bounds the maximum in-flight fan-out to **3** concurrent tasks via the `parallel` utility's concurrency option. * Returns an array of `{ url: string, status: number }` objects, preserving the order of the input `urls` array. * Do **not** introduce non-deterministic operations inside the workflow body (no `Math.random`, `Date.now`, ad-hoc `fetch` outside of a `task`, etc.). All side-effects must happen inside `task(...)` wrappers. ## Implementation Hints * Read the verified API at https://www.windmill.dev/docs/core_concepts/workflows_as_code. The exact import surface is `import { workflow, task, parallel } from 'windmill-client'`. * `parallel(items, fn, options)` returns results in the same order as `items`, so you do not need to sort manually. * The concurrency cap is the `concurrency` option on `parallel` (e.g. `{ concurrency: 3 }`). * Wrap the per-URL HTTP call in `task(async () => { ... })()` so it executes as a child job; have the inner function return `{ url, status: response.status }`. * Do **not** push to the cloud yourself — the verifier will deploy a run-id-scoped copy of your file and invoke it via `wmill script run`. Just author the file locally. ## Acceptance Criteria * Project path: /home/user/myproject * Script path: /home/user/myproject/f/eval/fanout\_workflow\.ts * The script file must contain a top-level `export const main = workflow(...)` style entry point that takes a single `urls: string[]` argument. * The script must import `workflow`, `task`, and `parallel` from `windmill-client`. * The script must call `parallel(...)` with a concurrency option of `3` (e.g. `{ concurrency: 3 }` or `{ "concurrency": 3 }`). * Every HTTP GET in the workflow body must be wrapped in a `task(...)` call. * Command (run from /home/user/myproject by the verifier after a run-id-scoped deploy): * `wmill script run f/eval/fanout_workflow_<run_id> -d '{"urls": [<u1>, ..., <u9>]}'` * Input: `{"urls": string[]}` (9 distinct URLs). * Expected stdout (parsed as JSON): ```json [ { "url": string, "status": number } ] ``` The output array length MUST equal the input `urls` length, MUST be in the same order as the input, and every `status` MUST be `200` when the URLs return 200. * When the 9 URLs are served by a server that records concurrent in-flight requests, the observed peak concurrency MUST be `<= 3` (concurrency cap honored) and `>= 2` (parallelism actually occurring — not serialised).   
+
+Pochi
+I'll start by understanding the project structure and the Windmill WAC API, then author the script.   
+📂 Listing files in /home/user/myproject recursively ✔ 
+🛠️ Tool webFetch ✔ 
+Now let me check the existing directory structure and any existing files:   
+📂 Listing files in /home/user/myproject/f/eval recursively ✔ 
+📖 Reading /home/user/myproject/wmill.yaml ✔ 
+The directory exists but is empty. I have all the information I need from the Windmill docs. Let me now author the WAC script.   
+✏️  Writing /home/user/myproject/f/eval/fanout_workflow.ts ✔ 
+The file is written. Let me verify it:   
+📖 Reading /home/user/myproject/f/eval/fanout_workflow.ts ✔ 
+🎉 Task Completed
+The WAC script has been authored at `/home/user/myproject/f/eval/fanout_workflow.ts`.
+
+**What it does:**
+
+1. Imports `workflow`, `task`, and `parallel` from `windmill-client` as specified.
+2. Defines an `httpGet` helper that performs `fetch(url)` and returns `{ url, status: response.status }`.
+3. Exports `main` as a `workflow(...)` entry point accepting `urls: string[]`.
+4. Uses `parallel(urls, fn, { concurrency: 3 })` to fan out HTTP GET calls against all URLs with a max of 3 concurrent in-flight tasks.
+5. Each per-URL HTTP call is wrapped in `task(httpGet)(url)` so it executes as a separate Windmill child job.
+6. `parallel()` preserves input order in the returned array, matching the acceptance criteria.
+
+**Key properties:**
+- No non-deterministic operations (`Math.random`, `Date.now`, ad-hoc `fetch` outside `task`) in the workflow body — all side-effects happen inside `task(...)` wrappers.
+- Concurrency cap of 3 via `{ concurrency: 3 }`.
+- Returns `{ url: string, status: number }[]` in the same order as the input `urls` array.   
+  

@@ -1,0 +1,135 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 8 items
+
+tests/test_final_state.py FF....FF                                       [100%]
+
+=================================== FAILURES ===================================
+______________________ test_flaky_step_script_file_exists ______________________
+
+    def test_flaky_step_script_file_exists():
+        py_path = Path(PROJECT_DIR) / "f" / f"eval_{_safe_id()}" / "flaky_step.py"
+>       assert py_path.is_file(), (
+            f"Expected Python script file at {py_path}; the declarative `f/eval_<run>/flaky_step` "
+            "script must be authored on disk as `<name>.py`."
+        )
+E       AssertionError: Expected Python script file at /home/user/windmill-project/f/eval_zr_fk6gjdc/flaky_step.py; the declarative `f/eval_<run>/flaky_step` script must be authored on disk as `<name>.py`.
+E       assert False
+E        +  where False = <bound method Path.is_file of PosixPath('/home/user/windmill-project/f/eval_zr_fk6gjdc/flaky_step.py')>()
+E        +    where <bound method Path.is_file of PosixPath('/home/user/windmill-project/f/eval_zr_fk6gjdc/flaky_step.py')> = PosixPath('/home/user/windmill-project/f/eval_zr_fk6gjdc/flaky_step.py').is_file
+
+tests/test_final_state.py:60: AssertionError
+_______________________ test_finalize_script_file_exists _______________________
+
+    def test_finalize_script_file_exists():
+        py_path = Path(PROJECT_DIR) / "f" / f"eval_{_safe_id()}" / "finalize.py"
+>       assert py_path.is_file(), (
+            f"Expected Python script file at {py_path}; the declarative `f/eval_<run>/finalize` "
+            "script must be authored on disk as `<name>.py`."
+        )
+E       AssertionError: Expected Python script file at /home/user/windmill-project/f/eval_zr_fk6gjdc/finalize.py; the declarative `f/eval_<run>/finalize` script must be authored on disk as `<name>.py`.
+E       assert False
+E        +  where False = <bound method Path.is_file of PosixPath('/home/user/windmill-project/f/eval_zr_fk6gjdc/finalize.py')>()
+E        +    where <bound method Path.is_file of PosixPath('/home/user/windmill-project/f/eval_zr_fk6gjdc/finalize.py')> = PosixPath('/home/user/windmill-project/f/eval_zr_fk6gjdc/finalize.py').is_file
+
+tests/test_final_state.py:68: AssertionError
+___________________ test_flaky_counter_variable_equals_three ___________________
+
+    def test_flaky_counter_variable_equals_three():
+        """Use the wmill CLI to read the variable; confirms exactly 3 attempts ran."""
+        env = _windmill_env()
+        token = env["WINDMILL_TOKEN"]
+        workspace = env["WINDMILL_WORKSPACE"]
+        var_path = f"{_folder()}/flaky_counter"
+    
+        result = subprocess.run(
+            [
+                "wmill",
+                "variable",
+                "get",
+                var_path,
+                "--token",
+                token,
+                "--workspace",
+                workspace,
+                "--base-url",
+                WINDMILL_BASE_URL,
+            ],
+            capture_output=True,
+            text=True,
+            env=env,
+        )
+        assert result.returncode == 0, (
+            f"`wmill variable get {var_path}` failed: stdout={result.stdout!r} "
+            f"stderr={result.stderr!r}"
+        )
+        # The CLI typically prints the variable value (potentially with surrounding quotes
+        # or label). Extract the digits and compare against "3".
+        stdout = result.stdout.strip()
+        digits = re.findall(r"-?\d+", stdout)
+        assert digits, (
+            f"Could not find an integer in `wmill variable get` output: {stdout!r}"
+        )
+        # The final integer printed is the variable value.
+>       assert digits[-1] == "3", (
+            f"Expected `flaky_counter` variable to equal '3' after the flow run "
+            f"(exactly three attempts), got {digits[-1]!r} (full output: {stdout!r})."
+        )
+E       AssertionError: Expected `flaky_counter` variable to equal '3' after the flow run (exactly three attempts), got '22' (full output: '\x1b[1mPath:\x1b[22m f/eval_zr_fk6gjdc/flaky_counter\n\x1b[1mValue:\x1b[22m 3\n\x1b[1mIs Secret:\x1b[22m false\n\x1b[1mDescription:\x1b[22m Attempt counter for the flaky_step retry test\n\x1b[1mAccount:\x1b[22m -').
+E       assert '22' == '3'
+E         - 3
+E         + 22
+
+tests/test_final_state.py:197: AssertionError
+__________________ test_finalize_script_deployed_and_callable __________________
+
+    def test_finalize_script_deployed_and_callable():
+        """Sanity check that the finalize script was deployed to the cloud workspace."""
+        env = _windmill_env()
+        token = env["WINDMILL_TOKEN"]
+        workspace = env["WINDMILL_WORKSPACE"]
+        script_path = f"{_folder()}/finalize"
+    
+        result = subprocess.run(
+            [
+                "wmill",
+                "script",
+                "run",
+                script_path,
+                "-d",
+                json.dumps({"previous": {"ok": True, "attempt": 3}}),
+                "--silent",
+                "--token",
+                token,
+                "--workspace",
+                workspace,
+                "--base-url",
+                WINDMILL_BASE_URL,
+            ],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=120,
+        )
+>       assert result.returncode == 0, (
+            f"`wmill script run {script_path}` failed: stdout={result.stdout!r} "
+            f"stderr={result.stderr!r}"
+        )
+E       AssertionError: `wmill script run f/eval_zr_fk6gjdc/finalize` failed: stdout='' stderr="\x1b[31mScript 'f/eval_zr_fk6gjdc/finalize' not found. Run 'wmill script list' to see available scripts.\x1b[39m\n"
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval_zr_fk6gjdc/finalize', '-d', '{"previous": {"ok": true, "attem...r="\x1b[31mScript 'f/eval_zr_fk6gjdc/finalize' not found. Run 'wmill script list' to see available scripts.\x1b[39m\n").returncode
+
+tests/test_final_state.py:231: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_flow_yaml_exists_at_documented_layout
+PASSED tests/test_final_state.py::test_flow_yaml_retry_exponential_exact_values
+PASSED tests/test_final_state.py::test_flow_yaml_finalize_input_transform_references_flaky_result
+PASSED tests/test_final_state.py::test_output_log_contains_flow_result
+FAILED tests/test_final_state.py::test_flaky_step_script_file_exists - Assert...
+FAILED tests/test_final_state.py::test_finalize_script_file_exists - Assertio...
+FAILED tests/test_final_state.py::test_flaky_counter_variable_equals_three - ...
+FAILED tests/test_final_state.py::test_finalize_script_deployed_and_callable
+========================= 4 failed, 4 passed in 1.51s ==========================

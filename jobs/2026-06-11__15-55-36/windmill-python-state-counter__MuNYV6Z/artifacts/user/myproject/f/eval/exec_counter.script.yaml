@@ -1,0 +1,12 @@
+description: ''
+is_template: false
+language: python3
+kind: script
+tag: ''
+summary: Execution counter using wmill state
+lock: ''
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties: {}
+  required: []

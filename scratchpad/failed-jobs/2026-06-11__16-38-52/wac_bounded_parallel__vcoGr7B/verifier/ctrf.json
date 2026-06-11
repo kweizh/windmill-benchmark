@@ -1,0 +1,62 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T16:49:27.306973+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 1,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781196511307,
+            "stop": 1781196567306
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_file_exists",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781196511490,
+                "stop": 1781196511492,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_uses_canonical_wac_primitives",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 39,
+                "start": 1781196511492,
+                "stop": 1781196511531,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_uses_canonical_wac_primitives():\n        \"\"\"Static analysis: workflow(, parallel(, task(, concurrency: 3, windmill-client import.\"\"\"\n        src = _read_script_source()\n    \n        assert re.search(r\"\\bworkflow\\s*\\(\", src), (\n            \"Script must call `workflow(...)` to mark the entry point.\"\n        )\n        assert re.search(r\"\\bparallel\\s*\\(\", src), (\n            \"Script must use `parallel(...)` from windmill-client to fan out.\"\n        )\n        assert re.search(r\"\\btask\\s*\\(\", src), (\n            \"Script must wrap each HTTP call inside a `task(...)` invocation.\"\n        )\n>       assert re.search(r\"\"\"['\"]concurrency['\"]?\\s*:\\s*3\\b\"\"\", src), (\n            \"Script must pass a concurrency cap of 3 to `parallel(...)` \"\n            \"(e.g. `{ concurrency: 3 }`).\"\n        )\nE       AssertionError: Script must pass a concurrency cap of 3 to `parallel(...)` (e.g. `{ concurrency: 3 }`).\nE       assert None\nE        +  where None = <function search at 0x7facf1a7fba0>('[\\'\"]concurrency[\\'\"]?\\\\s*:\\\\s*3\\\\b', \"import { workflow, task, parallel } from 'windmill-client';\\n\\nasync function httpGet(url: string): Promise<{ url: st...parallel(\\n\\t\\turls,\\n\\t\\t(url: string) => task(httpGet)(url),\\n\\t\\t{ concurrency: 3 }\\n\\t);\\n\\treturn results;\\n});\\n\")\nE        +    where <function search at 0x7facf1a7fba0> = re.search\n\ntests/test_final_state.py:245: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_execution_honours_bounded_concurrency",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 55775,
+                "start": 1781196511531,
+                "stop": 1781196567306,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "public_url = 'https://elsewhere-column-pichunter-plastics.trycloudflare.com'\n\n    def test_workflow_execution_honours_bounded_concurrency(public_url):\n        run_id = _run_id()\n        deployed_path = f\"f/eval/fanout_workflow_{run_id.replace('-', '_')}\"\n        deployed_file = os.path.join(PROJECT_DIR, f\"{deployed_path}.ts\")\n    \n        # 1. Copy the agent's script to a run-id-scoped path so concurrent trials\n        #    do not stomp on each other when pushing to the shared cloud workspace.\n        os.makedirs(os.path.dirname(deployed_file), exist_ok=True)\n        shutil.copyfile(SCRIPT_PATH, deployed_file)\n    \n        env = os.environ.copy()\n    \n        # 2. Push the run-id-scoped script to Windmill cloud.\n        push = subprocess.run(\n            [\"wmill\", \"sync\", \"push\", \"--yes\"],\n            cwd=PROJECT_DIR,\n            capture_output=True,\n            text=True,\n            timeout=300,\n            env=env,\n        )\n        assert push.returncode == 0, (\n            f\"`wmill sync push` failed (rc={push.returncode}).\\n\"\n            f\"stdout={push.stdout}\\nstderr={push.stderr}\"\n        )\n    \n        # 3. Reset concurrency tracker right before invocation.\n        with TRACKER.lock:\n            TRACKER.in_flight = 0\n            TRACKER.peak = 0\n            TRACKER.served = 0\n    \n        # 4. Invoke the workflow with 9 URLs targeting the public tunnel.\n        urls = [f\"{public_url}/n/{i}\" for i in range(1, 10)]\n        payload = json.dumps({\"urls\": urls})\n    \n        try:\n            run = subprocess.run(\n                [\"wmill\", \"script\", \"run\", deployed_path, \"-d\", payload],\n                cwd=PROJECT_DIR,\n                capture_output=True,\n                text=True,\n                timeout=600,\n                env=env,\n            )\n            assert run.returncode == 0, (\n                f\"`wmill script run {deployed_path}` failed (rc={run.returncode}).\\n\"\n                f\"stdout={run.stdout}\\nstderr={run.stderr}\"\n            )\n    \n            # 5. Extract the JSON result from stdout (CLI may print log preamble\n            #    before the final JSON; pick the last JSON array/object block).\n            stdout = run.stdout.strip()\n>           result = _extract_last_json(stdout)\n\ntests/test_final_state.py:307: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ntext = '\\x1b[34m\\x1b[33mWaiting for Job 019eb796-6f46-5971-1bbe-dde9d3dc5900 to start...\\x1b[39m\\x1b[39m\\n\\x1b[34m\\x1b[32mJob... {\\n    \"url\": \"https://elsewhere-column-pichunter-plastics.trycloudflare.com/n/9\",\\n    \"status\": 200\\n  }\\n]\\x1b[39m'\n\n    def _extract_last_json(text: str):\n        \"\"\"Return the last top-level JSON value parsed from `text`.\n    \n        wmill CLI may print a small preamble (job ID, links) before the final\n        JSON-encoded result. We scan from the end of the output and return the\n        last array or object that parses as valid JSON.\n        \"\"\"\n        text = text.strip()\n        if not text:\n            raise AssertionError(\"wmill stdout was empty; no JSON result to parse.\")\n    \n        # Fast path: the whole stdout is the JSON result.\n        try:\n            return json.loads(text)\n        except Exception:\n            pass\n    \n        # Otherwise, walk backwards across lines and try larger and larger suffixes.\n        lines = text.splitlines()\n        for start in range(len(lines)):\n            candidate = \"\\n\".join(lines[start:]).strip()\n            if not candidate:\n                continue\n            if candidate[0] not in \"[{\":\n                continue\n            try:\n                return json.loads(candidate)\n            except Exception:\n                continue\n    \n>       raise AssertionError(\n            f\"Could not parse a JSON result from wmill stdout. Raw stdout:\\n{text}\"\n        )\nE       AssertionError: Could not parse a JSON result from wmill stdout. Raw stdout:\nE       \u001b[34m\u001b[33mWaiting for Job 019eb796-6f46-5971-1bbe-dde9d3dc5900 to start...\u001b[39m\u001b[39m\nE       \u001b[34m\u001b[32mJob running. Streaming logs...\u001b[39m\u001b[39m\nE       job=019eb796-6f46-5971-1bbe-dde9d3dc5900 tag=bun worker=wk-default-qcwtq-yh1Gn hostname=windmill-workers-default-7589ccd488-qcwtq isolation=nsjail\nE       \nE       loaded bin/bundle from object store /tmp/windmill/cache/bun/151ed722262238bcbb60ff4016164745c2b9e3d147cbe7c39fe65a9a5835622b in 95ms\nE       \nE       --- BUN BUNDLE SNAPSHOT EXECUTION ---\nE       \nE       \nE       --- WAC: httpGet, httpGet, httpGet ---\nE       loaded from local cache: /tmp/windmill/cache/bun/151ed722262238bcbb60ff4016164745c2b9e3d147cbe7c39fe65a9a5835622b\nE       \nE       --- WAC: httpGet, httpGet, httpGet ---\nE       loaded bin/bundle from object store /tmp/windmill/cache/bun/151ed722262238bcbb60ff4016164745c2b9e3d147cbe7c39fe65a9a5835622b in 62ms\nE       --- WAC: httpGet, httpGet, httpGet ---\nE       loaded from local cache: /tmp/windmill/cache/bun/151ed722262238bcbb60ff4016164745c2b9e3d147cbe7c39fe65a9a5835622b\nE       \nE       --- WAC: complete ---\u001b[34m\nE       \u001b[39m\nE       \u001b[34m\u001b[32m\u001b[4m\u001b[1mJob Completed\u001b[22m\u001b[24m\u001b[39m\u001b[39m\nE       \u001b[34m\nE       \u001b[39m\nE       \u001b[34m[\nE         {\nE           \"url\": \"https://elsewhere-column-pichunter-plastics.trycloudflare.com/n/1\",\nE           \"status\": 200\nE         },\nE         {\nE           \"url\": \"https://elsewhere-column-pichunter-plastics.trycloudflare.com/n/2\",\nE           \"status\": 200\nE         },\nE         {\nE           \"url\": \"https://elsewhere-column-pichunter-plastics.trycloudflare.com/n/3\",\nE           \"status\": 200\nE         },\nE         {\nE           \"url\": \"https://elsewhere-column-pichunter-plastics.trycloudflare.com/n/4\",\nE           \"status\": 200\nE         },\nE         {\nE           \"url\": \"https://elsewhere-column-pichunter-plastics.trycloudflare.com/n/5\",\nE           \"status\": 200\nE         },\nE         {\nE           \"url\": \"https://elsewhere-column-pichunter-plastics.trycloudflare.com/n/6\",\nE           \"status\": 200\nE         },\nE         {\nE           \"url\": \"https://elsewhere-column-pichunter-plastics.trycloudflare.com/n/7\",\nE           \"status\": 200\nE         },\nE         {\nE           \"url\": \"https://elsewhere-column-pichunter-plastics.trycloudflare.com/n/8\",\nE           \"status\": 200\nE         },\nE         {\nE           \"url\": \"https://elsewhere-column-pichunter-plastics.trycloudflare.com/n/9\",\nE           \"status\": 200\nE         }\nE       ]\u001b[39m\n\ntests/test_final_state.py:402: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

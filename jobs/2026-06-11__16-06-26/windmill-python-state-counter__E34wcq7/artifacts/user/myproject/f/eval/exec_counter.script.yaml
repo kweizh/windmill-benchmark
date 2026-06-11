@@ -1,0 +1,10 @@
+summary: Execution Counter
+description: Counts executions using state
+lock: ""
+kind: script
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: object
+  properties: {}
+  required: []
+language: python3

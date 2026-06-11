@@ -1,0 +1,13 @@
+summary: Count public tables via PostgreSQL resource
+description: Connects to a PostgreSQL database using a Windmill Postgresql
+  resource and returns the number of tables in the public schema.
+lock: '!inline f/eval/pg_row_count.script.lock'
+has_on_behalf_of: false
+kind: script
+schema:
+  type: object
+  properties:
+    pg:
+      type: object
+      description: The PostgreSQL resource to connect to
+      format: resource-postgresql

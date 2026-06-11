@@ -1,0 +1,86 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T16:49:26.567898+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 5,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781196564666,
+            "stop": 1781196566567
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_file_exists",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781196564713,
+                "stop": 1781196564715,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_metadata_file_exists",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781196564716,
+                "stop": 1781196564718,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_imports_windmill_client",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781196564718,
+                "stop": 1781196564720,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_signature_main_pg_postgresql",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781196564721,
+                "stop": 1781196564723,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_push_succeeds",
+                "status": "passed",
+                "duration": 867,
+                "start": 1781196564723,
+                "stop": 1781196565590,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wmill_script_run_returns_nonnegative_integer_count",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 977,
+                "start": 1781196565590,
+                "stop": 1781196566567,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_wmill_script_run_returns_nonnegative_integer_count() -> None:\n        \"\"\"End-to-end: run the script remotely with the seeded resource and validate the JSON output.\"\"\"\n        env = _wmill_env()\n        result = subprocess.run(\n            [\n                \"wmill\",\n                \"script\",\n                \"run\",\n                \"f/eval/pg_row_count\",\n                \"-d\",\n                '{\"pg\": \"$res:f/eval/pg_resource\"}',\n                \"-s\",\n            ],\n            cwd=PROJECT_DIR,\n            capture_output=True,\n            text=True,\n            env=env,\n            timeout=300,\n        )\n>       assert result.returncode == 0, (\n            \"`wmill script run f/eval/pg_row_count` exited with non-zero code: \"\n            f\"code={result.returncode}, stdout={result.stdout[-1500:]!r}, \"\n            f\"stderr={result.stderr[-1500:]!r}\"\n        )\nE       AssertionError: `wmill script run f/eval/pg_row_count` exited with non-zero code: code=1, stdout='{\"error\":{\"name\":\"ExecutionErr\",\"message\":\"execution error:\\\\nNot found: Resource f/eval/pg_resource not found for `pg`: Not found: Resource f/eval/pg_resource not found\"}}\\n', stderr=''\nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/pg_row_count', '-d', '{\"pg\": \"$res:f/eval/pg_resource\"}', '-s...und: Resource f/eval/pg_resource not found for `pg`: Not found: Resource f/eval/pg_resource not found\"}}\\n', stderr='').returncode\n\ntests/test_final_state.py:108: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

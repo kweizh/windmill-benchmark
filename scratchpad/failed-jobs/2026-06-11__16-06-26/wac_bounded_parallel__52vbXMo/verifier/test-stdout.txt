@@ -1,0 +1,198 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 3 items
+
+tests/test_final_state.py .FF                                            [100%]
+
+=================================== FAILURES ===================================
+__________________ test_script_uses_canonical_wac_primitives ___________________
+
+    def test_script_uses_canonical_wac_primitives():
+        """Static analysis: workflow(, parallel(, task(, concurrency: 3, windmill-client import."""
+        src = _read_script_source()
+    
+        assert re.search(r"\bworkflow\s*\(", src), (
+            "Script must call `workflow(...)` to mark the entry point."
+        )
+        assert re.search(r"\bparallel\s*\(", src), (
+            "Script must use `parallel(...)` from windmill-client to fan out."
+        )
+        assert re.search(r"\btask\s*\(", src), (
+            "Script must wrap each HTTP call inside a `task(...)` invocation."
+        )
+>       assert re.search(r"""['"]concurrency['"]?\s*:\s*3\b""", src), (
+            "Script must pass a concurrency cap of 3 to `parallel(...)` "
+            "(e.g. `{ concurrency: 3 }`)."
+        )
+E       AssertionError: Script must pass a concurrency cap of 3 to `parallel(...)` (e.g. `{ concurrency: 3 }`).
+E       assert None
+E        +  where None = <function search at 0x7fbab2e97ba0>('[\'"]concurrency[\'"]?\\s*:\\s*3\\b', "import { workflow, task, parallel } from 'windmill-client';\n\nexport const main = workflow(async (urls: string[]) =>...etch(url);\n        return { url, status: response.status };\n      })();\n    },\n    { concurrency: 3 }\n  );\n});\n")
+E        +    where <function search at 0x7fbab2e97ba0> = re.search
+
+tests/test_final_state.py:245: AssertionError
+_____________ test_workflow_execution_honours_bounded_concurrency ______________
+
+public_url = 'https://leisure-hospitality-quantum-protocols.trycloudflare.com'
+
+    def test_workflow_execution_honours_bounded_concurrency(public_url):
+        run_id = _run_id()
+        deployed_path = f"f/eval/fanout_workflow_{run_id.replace('-', '_')}"
+        deployed_file = os.path.join(PROJECT_DIR, f"{deployed_path}.ts")
+    
+        # 1. Copy the agent's script to a run-id-scoped path so concurrent trials
+        #    do not stomp on each other when pushing to the shared cloud workspace.
+        os.makedirs(os.path.dirname(deployed_file), exist_ok=True)
+        shutil.copyfile(SCRIPT_PATH, deployed_file)
+    
+        env = os.environ.copy()
+    
+        # 2. Push the run-id-scoped script to Windmill cloud.
+        push = subprocess.run(
+            ["wmill", "sync", "push", "--yes"],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True,
+            timeout=300,
+            env=env,
+        )
+        assert push.returncode == 0, (
+            f"`wmill sync push` failed (rc={push.returncode}).\n"
+            f"stdout={push.stdout}\nstderr={push.stderr}"
+        )
+    
+        # 3. Reset concurrency tracker right before invocation.
+        with TRACKER.lock:
+            TRACKER.in_flight = 0
+            TRACKER.peak = 0
+            TRACKER.served = 0
+    
+        # 4. Invoke the workflow with 9 URLs targeting the public tunnel.
+        urls = [f"{public_url}/n/{i}" for i in range(1, 10)]
+        payload = json.dumps({"urls": urls})
+    
+        try:
+            run = subprocess.run(
+                ["wmill", "script", "run", deployed_path, "-d", payload],
+                cwd=PROJECT_DIR,
+                capture_output=True,
+                text=True,
+                timeout=600,
+                env=env,
+            )
+            assert run.returncode == 0, (
+                f"`wmill script run {deployed_path}` failed (rc={run.returncode}).\n"
+                f"stdout={run.stdout}\nstderr={run.stderr}"
+            )
+    
+            # 5. Extract the JSON result from stdout (CLI may print log preamble
+            #    before the final JSON; pick the last JSON array/object block).
+            stdout = run.stdout.strip()
+>           result = _extract_last_json(stdout)
+
+tests/test_final_state.py:307: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+text = '\x1b[34m\x1b[33mWaiting for Job 019eb771-efa5-dfd6-e2c9-a2dcaf932a52 to start...\x1b[39m\x1b[39m\n\x1b[34m\x1b[32mJob...\n    "url": "https://leisure-hospitality-quantum-protocols.trycloudflare.com/n/9",\n    "status": 200\n  }\n]\x1b[39m'
+
+    def _extract_last_json(text: str):
+        """Return the last top-level JSON value parsed from `text`.
+    
+        wmill CLI may print a small preamble (job ID, links) before the final
+        JSON-encoded result. We scan from the end of the output and return the
+        last array or object that parses as valid JSON.
+        """
+        text = text.strip()
+        if not text:
+            raise AssertionError("wmill stdout was empty; no JSON result to parse.")
+    
+        # Fast path: the whole stdout is the JSON result.
+        try:
+            return json.loads(text)
+        except Exception:
+            pass
+    
+        # Otherwise, walk backwards across lines and try larger and larger suffixes.
+        lines = text.splitlines()
+        for start in range(len(lines)):
+            candidate = "\n".join(lines[start:]).strip()
+            if not candidate:
+                continue
+            if candidate[0] not in "[{":
+                continue
+            try:
+                return json.loads(candidate)
+            except Exception:
+                continue
+    
+>       raise AssertionError(
+            f"Could not parse a JSON result from wmill stdout. Raw stdout:\n{text}"
+        )
+E       AssertionError: Could not parse a JSON result from wmill stdout. Raw stdout:
+E       [34m[33mWaiting for Job 019eb771-efa5-dfd6-e2c9-a2dcaf932a52 to start...[39m[39m
+E       [34m[32mJob running. Streaming logs...[39m[39m
+E       job=019eb771-efa5-dfd6-e2c9-a2dcaf932a52 tag=bun worker=wk-default-k9sck-pIC3l hostname=windmill-workers-default-7589ccd488-k9sck isolation=nsjail
+E       
+E       loaded bin/bundle from object store /tmp/windmill/cache/bun/b325c434c169d4c1b5b337bff5b323d0d7596f64493cfb049260644bab6b97d8 in 55ms
+E       
+E       --- BUN BUNDLE SNAPSHOT EXECUTION ---
+E       
+E       --- WAC: step, step_2, step_3 ----
+E       loaded from local cache: /tmp/windmill/cache/bun/b325c434c169d4c1b5b337bff5b323d0d7596f64493cfb049260644bab6b97d8
+E       
+E       --- WAC: step_4, step_5, step_6 ---
+E       loaded bin/bundle from object store /tmp/windmill/cache/bun/b325c434c169d4c1b5b337bff5b323d0d7596f64493cfb049260644bab6b97d8 in 110ms
+E       --- WAC: step_7, step_8, step_9 ---
+E       loaded bin/bundle from object store /tmp/windmill/cache/bun/b325c434c169d4c1b5b337bff5b323d0d7596f64493cfb049260644bab6b97d8 in 88ms
+E       --- WAC: complete ---[34m
+E       [39m
+E       [34m[32m[4m[1mJob Completed[22m[24m[39m[39m
+E       [34m
+E       [39m
+E       [34m[
+E         {
+E           "url": "https://leisure-hospitality-quantum-protocols.trycloudflare.com/n/1",
+E           "status": 200
+E         },
+E         {
+E           "url": "https://leisure-hospitality-quantum-protocols.trycloudflare.com/n/2",
+E           "status": 200
+E         },
+E         {
+E           "url": "https://leisure-hospitality-quantum-protocols.trycloudflare.com/n/3",
+E           "status": 200
+E         },
+E         {
+E           "url": "https://leisure-hospitality-quantum-protocols.trycloudflare.com/n/4",
+E           "status": 200
+E         },
+E         {
+E           "url": "https://leisure-hospitality-quantum-protocols.trycloudflare.com/n/5",
+E           "status": 200
+E         },
+E         {
+E           "url": "https://leisure-hospitality-quantum-protocols.trycloudflare.com/n/6",
+E           "status": 200
+E         },
+E         {
+E           "url": "https://leisure-hospitality-quantum-protocols.trycloudflare.com/n/7",
+E           "status": 200
+E         },
+E         {
+E           "url": "https://leisure-hospitality-quantum-protocols.trycloudflare.com/n/8",
+E           "status": 200
+E         },
+E         {
+E           "url": "https://leisure-hospitality-quantum-protocols.trycloudflare.com/n/9",
+E           "status": 200
+E         }
+E       ][39m
+
+tests/test_final_state.py:402: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_script_file_exists
+FAILED tests/test_final_state.py::test_script_uses_canonical_wac_primitives
+FAILED tests/test_final_state.py::test_workflow_execution_honours_bounded_concurrency
+========================= 2 failed, 1 passed in 45.82s =========================

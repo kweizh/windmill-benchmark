@@ -1,0 +1,33 @@
+summary: Retry pipeline with exponential backoff
+description: "Two-step pipeline where the first module uses exponential retry (attempts: 4, multiplier: 2, seconds: 1) and the second module references the first module's output."
+value:
+  modules:
+    - id: flaky
+      summary: "Flaky step with exponential retry"
+      value:
+        type: script
+        path: f/eval_zr_gnmws7t/flaky_step
+        input_transforms:
+          attempt_marker_path:
+            type: static
+            value: f/eval_zr_gnmws7t/flaky_counter
+      retry:
+        exponential:
+          attempts: 4
+          multiplier: 2
+          seconds: 1
+    - id: finalize
+      summary: "Finalize step that references flaky output"
+      value:
+        type: script
+        path: f/eval_zr_gnmws7t/finalize
+        input_transforms:
+          previous:
+            type: javascript
+            expr: results.flaky
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  order: []
+  properties: {}
+  required: []

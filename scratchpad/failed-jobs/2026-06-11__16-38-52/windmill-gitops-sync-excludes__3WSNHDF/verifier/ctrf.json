@@ -1,0 +1,122 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T16:48:33.350251+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 9,
+            "passed": 8,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781196509471,
+            "stop": 1781196513349
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_output_log_exists_and_contains_expected_lines",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781196509674,
+                "stop": 1781196509676,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_local_script_files_and_metadata_exist",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781196509677,
+                "stop": 1781196509678,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wmill_yaml_excludes_matches_legacy_path",
+                "status": "passed",
+                "duration": 3,
+                "start": 1781196509679,
+                "stop": 1781196509682,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_remote_legacy_script_still_exists",
+                "status": "passed",
+                "duration": 473,
+                "start": 1781196509683,
+                "stop": 1781196510156,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_remote_new_scripts_were_deployed",
+                "status": "passed",
+                "duration": 145,
+                "start": 1781196510157,
+                "stop": 1781196510302,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::name,expected_language::[('alpha', 'bun'), ('beta', 'bun'), ('gamma', 'python3')]"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_remote_new_scripts_were_deployed",
+                "status": "passed",
+                "duration": 211,
+                "start": 1781196510303,
+                "stop": 1781196510514,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::name,expected_language::[('alpha', 'bun'), ('beta', 'bun'), ('gamma', 'python3')]"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_remote_new_scripts_were_deployed",
+                "status": "passed",
+                "duration": 201,
+                "start": 1781196510515,
+                "stop": 1781196510716,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::name,expected_language::[('alpha', 'bun'), ('beta', 'bun'), ('gamma', 'python3')]"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_alpha_script_runtime_invocation",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 2060,
+                "start": 1781196510716,
+                "stop": 1781196512776,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_alpha_script_runtime_invocation():\n        \"\"\"`wmill script run` against the deployed alpha script must succeed.\"\"\"\n        safe_id = _safe_id()\n        probe = f\"harbor-probe-{safe_id}\"\n        deployed_path = _remote_path(safe_id, \"alpha\")\n        payload = json.dumps({\"message\": probe})\n    \n        env = os.environ.copy()\n        result = subprocess.run(\n            [\"wmill\", \"script\", \"run\", deployed_path, \"-d\", payload],\n            cwd=PROJECT_DIR,\n            capture_output=True,\n            text=True,\n            timeout=300,\n            env=env,\n        )\n        assert result.returncode == 0, (\n            f\"`wmill script run {deployed_path}` failed (rc={result.returncode}).\\n\"\n            f\"stdout={result.stdout}\\nstderr={result.stderr}\"\n        )\n    \n>       parsed = _extract_last_json(result.stdout)\n\ntests/test_final_state.py:254: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ntext = '\\x1b[34m\\x1b[33mWaiting for Job 019eb795-d88b-a6f2-aeab-e591e95c5a57 to start...\\x1b[39m\\x1b[39m\\njob=019eb795-d88b-a...m\\x1b[39m\\x1b[39m\\n\\x1b[34m\\n\\x1b[39m\\n\\x1b[34m{\\n  \"echo\": \"harbor-probe-zr_3wsnhdf\",\\n  \"script\": \"alpha\"\\n}\\x1b[39m'\n\n    def _extract_last_json(text: str):\n        \"\"\"Return the last top-level JSON value parsed from `text`.\"\"\"\n        text = text.strip()\n        if not text:\n            raise AssertionError(\"wmill stdout was empty; no JSON result to parse.\")\n    \n        try:\n            return json.loads(text)\n        except Exception:\n            pass\n    \n        lines = text.splitlines()\n        for start in range(len(lines)):\n            candidate = \"\\n\".join(lines[start:]).strip()\n            if not candidate:\n                continue\n            if candidate[0] not in \"[{\":\n                continue\n            try:\n                return json.loads(candidate)\n            except Exception:\n                continue\n    \n>       raise AssertionError(\n            f\"Could not parse a JSON result from wmill stdout. Raw stdout:\\n{text}\"\n        )\nE       AssertionError: Could not parse a JSON result from wmill stdout. Raw stdout:\nE       \u001b[34m\u001b[33mWaiting for Job 019eb795-d88b-a6f2-aeab-e591e95c5a57 to start...\u001b[39m\u001b[39m\nE       job=019eb795-d88b-a6f2-aeab-e591e95c5a57 tag=bun worker=wk-default-f7fsh-goVGK hostname=windmill-workers-default-7589ccd488-f7fsh isolation=nsjail\nE       \nE       loaded bin/bundle from object store /tmp/windmill/cache/bun/f1789d93b019ab269929d8d79a929fec79816e055992a2fbf1f13a2f241a0954 in 54ms\nE       \nE       --- BUN BUNDLE SNAPSHOT EXECUTION ---\nE       \u001b[34m\nE       \u001b[39m\nE       \u001b[34m\u001b[32m\u001b[4m\u001b[1mJob Completed\u001b[22m\u001b[24m\u001b[39m\u001b[39m\nE       \u001b[34m\nE       \u001b[39m\nE       \u001b[34m{\nE         \"echo\": \"harbor-probe-zr_3wsnhdf\",\nE         \"script\": \"alpha\"\nE       }\u001b[39m\n\ntests/test_final_state.py:91: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_zz_cleanup_remote_scripts",
+                "status": "passed",
+                "duration": 573,
+                "start": 1781196512776,
+                "stop": 1781196513349,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

@@ -1,0 +1,472 @@
+0 verbose cli /usr/bin/node /usr/bin/npm
+1 info using npm@11.13.0
+2 info using node@v24.16.0
+3 silly config load:file:/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/user/.npmrc
+5 silly config load:file:/usr/etc/npmrc
+6 verbose title npm i windmill-cli
+7 verbose argv "i" "--global" "windmill-cli"
+8 verbose logfile logs-max:10 dir:/home/user/.npm/_logs/2026-06-11T15_38_02_840Z-
+9 verbose logfile /home/user/.npm/_logs/2026-06-11T15_38_02_840Z-debug-0.log
+10 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+11 silly logfile done cleaning log files
+12 silly idealTree buildDeps
+13 silly fetch manifest windmill-cli@*
+14 silly packumentCache full:https://registry.npmjs.org/windmill-cli cache-miss
+15 http fetch GET 200 https://registry.npmjs.org/npm 195ms
+16 http fetch GET 200 https://registry.npmjs.org/windmill-cli 212ms (cache miss)
+17 silly packumentCache full:https://registry.npmjs.org/windmill-cli set size:undefined disposed:false
+18 silly placeDep ROOT windmill-cli@1.722.0 OK for:  want: *
+19 silly fetch manifest esbuild@0.28.0
+20 silly packumentCache full:https://registry.npmjs.org/esbuild cache-miss
+21 silly fetch manifest windmill-parser-wasm-py@1.693.1
+22 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-py cache-miss
+23 silly fetch manifest windmill-parser-wasm-ts@1.695.0
+24 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-ts cache-miss
+25 silly fetch manifest windmill-parser-wasm-regex@1.692.0
+26 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-regex cache-miss
+27 silly fetch manifest windmill-parser-wasm-go@1.510.1
+28 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-go cache-miss
+29 silly fetch manifest windmill-parser-wasm-php@1.647.1
+30 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-php cache-miss
+31 silly fetch manifest windmill-parser-wasm-rust@1.647.1
+32 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-rust cache-miss
+33 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-py 60ms (cache miss)
+34 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-py set size:undefined disposed:false
+35 silly fetch manifest windmill-parser-wasm-yaml@1.593.0
+36 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-yaml cache-miss
+37 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-ts 84ms (cache miss)
+38 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-ts set size:undefined disposed:false
+39 silly fetch manifest windmill-parser-wasm-csharp@1.510.1
+40 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-csharp cache-miss
+41 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-php 98ms (cache miss)
+42 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-php set size:undefined disposed:false
+43 silly fetch manifest windmill-parser-wasm-nu@1.510.1
+44 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-nu cache-miss
+45 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-go 130ms (cache miss)
+46 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-go set size:undefined disposed:false
+47 silly fetch manifest windmill-parser-wasm-java@1.510.1
+48 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-java cache-miss
+49 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-yaml 71ms (cache miss)
+50 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-yaml set size:undefined disposed:false
+51 silly fetch manifest windmill-parser-wasm-ruby@1.526.1
+52 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-ruby cache-miss
+53 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-regex 137ms (cache miss)
+54 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-regex set size:undefined disposed:false
+55 silly fetch manifest windmill-parser-wasm-py-imports@1.693.1
+56 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-py-imports cache-miss
+57 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-rust 139ms (cache miss)
+58 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-rust set size:undefined disposed:false
+59 silly fetch manifest svelte@^5.0.0
+60 silly packumentCache full:https://registry.npmjs.org/svelte cache-miss
+61 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-csharp 60ms (cache miss)
+62 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-csharp set size:undefined disposed:false
+63 http fetch GET 200 https://registry.npmjs.org/esbuild 166ms (cache miss)
+64 silly packumentCache full:https://registry.npmjs.org/esbuild set size:undefined disposed:false
+65 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-nu 78ms (cache miss)
+66 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-nu set size:undefined disposed:false
+67 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-java 53ms (cache miss)
+68 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-java set size:undefined disposed:false
+69 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-ruby 51ms (cache miss)
+70 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-ruby set size:undefined disposed:false
+71 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-py-imports 48ms (cache miss)
+72 silly packumentCache full:https://registry.npmjs.org/windmill-parser-wasm-py-imports set size:undefined disposed:false
+73 http fetch GET 200 https://registry.npmjs.org/svelte 206ms (cache miss)
+74 silly packumentCache full:https://registry.npmjs.org/svelte set size:undefined disposed:false
+75 silly placeDep node_modules/windmill-cli esbuild@0.28.0 OK for: windmill-cli@1.722.0 want: 0.28.0
+76 silly placeDep node_modules/windmill-cli svelte@5.56.3 OK for: windmill-cli@1.722.0 want: ^5.0.0
+77 silly placeDep node_modules/windmill-cli windmill-parser-wasm-csharp@1.510.1 OK for: windmill-cli@1.722.0 want: 1.510.1
+78 silly placeDep node_modules/windmill-cli windmill-parser-wasm-go@1.510.1 OK for: windmill-cli@1.722.0 want: 1.510.1
+79 silly placeDep node_modules/windmill-cli windmill-parser-wasm-java@1.510.1 OK for: windmill-cli@1.722.0 want: 1.510.1
+80 silly placeDep node_modules/windmill-cli windmill-parser-wasm-nu@1.510.1 OK for: windmill-cli@1.722.0 want: 1.510.1
+81 silly placeDep node_modules/windmill-cli windmill-parser-wasm-php@1.647.1 OK for: windmill-cli@1.722.0 want: 1.647.1
+82 silly placeDep node_modules/windmill-cli windmill-parser-wasm-py@1.693.1 OK for: windmill-cli@1.722.0 want: 1.693.1
+83 silly placeDep node_modules/windmill-cli windmill-parser-wasm-py-imports@1.693.1 OK for: windmill-cli@1.722.0 want: 1.693.1
+84 silly placeDep node_modules/windmill-cli windmill-parser-wasm-regex@1.692.0 OK for: windmill-cli@1.722.0 want: 1.692.0
+85 silly placeDep node_modules/windmill-cli windmill-parser-wasm-ruby@1.526.1 OK for: windmill-cli@1.722.0 want: 1.526.1
+86 silly placeDep node_modules/windmill-cli windmill-parser-wasm-rust@1.647.1 OK for: windmill-cli@1.722.0 want: 1.647.1
+87 silly placeDep node_modules/windmill-cli windmill-parser-wasm-ts@1.695.0 OK for: windmill-cli@1.722.0 want: 1.695.0
+88 silly placeDep node_modules/windmill-cli windmill-parser-wasm-yaml@1.593.0 OK for: windmill-cli@1.722.0 want: 1.593.0
+89 silly fetch manifest @esbuild/aix-ppc64@0.28.0
+90 silly packumentCache full:https://registry.npmjs.org/@esbuild%2faix-ppc64 cache-miss
+91 silly fetch manifest @esbuild/android-arm@0.28.0
+92 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-arm cache-miss
+93 silly fetch manifest @esbuild/android-arm64@0.28.0
+94 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-arm64 cache-miss
+95 silly fetch manifest @esbuild/android-x64@0.28.0
+96 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-x64 cache-miss
+97 silly fetch manifest @esbuild/darwin-arm64@0.28.0
+98 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fdarwin-arm64 cache-miss
+99 silly fetch manifest @esbuild/darwin-x64@0.28.0
+100 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fdarwin-x64 cache-miss
+101 silly fetch manifest @esbuild/freebsd-arm64@0.28.0
+102 silly packumentCache full:https://registry.npmjs.org/@esbuild%2ffreebsd-arm64 cache-miss
+103 http fetch GET 200 https://registry.npmjs.org/@esbuild%2faix-ppc64 92ms (cache miss)
+104 silly packumentCache full:https://registry.npmjs.org/@esbuild%2faix-ppc64 set size:undefined disposed:false
+105 silly fetch manifest @esbuild/freebsd-x64@0.28.0
+106 silly packumentCache full:https://registry.npmjs.org/@esbuild%2ffreebsd-x64 cache-miss
+107 http fetch GET 200 https://registry.npmjs.org/@esbuild%2ffreebsd-arm64 101ms (cache miss)
+108 silly packumentCache full:https://registry.npmjs.org/@esbuild%2ffreebsd-arm64 set size:undefined disposed:false
+109 silly fetch manifest @esbuild/linux-arm@0.28.0
+110 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-arm cache-miss
+111 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-arm 110ms (cache miss)
+112 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-arm set size:undefined disposed:false
+113 silly fetch manifest @esbuild/linux-arm64@0.28.0
+114 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-arm64 cache-miss
+115 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fdarwin-x64 112ms (cache miss)
+116 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fdarwin-x64 set size:undefined disposed:false
+117 silly fetch manifest @esbuild/linux-ia32@0.28.0
+118 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-ia32 cache-miss
+119 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fdarwin-arm64 116ms (cache miss)
+120 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fdarwin-arm64 set size:undefined disposed:false
+121 silly fetch manifest @esbuild/linux-loong64@0.28.0
+122 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-loong64 cache-miss
+123 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-arm64 129ms (cache miss)
+124 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-arm64 set size:undefined disposed:false
+125 silly fetch manifest @esbuild/linux-mips64el@0.28.0
+126 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-mips64el cache-miss
+127 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-x64 148ms (cache miss)
+128 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-x64 set size:undefined disposed:false
+129 silly fetch manifest @esbuild/linux-ppc64@0.28.0
+130 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-ppc64 cache-miss
+131 http fetch GET 200 https://registry.npmjs.org/@esbuild%2ffreebsd-x64 73ms (cache miss)
+132 silly packumentCache full:https://registry.npmjs.org/@esbuild%2ffreebsd-x64 set size:undefined disposed:false
+133 silly fetch manifest @esbuild/linux-riscv64@0.28.0
+134 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-riscv64 cache-miss
+135 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-arm 79ms (cache miss)
+136 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-arm set size:undefined disposed:false
+137 silly fetch manifest @esbuild/linux-s390x@0.28.0
+138 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-s390x cache-miss
+139 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-mips64el 65ms (cache miss)
+140 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-mips64el set size:undefined disposed:false
+141 silly fetch manifest @esbuild/linux-x64@0.28.0
+142 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-x64 cache-miss
+143 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-arm64 96ms (cache miss)
+144 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-arm64 set size:undefined disposed:false
+145 silly fetch manifest @esbuild/netbsd-arm64@0.28.0
+146 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fnetbsd-arm64 cache-miss
+147 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-loong64 104ms (cache miss)
+148 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-loong64 set size:undefined disposed:false
+149 silly fetch manifest @esbuild/netbsd-x64@0.28.0
+150 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fnetbsd-x64 cache-miss
+151 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-ia32 112ms (cache miss)
+152 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-ia32 set size:undefined disposed:false
+153 silly fetch manifest @esbuild/openbsd-arm64@0.28.0
+154 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenbsd-arm64 cache-miss
+155 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-ppc64 89ms (cache miss)
+156 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-ppc64 set size:undefined disposed:false
+157 silly fetch manifest @esbuild/openbsd-x64@0.28.0
+158 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenbsd-x64 cache-miss
+159 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-riscv64 84ms (cache miss)
+160 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-riscv64 set size:undefined disposed:false
+161 silly fetch manifest @esbuild/openharmony-arm64@0.28.0
+162 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenharmony-arm64 cache-miss
+163 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-s390x 88ms (cache miss)
+164 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-s390x set size:undefined disposed:false
+165 silly fetch manifest @esbuild/sunos-x64@0.28.0
+166 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fsunos-x64 cache-miss
+167 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-x64 82ms (cache miss)
+168 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-x64 set size:undefined disposed:false
+169 silly fetch manifest @esbuild/win32-arm64@0.28.0
+170 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-arm64 cache-miss
+171 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fnetbsd-arm64 75ms (cache miss)
+172 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fnetbsd-arm64 set size:undefined disposed:false
+173 silly fetch manifest @esbuild/win32-ia32@0.28.0
+174 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-ia32 cache-miss
+175 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fnetbsd-x64 69ms (cache miss)
+176 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fnetbsd-x64 set size:undefined disposed:false
+177 silly fetch manifest @esbuild/win32-x64@0.28.0
+178 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-x64 cache-miss
+179 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenharmony-arm64 60ms (cache miss)
+180 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenharmony-arm64 set size:undefined disposed:false
+181 silly fetch manifest @jridgewell/remapping@^2.3.4
+182 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fremapping cache-miss
+183 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenbsd-x64 78ms (cache miss)
+184 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenbsd-x64 set size:undefined disposed:false
+185 silly fetch manifest @jridgewell/sourcemap-codec@^1.5.0
+186 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fsourcemap-codec cache-miss
+187 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenbsd-arm64 98ms (cache miss)
+188 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenbsd-arm64 set size:undefined disposed:false
+189 silly fetch manifest @sveltejs/acorn-typescript@^1.0.10
+190 silly packumentCache full:https://registry.npmjs.org/@sveltejs%2facorn-typescript cache-miss
+191 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-arm64 65ms (cache miss)
+192 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-arm64 set size:undefined disposed:false
+193 silly fetch manifest @types/estree@^1.0.5
+194 silly packumentCache full:https://registry.npmjs.org/@types%2festree cache-miss
+195 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fsunos-x64 84ms (cache miss)
+196 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fsunos-x64 set size:undefined disposed:false
+197 silly fetch manifest @types/trusted-types@^2.0.7
+198 silly packumentCache full:https://registry.npmjs.org/@types%2ftrusted-types cache-miss
+199 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-ia32 80ms (cache miss)
+200 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-ia32 set size:undefined disposed:false
+201 silly fetch manifest acorn@^8.12.1
+202 silly packumentCache full:https://registry.npmjs.org/acorn cache-miss
+203 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-x64 77ms (cache miss)
+204 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-x64 set size:undefined disposed:false
+205 silly fetch manifest aria-query@5.3.1
+206 silly packumentCache full:https://registry.npmjs.org/aria-query cache-miss
+207 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2fsourcemap-codec 63ms (cache miss)
+208 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fsourcemap-codec set size:undefined disposed:false
+209 silly fetch manifest axobject-query@^4.1.0
+210 silly packumentCache full:https://registry.npmjs.org/axobject-query cache-miss
+211 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2fremapping 81ms (cache miss)
+212 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fremapping set size:undefined disposed:false
+213 silly fetch manifest clsx@^2.1.1
+214 silly packumentCache full:https://registry.npmjs.org/clsx cache-miss
+215 http fetch GET 200 https://registry.npmjs.org/@types%2festree 57ms (cache miss)
+216 silly packumentCache full:https://registry.npmjs.org/@types%2festree set size:undefined disposed:false
+217 silly fetch manifest devalue@^5.8.1
+218 silly packumentCache full:https://registry.npmjs.org/devalue cache-miss
+219 http fetch GET 200 https://registry.npmjs.org/@types%2ftrusted-types 53ms (cache miss)
+220 silly packumentCache full:https://registry.npmjs.org/@types%2ftrusted-types set size:undefined disposed:false
+221 silly fetch manifest esm-env@^1.2.1
+222 silly packumentCache full:https://registry.npmjs.org/esm-env cache-miss
+223 http fetch GET 200 https://registry.npmjs.org/@sveltejs%2facorn-typescript 93ms (cache miss)
+224 silly packumentCache full:https://registry.npmjs.org/@sveltejs%2facorn-typescript set size:undefined disposed:false
+225 silly fetch manifest esrap@^2.2.11
+226 silly packumentCache full:https://registry.npmjs.org/esrap cache-miss
+227 http fetch GET 200 https://registry.npmjs.org/aria-query 60ms (cache miss)
+228 silly packumentCache full:https://registry.npmjs.org/aria-query set size:undefined disposed:false
+229 silly fetch manifest is-reference@^3.0.3
+230 silly packumentCache full:https://registry.npmjs.org/is-reference cache-miss
+231 http fetch GET 200 https://registry.npmjs.org/axobject-query 53ms (cache miss)
+232 silly packumentCache full:https://registry.npmjs.org/axobject-query set size:undefined disposed:false
+233 silly fetch manifest locate-character@^3.0.0
+234 silly packumentCache full:https://registry.npmjs.org/locate-character cache-miss
+235 http fetch GET 200 https://registry.npmjs.org/acorn 73ms (cache miss)
+236 silly packumentCache full:https://registry.npmjs.org/acorn set size:undefined disposed:false
+237 silly fetch manifest magic-string@^0.30.11
+238 silly packumentCache full:https://registry.npmjs.org/magic-string cache-miss
+239 http fetch GET 200 https://registry.npmjs.org/clsx 60ms (cache miss)
+240 silly packumentCache full:https://registry.npmjs.org/clsx set size:undefined disposed:false
+241 silly fetch manifest zimmerframe@^1.1.2
+242 silly packumentCache full:https://registry.npmjs.org/zimmerframe cache-miss
+243 http fetch GET 200 https://registry.npmjs.org/devalue 55ms (cache miss)
+244 silly packumentCache full:https://registry.npmjs.org/devalue set size:undefined disposed:false
+245 http fetch GET 200 https://registry.npmjs.org/esm-env 48ms (cache miss)
+246 silly packumentCache full:https://registry.npmjs.org/esm-env set size:undefined disposed:false
+247 http fetch GET 200 https://registry.npmjs.org/is-reference 47ms (cache miss)
+248 silly packumentCache full:https://registry.npmjs.org/is-reference set size:undefined disposed:false
+249 http fetch GET 200 https://registry.npmjs.org/locate-character 44ms (cache miss)
+250 silly packumentCache full:https://registry.npmjs.org/locate-character set size:undefined disposed:false
+251 http fetch GET 200 https://registry.npmjs.org/magic-string 54ms (cache miss)
+252 silly packumentCache full:https://registry.npmjs.org/magic-string set size:undefined disposed:false
+253 http fetch GET 200 https://registry.npmjs.org/zimmerframe 50ms (cache miss)
+254 silly packumentCache full:https://registry.npmjs.org/zimmerframe set size:undefined disposed:false
+255 http fetch GET 200 https://registry.npmjs.org/esrap 96ms (cache miss)
+256 silly packumentCache full:https://registry.npmjs.org/esrap set size:undefined disposed:false
+257 silly placeDep node_modules/windmill-cli @esbuild/aix-ppc64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+258 silly placeDep node_modules/windmill-cli @esbuild/android-arm@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+259 silly placeDep node_modules/windmill-cli @esbuild/android-arm64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+260 silly placeDep node_modules/windmill-cli @esbuild/android-x64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+261 silly placeDep node_modules/windmill-cli @esbuild/darwin-arm64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+262 silly placeDep node_modules/windmill-cli @esbuild/darwin-x64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+263 silly placeDep node_modules/windmill-cli @esbuild/freebsd-arm64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+264 silly placeDep node_modules/windmill-cli @esbuild/freebsd-x64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+265 silly placeDep node_modules/windmill-cli @esbuild/linux-arm@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+266 silly placeDep node_modules/windmill-cli @esbuild/linux-arm64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+267 silly placeDep node_modules/windmill-cli @esbuild/linux-ia32@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+268 silly placeDep node_modules/windmill-cli @esbuild/linux-loong64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+269 silly placeDep node_modules/windmill-cli @esbuild/linux-mips64el@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+270 silly placeDep node_modules/windmill-cli @esbuild/linux-ppc64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+271 silly placeDep node_modules/windmill-cli @esbuild/linux-riscv64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+272 silly placeDep node_modules/windmill-cli @esbuild/linux-s390x@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+273 silly placeDep node_modules/windmill-cli @esbuild/linux-x64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+274 silly placeDep node_modules/windmill-cli @esbuild/netbsd-arm64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+275 silly placeDep node_modules/windmill-cli @esbuild/netbsd-x64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+276 silly placeDep node_modules/windmill-cli @esbuild/openbsd-arm64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+277 silly placeDep node_modules/windmill-cli @esbuild/openbsd-x64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+278 silly placeDep node_modules/windmill-cli @esbuild/openharmony-arm64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+279 silly placeDep node_modules/windmill-cli @esbuild/sunos-x64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+280 silly placeDep node_modules/windmill-cli @esbuild/win32-arm64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+281 silly placeDep node_modules/windmill-cli @esbuild/win32-ia32@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+282 silly placeDep node_modules/windmill-cli @esbuild/win32-x64@0.28.0 OK for: esbuild@0.28.0 want: 0.28.0
+283 silly fetch manifest @typescript-eslint/types@^8.2.0
+284 silly packumentCache full:https://registry.npmjs.org/@typescript-eslint%2ftypes cache-miss
+285 http fetch GET 200 https://registry.npmjs.org/@typescript-eslint%2ftypes 394ms (cache miss)
+286 silly packumentCache full:https://registry.npmjs.org/@typescript-eslint%2ftypes set size:undefined disposed:false
+287 silly placeDep node_modules/windmill-cli @jridgewell/remapping@2.3.5 OK for: svelte@5.56.3 want: ^2.3.4
+288 silly placeDep node_modules/windmill-cli @jridgewell/sourcemap-codec@1.5.5 OK for: svelte@5.56.3 want: ^1.5.0
+289 silly placeDep node_modules/windmill-cli @sveltejs/acorn-typescript@1.0.10 OK for: svelte@5.56.3 want: ^1.0.10
+290 silly placeDep node_modules/windmill-cli acorn@8.16.0 OK for: @sveltejs/acorn-typescript@1.0.10 want: ^8.9.0
+291 silly placeDep node_modules/windmill-cli @types/estree@1.0.9 OK for: svelte@5.56.3 want: ^1.0.5
+292 silly placeDep node_modules/windmill-cli @types/trusted-types@2.0.7 OK for: svelte@5.56.3 want: ^2.0.7
+293 silly placeDep node_modules/windmill-cli aria-query@5.3.1 OK for: svelte@5.56.3 want: 5.3.1
+294 silly placeDep node_modules/windmill-cli axobject-query@4.1.0 OK for: svelte@5.56.3 want: ^4.1.0
+295 silly placeDep node_modules/windmill-cli clsx@2.1.1 OK for: svelte@5.56.3 want: ^2.1.1
+296 silly placeDep node_modules/windmill-cli devalue@5.8.1 OK for: svelte@5.56.3 want: ^5.8.1
+297 silly placeDep node_modules/windmill-cli esm-env@1.2.2 OK for: svelte@5.56.3 want: ^1.2.1
+298 silly placeDep node_modules/windmill-cli esrap@2.2.11 OK for: svelte@5.56.3 want: ^2.2.11
+299 silly placeDep node_modules/windmill-cli is-reference@3.0.3 OK for: svelte@5.56.3 want: ^3.0.3
+300 silly placeDep node_modules/windmill-cli locate-character@3.0.0 OK for: svelte@5.56.3 want: ^3.0.0
+301 silly placeDep node_modules/windmill-cli magic-string@0.30.21 OK for: svelte@5.56.3 want: ^0.30.11
+302 silly placeDep node_modules/windmill-cli zimmerframe@1.1.4 OK for: svelte@5.56.3 want: ^1.1.2
+303 silly fetch manifest @jridgewell/gen-mapping@^0.3.5
+304 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fgen-mapping cache-miss
+305 silly fetch manifest @jridgewell/trace-mapping@^0.3.24
+306 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2ftrace-mapping cache-miss
+307 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2fgen-mapping 66ms (cache miss)
+308 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fgen-mapping set size:undefined disposed:false
+309 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2ftrace-mapping 79ms (cache miss)
+310 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2ftrace-mapping set size:undefined disposed:false
+311 silly placeDep node_modules/windmill-cli @jridgewell/gen-mapping@0.3.13 OK for: @jridgewell/remapping@2.3.5 want: ^0.3.5
+312 silly placeDep node_modules/windmill-cli @jridgewell/trace-mapping@0.3.31 OK for: @jridgewell/remapping@2.3.5 want: ^0.3.24
+313 silly fetch manifest @jridgewell/resolve-uri@^3.1.0
+314 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fresolve-uri cache-miss
+315 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2fresolve-uri 71ms (cache miss)
+316 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fresolve-uri set size:undefined disposed:false
+317 silly placeDep node_modules/windmill-cli @jridgewell/resolve-uri@3.1.2 OK for: @jridgewell/trace-mapping@0.3.31 want: ^3.1.0
+318 silly reify moves {}
+319 http cache @jridgewell/resolve-uri@https://registry.npmjs.org/@jridgewell/resolve-uri/-/resolve-uri-3.1.2.tgz 1ms (cache hit)
+320 http cache windmill-cli@https://registry.npmjs.org/windmill-cli/-/windmill-cli-1.722.0.tgz 0ms (cache hit)
+321 http cache zimmerframe@https://registry.npmjs.org/zimmerframe/-/zimmerframe-1.1.4.tgz 0ms (cache hit)
+322 http cache @jridgewell/gen-mapping@https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.13.tgz 0ms (cache hit)
+323 http cache magic-string@https://registry.npmjs.org/magic-string/-/magic-string-0.30.21.tgz 0ms (cache hit)
+324 http cache locate-character@https://registry.npmjs.org/locate-character/-/locate-character-3.0.0.tgz 0ms (cache hit)
+325 http cache esm-env@https://registry.npmjs.org/esm-env/-/esm-env-1.2.2.tgz 0ms (cache hit)
+326 http cache esrap@https://registry.npmjs.org/esrap/-/esrap-2.2.11.tgz 0ms (cache hit)
+327 http cache @jridgewell/trace-mapping@https://registry.npmjs.org/@jridgewell/trace-mapping/-/trace-mapping-0.3.31.tgz 0ms (cache hit)
+328 http cache is-reference@https://registry.npmjs.org/is-reference/-/is-reference-3.0.3.tgz 0ms (cache hit)
+329 http cache devalue@https://registry.npmjs.org/devalue/-/devalue-5.8.1.tgz 0ms (cache hit)
+330 http cache axobject-query@https://registry.npmjs.org/axobject-query/-/axobject-query-4.1.0.tgz 0ms (cache hit)
+331 http cache clsx@https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz 0ms (cache hit)
+332 http cache aria-query@https://registry.npmjs.org/aria-query/-/aria-query-5.3.1.tgz 1ms (cache hit)
+333 http cache @types/trusted-types@https://registry.npmjs.org/@types/trusted-types/-/trusted-types-2.0.7.tgz 0ms (cache hit)
+334 http cache @jridgewell/sourcemap-codec@https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz 0ms (cache hit)
+335 http cache @types/estree@https://registry.npmjs.org/@types/estree/-/estree-1.0.9.tgz 0ms (cache hit)
+336 http cache @sveltejs/acorn-typescript@https://registry.npmjs.org/@sveltejs/acorn-typescript/-/acorn-typescript-1.0.10.tgz 0ms (cache hit)
+337 http cache acorn@https://registry.npmjs.org/acorn/-/acorn-8.16.0.tgz 0ms (cache hit)
+338 http cache @jridgewell/remapping@https://registry.npmjs.org/@jridgewell/remapping/-/remapping-2.3.5.tgz 0ms (cache hit)
+339 http cache @esbuild/linux-x64@https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.28.0.tgz 0ms (cache hit)
+340 http cache windmill-parser-wasm-yaml@https://registry.npmjs.org/windmill-parser-wasm-yaml/-/windmill-parser-wasm-yaml-1.593.0.tgz 0ms (cache hit)
+341 http cache windmill-parser-wasm-rust@https://registry.npmjs.org/windmill-parser-wasm-rust/-/windmill-parser-wasm-rust-1.647.1.tgz 0ms (cache hit)
+342 http cache windmill-parser-wasm-ruby@https://registry.npmjs.org/windmill-parser-wasm-ruby/-/windmill-parser-wasm-ruby-1.526.1.tgz 0ms (cache hit)
+343 http cache windmill-parser-wasm-regex@https://registry.npmjs.org/windmill-parser-wasm-regex/-/windmill-parser-wasm-regex-1.692.0.tgz 0ms (cache hit)
+344 http cache windmill-parser-wasm-ts@https://registry.npmjs.org/windmill-parser-wasm-ts/-/windmill-parser-wasm-ts-1.695.0.tgz 0ms (cache hit)
+345 http cache windmill-parser-wasm-py-imports@https://registry.npmjs.org/windmill-parser-wasm-py-imports/-/windmill-parser-wasm-py-imports-1.693.1.tgz 0ms (cache hit)
+346 http cache windmill-parser-wasm-py@https://registry.npmjs.org/windmill-parser-wasm-py/-/windmill-parser-wasm-py-1.693.1.tgz 0ms (cache hit)
+347 http cache windmill-parser-wasm-php@https://registry.npmjs.org/windmill-parser-wasm-php/-/windmill-parser-wasm-php-1.647.1.tgz 0ms (cache hit)
+348 http cache windmill-parser-wasm-nu@https://registry.npmjs.org/windmill-parser-wasm-nu/-/windmill-parser-wasm-nu-1.510.1.tgz 0ms (cache hit)
+349 http cache windmill-parser-wasm-java@https://registry.npmjs.org/windmill-parser-wasm-java/-/windmill-parser-wasm-java-1.510.1.tgz 0ms (cache hit)
+350 http cache windmill-parser-wasm-go@https://registry.npmjs.org/windmill-parser-wasm-go/-/windmill-parser-wasm-go-1.510.1.tgz 0ms (cache hit)
+351 http cache windmill-parser-wasm-csharp@https://registry.npmjs.org/windmill-parser-wasm-csharp/-/windmill-parser-wasm-csharp-1.510.1.tgz 0ms (cache hit)
+352 http cache svelte@https://registry.npmjs.org/svelte/-/svelte-5.56.3.tgz 0ms (cache hit)
+353 http cache esbuild@https://registry.npmjs.org/esbuild/-/esbuild-0.28.0.tgz 0ms (cache hit)
+354 silly tarball no local data for @jridgewell/resolve-uri@https://registry.npmjs.org/@jridgewell/resolve-uri/-/resolve-uri-3.1.2.tgz. Extracting by manifest.
+355 silly tarball no local data for windmill-cli@https://registry.npmjs.org/windmill-cli/-/windmill-cli-1.722.0.tgz. Extracting by manifest.
+356 silly tarball no local data for zimmerframe@https://registry.npmjs.org/zimmerframe/-/zimmerframe-1.1.4.tgz. Extracting by manifest.
+357 silly tarball no local data for @jridgewell/gen-mapping@https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.13.tgz. Extracting by manifest.
+358 silly tarball no local data for magic-string@https://registry.npmjs.org/magic-string/-/magic-string-0.30.21.tgz. Extracting by manifest.
+359 silly tarball no local data for locate-character@https://registry.npmjs.org/locate-character/-/locate-character-3.0.0.tgz. Extracting by manifest.
+360 silly tarball no local data for esm-env@https://registry.npmjs.org/esm-env/-/esm-env-1.2.2.tgz. Extracting by manifest.
+361 silly tarball no local data for esrap@https://registry.npmjs.org/esrap/-/esrap-2.2.11.tgz. Extracting by manifest.
+362 silly tarball no local data for @jridgewell/trace-mapping@https://registry.npmjs.org/@jridgewell/trace-mapping/-/trace-mapping-0.3.31.tgz. Extracting by manifest.
+363 silly tarball no local data for is-reference@https://registry.npmjs.org/is-reference/-/is-reference-3.0.3.tgz. Extracting by manifest.
+364 silly tarball no local data for devalue@https://registry.npmjs.org/devalue/-/devalue-5.8.1.tgz. Extracting by manifest.
+365 silly tarball no local data for axobject-query@https://registry.npmjs.org/axobject-query/-/axobject-query-4.1.0.tgz. Extracting by manifest.
+366 silly tarball no local data for clsx@https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz. Extracting by manifest.
+367 silly tarball no local data for aria-query@https://registry.npmjs.org/aria-query/-/aria-query-5.3.1.tgz. Extracting by manifest.
+368 silly tarball no local data for @types/trusted-types@https://registry.npmjs.org/@types/trusted-types/-/trusted-types-2.0.7.tgz. Extracting by manifest.
+369 silly tarball no local data for @jridgewell/sourcemap-codec@https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz. Extracting by manifest.
+370 silly tarball no local data for @types/estree@https://registry.npmjs.org/@types/estree/-/estree-1.0.9.tgz. Extracting by manifest.
+371 silly tarball no local data for @sveltejs/acorn-typescript@https://registry.npmjs.org/@sveltejs/acorn-typescript/-/acorn-typescript-1.0.10.tgz. Extracting by manifest.
+372 silly tarball no local data for acorn@https://registry.npmjs.org/acorn/-/acorn-8.16.0.tgz. Extracting by manifest.
+373 silly tarball no local data for @jridgewell/remapping@https://registry.npmjs.org/@jridgewell/remapping/-/remapping-2.3.5.tgz. Extracting by manifest.
+374 silly tarball no local data for @esbuild/linux-x64@https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.28.0.tgz. Extracting by manifest.
+375 silly tarball no local data for windmill-parser-wasm-yaml@https://registry.npmjs.org/windmill-parser-wasm-yaml/-/windmill-parser-wasm-yaml-1.593.0.tgz. Extracting by manifest.
+376 silly tarball no local data for windmill-parser-wasm-rust@https://registry.npmjs.org/windmill-parser-wasm-rust/-/windmill-parser-wasm-rust-1.647.1.tgz. Extracting by manifest.
+377 silly tarball no local data for windmill-parser-wasm-ruby@https://registry.npmjs.org/windmill-parser-wasm-ruby/-/windmill-parser-wasm-ruby-1.526.1.tgz. Extracting by manifest.
+378 silly tarball no local data for windmill-parser-wasm-regex@https://registry.npmjs.org/windmill-parser-wasm-regex/-/windmill-parser-wasm-regex-1.692.0.tgz. Extracting by manifest.
+379 silly tarball no local data for windmill-parser-wasm-ts@https://registry.npmjs.org/windmill-parser-wasm-ts/-/windmill-parser-wasm-ts-1.695.0.tgz. Extracting by manifest.
+380 silly tarball no local data for windmill-parser-wasm-py-imports@https://registry.npmjs.org/windmill-parser-wasm-py-imports/-/windmill-parser-wasm-py-imports-1.693.1.tgz. Extracting by manifest.
+381 silly tarball no local data for windmill-parser-wasm-py@https://registry.npmjs.org/windmill-parser-wasm-py/-/windmill-parser-wasm-py-1.693.1.tgz. Extracting by manifest.
+382 silly tarball no local data for windmill-parser-wasm-php@https://registry.npmjs.org/windmill-parser-wasm-php/-/windmill-parser-wasm-php-1.647.1.tgz. Extracting by manifest.
+383 silly tarball no local data for windmill-parser-wasm-nu@https://registry.npmjs.org/windmill-parser-wasm-nu/-/windmill-parser-wasm-nu-1.510.1.tgz. Extracting by manifest.
+384 silly tarball no local data for windmill-parser-wasm-java@https://registry.npmjs.org/windmill-parser-wasm-java/-/windmill-parser-wasm-java-1.510.1.tgz. Extracting by manifest.
+385 silly tarball no local data for windmill-parser-wasm-go@https://registry.npmjs.org/windmill-parser-wasm-go/-/windmill-parser-wasm-go-1.510.1.tgz. Extracting by manifest.
+386 silly tarball no local data for windmill-parser-wasm-csharp@https://registry.npmjs.org/windmill-parser-wasm-csharp/-/windmill-parser-wasm-csharp-1.510.1.tgz. Extracting by manifest.
+387 silly tarball no local data for svelte@https://registry.npmjs.org/svelte/-/svelte-5.56.3.tgz. Extracting by manifest.
+388 silly tarball no local data for esbuild@https://registry.npmjs.org/esbuild/-/esbuild-0.28.0.tgz. Extracting by manifest.
+389 http fetch GET 200 https://registry.npmjs.org/locate-character/-/locate-character-3.0.0.tgz 242ms (cache miss)
+390 http fetch GET 200 https://registry.npmjs.org/esm-env/-/esm-env-1.2.2.tgz 265ms (cache miss)
+391 http fetch GET 200 https://registry.npmjs.org/@jridgewell/resolve-uri/-/resolve-uri-3.1.2.tgz 271ms (cache miss)
+392 http fetch GET 200 https://registry.npmjs.org/zimmerframe/-/zimmerframe-1.1.4.tgz 297ms (cache miss)
+393 http fetch GET 200 https://registry.npmjs.org/@types/estree/-/estree-1.0.9.tgz 315ms (cache miss)
+394 http fetch GET 200 https://registry.npmjs.org/@types/trusted-types/-/trusted-types-2.0.7.tgz 349ms (cache miss)
+395 http fetch GET 200 https://registry.npmjs.org/@jridgewell/remapping/-/remapping-2.3.5.tgz 347ms (cache miss)
+396 http fetch GET 200 https://registry.npmjs.org/is-reference/-/is-reference-3.0.3.tgz 368ms (cache miss)
+397 http fetch GET 200 https://registry.npmjs.org/@sveltejs/acorn-typescript/-/acorn-typescript-1.0.10.tgz 367ms (cache miss)
+398 http fetch GET 200 https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz 378ms (cache miss)
+399 http fetch GET 200 https://registry.npmjs.org/esbuild/-/esbuild-0.28.0.tgz 386ms (cache miss)
+400 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-regex/-/windmill-parser-wasm-regex-1.692.0.tgz 425ms (cache miss)
+401 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-nu/-/windmill-parser-wasm-nu-1.510.1.tgz 425ms (cache miss)
+402 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-go/-/windmill-parser-wasm-go-1.510.1.tgz 443ms (cache miss)
+403 http fetch GET 200 https://registry.npmjs.org/devalue/-/devalue-5.8.1.tgz 459ms (cache miss)
+404 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-yaml/-/windmill-parser-wasm-yaml-1.593.0.tgz 453ms (cache miss)
+405 http fetch GET 200 https://registry.npmjs.org/magic-string/-/magic-string-0.30.21.tgz 476ms (cache miss)
+406 http fetch GET 200 https://registry.npmjs.org/acorn/-/acorn-8.16.0.tgz 484ms (cache miss)
+407 http fetch GET 200 https://registry.npmjs.org/esrap/-/esrap-2.2.11.tgz 500ms (cache miss)
+408 http fetch GET 200 https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz 536ms (cache miss)
+409 http fetch GET 200 https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.13.tgz 566ms (cache miss)
+410 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-java/-/windmill-parser-wasm-java-1.510.1.tgz 574ms (cache miss)
+411 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-php/-/windmill-parser-wasm-php-1.647.1.tgz 605ms (cache miss)
+412 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-ts/-/windmill-parser-wasm-ts-1.695.0.tgz 625ms (cache miss)
+413 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-rust/-/windmill-parser-wasm-rust-1.647.1.tgz 636ms (cache miss)
+414 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-ruby/-/windmill-parser-wasm-ruby-1.526.1.tgz 687ms (cache miss)
+415 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-py-imports/-/windmill-parser-wasm-py-imports-1.693.1.tgz 686ms (cache miss)
+416 http fetch GET 200 https://registry.npmjs.org/@jridgewell/trace-mapping/-/trace-mapping-0.3.31.tgz 709ms (cache miss)
+417 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-py/-/windmill-parser-wasm-py-1.693.1.tgz 717ms (cache miss)
+418 http fetch GET 200 https://registry.npmjs.org/windmill-cli/-/windmill-cli-1.722.0.tgz 742ms (cache miss)
+419 http fetch GET 200 https://registry.npmjs.org/windmill-parser-wasm-csharp/-/windmill-parser-wasm-csharp-1.510.1.tgz 747ms (cache miss)
+420 http fetch GET 200 https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.28.0.tgz 956ms (cache miss)
+421 http fetch GET 200 https://registry.npmjs.org/axobject-query/-/axobject-query-4.1.0.tgz 966ms (cache miss)
+422 http fetch GET 200 https://registry.npmjs.org/aria-query/-/aria-query-5.3.1.tgz 1013ms (cache miss)
+423 http fetch GET 200 https://registry.npmjs.org/svelte/-/svelte-5.56.3.tgz 1307ms (cache miss)
+424 info run esbuild@0.28.0 postinstall node_modules/windmill-cli/node_modules/esbuild node install.js
+425 info run esbuild@0.28.0 postinstall { code: 0, signal: null }
+426 silly ADD node_modules/windmill-cli
+427 silly ADD node_modules/windmill-cli/node_modules/@jridgewell/resolve-uri
+428 silly ADD node_modules/windmill-cli/node_modules/@jridgewell/trace-mapping
+429 silly ADD node_modules/windmill-cli/node_modules/@jridgewell/gen-mapping
+430 silly ADD node_modules/windmill-cli/node_modules/zimmerframe
+431 silly ADD node_modules/windmill-cli/node_modules/magic-string
+432 silly ADD node_modules/windmill-cli/node_modules/locate-character
+433 silly ADD node_modules/windmill-cli/node_modules/is-reference
+434 silly ADD node_modules/windmill-cli/node_modules/esrap
+435 silly ADD node_modules/windmill-cli/node_modules/esm-env
+436 silly ADD node_modules/windmill-cli/node_modules/devalue
+437 silly ADD node_modules/windmill-cli/node_modules/clsx
+438 silly ADD node_modules/windmill-cli/node_modules/axobject-query
+439 silly ADD node_modules/windmill-cli/node_modules/aria-query
+440 silly ADD node_modules/windmill-cli/node_modules/@types/trusted-types
+441 silly ADD node_modules/windmill-cli/node_modules/@types/estree
+442 silly ADD node_modules/windmill-cli/node_modules/acorn
+443 silly ADD node_modules/windmill-cli/node_modules/@sveltejs/acorn-typescript
+444 silly ADD node_modules/windmill-cli/node_modules/@jridgewell/sourcemap-codec
+445 silly ADD node_modules/windmill-cli/node_modules/@jridgewell/remapping
+446 silly ADD node_modules/windmill-cli/node_modules/@esbuild/linux-x64
+447 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-yaml
+448 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-ts
+449 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-rust
+450 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-ruby
+451 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-regex
+452 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-py-imports
+453 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-py
+454 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-php
+455 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-nu
+456 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-java
+457 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-go
+458 silly ADD node_modules/windmill-cli/node_modules/windmill-parser-wasm-csharp
+459 silly ADD node_modules/windmill-cli/node_modules/svelte
+460 silly ADD node_modules/windmill-cli/node_modules/esbuild
+461 verbose cwd /
+462 verbose os Linux 6.12.86+deb13-cloud-amd64
+463 verbose node v24.16.0
+464 verbose npm  v11.13.0
+465 notice
+465 notice New minor version of npm available! 11.13.0 -> 11.16.0
+465 notice Changelog: https://github.com/npm/cli/releases/tag/v11.16.0
+465 notice To update run: npm install -g npm@11.16.0
+465 notice  { force: true, Symbol(proc-log.meta): true }
+466 verbose exit 0
+467 info ok

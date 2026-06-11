@@ -1,0 +1,60 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T15:37:19.510454+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 1,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781192163145,
+            "stop": 1781192239509
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_file_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781192163367,
+                "stop": 1781192163368,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_uses_canonical_wac_primitives",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 43,
+                "start": 1781192163369,
+                "stop": 1781192163412,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_uses_canonical_wac_primitives():\n        \"\"\"Static analysis: workflow(, parallel(, task(, concurrency: 3, windmill-client import.\"\"\"\n        src = _read_script_source()\n    \n        assert re.search(r\"\\bworkflow\\s*\\(\", src), (\n            \"Script must call `workflow(...)` to mark the entry point.\"\n        )\n        assert re.search(r\"\\bparallel\\s*\\(\", src), (\n            \"Script must use `parallel(...)` from windmill-client to fan out.\"\n        )\n        assert re.search(r\"\\btask\\s*\\(\", src), (\n            \"Script must wrap each HTTP call inside a `task(...)` invocation.\"\n        )\n>       assert re.search(r\"\"\"['\"]concurrency['\"]?\\s*:\\s*3\\b\"\"\", src), (\n            \"Script must pass a concurrency cap of 3 to `parallel(...)` \"\n            \"(e.g. `{ concurrency: 3 }`).\"\n        )\nE       AssertionError: Script must pass a concurrency cap of 3 to `parallel(...)` (e.g. `{ concurrency: 3 }`).\nE       assert None\nE        +  where None = <function search at 0x7f8c68a3fba0>('[\\'\"]concurrency[\\'\"]?\\\\s*:\\\\s*3\\\\b', 'import { workflow, task, parallel } from \"windmill-client\";\\n\\nexport const main = workflow(async (urls: string[]) =>... await fetch(url);\\n        return { url, status: response.status };\\n      })(),\\n    { concurrency: 3 }\\n  );\\n});\\n')\nE        +    where <function search at 0x7f8c68a3fba0> = re.search\n\ntests/test_final_state.py:245: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_execution_honours_bounded_concurrency",
+                "status": "failed",
+                "duration": 76095,
+                "start": 1781192163413,
+                "stop": 1781192239508,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "http_server = <test_final_state._ThreadingHTTPServer object at 0x7f8c675c7fe0>\n\n    @pytest.fixture(scope=\"module\")\n    def public_url(http_server):  # noqa: ARG001  (depends on server being up)\n        assert shutil.which(\"cloudflared\") is not None, \"cloudflared not installed\"\n        proc = subprocess.Popen(\n            [\n                \"cloudflared\",\n                \"tunnel\",\n                \"--no-autoupdate\",\n                \"--url\",\n                f\"http://localhost:{PORT}\",\n            ],\n            stdout=subprocess.PIPE,\n            stderr=subprocess.STDOUT,\n            text=True,\n            bufsize=1,\n        )\n    \n        url_holder: dict = {}\n        log_lines: list = []\n    \n        def reader():\n            assert proc.stdout is not None\n            for line in proc.stdout:\n                log_lines.append(line.rstrip())\n                if \"url\" not in url_holder:\n                    m = _TRYCF_RE.search(line)\n                    if m is not None:\n                        url_holder[\"url\"] = m.group(0)\n    \n        t = threading.Thread(target=reader, daemon=True)\n        t.start()\n    \n        deadline = time.time() + 60.0\n        while time.time() < deadline and \"url\" not in url_holder:\n            time.sleep(0.5)\n    \n        if \"url\" not in url_holder:\n            proc.terminate()\n            try:\n                proc.wait(timeout=5)\n            except subprocess.TimeoutExpired:\n                proc.kill()\n            pytest.fail(\n                \"cloudflared did not produce a trycloudflare.com URL within 60s. \"\n                \"Tail of cloudflared log: \" + \"\\n\".join(log_lines[-40:])\n            )\n    \n        url = url_holder[\"url\"]\n    \n        # Probe the public URL until it round-trips (DNS / routing propagation)\n        probe_deadline = time.time() + 60.0\n        last_err = None\n        while time.time() < probe_deadline:\n            try:\n                r = requests.get(f\"{url}/n/0\", timeout=5.0)\n                if r.status_code == 200:\n                    break\n            except Exception as e:  # noqa: BLE001\n                last_err = e\n            time.sleep(1.0)\n        else:\n            proc.terminate()\n>           pytest.fail(\n                f\"Public cloudflared URL {url} never returned 200 from /n/0. \"\n                f\"Last error: {last_err!r}\"\n            )\nE           Failed: Public cloudflared URL https://api.trycloudflare.com never returned 200 from /n/0. Last error: None\n\ntests/test_final_state.py:190: Failed"
+            }
+        ]
+    }
+}

@@ -1,0 +1,2 @@
+summary: Reader for eval_orders table
+description: Reads all rows from the eval_orders table sorted by id ascending.

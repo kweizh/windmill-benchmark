@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 6 items
+
+tests/test_final_state.py ......                                         [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_script_yaml_exists_and_declares_python3
+PASSED tests/test_final_state.py::test_script_imports_wmill
+PASSED tests/test_final_state.py::test_script_uses_get_state_and_set_state
+PASSED tests/test_final_state.py::test_script_defines_zero_arg_main
+PASSED tests/test_final_state.py::test_script_does_not_hardcode_3
+PASSED tests/test_final_state.py::test_three_sequential_runs_increment_state_to_3
+============================== 6 passed in 6.56s ===============================

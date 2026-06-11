@@ -1,0 +1,70 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 13 items
+
+tests/test_final_state.py ..........FFF                                  [100%]
+
+=================================== FAILURES ===================================
+_________________________ test_writer_inserts_records __________________________
+
+    def test_writer_inserts_records():
+        payload = json.dumps({"records": INITIAL_RECORDS})
+        result = _wmill_run(["f/eval/datatable_writer", "-d", payload])
+>       assert result.returncode == 0, (
+            f"`wmill script run f/eval/datatable_writer` exited with {result.returncode}.\n"
+            f"stdout={result.stdout!r}\nstderr={result.stderr!r}"
+        )
+E       AssertionError: `wmill script run f/eval/datatable_writer` exited with 255.
+E         stdout=''
+E         stderr=''
+E       assert 255 == 0
+E        +  where 255 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/datatable_writer', '-d', '{"records": [{"id": 1, "status": "new"}, {"id": 2, "status": "paid"}, {"id": 3, "status": "shipped"}]}', '-s'], returncode=255, stdout='', stderr='').returncode
+
+tests/test_final_state.py:139: AssertionError
+________________ test_reader_returns_inserted_rows_in_id_order _________________
+
+    def test_reader_returns_inserted_rows_in_id_order():
+        # The writer above is a prerequisite. Re-run it to make this test deterministic
+        # even if previous test ordering changes.
+        payload = json.dumps({"records": INITIAL_RECORDS})
+        writer_result = _wmill_run(["f/eval/datatable_writer", "-d", payload])
+>       assert writer_result.returncode == 0, (
+            f"Pre-populating writer failed: {writer_result.stderr!r}"
+        )
+E       AssertionError: Pre-populating writer failed: ''
+E       assert 255 == 0
+E        +  where 255 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/datatable_writer', '-d', '{"records": [{"id": 1, "status": "new"}, {"id": 2, "status": "paid"}, {"id": 3, "status": "shipped"}]}', '-s'], returncode=255, stdout='', stderr='').returncode
+
+tests/test_final_state.py:155: AssertionError
+______________________ test_second_writer_run_then_reader ______________________
+
+    def test_second_writer_run_then_reader():
+        payload = json.dumps({"records": SECOND_RECORDS})
+        writer_result = _wmill_run(["f/eval/datatable_writer", "-d", payload])
+>       assert writer_result.returncode == 0, (
+            f"Second writer run failed: stdout={writer_result.stdout!r} "
+            f"stderr={writer_result.stderr!r}"
+        )
+E       AssertionError: Second writer run failed: stdout='' stderr=''
+E       assert 255 == 0
+E        +  where 255 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/datatable_writer', '-d', '{"records": [{"id": 10, "status": "refund"}, {"id": 11, "status": "void"}]}', '-s'], returncode=255, stdout='', stderr='').returncode
+
+tests/test_final_state.py:196: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_required_files_exist[/home/user/wmill-project/f/eval/datatable_writer.py]
+PASSED tests/test_final_state.py::test_required_files_exist[/home/user/wmill-project/f/eval/datatable_writer.script.yaml]
+PASSED tests/test_final_state.py::test_required_files_exist[/home/user/wmill-project/f/eval/datatable_reader.py]
+PASSED tests/test_final_state.py::test_required_files_exist[/home/user/wmill-project/f/eval/datatable_reader.script.yaml]
+PASSED tests/test_final_state.py::test_no_raw_postgres_driver[/home/user/wmill-project/f/eval/datatable_writer.py]
+PASSED tests/test_final_state.py::test_no_raw_postgres_driver[/home/user/wmill-project/f/eval/datatable_reader.py]
+PASSED tests/test_final_state.py::test_uses_datatable_sdk[/home/user/wmill-project/f/eval/datatable_writer.py]
+PASSED tests/test_final_state.py::test_uses_datatable_sdk[/home/user/wmill-project/f/eval/datatable_reader.py]
+PASSED tests/test_final_state.py::test_table_name_includes_run_id[/home/user/wmill-project/f/eval/datatable_writer.py]
+PASSED tests/test_final_state.py::test_table_name_includes_run_id[/home/user/wmill-project/f/eval/datatable_reader.py]
+FAILED tests/test_final_state.py::test_writer_inserts_records - AssertionErro...
+FAILED tests/test_final_state.py::test_reader_returns_inserted_rows_in_id_order
+FAILED tests/test_final_state.py::test_second_writer_run_then_reader - Assert...
+========================= 3 failed, 10 passed in 1.33s =========================

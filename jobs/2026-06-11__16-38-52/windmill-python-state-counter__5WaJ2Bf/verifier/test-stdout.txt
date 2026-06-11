@@ -1,0 +1,50 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 6 items
+
+tests/test_final_state.py .....F                                         [100%]
+
+=================================== FAILURES ===================================
+_______________ test_three_sequential_runs_increment_state_to_3 ________________
+
+    def test_three_sequential_runs_increment_state_to_3():
+        assert WINDMILL_TOKEN, "WINDMILL_TOKEN must be set in the verifier environment."
+        assert WINDMILL_WORKSPACE, (
+            "WINDMILL_WORKSPACE must be set in the verifier environment."
+        )
+    
+        # Ensure the persisted counter starts from a clean slate.
+        _delete_state_resource()
+    
+        last_result = None
+        for attempt in range(1, 4):
+            proc = _run_wmill_script()
+>           assert proc.returncode == 0, (
+                f"Run #{attempt} of `wmill script run {SCRIPT_REMOTE_PATH}` failed with "
+                f"exit code {proc.returncode}.\nstdout:\n{proc.stdout}\nstderr:\n{proc.stderr}"
+            )
+E           AssertionError: Run #1 of `wmill script run f/eval/exec_counter` failed with exit code 255.
+E             stdout:
+E             
+E             stderr:
+E             [31m[1m[31mMultiple workspaces configured but none matched the current context.
+E             Configured workspaces:
+E               - main
+E               - REDACTED (REDACTED on REDACTED/)
+E             Use --workspace to select one.[39m[22m[39m
+E             
+E           assert 255 == 0
+E            +  where 255 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/exec_counter', '-s'], returncode=255, stdout='', stderr='\x1b...aces:\n  - main\n  - REDACTED (REDACTED on REDACTED/)\nUse --workspace to select one.\x1b[39m\x1b[22m\x1b[39m\n').returncode
+
+tests/test_final_state.py:155: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_script_yaml_exists_and_declares_python3
+PASSED tests/test_final_state.py::test_script_imports_wmill
+PASSED tests/test_final_state.py::test_script_uses_get_state_and_set_state
+PASSED tests/test_final_state.py::test_script_defines_zero_arg_main
+PASSED tests/test_final_state.py::test_script_does_not_hardcode_3
+FAILED tests/test_final_state.py::test_three_sequential_runs_increment_state_to_3
+========================= 1 failed, 5 passed in 0.94s ==========================

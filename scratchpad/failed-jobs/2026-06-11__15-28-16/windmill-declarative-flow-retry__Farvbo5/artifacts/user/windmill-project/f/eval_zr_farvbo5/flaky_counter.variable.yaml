@@ -1,0 +1,3 @@
+value: "0"
+is_secret: false
+description: "Flaky counter for retry pipeline"

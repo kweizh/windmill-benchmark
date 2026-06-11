@@ -1,0 +1,925 @@
+Skipping image OS validation for hb__pg_resource_row_count: docker inspect returned 1
+Skipping image OS validation for hb__datatable_crud_py: docker inspect returned 1
+Skipping image OS validation for hb__windmill-cron-schedule-asset: docker inspect returned 1
+Skipping image OS validation for hb__windmill-python-state-counter: docker inspect returned 1
+Skipping image OS validation for hb__windmill-gitops-sync-excludes: docker inspect returned 1
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Command outputs captured
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Command outputs captured
+Running command: echo zr-zawxqzf > /logs/artifacts/run-id && echo windmill-python-state-counter__ZaWXqZF > /logs/artifacts/trial_id
+Running command: echo zr-clssjc9 > /logs/artifacts/run-id && echo pg_resource_row_count__cLSSJC9 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Running command: echo zr-tygr3ae > /logs/artifacts/run-id && echo windmill-gitops-sync-excludes__tygr3ae > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Running command: echo zr-uh49lsg > /logs/artifacts/run-id && echo datatable_crud_py__uH49LSg > /logs/artifacts/trial_id
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Windmill Python Execution Counter via `wmill.get_state` / `wmill.set_state`
+
+## Background
+Windmill is a self-hostable workflow engine that runs scripts authored in many languages on a managed worker pool. Scripts can persist values across distinct executions of the same script using the workspace-level **State** primitive, which is exposed through the Python SDK (`wmill`) as `wmill.get_state()` and `wmill.set_state(value)`.
+
+In this task, you will author a Python Windmill script that uses State to count how many times it has been executed against the **cloud-hosted Windmill instance** at `REDACTED`, then deploy it to the configured workspace using the `wmill` CLI. The verifier will exercise the deployed script three times and assert that the persisted counter reaches `3`.
+
+## Requirements
+- The project root is `/home/user/myproject`. Treat that directory as a Windmill local workspace folder.
+- Author the script as a file pair on disk:
+  - `f/eval/exec_counter.py` — Python script entrypoint.
+  - `f/eval/exec_counter.script.yaml` — Windmill script metadata declaring the `python3` runtime (no input arguments).
+- The Python script MUST:
+  1. `import wmill`.
+  2. Define `def main():` (no arguments).
+  3. On each invocation, read the current state via `wmill.get_state()`; if it is `None`, treat it as `{"runs": 0}`.
+  4. Compute a new state by incrementing the `runs` field by one.
+  5. Persist the new state via `wmill.set_state(new_state)`.
+  6. Return the new state dict as the script result.
+- Deploy the script to the cloud workspace (the credentials are provided through environment variables) so that `wmill script run f/eval/exec_counter` works against it.
+
+## Implementation Hints
+- Install the CLI with `npm install -g windmill-cli` (Node >= 20 is preinstalled in the environment).
+- Authenticate non-interactively against `REDACTED` using the `WINDMILL_TOKEN` and `WINDMILL_WORKSPACE` environment variables. The CLI accepts `wmill workspace add <name> <workspace_id> <remote> --token <token>` for headless setup.
+- Use `wmill script push <file>` or `wmill sync push --yes` from inside `/home/user/myproject` to deploy the script. The Windmill folder `f/eval/` must exist on the workspace; create it if necessary (a minimal `f/eval/folder.meta.yaml` or pushing via `sync push` will do).
+- The `.script.yaml` schema should declare `language: python3` plus an empty `schema.properties` since `main()` takes no arguments.
+- Reference the Python SDK State docs: https://www.windmill.dev/docs/core_concepts/resources_and_types#states .
+- Do **not** spin up any local Windmill instance — only the cloud version at `REDACTED` is used.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- File `/home/user/myproject/f/eval/exec_counter.py` exists, imports `wmill`, and contains the literal substrings `get_state(` and `set_state(` in its body.
+- File `/home/user/myproject/f/eval/exec_counter.script.yaml` exists and declares `python3` as the script runtime.
+- The script must NOT hard-code the value `3` anywhere in its source. The counter value must be produced through `wmill.get_state` / `wmill.set_state` rather than literally written.
+- The script is deployed to the cloud workspace identified by the `WINDMILL_WORKSPACE` env var on `REDACTED` at path `f/eval/exec_counter`.
+- After three sequential invocations of `wmill script run f/eval/exec_counter` (each exiting with code `0`), the JSON result printed by the third invocation must include `"runs": 3`.
+
+
+EOF
+Running command: echo zr-gb2txpf > /logs/artifacts/run-id && echo windmill-cron-schedule-asset__GB2TxpF > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Windmill Built-In Data Tables CRUD (Python)
+
+## Background
+Windmill provides a workspace-scoped, zero-setup PostgreSQL store called **Built-In Data Tables**. Scripts read and write to it through the official `wmill.datatable()` Python SDK without ever handling raw database credentials. In this task you will author two Python scripts that together perform a tiny write/read CRUD round-trip against the default workspace data table on the public Windmill cloud (`REDACTED`).
+
+## Requirements
+- Author two Python scripts inside a local workspace folder so they can be pushed to the configured Windmill cloud workspace with the `wmill` CLI.
+  1. `f/eval/datatable_writer.py` — `main(records: list[dict])` creates the table if needed, inserts every record, and returns `{"inserted": <n>}` where `<n>` is the count of inserted rows.
+  2. `f/eval/datatable_reader.py` — `main()` takes no arguments and returns `{"rows": [...]}` containing every row of the table, sorted by `id` ascending.
+- Both scripts MUST use Windmill's official Built-In Data Tables SDK (`wmill.datatable()`).
+- The scripts MUST NOT open a raw PostgreSQL connection (no `psycopg`, `psycopg2`, `asyncpg`, raw `psql`, or any other direct DB driver).
+- The table that the two scripts share MUST be named `eval_orders_<RUN_ID>`, where `<RUN_ID>` is the literal value of the `ZEALT_RUN_ID` environment variable available in the shell at authoring time. Inline the resolved name into both scripts; do not read the env var at script runtime (Windmill workers do not have access to it).
+- The table must have at least the columns `id INT` and `status TEXT`.
+- Author each script as a Windmill script asset pair (a `.py` content file plus a matching `.script.yaml` metadata file) so that `wmill sync push --yes` will deploy both scripts to the remote workspace.
+- After authoring, deploy the scripts to the configured Windmill cloud workspace with `wmill sync push --yes`.
+
+## Implementation Hints
+- Install the CLI with `npm install -g windmill-cli` (Node ≥ 20 is already available in the environment).
+- Authenticate non-interactively against the cloud instance using the `WINDMILL_TOKEN` and `WINDMILL_WORKSPACE` environment variables. The cloud base URL is always `REDACTED`.
+- Bootstrap the local sync folder with `wmill init` (or hand-write a minimal `wmill.yaml` that includes the `f/**` path).
+- A Windmill Python script's entrypoint is a top-level `def main(...)` function. Return values are JSON-serialized automatically.
+- The Built-In Data Tables SDK exposes `db = wmill.datatable()` and uses positional `$1`, `$2`, ... parameters: `db.query("... $1 ...", value).execute()` for DDL/INSERT and `.fetch()` / `.fetch_one()` for SELECTs.
+- The default data table (named `main`) is implicit — you do not need to pass any name to `wmill.datatable()`.
+- Resolve `ZEALT_RUN_ID` from your shell before writing the scripts and substitute the literal value into the SQL strings.
+- Verify everything works end-to-end with `wmill script run f/eval/datatable_writer -d '{"records": [...]}'` and `wmill script run f/eval/datatable_reader` from inside the project folder.
+
+## Acceptance Criteria
+- Project path: /home/user/wmill-project
+- Both Windmill script assets must be deployed to the cloud workspace (`REDACTED`, workspace = `$WINDMILL_WORKSPACE`).
+- The two scripts MUST exist locally at exactly these paths and each MUST be paired with a sibling `*.script.yaml` metadata file:
+  - `/home/user/wmill-project/f/eval/datatable_writer.py`
+  - `/home/user/wmill-project/f/eval/datatable_writer.script.yaml`
+  - `/home/user/wmill-project/f/eval/datatable_reader.py`
+  - `/home/user/wmill-project/f/eval/datatable_reader.script.yaml`
+- Neither `.py` file may import or invoke `psycopg`, `psycopg2`, `asyncpg`, `pg8000`, or any other raw Postgres driver, and may not shell out to `psql`. All database access must go through `wmill.datatable()`.
+- The shared table name must be `eval_orders_<RUN_ID>` where `<RUN_ID>` is the literal value of the `ZEALT_RUN_ID` environment variable at authoring time.
+- Writer behavior:
+  - Command: `wmill script run f/eval/datatable_writer -d '{"records": <JSON_ARRAY>}' -s`
+  - Each record is a JSON object `{"id": <int>, "status": <string>}`.
+  - The command exits 0 and prints a JSON object of the shape `{"inserted": <int>}` where `<int>` equals the number of records that were inserted.
+- Reader behavior:
+  - Command: `wmill script run f/eval/datatable_reader -s`
+  - The command exits 0 and prints a JSON object of the shape `{"rows": [{"id": <int>, "status": <string>}, ...]}`.
+  - The `rows` array MUST be sorted by `id` ascending and MUST contain exactly the records that were most recently written by the writer in the same run.
+
+
+EOF
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Deploy a Cron Schedule Asset with the Windmill CLI
+
+## Background
+Windmill is an open-source workflow engine. Workspaces are managed code-first via the `wmill` CLI: scripts live as `f/<folder>/<name>.py` (or `.ts`, etc.) and schedules live as `*.schedule.yaml` files. `wmill sync push --yes` deploys the whole tree to the workspace. You will author a minimal Python heartbeat script, declare a cron schedule asset that runs it every minute at second 0 in `Asia/Shanghai`, and push both to the cloud Windmill workspace at REDACTED.
+
+## Requirements
+- Author a minimal Python script with `def main(): return {"alive": True}`.
+- Author a schedule asset (Windmill `*.schedule.yaml` file) that triggers the heartbeat script every minute at second 0, in the `Asia/Shanghai` timezone, and is enabled.
+- Configure `wmill.yaml` so a single invocation of `wmill sync push --yes` deploys both the script and the schedule to the cloud Windmill workspace.
+- Use the cloud Windmill instance `REDACTED` (do NOT try to start a local Windmill server).
+
+## Implementation Hints
+- The `wmill` CLI is preinstalled. Authenticate non-interactively against the cloud instance using the `WINDMILL_TOKEN` and `WINDMILL_WORKSPACE` environment variables (e.g. `wmill workspace add ... --token "$WINDMILL_TOKEN" REDACTED/`). The workspace ID equals `WINDMILL_WORKSPACE`.
+- Read the current run id from the `ZEALT_RUN_ID` environment variable and append it to every Windmill path you create, so concurrent runs do not collide. Use the folder `f/eval_${ZEALT_RUN_ID}` for all assets in this task.
+- Use Windmill's documented cron syntax (croner) for "every minute at second 0". The seconds field is the first field. Document: https://www.windmill.dev/docs/core_concepts/scheduling .
+- A Windmill schedule file is a `*.schedule.yaml` whose path on disk maps directly to its workspace path (the filename without the `.schedule.yaml` suffix). Required keys are `schedule`, `timezone`, `enabled`, `script_path` (the path of the runnable to trigger), and `is_flow` (`false` for a plain script). Documented at https://www.windmill.dev/docs/core_concepts/scheduling and https://github.com/windmill-labs/windmill/tree/main/windmill-yaml-validator .
+- Schedules are skipped by default by `wmill sync push`. Enable them in `wmill.yaml` via `includeSchedules: true`, and make sure your `includes:` glob covers the folder that contains your script and schedule.
+- After `wmill sync push --yes` succeeds, write a short log line for each deployed asset to the log file under the project so the verifier can locate them.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Ensure the real `wmill sync push --yes` action is executed against `REDACTED` and the workspace contains the deployed assets afterwards.
+- Log file: /home/user/myproject/output.log
+- In the log file, print two lines in this exact format (no extra whitespace inside the colons):
+  - `Script path: <script_path>`
+  - `Schedule path: <schedule_path>`
+  Both `<script_path>` and `<schedule_path>` MUST start with `f/eval_${ZEALT_RUN_ID}/`.
+- The deployed script asset must exist in the workspace and must be authored in Python (language reported by the Windmill API as `python3`).
+- The deployed schedule asset must satisfy ALL of:
+  - Its cron expression literal equals the croner 6-field form for "every minute at second 0": `0 * * * * *`.
+  - Its `timezone` field equals `Asia/Shanghai`.
+  - Its `script_path` field equals the deployed Python script's path (the same `f/eval_${ZEALT_RUN_ID}/...` path that was written to the log as `Script path:`).
+  - Its `enabled` field equals `true`.
+  - It targets a script (not a flow), i.e. `is_flow` is `false` on the schedule.
+
+
+EOF
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Windmill: Count Public Tables via a Postgresql Resource (Bun)
+
+## Background
+Windmill is an open-source workflow engine and developer platform. Scripts in Windmill are typed functions whose parameters are turned into a JSON Schema and exposed via the CLI and API. Resources are JSON-Schema-typed configuration objects (for example database connections) referenced from scripts via the `$res:<path>` syntax.
+
+You will author a small TypeScript (Bun) script that connects to a PostgreSQL database described by a Windmill `Postgresql` resource and returns the number of tables present in the `public` schema. The Windmill cloud workspace at `REDACTED` is already configured locally (see the project's `wmill.yaml`), the workspace name is exported as `WINDMILL_WORKSPACE`, and a Bearer token is exported as `WINDMILL_TOKEN`. A `Postgresql` resource has already been seeded at `f/eval/pg_resource` and points to a publicly accessible read-only PostgreSQL mirror. **DO NOT** create, modify or delete that resource.
+
+## Requirements
+- Author a Bun (TypeScript) Windmill script at `f/eval/pg_row_count.ts` whose `main` function accepts a single argument named `pg` typed as the canonical Windmill `Postgresql` resource type, connects to that PostgreSQL instance, executes
+  `SELECT COUNT(*) AS n FROM information_schema.tables WHERE table_schema = 'public'`
+  and returns the result as a JSON object of shape `{ "count": <integer> }` where `count` is a non-negative integer.
+- Provide the matching script-metadata file `f/eval/pg_row_count.script.yaml` declaring the script schema and the Bun runtime so that `wmill script push` can deploy the script.
+- Push the script to the cloud workspace and execute it once with the seeded resource to confirm it works.
+
+## Implementation Hints
+- The project already contains a configured `wmill.yaml` and a workspace entry pointing at `REDACTED`; you can run `wmill` commands directly from the project root without re-authenticating.
+- The canonical `Postgresql` resource type has the fields `host`, `port`, `user`, `dbname`, `sslmode`, `password` (and optionally `root_certificate_pem`). Declare the full TypeScript type literal in the script so that the inferred schema is rich enough.
+- Import the Windmill client as `import * as wmill from "windmill-client"`. Use any standard Bun-compatible Postgres client (for example `pg` from npm) to execute the query.
+- The `.script.yaml` file should mirror the function signature: its top-level keys typically include `summary`, `description`, `lock`, `kind: script`, and a JSON-Schema 2020-12 `schema` block whose `properties.pg` references `format: resource-postgresql` (the convention Windmill uses to bind a Postgresql resource).
+- Push the script with `wmill script push f/eval/pg_row_count.ts`. Trigger it with:
+  `wmill script run f/eval/pg_row_count -d '{"pg": "$res:f/eval/pg_resource"}'`
+  The command should exit with status 0 and print a JSON document containing a `count` field.
+- The seeded database may contain zero tables in the `public` schema; that is acceptable. The verifier only requires `count` to be a non-negative integer.
+
+## Acceptance Criteria
+- Project path: `/home/user/myproject`
+- Command: `wmill script run f/eval/pg_row_count -d '{"pg": "$res:f/eval/pg_resource"}'`
+- The file `f/eval/pg_row_count.ts` must exist under the project path and:
+  - Import `windmill-client` (for example `import * as wmill from "windmill-client"`).
+  - Export an async `main` function whose signature is exactly `export async function main(pg: Postgresql)` (the parameter must be literally named `pg` and typed as `Postgresql`).
+- A companion metadata file `f/eval/pg_row_count.script.yaml` must exist alongside the script, declare `kind: script`, and target the Bun runtime (for example via `language: bun` or by relying on Windmill's default Bun runtime for `.ts` files configured in `wmill.yaml`).
+- The script must be pushed to the cloud workspace so that running it remotely succeeds.
+- The command above must exit with status code 0 and emit, on stdout, a JSON object that contains a `count` field whose value is an integer `>= 0`.
+- Do not modify or delete the pre-seeded resource `f/eval/pg_resource`.
+
+
+EOF
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# GitOps Sync with `excludes:` Glob Protection
+
+## Background
+You are inside a pre-initialised Windmill workspace at `/home/user/myproject` that is already authenticated against the cloud instance `REDACTED`. `wmill init` has already run, so a `wmill.yaml` is present and a workspace profile (`evaluation-ws`) is registered.
+
+The shared cloud workspace already contains a remote-only script at `f/gitops_${SAFE_ID}/legacy.ts` that was seeded before you started — it is **not** in your local folder and must remain untouched after deployment. Your job is to lay out three new scripts locally and deploy them with `wmill sync push --yes` **without destroying the pre-existing remote script**.
+
+## Background: the destructive-sync trap
+`wmill sync push --yes` is stateless and destructive: anything present on the remote workspace inside the configured `includes:` scope that is **not** present locally will be deleted on push. The verified way to preserve remote-only assets is **NOT** the `keepDeleted` key (it does not exist on the current `wmill.yaml` schema). The supported mechanism is the `excludes:` glob list on `wmill.yaml`, which removes matching paths from both `pull` and `push` scope so the destructive diff never touches them. See https://www.windmill.dev/docs/advanced/cli/sync#wmillyaml.
+
+## Requirements
+- Compute `SAFE_ID = ZEALT_RUN_ID.replace('-', '_')` (read `ZEALT_RUN_ID` from the environment). This is required because Windmill paths must use `[a-zA-Z0-9_]` segments and the cloud workspace is shared across concurrent runs.
+- Lay out three new scripts under the run-id-scoped folder `f/gitops_${SAFE_ID}/`:
+  - `f/gitops_${SAFE_ID}/alpha.ts` — TypeScript (Bun) script.
+  - `f/gitops_${SAFE_ID}/beta.ts` — TypeScript (Bun) script.
+  - `f/gitops_${SAFE_ID}/gamma.py` — Python 3 script.
+  Each script must export/define a `main(message: string)` (or `def main(message: str)` for Python) entry point that returns the JSON object `{"script": "<alpha|beta|gamma>", "echo": message}`.
+- Provide the matching script-metadata file for each script (`alpha.script.yaml`, `beta.script.yaml`, `gamma.script.yaml`) so that `wmill sync push` recognises each pair as a deployable script asset.
+- Update `/home/user/myproject/wmill.yaml` so that:
+  - `includes:` still covers `f/**` (the existing default).
+  - `excludes:` is a YAML list containing a glob that matches the pre-existing remote script path `f/gitops_${SAFE_ID}/legacy.ts` (for example `f/gitops_${SAFE_ID}/legacy.*` or the exact path `f/gitops_${SAFE_ID}/legacy.ts`).
+- Deploy by running `wmill sync push --yes` from `/home/user/myproject`. After the push completes, the remote workspace must contain all three new scripts AND still contain the pre-existing `f/gitops_${SAFE_ID}/legacy.ts`.
+
+## Implementation Hints
+- **The verified preservation mechanism is `excludes:`, not `keepDeleted`.** The `keepDeleted` key does NOT exist on the current `wmill.yaml` schema (verified against https://www.windmill.dev/docs/advanced/cli/sync#wmillyaml and `wmill config`). Use the `excludes:` glob list instead — paths matched by `excludes:` are removed from sync scope on both pull and push, so destructive `push` cannot delete them.
+- `wmill init` already created a default `wmill.yaml` with `includes: ['f/**']` and `excludes: []`. You only need to append your `excludes:` glob, not regenerate the file.
+- Each script file needs a sibling `<name>.script.yaml` metadata file. The minimum viable metadata is just `summary:` and `description:` strings (and `lock: ""` is acceptable). The `defaultTs: bun` setting in `wmill.yaml` is what tells the CLI that `.ts` files are Bun scripts; the language for `.py` is inferred from the extension.
+- The three new scripts are simple echo scripts: take a `message` argument and return `{"script": "<name>", "echo": message}`. No Windmill SDK calls are required.
+- The pre-seeded `legacy.ts` was uploaded directly to the cloud workspace via the Windmill REST API; it has no on-disk counterpart inside `/home/user/myproject`. That is exactly the situation the `excludes:` glob is designed to protect.
+- The workspace profile `evaluation-ws` is already registered (pointing at `REDACTED` with the correct `WINDMILL_WORKSPACE` and `WINDMILL_TOKEN`). You do not need to run `wmill workspace add` yourself; just `cd /home/user/myproject` and use `wmill` commands directly.
+- After the agent finishes, also write the final deployed run-scoped folder path and the literal `excludes:` glob you used into `/home/user/myproject/output.log` so the verifier can correlate the run.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- The agent must actually run `wmill sync push --yes` from `/home/user/myproject` (the verifier checks remote state via the REST API; no local-only fake will pass).
+- Log file: /home/user/myproject/output.log
+  - Must contain a line of the form: `Deployed folder: f/gitops_<SAFE_ID>`
+  - Must contain a line of the form: `Excludes glob: <pattern>` where `<pattern>` is the literal value placed in `excludes:` that matches `f/gitops_<SAFE_ID>/legacy.ts`.
+- Local files that must exist under `/home/user/myproject` (where `<SAFE_ID>` = `ZEALT_RUN_ID` with `-` replaced by `_`):
+  - `f/gitops_<SAFE_ID>/alpha.ts` with its sibling `alpha.script.yaml`
+  - `f/gitops_<SAFE_ID>/beta.ts` with its sibling `beta.script.yaml`
+  - `f/gitops_<SAFE_ID>/gamma.py` with its sibling `gamma.script.yaml`
+- Local `wmill.yaml` constraints (parsed as YAML, not regex on the raw bytes):
+  - The top-level `excludes:` key MUST be a list.
+  - At least one entry in the list MUST match the path `f/gitops_<SAFE_ID>/legacy.ts` when interpreted as a glob (e.g. `f/gitops_<SAFE_ID>/legacy.*` or the exact path `f/gitops_<SAFE_ID>/legacy.ts`).
+- Remote (cloud) workspace state after `wmill sync push --yes`, verified through the documented REST endpoint `GET /api/w/{workspace}/scripts/get/p/{path}` against `REDACTED`:
+  - `f/gitops_<SAFE_ID>/alpha` → returns 200 (deployed by the agent).
+  - `f/gitops_<SAFE_ID>/beta` → returns 200 (deployed by the agent).
+  - `f/gitops_<SAFE_ID>/gamma` → returns 200 (deployed by the agent).
+  - `f/gitops_<SAFE_ID>/legacy` → returns 200 (still present, proving `excludes:` protected it).
+- Runtime invocation: `wmill script run f/gitops_<SAFE_ID>/alpha -d '{"message": "<probe>"}'` from `/home/user/myproject` MUST succeed (exit 0) and emit a JSON result of shape `{"script": "alpha", "echo": "<probe>"}`.
+
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Skipping image OS validation for hb__wac_bounded_parallel: docker inspect returned 1
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo zr-cy2mdf7 > /logs/artifacts/run-id && echo wac_bounded_parallel__cY2mDF7 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Bounded-Concurrency Fan-Out with Workflows-as-Code
+
+## Background
+Windmill's Workflows-as-Code (WAC) lets you orchestrate distributed jobs in plain TypeScript on top of `windmill-client`. You are working inside a pre-initialised Windmill workspace directory that is already authenticated against the cloud instance at `REDACTED`. Your job is to author a single WAC script that fans out HTTP GET calls against a list of URLs with a strict concurrency cap, using only the canonical WAC primitives.
+
+## Requirements
+- Author a TypeScript Workflow-as-Code script that:
+  - Accepts a single parameter `urls: string[]`.
+  - Uses the `windmill-client` workflow primitives (`workflow`, `task`, `parallel`).
+  - Performs an HTTP `GET` against every URL in the input list using a `task(...)` wrapper so each call runs as a separate Windmill child job.
+  - Bounds the maximum in-flight fan-out to **3** concurrent tasks via the `parallel` utility's concurrency option.
+  - Returns an array of `{ url: string, status: number }` objects, preserving the order of the input `urls` array.
+- Do **not** introduce non-deterministic operations inside the workflow body (no `Math.random`, `Date.now`, ad-hoc `fetch` outside of a `task`, etc.). All side-effects must happen inside `task(...)` wrappers.
+
+## Implementation Hints
+- Read the verified API at https://www.windmill.dev/docs/core_concepts/workflows_as_code. The exact import surface is `import { workflow, task, parallel } from 'windmill-client'`.
+- `parallel(items, fn, options)` returns results in the same order as `items`, so you do not need to sort manually.
+- The concurrency cap is the `concurrency` option on `parallel` (e.g. `{ concurrency: 3 }`).
+- Wrap the per-URL HTTP call in `task(async () => { ... })()` so it executes as a child job; have the inner function return `{ url, status: response.status }`.
+- Do **not** push to the cloud yourself — the verifier will deploy a run-id-scoped copy of your file and invoke it via `wmill script run`. Just author the file locally.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Script path: /home/user/myproject/f/eval/fanout_workflow.ts
+- The script file must contain a top-level `export const main = workflow(...)` style entry point that takes a single `urls: string[]` argument.
+- The script must import `workflow`, `task`, and `parallel` from `windmill-client`.
+- The script must call `parallel(...)` with a concurrency option of `3` (e.g. `{ concurrency: 3 }` or `{ "concurrency": 3 }`).
+- Every HTTP GET in the workflow body must be wrapped in a `task(...)` call.
+- Command (run from /home/user/myproject by the verifier after a run-id-scoped deploy):
+  - `wmill script run f/eval/fanout_workflow_<run_id> -d '{"urls": [<u1>, ..., <u9>]}'`
+  - Input: `{"urls": string[]}` (9 distinct URLs).
+  - Expected stdout (parsed as JSON):
+    ```json
+    [
+      { "url": string, "status": number }
+    ]
+    ```
+    The output array length MUST equal the input `urls` length, MUST be in the same order as the input, and every `status` MUST be `200` when the URLs return 200.
+- When the 9 URLs are served by a server that records concurrent in-flight requests, the observed peak concurrency MUST be `<= 3` (concurrency cap honored) and `>= 2` (parallelism actually occurring — not serialised).
+
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Skipping image OS validation for hb__windmill-declarative-flow-retry: docker inspect returned 1
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo zr-4znwage > /logs/artifacts/run-id && echo windmill-declarative-flow-retry__4zNWAgE > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Windmill Declarative Flow with Exponential Retry
+
+## Background
+Windmill is an open-source workflow engine that lets you author scripts and flows as declarative, version-controlled assets on disk and synchronize them to a Windmill workspace using the `wmill` CLI. Beyond scripts, Windmill exposes the **OpenFlow** spec, where a flow is described in `flow.yaml` as a sequence of modules with `input_transforms`, optional `retry` policies, and other control-flow features.
+
+Your goal is to author a two-step OpenFlow pipeline that exercises Windmill's per-module **exponential retry** policy against the cloud Windmill instance at `REDACTED`.
+
+## Requirements
+- Project path: `/home/user/windmill-project`
+- Read `ZEALT_RUN_ID` from the environment and derive a workspace-safe folder name:
+  - `SAFE_ID` = `ZEALT_RUN_ID` with every `-` character replaced by `_` (e.g. `zr-abc123` becomes `zr_abc123`).
+  - Use the Windmill folder path `f/eval_${SAFE_ID}` for ALL assets created by this task. This prevents collisions across concurrent runs.
+- Author a Python script at `f/eval_${SAFE_ID}/flaky_step` that:
+  - Accepts a single string parameter `attempt_marker_path` (the Windmill variable path that stores the attempt counter).
+  - Reads the current integer value from that Windmill variable, increments it by 1, and writes it back using `wmill.get_variable` / `wmill.set_variable`.
+  - Raises a `RuntimeError` on every invocation where the new counter value is less than 3.
+  - On the third invocation (when the counter reaches 3), returns the dict `{"ok": True, "attempt": 3}`.
+- Author a Python script at `f/eval_${SAFE_ID}/finalize` that:
+  - Accepts a single dict parameter `previous`.
+  - Returns the dict `{"final": True, "previous_attempt": previous["attempt"]}`.
+- Author a declarative Windmill flow at `f/eval_${SAFE_ID}/retry_pipeline` using the OpenFlow YAML schema with TWO `PathScript` modules:
+  1. Module id `flaky` references the `f/eval_${SAFE_ID}/flaky_step` script. Its `input_transforms` must pass the literal string `f/eval_${SAFE_ID}/flaky_counter` as `attempt_marker_path`. The module must declare an **exponential** retry policy with EXACTLY `attempts: 4`, `multiplier: 2`, and `seconds: 1`.
+  2. Module id `finalize` references the `f/eval_${SAFE_ID}/finalize` script. Its `input_transforms.previous` must be a JavaScript transform that references the output of the `flaky` module (so that the flow result reflects the value returned after the successful attempt).
+- Pre-create the Windmill variable `f/eval_${SAFE_ID}/flaky_counter` with the string value `"0"` so the very first run starts from a known state.
+- Deploy all assets (folder, scripts, flow, and variable) to the cloud workspace using `wmill sync push --yes` (configure `wmill.yaml` so that variables are included in the push).
+- Trigger the flow once via the `wmill flow run` CLI and write the JSON result to a log file.
+
+## Implementation Hints
+- Authenticate against the cloud with `wmill workspace add` (or set `--token` / `--workspace` / `--base-url` per command) before running `wmill sync push`. The credentials live in the `WINDMILL_TOKEN` and `WINDMILL_WORKSPACE` environment variables; the base URL is `REDACTED`.
+- For Python scripts on disk, Windmill expects a `<name>.py` file paired with a `<name>.script.yaml` metadata file inside the script's folder.
+- For declarative flows, place the `flow.yaml` file inside a folder named after the flow (the CLI supports both `<name>.flow/flow.yaml` and `<name>__flow/flow.yaml` layouts — choose one and make sure it is picked up by `wmill sync push`). Reference `https://www.windmill.dev/docs/openflow` and `https://www.windmill.dev/docs/advanced/cli/flow` for the exact schema.
+- The OpenFlow `Retry` object supports an `exponential` block with `attempts`, `multiplier`, and `seconds` fields (delay formula: `multiplier * seconds ^ attempt`).
+- Input transforms reference previous module outputs through the restricted JavaScript context: previous step results are exposed under `results.<module_id>` (e.g. `results.flaky`).
+- The variable can be pre-created either with `wmill variable push` or by including a `flaky_counter.variable.yaml` file in the synced folder (set `skipVariables: false` in `wmill.yaml`).
+- Trigger the flow via `wmill flow run f/eval_${SAFE_ID}/retry_pipeline -d '{}' --silent` and tee the JSON output into the log file.
+
+## Acceptance Criteria
+- Project path: `/home/user/windmill-project`
+- Ensure the real deployment and flow execution are performed against `REDACTED`; do not mock any Windmill API.
+- Log file: `/home/user/windmill-project/output.log`
+- The Python scripts and the declarative flow YAML must exist on disk under `/home/user/windmill-project` at the documented Windmill paths derived from `ZEALT_RUN_ID`.
+- The flow YAML must declare, for the first module, an `exponential` retry policy with the exact fields `attempts: 4`, `multiplier: 2`, `seconds: 1`.
+- The flow YAML must reference the output of the first module from the second module's `input_transforms.previous` using a JavaScript transform whose expression contains `results.flaky`.
+- `wmill sync push --yes` must succeed and deploy the scripts, flow, and variable to the cloud workspace.
+- After triggering the flow, the log file must contain the literal line:
+  `Flow result: {"final": true, "previous_attempt": 3}`
+- After execution, the Windmill variable `f/eval_${SAFE_ID}/flaky_counter` (as returned by the `wmill variable get` CLI) must equal the string `"3"`, confirming exactly three attempts ran.
+
+
+EOF
+Skipping image OS validation for hb__variable_read_rotate_ts: docker inspect returned 1
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo zr-n2ykblt > /logs/artifacts/run-id && echo variable_read_rotate_ts__n2ykbLt > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Windmill: Read and Rotate a Secret Variable (TypeScript / Bun)
+
+## Background
+Windmill is an open-source, code-first workflow and serverless platform. Workspace variables (including encrypted secrets) are accessed from scripts through the `windmill-client` SDK and managed from the outside through the `wmill` CLI or REST API.
+
+In this task you will author a TypeScript (Bun) Windmill script that performs a simple secret-rotation routine. The script must read a pre-existing workspace variable, write back an updated value, and return both values to the caller.
+
+The target workspace is the public Windmill Cloud at REDACTED. A workspace ID is exposed via the `WINDMILL_WORKSPACE` environment variable and an API token via the `WINDMILL_TOKEN` environment variable. The wmill CLI is already installed and the workspace `evaluation` is already configured against the cloud instance; you can run `wmill` commands directly from the project folder.
+
+A secret variable at the path `f/eval/session_token` has already been created in the workspace with the initial value `INITIAL_SECRET` (`is_secret: true`).
+
+## Requirements
+- Author a Windmill TypeScript (Bun) script that:
+  1. Imports the `windmill-client` SDK.
+  2. Reads the current value of the workspace variable at the path `f/eval/session_token` using `wmill.getVariable`.
+  3. Computes a rotated value by appending the literal suffix `_rotated` to the current value.
+  4. Writes the rotated value back to the same variable path using `wmill.setVariable`.
+  5. Returns a JSON object of the shape `{ "previous": <old value>, "next": <rotated value> }`.
+- Place the script on disk in the local workspace folder so that it deploys to the Windmill script path `f/eval/var_rotate`.
+- Deploy the script to the Windmill Cloud workspace so that it can be executed with `wmill script run f/eval/var_rotate`.
+
+## Implementation Hints
+- The project directory `/home/user/project` is already a Windmill workspace folder (already initialized with `wmill init` and the `evaluation` remote selected). You only need to add the script file and push it.
+- A Windmill TypeScript script is a plain `.ts` file that exports an async `main` function. Companion metadata files (such as `*.script.yaml`) can be generated automatically when the script is pushed.
+- The Windmill TypeScript client exposes `wmill.getVariable(path)` and `wmill.setVariable(path, value)` for variable I/O.
+- Use `wmill sync push --yes` (or `wmill script push`) to upload the script to the remote workspace, and `wmill script run <path>` to trigger an execution from the CLI. `wmill script run` prints the JSON result of the script's `main` return value to stdout on success.
+- The variable is a secret. The script still reads it with `wmill.getVariable` exactly like a non-secret variable; Windmill takes care of decryption and log masking.
+
+## Acceptance Criteria
+- Project path: /home/user/project
+- The agent is responsible for actually creating, deploying, and executing the script against the Windmill Cloud workspace.
+- A TypeScript script file is present at `/home/user/project/f/eval/var_rotate.ts` and:
+  - Imports from `windmill-client`.
+  - Contains at least one call to `getVariable(` and at least one call to `setVariable(`.
+- After deployment, the command `wmill script run f/eval/var_rotate` (executed from `/home/user/project`) exits with status code 0 and prints a JSON object on stdout that, when parsed, satisfies:
+  - `previous` equals the string `INITIAL_SECRET`.
+  - `next` equals the string `INITIAL_SECRET_rotated`.
+- After the script has been run, the workspace variable `f/eval/session_token` (queried via the Windmill CLI / API) has its value updated to `INITIAL_SECRET_rotated`.
+
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Skipping image OS validation for hb__windmill-rust-native-script: docker inspect returned 1
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo zr-sw4vmw3 > /logs/artifacts/run-id && echo windmill-rust-native-script__SW4vMW3 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Windmill Rust Native Script
+
+## Background
+Windmill (REDACTED) is an open-source developer platform that runs scripts authored in many languages (TypeScript, Python, Go, **Rust**, ...). Each Rust script is stored on disk as a pair of files: a `.rs` source containing a `main` function and a `.script.yaml` metadata companion. Cargo dependencies are declared inline through a partial `Cargo.toml` annotation embedded at the top of the Rust source so the worker can resolve them on first run.
+
+In this task you will author a tiny Rust-on-Windmill script, deploy it to the cloud workspace via the `wmill` CLI, and verify that it executes against the cloud workers.
+
+## Requirements
+- Author a Rust script at the path `f/eval/rust_doubler` inside the project workspace folder.
+- Declare an inline Cargo dependency on `serde_json = "1.0"` using Windmill's documented partial `Cargo.toml` annotation block (the `//! ` doc-comment block containing a ` ```cargo` fence).
+- The script's `main` function must accept two owned parameters, a `String` named `name` and an `i32` named `threshold`, and return a `serde_json::Value` (either directly or wrapped in `anyhow::Result<_>`).
+- The returned JSON payload must always have the shape `{ "status": "ok", "computed": <threshold * 2>, "target": <name> }`.
+- Provide a `.script.yaml` companion that declares `language: rust` so Windmill recognises the script as a Rust script when it is synchronised.
+- Synchronise the script to the cloud Windmill workspace using the `wmill` CLI so that `wmill script run f/eval/rust_doubler` succeeds against the real cloud workers.
+
+## Implementation Hints
+- The cloud Windmill instance URL is `REDACTED`. The agent's `wmill` CLI has already been authenticated to a workspace whose ID is provided in the `WINDMILL_WORKSPACE` environment variable, using the token in `WINDMILL_TOKEN`.
+- Use the `wmill` CLI to bootstrap and/or push the script (`wmill script bootstrap`, `wmill sync push`, etc.). Consult `wmill --help` and the Windmill docs (https://www.windmill.dev/docs and https://www.windmill.dev/llms.txt) for exact subcommand usage.
+- Inline Cargo dependencies must use the doc-comment `//! ` prefix wrapping a ` ```cargo` ... ` ``` ` fenced block, e.g.:
+  ```
+  //! ```cargo
+  //! [dependencies]
+  //! serde_json = "1.0"
+  //! ```
+  ```
+- Rust scripts can return either `serde_json::Value` directly or `anyhow::Result<serde_json::Value>`; both forms are acceptable as long as the payload shape matches.
+- The first Rust execution on a fresh worker may need to compile dependencies, so allow generous time when invoking `wmill script run`.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- The Rust source file must exist at `/home/user/myproject/f/eval/rust_doubler.rs` and contain a `main` function whose signature takes a `String` parameter named `name` and an `i32` parameter named `threshold`.
+- A YAML companion must exist at `/home/user/myproject/f/eval/rust_doubler.script.yaml` and explicitly declare `language: rust`.
+- The Rust source must contain an inline partial Cargo manifest (the `//!` block with a ` ```cargo` fence) that lists `serde_json` as a dependency.
+- Command: `wmill script run f/eval/rust_doubler -d '{"name":"<name>","threshold":<threshold>}' -s` executed from `/home/user/myproject` must, within 180 seconds, exit with status 0 and print to stdout a single JSON object equal (by structural equality) to `{"status":"ok","computed":<threshold * 2>,"target":"<name>"}`.
+- The script must be deployed to the cloud workspace identified by the `WINDMILL_WORKSPACE` environment variable on `REDACTED`, not merely created locally.
+
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Skipping image OS validation for hb__wac_approval_resume: docker inspect returned 1
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo zr-afgpru5 > /logs/artifacts/run-id && echo wac_approval_resume__aFGprU5 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Windmill WAC: Multi-Stage Deployment Pipeline with Suspend / Resume
+
+## Background
+
+You have an authenticated [Windmill](https://www.windmill.dev/) workspace on the cloud instance at `REDACTED`. A Bearer API token and the target workspace ID are available in the environment variables `WINDMILL_TOKEN` and `WINDMILL_WORKSPACE`. The [windmill-cli](https://www.windmill.dev/docs/advanced/cli) (`wmill`) is preinstalled and already configured against this workspace under the local workspace name `evaluation-ws`.
+
+Your job is to build a multi-stage deployment pipeline using Windmill's [Workflows-as-Code](https://www.windmill.dev/docs/core_concepts/workflows_as_code) (WAC) primitives in TypeScript (Bun). The pipeline must run two stages, suspend itself for an external HTTP approval, and only then run a third stage. The verification harness will trigger this workflow via the async webhook, observe the suspended checkpoint, resume it programmatically via the Windmill HTTP API, and verify that the deterministic replay semantics of WAC were respected (no duplicated side effects, no re-execution of completed checkpoints).
+
+## Requirements
+
+1. Read the current evaluation run id from the `ZEALT_RUN_ID` environment variable. Call this value `RUN_ID`.
+2. Inside the project at `/home/user/wac-pipeline`, create a workspace folder layout that mirrors a Windmill workspace (i.e. paths under `f/...` relative to the project root). Author the workflow as a Bun TypeScript script at:
+   - Workspace path: `f/eval/deploy_pipeline_${RUN_ID}` (no language suffix)
+   - On-disk file: `/home/user/wac-pipeline/f/eval/deploy_pipeline_${RUN_ID}.ts`
+   - Companion metadata file: `/home/user/wac-pipeline/f/eval/deploy_pipeline_${RUN_ID}.script.yaml` (minimal valid metadata so the `wmill` CLI can deploy it; `bun` language)
+3. The workflow must use the `workflow()` wrapper from `windmill-client` and orchestrate, in order, exactly the following checkpoints:
+   1. `step("runTests", ...)` — appends the string `"tests-ran"` to an audit array. Inside this step you MUST also atomically increment a Windmill workspace [variable](https://www.windmill.dev/docs/core_concepts/variables_and_secrets) at path `f/eval/runtests_counter_${RUN_ID}` using `wmill.getVariable` + `wmill.setVariable` (the stored value is the integer count as a string).
+   2. `step("deployStaging", ...)` — appends `"staging-deployed"`.
+   3. `await waitForApproval({ ... })` from `windmill-client` — suspends execution until an external HTTP resume event is received. Use a generous timeout (at least 600 seconds).
+   4. `step("deployProduction", ...)` — appends `"production-deployed"`.
+   - Finally, the workflow MUST return the audit array directly (a JSON array of three strings in the order above).
+4. Deploy the workflow to the Windmill workspace by running the appropriate `wmill` command from the project root so that triggering the workflow's autogenerated async webhook actually executes your code on the cloud workers. The Windmill scripts API path on the deployed instance must end with `f/eval/deploy_pipeline_${RUN_ID}`.
+5. Write a short deployment log to `/home/user/wac-pipeline/output.log` containing two lines in the following exact formats (substituting `${RUN_ID}` for the actual run id):
+   ```
+   Script path: f/eval/deploy_pipeline_${RUN_ID}
+   Counter variable: f/eval/runtests_counter_${RUN_ID}
+   ```
+
+## Implementation Hints
+
+- Read `RUN_ID` from `ZEALT_RUN_ID` before authoring the file so the run id is hard-coded into the script content, the script path, and the counter variable path.
+- The Windmill TypeScript client exposes the WAC primitives directly: `import { workflow, step, waitForApproval } from "windmill-client"`. The same package also exposes `getVariable`/`setVariable`.
+- Remember that WAC uses a [checkpoint / replay model](https://www.windmill.dev/docs/core_concepts/workflows_as_code#how-it-works): the parent workflow body is re-invoked when the job resumes. Any code outside a `step()` (or `task()`) will run on every replay; results computed inside a `step()` are persisted and returned from cache on replay. Design the audit / counter logic accordingly.
+- The counter variable does not need to exist before the first run — `wmill.getVariable` will throw if missing; catch that case and treat the previous value as `0`. The verification harness will pre-create the variable as `"0"` to keep behaviour deterministic.
+- Deployment: with the cloud workspace already registered under the name `evaluation-ws`, `wmill sync push --yes` from the project root, or `wmill script push f/eval/deploy_pipeline_${RUN_ID}`, will publish the script. Make sure the companion `.script.yaml` exists and declares `language: bun`.
+- You do NOT need to trigger or resume the workflow yourself — the verification harness does that. You only have to author and deploy the script (and write the log file).
+
+## Acceptance Criteria
+
+- Project path: `/home/user/wac-pipeline`
+- Ensure the real Windmill deployment is executed and the script + log artifacts exist.
+- Log file: `/home/user/wac-pipeline/output.log`
+- The on-disk script file `/home/user/wac-pipeline/f/eval/deploy_pipeline_${RUN_ID}.ts` (where `${RUN_ID}` is read from `ZEALT_RUN_ID`) MUST exist and its contents MUST contain each of these substrings at least once:
+  - `workflow(`
+  - `step("runTests"`
+  - `step("deployStaging"`
+  - `waitForApproval(`
+  - `step("deployProduction"`
+- The script must be deployed to the cloud Windmill workspace at path `f/eval/deploy_pipeline_${RUN_ID}` and discoverable via the Windmill scripts API (`GET /api/w/${WINDMILL_WORKSPACE}/scripts/get/p/f/eval/deploy_pipeline_${RUN_ID}` must return 200).
+- Behaviourally, when the verifier triggers the deployed workflow via the async webhook `POST /api/w/${WINDMILL_WORKSPACE}/jobs/run/p/f/eval/deploy_pipeline_${RUN_ID}`, polls the job state via `GET /api/w/${WINDMILL_WORKSPACE}/jobs_u/get/{id}` until the job reports a suspended state, then resumes it by `POST /api/w/${WINDMILL_WORKSPACE}/jobs_u/flow/resume_suspended/{id}` with body `{"approved": true}` and polls until completion, the final job result MUST deep-equal:
+  ```json
+  ["tests-ran", "staging-deployed", "production-deployed"]
+  ```
+- After completion, the Windmill workspace variable at path `f/eval/runtests_counter_${RUN_ID}` MUST hold the string `"1"` (proving the `runTests` step ran exactly once across the suspend/resume replay).
+- The log file must contain the two lines specified in the requirements section, with `${RUN_ID}` substituted with the actual run id read from `ZEALT_RUN_ID`.
+
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Exception AgentTimeoutError is in exclude_exceptions, not retrying
+Not retrying trial because the exception is not in include_exceptions or the maximum number of retries has been reached
+Exception AgentTimeoutError is in exclude_exceptions, not retrying
+Not retrying trial because the exception is not in include_exceptions or the maximum number of retries has been reached
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

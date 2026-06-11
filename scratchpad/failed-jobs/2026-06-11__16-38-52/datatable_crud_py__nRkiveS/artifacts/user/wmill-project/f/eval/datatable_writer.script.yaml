@@ -1,0 +1,4 @@
+path: f/eval/datatable_writer.py
+language: python3
+kind: script
+summary: Writes records to the eval_orders table via Windmill Built-In Data Tables.

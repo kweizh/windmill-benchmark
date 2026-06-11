@@ -1,0 +1,7 @@
+includes:
+  - "f/**"
+excludes: []
+skipVariables: false
+skipResources: false
+skipSecrets: true
+defaultTs: bun

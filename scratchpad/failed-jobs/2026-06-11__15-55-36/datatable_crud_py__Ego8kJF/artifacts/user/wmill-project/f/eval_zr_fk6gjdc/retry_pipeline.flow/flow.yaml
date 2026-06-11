@@ -1,0 +1,34 @@
+summary: Retry pipeline with exponential backoff
+description: Two-step flow that tests exponential retry policy on a flaky script
+value:
+  modules:
+    - id: flaky
+      value:
+        type: script
+        input_transforms:
+          attempt_marker_path:
+            type: static
+            value: f/eval_zr_fk6gjdc/flaky_counter
+        path: f/eval_zr_fk6gjdc/flaky_step/flaky_step
+      retry:
+        constant:
+          attempts: 0
+          seconds: 0
+        exponential:
+          attempts: 4
+          multiplier: 2
+          random_factor: null
+          seconds: 1
+    - id: finalize
+      value:
+        type: script
+        input_transforms:
+          previous:
+            type: javascript
+            expr: results.flaky
+        path: f/eval_zr_fk6gjdc/finalize/finalize
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties: {}
+  required: []

@@ -1,0 +1,4 @@
+summary: "Deploy Pipeline zr-uidrkmv"
+description: "WAC multi-stage deploy pipeline"
+lock: "!workspace"
+language: "bun"

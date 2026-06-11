@@ -1,0 +1,13 @@
+summary: "Finalize"
+description: "Finalize"
+lock: ""
+kind: script
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: object
+  properties:
+    previous:
+      type: object
+  required:
+    - previous
+language: python3

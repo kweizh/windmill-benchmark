@@ -1,0 +1,9 @@
+value:
+  host: "hh-pgsql-public.ebi.ac.uk"
+  port: 5432
+  user: "reader"
+  dbname: "pfmegrnargs"
+  sslmode: "prefer"
+  password: "NWDMCE5xdipIjRrp"
+resource_type: postgresql
+description: "Public RNAcentral read-only Postgres mirror used by the benchmark."

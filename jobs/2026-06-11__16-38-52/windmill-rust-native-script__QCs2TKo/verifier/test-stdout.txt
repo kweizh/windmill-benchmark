@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 7 items
+
+tests/test_final_state.py .......                                        [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_rust_source_file_exists
+PASSED tests/test_final_state.py::test_script_yaml_exists_and_declares_rust_language
+PASSED tests/test_final_state.py::test_main_signature_has_required_parameters
+PASSED tests/test_final_state.py::test_inline_cargo_dependency_block_declares_serde_json
+PASSED tests/test_final_state.py::test_script_listed_in_cloud_workspace
+PASSED tests/test_final_state.py::test_cloud_execution_positive_threshold
+PASSED tests/test_final_state.py::test_cloud_execution_negative_threshold
+============================== 7 passed in 2.73s ===============================

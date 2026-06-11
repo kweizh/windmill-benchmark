@@ -1,0 +1,215 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T16:06:12.593783+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 13,
+            "passed": 0,
+            "failed": 13,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781193968079,
+            "stop": 1781193972593
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_required_files_exist",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 24,
+                "start": 1781193968122,
+                "stop": 1781193968146,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_writer.script.yaml', '/home/user/wmill-project/f/eval/datatable_reader.py', '/home/user/wmill-project/f/eval/datatable_reader.script.yaml']"
+                ],
+                "trace": "path = '/home/user/wmill-project/f/eval/datatable_writer.py'\n\n    @pytest.mark.parametrize(\n        \"path\",\n        [WRITER_PY, WRITER_YAML, READER_PY, READER_YAML],\n    )\n    def test_required_files_exist(path):\n>       assert os.path.isfile(path), (\n            f\"Required Windmill script asset {path} is missing. \"\n            \"Both the .py file and its sibling .script.yaml metadata file must be present.\"\n        )\nE       AssertionError: Required Windmill script asset /home/user/wmill-project/f/eval/datatable_writer.py is missing. Both the .py file and its sibling .script.yaml metadata file must be present.\nE       assert False\nE        +  where False = <function isfile at 0x7f58e7338220>('/home/user/wmill-project/f/eval/datatable_writer.py')\nE        +    where <function isfile at 0x7f58e7338220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:79: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_required_files_exist",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 8,
+                "start": 1781193968146,
+                "stop": 1781193968154,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_writer.script.yaml', '/home/user/wmill-project/f/eval/datatable_reader.py', '/home/user/wmill-project/f/eval/datatable_reader.script.yaml']"
+                ],
+                "trace": "path = '/home/user/wmill-project/f/eval/datatable_writer.script.yaml'\n\n    @pytest.mark.parametrize(\n        \"path\",\n        [WRITER_PY, WRITER_YAML, READER_PY, READER_YAML],\n    )\n    def test_required_files_exist(path):\n>       assert os.path.isfile(path), (\n            f\"Required Windmill script asset {path} is missing. \"\n            \"Both the .py file and its sibling .script.yaml metadata file must be present.\"\n        )\nE       AssertionError: Required Windmill script asset /home/user/wmill-project/f/eval/datatable_writer.script.yaml is missing. Both the .py file and its sibling .script.yaml metadata file must be present.\nE       assert False\nE        +  where False = <function isfile at 0x7f58e7338220>('/home/user/wmill-project/f/eval/datatable_writer.script.yaml')\nE        +    where <function isfile at 0x7f58e7338220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:79: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_required_files_exist",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7,
+                "start": 1781193968155,
+                "stop": 1781193968162,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_writer.script.yaml', '/home/user/wmill-project/f/eval/datatable_reader.py', '/home/user/wmill-project/f/eval/datatable_reader.script.yaml']"
+                ],
+                "trace": "path = '/home/user/wmill-project/f/eval/datatable_reader.py'\n\n    @pytest.mark.parametrize(\n        \"path\",\n        [WRITER_PY, WRITER_YAML, READER_PY, READER_YAML],\n    )\n    def test_required_files_exist(path):\n>       assert os.path.isfile(path), (\n            f\"Required Windmill script asset {path} is missing. \"\n            \"Both the .py file and its sibling .script.yaml metadata file must be present.\"\n        )\nE       AssertionError: Required Windmill script asset /home/user/wmill-project/f/eval/datatable_reader.py is missing. Both the .py file and its sibling .script.yaml metadata file must be present.\nE       assert False\nE        +  where False = <function isfile at 0x7f58e7338220>('/home/user/wmill-project/f/eval/datatable_reader.py')\nE        +    where <function isfile at 0x7f58e7338220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:79: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_required_files_exist",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7,
+                "start": 1781193968163,
+                "stop": 1781193968170,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_writer.script.yaml', '/home/user/wmill-project/f/eval/datatable_reader.py', '/home/user/wmill-project/f/eval/datatable_reader.script.yaml']"
+                ],
+                "trace": "path = '/home/user/wmill-project/f/eval/datatable_reader.script.yaml'\n\n    @pytest.mark.parametrize(\n        \"path\",\n        [WRITER_PY, WRITER_YAML, READER_PY, READER_YAML],\n    )\n    def test_required_files_exist(path):\n>       assert os.path.isfile(path), (\n            f\"Required Windmill script asset {path} is missing. \"\n            \"Both the .py file and its sibling .script.yaml metadata file must be present.\"\n        )\nE       AssertionError: Required Windmill script asset /home/user/wmill-project/f/eval/datatable_reader.script.yaml is missing. Both the .py file and its sibling .script.yaml metadata file must be present.\nE       assert False\nE        +  where False = <function isfile at 0x7f58e7338220>('/home/user/wmill-project/f/eval/datatable_reader.script.yaml')\nE        +    where <function isfile at 0x7f58e7338220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:79: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_no_raw_postgres_driver",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 9,
+                "start": 1781193968171,
+                "stop": 1781193968180,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ],
+                "trace": "path = '/home/user/wmill-project/f/eval/datatable_writer.py'\n\n    @pytest.mark.parametrize(\"path\", [WRITER_PY, READER_PY])\n    def test_no_raw_postgres_driver(path):\n>       content = _read(path).lower()\n\ntests/test_final_state.py:91: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/wmill-project/f/eval/datatable_writer.py'\n\n    def _read(path: str) -> str:\n>       assert os.path.isfile(path), f\"Expected file {path} to exist.\"\nE       AssertionError: Expected file /home/user/wmill-project/f/eval/datatable_writer.py to exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f58e7338220>('/home/user/wmill-project/f/eval/datatable_writer.py')\nE        +    where <function isfile at 0x7f58e7338220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:36: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_no_raw_postgres_driver",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 9,
+                "start": 1781193968180,
+                "stop": 1781193968189,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ],
+                "trace": "path = '/home/user/wmill-project/f/eval/datatable_reader.py'\n\n    @pytest.mark.parametrize(\"path\", [WRITER_PY, READER_PY])\n    def test_no_raw_postgres_driver(path):\n>       content = _read(path).lower()\n\ntests/test_final_state.py:91: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/wmill-project/f/eval/datatable_reader.py'\n\n    def _read(path: str) -> str:\n>       assert os.path.isfile(path), f\"Expected file {path} to exist.\"\nE       AssertionError: Expected file /home/user/wmill-project/f/eval/datatable_reader.py to exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f58e7338220>('/home/user/wmill-project/f/eval/datatable_reader.py')\nE        +    where <function isfile at 0x7f58e7338220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:36: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_uses_datatable_sdk",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 8,
+                "start": 1781193968189,
+                "stop": 1781193968197,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ],
+                "trace": "path = '/home/user/wmill-project/f/eval/datatable_writer.py'\n\n    @pytest.mark.parametrize(\"path\", [WRITER_PY, READER_PY])\n    def test_uses_datatable_sdk(path):\n>       content = _read(path)\n\ntests/test_final_state.py:102: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/wmill-project/f/eval/datatable_writer.py'\n\n    def _read(path: str) -> str:\n>       assert os.path.isfile(path), f\"Expected file {path} to exist.\"\nE       AssertionError: Expected file /home/user/wmill-project/f/eval/datatable_writer.py to exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f58e7338220>('/home/user/wmill-project/f/eval/datatable_writer.py')\nE        +    where <function isfile at 0x7f58e7338220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:36: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_uses_datatable_sdk",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 8,
+                "start": 1781193968197,
+                "stop": 1781193968205,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ],
+                "trace": "path = '/home/user/wmill-project/f/eval/datatable_reader.py'\n\n    @pytest.mark.parametrize(\"path\", [WRITER_PY, READER_PY])\n    def test_uses_datatable_sdk(path):\n>       content = _read(path)\n\ntests/test_final_state.py:102: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/wmill-project/f/eval/datatable_reader.py'\n\n    def _read(path: str) -> str:\n>       assert os.path.isfile(path), f\"Expected file {path} to exist.\"\nE       AssertionError: Expected file /home/user/wmill-project/f/eval/datatable_reader.py to exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f58e7338220>('/home/user/wmill-project/f/eval/datatable_reader.py')\nE        +    where <function isfile at 0x7f58e7338220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:36: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_table_name_includes_run_id",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 8,
+                "start": 1781193968206,
+                "stop": 1781193968214,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ],
+                "trace": "path = '/home/user/wmill-project/f/eval/datatable_writer.py'\n\n    @pytest.mark.parametrize(\"path\", [WRITER_PY, READER_PY])\n    def test_table_name_includes_run_id(path):\n        expected = _expected_table_name()\n>       content = _read(path)\n\ntests/test_final_state.py:118: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/wmill-project/f/eval/datatable_writer.py'\n\n    def _read(path: str) -> str:\n>       assert os.path.isfile(path), f\"Expected file {path} to exist.\"\nE       AssertionError: Expected file /home/user/wmill-project/f/eval/datatable_writer.py to exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f58e7338220>('/home/user/wmill-project/f/eval/datatable_writer.py')\nE        +    where <function isfile at 0x7f58e7338220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:36: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_table_name_includes_run_id",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7,
+                "start": 1781193968215,
+                "stop": 1781193968222,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ],
+                "trace": "path = '/home/user/wmill-project/f/eval/datatable_reader.py'\n\n    @pytest.mark.parametrize(\"path\", [WRITER_PY, READER_PY])\n    def test_table_name_includes_run_id(path):\n        expected = _expected_table_name()\n>       content = _read(path)\n\ntests/test_final_state.py:118: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/home/user/wmill-project/f/eval/datatable_reader.py'\n\n    def _read(path: str) -> str:\n>       assert os.path.isfile(path), f\"Expected file {path} to exist.\"\nE       AssertionError: Expected file /home/user/wmill-project/f/eval/datatable_reader.py to exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f58e7338220>('/home/user/wmill-project/f/eval/datatable_reader.py')\nE        +    where <function isfile at 0x7f58e7338220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:36: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_writer_inserts_records",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1472,
+                "start": 1781193968223,
+                "stop": 1781193969695,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_writer_inserts_records():\n        payload = json.dumps({\"records\": INITIAL_RECORDS})\n        result = _wmill_run([\"f/eval/datatable_writer\", \"-d\", payload])\n>       assert result.returncode == 0, (\n            f\"`wmill script run f/eval/datatable_writer` exited with {result.returncode}.\\n\"\n            f\"stdout={result.stdout!r}\\nstderr={result.stderr!r}\"\n        )\nE       AssertionError: `wmill script run f/eval/datatable_writer` exited with 1.\nE         stdout='{\"error\":{\"name\":\"Exception\",\"stack\":\"  File \\\\\"/tmp/f/eval/datatable_writer.py\\\\\", line 20, in main\\\\n    ).fetch_one()\\\\n      ^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 2325, in fetch_one\\\\n    return self.fetch(result_collection=\\\\\"last_statement_first_row\\\\\")\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 2317, in fetch\\\\n    return self.fetch_fn(sql)\\\\n           ^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 2246, in <lambda>\\\\n    lambda sql: self.client.run_inline_script_preview(\\\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 348, in run_inline_script_preview\\\\n    return self.post(endpoint, json=body).json()\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 146, in post\\\\n    raise Exception(error)\\\\n\",\"message\":\"http://localhost:39717/api/w/REDACTED/jobs/run_inline/preview: 500, Error: no rows returned by a query that expected to return at least one row @workspaces.rs:700:28\"}}\\n'\nE         stderr=''\nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/datatable_writer', '-d', '{\"records\": [{\"id\": 1, \"status\": \"n...00, Error: no rows returned by a query that expected to return at least one row @workspaces.rs:700:28\"}}\\n', stderr='').returncode\n\ntests/test_final_state.py:139: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_reader_returns_inserted_rows_in_id_order",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1580,
+                "start": 1781193969696,
+                "stop": 1781193971276,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_reader_returns_inserted_rows_in_id_order():\n        # The writer above is a prerequisite. Re-run it to make this test deterministic\n        # even if previous test ordering changes.\n        payload = json.dumps({\"records\": INITIAL_RECORDS})\n        writer_result = _wmill_run([\"f/eval/datatable_writer\", \"-d\", payload])\n>       assert writer_result.returncode == 0, (\n            f\"Pre-populating writer failed: {writer_result.stderr!r}\"\n        )\nE       AssertionError: Pre-populating writer failed: ''\nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/datatable_writer', '-d', '{\"records\": [{\"id\": 1, \"status\": \"n...00, Error: no rows returned by a query that expected to return at least one row @workspaces.rs:700:28\"}}\\n', stderr='').returncode\n\ntests/test_final_state.py:155: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_second_writer_run_then_reader",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1317,
+                "start": 1781193971276,
+                "stop": 1781193972593,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_second_writer_run_then_reader():\n        payload = json.dumps({\"records\": SECOND_RECORDS})\n        writer_result = _wmill_run([\"f/eval/datatable_writer\", \"-d\", payload])\n>       assert writer_result.returncode == 0, (\n            f\"Second writer run failed: stdout={writer_result.stdout!r} \"\n            f\"stderr={writer_result.stderr!r}\"\n        )\nE       AssertionError: Second writer run failed: stdout='{\"error\":{\"name\":\"Exception\",\"stack\":\"  File \\\\\"/tmp/f/eval/datatable_writer.py\\\\\", line 20, in main\\\\n    ).fetch_one()\\\\n      ^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 2325, in fetch_one\\\\n    return self.fetch(result_collection=\\\\\"last_statement_first_row\\\\\")\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 2317, in fetch\\\\n    return self.fetch_fn(sql)\\\\n           ^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 2246, in <lambda>\\\\n    lambda sql: self.client.run_inline_script_preview(\\\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 348, in run_inline_script_preview\\\\n    return self.post(endpoint, json=body).json()\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 146, in post\\\\n    raise Exception(error)\\\\n\",\"message\":\"http://localhost:34297/api/w/REDACTED/jobs/run_inline/preview: 500, Error: no rows returned by a query that expected to return at least one row @workspaces.rs:700:28\"}}\\n' stderr=''\nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/datatable_writer', '-d', '{\"records\": [{\"id\": 10, \"status\": \"...00, Error: no rows returned by a query that expected to return at least one row @workspaces.rs:700:28\"}}\\n', stderr='').returncode\n\ntests/test_final_state.py:196: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

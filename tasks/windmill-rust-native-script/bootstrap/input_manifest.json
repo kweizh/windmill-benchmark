@@ -1,0 +1,7 @@
+{
+  "library_name": "Windmill",
+  "task_name": "windmill-rust-native-script",
+  "complexity_level": "multi-step sequential command set",
+  "research_plan_path": "/Users/kw/code/zealt/windmill-benchmark/plan.md",
+  "output_dir": "tasks/"
+}

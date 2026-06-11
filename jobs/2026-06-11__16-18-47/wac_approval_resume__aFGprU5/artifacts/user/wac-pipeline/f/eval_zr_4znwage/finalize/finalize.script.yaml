@@ -1,0 +1,14 @@
+summary: Finalize step that confirms the flaky step succeeded
+description: Accepts the previous step result and returns a final confirmation dict.
+lock: '!inline f/eval_zr_4znwage/finalize/finalize.script.lock'
+has_on_behalf_of: false
+kind: script
+schema:
+  properties:
+    previous:
+      type: object
+      description: ''
+      default: null
+      properties: {}
+  required:
+    - previous

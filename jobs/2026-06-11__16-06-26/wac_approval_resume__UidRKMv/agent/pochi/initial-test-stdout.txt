@@ -1,0 +1,23 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.2
+collected 7 items
+
+bootstrap/test_initial_state.py::test_wmill_cli_available PASSED
+bootstrap/test_initial_state.py::test_required_env_vars_present PASSED
+bootstrap/test_initial_state.py::test_project_dir_exists PASSED
+bootstrap/test_initial_state.py::test_register_wmill_workspace_for_agent PASSED
+bootstrap/test_initial_state.py::test_windmill_token_and_workspace_reachable 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): app.windmill.dev:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 REDACTED:443 "GET /api/w/REDACTED/users/whoami HTTP/1.1" 200 322
+PASSED
+bootstrap/test_initial_state.py::test_workflow_script_not_yet_deployed 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): app.windmill.dev:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 REDACTED:443 "GET /api/w/REDACTED/scripts/get/p/f/eval/deploy_pipeline_zr-uidrkmv HTTP/1.1" 404 87
+PASSED
+bootstrap/test_initial_state.py::test_workflow_script_file_not_yet_on_disk PASSED
+
+============================== 7 passed in 1.72s ===============================

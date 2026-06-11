@@ -1,0 +1,3 @@
+value: "3"
+is_secret: false
+description: Counter for flaky step retry attempts

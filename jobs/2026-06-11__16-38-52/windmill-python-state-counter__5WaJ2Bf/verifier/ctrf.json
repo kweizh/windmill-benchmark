@@ -1,0 +1,86 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T16:47:25.426296+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 5,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781196444475,
+            "stop": 1781196445426
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_yaml_exists_and_declares_python3",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781196444678,
+                "stop": 1781196444680,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_imports_wmill",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781196444680,
+                "stop": 1781196444682,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_uses_get_state_and_set_state",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781196444682,
+                "stop": 1781196444683,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_defines_zero_arg_main",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781196444684,
+                "stop": 1781196444685,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_does_not_hardcode_3",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781196444685,
+                "stop": 1781196444687,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_three_sequential_runs_increment_state_to_3",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 738,
+                "start": 1781196444687,
+                "stop": 1781196445425,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_three_sequential_runs_increment_state_to_3():\n        assert WINDMILL_TOKEN, \"WINDMILL_TOKEN must be set in the verifier environment.\"\n        assert WINDMILL_WORKSPACE, (\n            \"WINDMILL_WORKSPACE must be set in the verifier environment.\"\n        )\n    \n        # Ensure the persisted counter starts from a clean slate.\n        _delete_state_resource()\n    \n        last_result = None\n        for attempt in range(1, 4):\n            proc = _run_wmill_script()\n>           assert proc.returncode == 0, (\n                f\"Run #{attempt} of `wmill script run {SCRIPT_REMOTE_PATH}` failed with \"\n                f\"exit code {proc.returncode}.\\nstdout:\\n{proc.stdout}\\nstderr:\\n{proc.stderr}\"\n            )\nE           AssertionError: Run #1 of `wmill script run f/eval/exec_counter` failed with exit code 255.\nE             stdout:\nE             \nE             stderr:\nE             \u001b[31m\u001b[1m\u001b[31mMultiple workspaces configured but none matched the current context.\nE             Configured workspaces:\nE               - main\nE               - REDACTED (REDACTED on REDACTED/)\nE             Use --workspace to select one.\u001b[39m\u001b[22m\u001b[39m\nE             \nE           assert 255 == 0\nE            +  where 255 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/exec_counter', '-s'], returncode=255, stdout='', stderr='\\x1b...aces:\\n  - main\\n  - REDACTED (REDACTED on REDACTED/)\\nUse --workspace to select one.\\x1b[39m\\x1b[22m\\x1b[39m\\n').returncode\n\ntests/test_final_state.py:155: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

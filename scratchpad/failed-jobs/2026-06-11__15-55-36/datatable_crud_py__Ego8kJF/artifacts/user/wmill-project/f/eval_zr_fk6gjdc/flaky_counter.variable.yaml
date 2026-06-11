@@ -1,0 +1,3 @@
+description: Attempt counter for the flaky_step retry test
+value: '3'
+is_secret: false

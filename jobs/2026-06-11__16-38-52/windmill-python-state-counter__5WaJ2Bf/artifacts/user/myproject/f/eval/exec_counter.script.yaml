@@ -1,0 +1,7 @@
+summary: Execution counter using wmill.get_state / wmill.set_state
+language: python3
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties: {}
+  required: []

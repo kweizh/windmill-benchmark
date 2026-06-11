@@ -1,0 +1,6 @@
+summary: ''
+description: Doubles the threshold and returns a JSON payload with status,
+  computed, and target fields.
+lock: '!inline f/eval/rust_doubler.script.lock'
+kind: script
+schema: null

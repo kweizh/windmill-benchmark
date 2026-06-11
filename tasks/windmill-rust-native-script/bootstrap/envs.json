@@ -1,0 +1,4 @@
+{
+    "task": ["WINDMILL_TOKEN", "WINDMILL_WORKSPACE"],
+    "verifier": ["WINDMILL_TOKEN", "WINDMILL_WORKSPACE"]
+}

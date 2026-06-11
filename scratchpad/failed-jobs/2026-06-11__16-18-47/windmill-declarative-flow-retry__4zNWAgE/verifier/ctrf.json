@@ -1,0 +1,113 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T16:33:15.034674+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 4,
+            "failed": 4,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781195593300,
+            "stop": 1781195595034
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_flaky_step_script_file_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 23,
+                "start": 1781195593392,
+                "stop": 1781195593415,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_flaky_step_script_file_exists():\n        py_path = Path(PROJECT_DIR) / \"f\" / f\"eval_{_safe_id()}\" / \"flaky_step.py\"\n>       assert py_path.is_file(), (\n            f\"Expected Python script file at {py_path}; the declarative `f/eval_<run>/flaky_step` \"\n            \"script must be authored on disk as `<name>.py`.\"\n        )\nE       AssertionError: Expected Python script file at /home/user/windmill-project/f/eval_zr_4znwage/flaky_step.py; the declarative `f/eval_<run>/flaky_step` script must be authored on disk as `<name>.py`.\nE       assert False\nE        +  where False = <bound method Path.is_file of PosixPath('/home/user/windmill-project/f/eval_zr_4znwage/flaky_step.py')>()\nE        +    where <bound method Path.is_file of PosixPath('/home/user/windmill-project/f/eval_zr_4znwage/flaky_step.py')> = PosixPath('/home/user/windmill-project/f/eval_zr_4znwage/flaky_step.py').is_file\n\ntests/test_final_state.py:60: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_finalize_script_file_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7,
+                "start": 1781195593415,
+                "stop": 1781195593422,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_finalize_script_file_exists():\n        py_path = Path(PROJECT_DIR) / \"f\" / f\"eval_{_safe_id()}\" / \"finalize.py\"\n>       assert py_path.is_file(), (\n            f\"Expected Python script file at {py_path}; the declarative `f/eval_<run>/finalize` \"\n            \"script must be authored on disk as `<name>.py`.\"\n        )\nE       AssertionError: Expected Python script file at /home/user/windmill-project/f/eval_zr_4znwage/finalize.py; the declarative `f/eval_<run>/finalize` script must be authored on disk as `<name>.py`.\nE       assert False\nE        +  where False = <bound method Path.is_file of PosixPath('/home/user/windmill-project/f/eval_zr_4znwage/finalize.py')>()\nE        +    where <bound method Path.is_file of PosixPath('/home/user/windmill-project/f/eval_zr_4znwage/finalize.py')> = PosixPath('/home/user/windmill-project/f/eval_zr_4znwage/finalize.py').is_file\n\ntests/test_final_state.py:68: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_exists_at_documented_layout",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781195593423,
+                "stop": 1781195593424,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_retry_exponential_exact_values",
+                "status": "passed",
+                "duration": 4,
+                "start": 1781195593424,
+                "stop": 1781195593428,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_finalize_input_transform_references_flaky_result",
+                "status": "passed",
+                "duration": 4,
+                "start": 1781195593428,
+                "stop": 1781195593432,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_output_log_contains_flow_result",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781195593432,
+                "stop": 1781195593433,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flaky_counter_variable_equals_three",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 858,
+                "start": 1781195593433,
+                "stop": 1781195594291,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_flaky_counter_variable_equals_three():\n        \"\"\"Use the wmill CLI to read the variable; confirms exactly 3 attempts ran.\"\"\"\n        env = _windmill_env()\n        token = env[\"WINDMILL_TOKEN\"]\n        workspace = env[\"WINDMILL_WORKSPACE\"]\n        var_path = f\"{_folder()}/flaky_counter\"\n    \n        result = subprocess.run(\n            [\n                \"wmill\",\n                \"variable\",\n                \"get\",\n                var_path,\n                \"--token\",\n                token,\n                \"--workspace\",\n                workspace,\n                \"--base-url\",\n                WINDMILL_BASE_URL,\n            ],\n            capture_output=True,\n            text=True,\n            env=env,\n        )\n        assert result.returncode == 0, (\n            f\"`wmill variable get {var_path}` failed: stdout={result.stdout!r} \"\n            f\"stderr={result.stderr!r}\"\n        )\n        # The CLI typically prints the variable value (potentially with surrounding quotes\n        # or label). Extract the digits and compare against \"3\".\n        stdout = result.stdout.strip()\n        digits = re.findall(r\"-?\\d+\", stdout)\n        assert digits, (\n            f\"Could not find an integer in `wmill variable get` output: {stdout!r}\"\n        )\n        # The final integer printed is the variable value.\n>       assert digits[-1] == \"3\", (\n            f\"Expected `flaky_counter` variable to equal '3' after the flow run \"\n            f\"(exactly three attempts), got {digits[-1]!r} (full output: {stdout!r}).\"\n        )\nE       AssertionError: Expected `flaky_counter` variable to equal '3' after the flow run (exactly three attempts), got '22' (full output: '\\x1b[1mPath:\\x1b[22m f/eval_zr_4znwage/flaky_counter\\n\\x1b[1mValue:\\x1b[22m 3\\n\\x1b[1mIs Secret:\\x1b[22m true\\n\\x1b[1mDescription:\\x1b[22m \\n\\x1b[1mAccount:\\x1b[22m -').\nE       assert '22' == '3'\nE         - 3\nE         + 22\n\ntests/test_final_state.py:197: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_finalize_script_deployed_and_callable",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 742,
+                "start": 1781195594291,
+                "stop": 1781195595033,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_finalize_script_deployed_and_callable():\n        \"\"\"Sanity check that the finalize script was deployed to the cloud workspace.\"\"\"\n        env = _windmill_env()\n        token = env[\"WINDMILL_TOKEN\"]\n        workspace = env[\"WINDMILL_WORKSPACE\"]\n        script_path = f\"{_folder()}/finalize\"\n    \n        result = subprocess.run(\n            [\n                \"wmill\",\n                \"script\",\n                \"run\",\n                script_path,\n                \"-d\",\n                json.dumps({\"previous\": {\"ok\": True, \"attempt\": 3}}),\n                \"--silent\",\n                \"--token\",\n                token,\n                \"--workspace\",\n                workspace,\n                \"--base-url\",\n                WINDMILL_BASE_URL,\n            ],\n            capture_output=True,\n            text=True,\n            env=env,\n            timeout=120,\n        )\n>       assert result.returncode == 0, (\n            f\"`wmill script run {script_path}` failed: stdout={result.stdout!r} \"\n            f\"stderr={result.stderr!r}\"\n        )\nE       AssertionError: `wmill script run f/eval_zr_4znwage/finalize` failed: stdout='' stderr=\"\\x1b[31mScript 'f/eval_zr_4znwage/finalize' not found. Run 'wmill script list' to see available scripts.\\x1b[39m\\n\"\nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval_zr_4znwage/finalize', '-d', '{\"previous\": {\"ok\": true, \"attem...r=\"\\x1b[31mScript 'f/eval_zr_4znwage/finalize' not found. Run 'wmill script list' to see available scripts.\\x1b[39m\\n\").returncode\n\ntests/test_final_state.py:231: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

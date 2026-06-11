@@ -1,0 +1,57 @@
+0 verbose cli /usr/bin/node /usr/bin/npm
+1 info using npm@11.13.0
+2 info using node@v24.16.0
+3 silly config load:file:/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/tmp/.npmrc
+5 silly config load:file:/home/user/.npmrc
+6 silly config load:file:/usr/etc/npmrc
+7 verbose title npm pack windmill-client
+8 verbose argv "pack" "windmill-client"
+9 verbose logfile logs-max:10 dir:/home/user/.npm/_logs/2026-06-11T16_34_43_863Z-
+10 verbose logfile /home/user/.npm/_logs/2026-06-11T16_34_43_863Z-debug-0.log
+11 silly logfile done cleaning log files
+12 http fetch GET 200 https://registry.npmjs.org/windmill-client 177ms (cache miss)
+13 http fetch GET 200 https://registry.npmjs.org/windmill-client 52ms (cache revalidated)
+14 http fetch GET 200 https://registry.npmjs.org/windmill-client/-/windmill-client-1.722.0.tgz 59ms (cache miss)
+15 notice
+16 notice package: windmill-client@1.722.0
+17 notice Tarball Contents
+18 notice 146B README.md
+18 notice 25.2kB dist/client.d.ts
+18 notice 49.2kB dist/client.mjs
+18 notice 396B dist/core/ApiError.d.ts
+18 notice 396B dist/core/ApiError.mjs
+18 notice 528B dist/core/ApiRequestOptions.d.ts
+18 notice 182B dist/core/ApiResult.d.ts
+18 notice 1.2kB dist/core/CancelablePromise.d.ts
+18 notice 2.2kB dist/core/CancelablePromise.mjs
+18 notice 969B dist/core/OpenAPI.d.ts
+18 notice 989B dist/core/OpenAPI.mjs
+18 notice 1.9kB dist/core/request.d.ts
+18 notice 8.1kB dist/core/request.mjs
+18 notice 5.9kB dist/index.d.ts
+18 notice 469.0kB dist/index.js
+18 notice 5.6kB dist/index.mjs
+18 notice 1.1kB dist/s3Types.d.ts
+18 notice 352.1kB dist/services.gen.d.ts
+18 notice 396.4kB dist/services.gen.mjs
+18 notice 4.2kB dist/sqlUtils.d.ts
+18 notice 8.0kB dist/sqlUtils.mjs
+18 notice 813.4kB dist/types.gen.d.ts
+18 notice 790B package.json
+19 notice Tarball Details
+20 notice name: windmill-client
+21 notice version: 1.722.0
+22 notice filename: windmill-client-1.722.0.tgz
+23 notice package size: 258.7 kB
+24 notice unpacked size: 2.1 MB
+25 notice shasum: 3d010fff6d30fbffdc9a267276f00e5c4e4196aa
+26 notice integrity: sha512-9g9HpB946mEvJ[...]SdkQPjQAdxKeg==
+27 notice total files: 23
+28 notice
+29 verbose cwd /tmp
+30 verbose os Linux 6.12.86+deb13-cloud-amd64
+31 verbose node v24.16.0
+32 verbose npm  v11.13.0
+33 verbose exit 0
+34 info ok

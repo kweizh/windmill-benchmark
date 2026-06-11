@@ -1,0 +1,10 @@
+summary: "Multi-stage deployment pipeline with suspend/resume for zr-fhgzklc"
+description: "Runs runTests, deployStaging, waits for approval, then deployProduction"
+language: bun
+is_template: false
+lock: ""
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: object
+  properties: {}
+  required: []

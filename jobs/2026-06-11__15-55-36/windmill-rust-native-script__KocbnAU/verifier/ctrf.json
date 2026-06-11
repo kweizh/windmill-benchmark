@@ -1,0 +1,101 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T16:02:50.999311+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 4,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781193769709,
+            "stop": 1781193770999
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_rust_source_file_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781193769741,
+                "stop": 1781193769742,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_yaml_exists_and_declares_rust_language",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781193769742,
+                "stop": 1781193769743,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_main_signature_has_required_parameters",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781193769744,
+                "stop": 1781193769745,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_inline_cargo_dependency_block_declares_serde_json",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781193769745,
+                "stop": 1781193769746,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_listed_in_cloud_workspace",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 444,
+                "start": 1781193769746,
+                "stop": 1781193770190,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_listed_in_cloud_workspace():\n        \"\"\"Verify the script was deployed to the cloud workspace (not just authored locally).\"\"\"\n        result = subprocess.run(\n            [\"wmill\", \"script\", \"list\"],\n            capture_output=True,\n            text=True,\n            cwd=PROJECT_DIR,\n            timeout=120,\n        )\n>       assert result.returncode == 0, (\n            f\"`wmill script list` failed.\\nstdout: {result.stdout}\\nstderr: {result.stderr}\"\n        )\nE       AssertionError: `wmill script list` failed.\nE         stdout: \nE         stderr: \u001b[31m\u001b[1m\u001b[31mMultiple workspaces configured but none matched the current context.\nE         Configured workspaces:\nE           - main\nE           - REDACTED (REDACTED on REDACTED/)\nE         Use --workspace to select one.\u001b[39m\u001b[22m\u001b[39m\nE         \nE       assert 255 == 0\nE        +  where 255 = CompletedProcess(args=['wmill', 'script', 'list'], returncode=255, stdout='', stderr='\\x1b[31m\\x1b[1m\\x1b[31mMultiple ...aces:\\n  - main\\n  - REDACTED (REDACTED on REDACTED/)\\nUse --workspace to select one.\\x1b[39m\\x1b[22m\\x1b[39m\\n').returncode\n\ntests/test_final_state.py:125: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_cloud_execution_positive_threshold",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 403,
+                "start": 1781193770191,
+                "stop": 1781193770594,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_cloud_execution_positive_threshold():\n        result = _run_wmill_script({\"name\": \"alpha\", \"threshold\": 21})\n>       assert result.returncode == 0, (\n            f\"`wmill script run` exited with {result.returncode} for positive case.\\n\"\n            f\"stdout: {result.stdout}\\nstderr: {result.stderr}\"\n        )\nE       AssertionError: `wmill script run` exited with 255 for positive case.\nE         stdout: \nE         stderr: \u001b[31m\u001b[1m\u001b[31mMultiple workspaces configured but none matched the current context.\nE         Configured workspaces:\nE           - main\nE           - REDACTED (REDACTED on REDACTED/)\nE         Use --workspace to select one.\u001b[39m\u001b[22m\u001b[39m\nE         \nE       assert 255 == 0\nE        +  where 255 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/rust_doubler', '-d', '{\"name\": \"alpha\", \"threshold\": 21}', '-...aces:\\n  - main\\n  - REDACTED (REDACTED on REDACTED/)\\nUse --workspace to select one.\\x1b[39m\\x1b[22m\\x1b[39m\\n').returncode\n\ntests/test_final_state.py:136: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_cloud_execution_negative_threshold",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 404,
+                "start": 1781193770594,
+                "stop": 1781193770998,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_cloud_execution_negative_threshold():\n        result = _run_wmill_script({\"name\": \"beta\", \"threshold\": -5})\n>       assert result.returncode == 0, (\n            f\"`wmill script run` exited with {result.returncode} for negative case.\\n\"\n            f\"stdout: {result.stdout}\\nstderr: {result.stderr}\"\n        )\nE       AssertionError: `wmill script run` exited with 255 for negative case.\nE         stdout: \nE         stderr: \u001b[31m\u001b[1m\u001b[31mMultiple workspaces configured but none matched the current context.\nE         Configured workspaces:\nE           - main\nE           - REDACTED (REDACTED on REDACTED/)\nE         Use --workspace to select one.\u001b[39m\u001b[22m\u001b[39m\nE         \nE       assert 255 == 0\nE        +  where 255 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/rust_doubler', '-d', '{\"name\": \"beta\", \"threshold\": -5}', '-s...aces:\\n  - main\\n  - REDACTED (REDACTED on REDACTED/)\\nUse --workspace to select one.\\x1b[39m\\x1b[22m\\x1b[39m\\n').returncode\n\ntests/test_final_state.py:149: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

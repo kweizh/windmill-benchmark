@@ -1,0 +1,13 @@
+summary: Multi-stage deployment pipeline with suspend/resume approval
+description: >
+  A WAC workflow that runs tests, deploys to staging, suspends for external HTTP
+  approval, and then deploys to production. Returns an audit trail as a JSON
+  array of strings.
+lock: '!inline f/eval/deploy_pipeline_zr-afgpru5.script.lock'
+has_on_behalf_of: false
+kind: script
+language: bun
+schema:
+  type: object
+  properties: {}
+  required: []

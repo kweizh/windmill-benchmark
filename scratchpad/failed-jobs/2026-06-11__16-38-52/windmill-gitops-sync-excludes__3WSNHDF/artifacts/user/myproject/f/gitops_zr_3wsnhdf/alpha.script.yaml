@@ -1,0 +1,3 @@
+summary: Alpha echo script
+description: Returns a JSON object with script name and echoed message.
+lock: ""

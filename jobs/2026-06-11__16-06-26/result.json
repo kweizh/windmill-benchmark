@@ -1,0 +1,50 @@
+{
+    "id": "ff155d0e-33e9-4c5a-8545-65dddc4952ac",
+    "started_at": "2026-06-11T16:06:28.659917",
+    "updated_at": "2026-06-11T16:18:45.310256",
+    "finished_at": "2026-06-11T16:18:45.310256",
+    "n_total_trials": 10,
+    "stats": {
+        "n_completed_trials": 10,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "pochi__gemini-3.1-pro__pending-tasks": {
+                "n_trials": 10,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.4
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "pg_resource_row_count__C4aNopW",
+                            "datatable_crud_py__6YxpgTY",
+                            "windmill-gitops-sync-excludes__iutXp6d",
+                            "wac_bounded_parallel__52vbXMo",
+                            "windmill-declarative-flow-retry__rjEkeyS",
+                            "wac_approval_resume__UidRKMv"
+                        ],
+                        "1.0": [
+                            "windmill-cron-schedule-asset__Q6YxJQ2",
+                            "windmill-python-state-counter__E34wcq7",
+                            "variable_read_rotate_ts__cS2wJRq",
+                            "windmill-rust-native-script__6QehA4L"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 0,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 277986,
+        "cost_usd": null
+    }
+}

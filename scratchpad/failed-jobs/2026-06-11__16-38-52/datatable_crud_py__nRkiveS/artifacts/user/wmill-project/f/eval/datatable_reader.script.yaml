@@ -1,0 +1,4 @@
+path: f/eval/datatable_reader.py
+language: python3
+kind: script
+summary: Reads all records from the eval_orders table via Windmill Built-In Data Tables.

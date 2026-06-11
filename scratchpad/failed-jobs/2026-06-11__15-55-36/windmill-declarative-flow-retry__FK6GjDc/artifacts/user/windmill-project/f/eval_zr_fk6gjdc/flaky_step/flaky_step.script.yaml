@@ -1,0 +1,15 @@
+summary: Flaky step that fails until attempt 3
+description: Reads and increments a counter variable; raises RuntimeError until counter reaches 3
+is_template: false
+lock: []
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    attempt_marker_path:
+      type: string
+      description: The Windmill variable path that stores the attempt counter
+  required:
+    - attempt_marker_path
+language: python3
+tag: ''

@@ -1,0 +1,15 @@
+summary: Flaky Step with retry
+description: Increments a counter and fails if counter < 3
+lock: '!inline f/eval_zr_farvbo5/flaky_step.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    attempt_marker_path:
+      type: string
+      description: The Windmill variable path that stores the attempt counter
+      default: null
+      originalType: string
+  required:
+    - attempt_marker_path

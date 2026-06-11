@@ -1,0 +1,95 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 9 items
+
+tests/test_final_state.py .......F.                                      [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_alpha_script_runtime_invocation _____________________
+
+    def test_alpha_script_runtime_invocation():
+        """`wmill script run` against the deployed alpha script must succeed."""
+        safe_id = _safe_id()
+        probe = f"harbor-probe-{safe_id}"
+        deployed_path = _remote_path(safe_id, "alpha")
+        payload = json.dumps({"message": probe})
+    
+        env = os.environ.copy()
+        result = subprocess.run(
+            ["wmill", "script", "run", deployed_path, "-d", payload],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True,
+            timeout=300,
+            env=env,
+        )
+        assert result.returncode == 0, (
+            f"`wmill script run {deployed_path}` failed (rc={result.returncode}).\n"
+            f"stdout={result.stdout}\nstderr={result.stderr}"
+        )
+    
+>       parsed = _extract_last_json(result.stdout)
+
+tests/test_final_state.py:254: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+text = '\x1b[34m\x1b[33mWaiting for Job 019eb74f-c4c0-9351-e62b-42682954fa8c to start...\x1b[39m\x1b[39m\njob=019eb74f-c4c0-9...m\x1b[39m\x1b[39m\n\x1b[34m\n\x1b[39m\n\x1b[34m{\n  "echo": "harbor-probe-zr_myrynz2",\n  "script": "alpha"\n}\x1b[39m'
+
+    def _extract_last_json(text: str):
+        """Return the last top-level JSON value parsed from `text`."""
+        text = text.strip()
+        if not text:
+            raise AssertionError("wmill stdout was empty; no JSON result to parse.")
+    
+        try:
+            return json.loads(text)
+        except Exception:
+            pass
+    
+        lines = text.splitlines()
+        for start in range(len(lines)):
+            candidate = "\n".join(lines[start:]).strip()
+            if not candidate:
+                continue
+            if candidate[0] not in "[{":
+                continue
+            try:
+                return json.loads(candidate)
+            except Exception:
+                continue
+    
+>       raise AssertionError(
+            f"Could not parse a JSON result from wmill stdout. Raw stdout:\n{text}"
+        )
+E       AssertionError: Could not parse a JSON result from wmill stdout. Raw stdout:
+E       [34m[33mWaiting for Job 019eb74f-c4c0-9351-e62b-42682954fa8c to start...[39m[39m
+E       job=019eb74f-c4c0-9351-e62b-42682954fa8c tag=bun worker=wk-default-lh6j7-IMcIW hostname=windmill-workers-default-7589ccd488-lh6j7 isolation=nsjail
+E       
+E       loaded bin/bundle from object store /tmp/windmill/cache/bun/d3154940b96f412a9d72a8a23d711405d08e3f181ec3c146c52407f7646abaa9 in 81ms
+E       
+E       --- BUN BUNDLE SNAPSHOT EXECUTION ---
+E       [34m
+E       [39m
+E       [34m[32m[4m[1mJob Completed[22m[24m[39m[39m
+E       [34m
+E       [39m
+E       [34m{
+E         "echo": "harbor-probe-zr_myrynz2",
+E         "script": "alpha"
+E       }[39m
+
+tests/test_final_state.py:91: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_output_log_exists_and_contains_expected_lines
+PASSED tests/test_final_state.py::test_local_script_files_and_metadata_exist
+PASSED tests/test_final_state.py::test_wmill_yaml_excludes_matches_legacy_path
+PASSED tests/test_final_state.py::test_remote_legacy_script_still_exists
+PASSED tests/test_final_state.py::test_remote_new_scripts_were_deployed[alpha-bun]
+PASSED tests/test_final_state.py::test_remote_new_scripts_were_deployed[beta-bun]
+PASSED tests/test_final_state.py::test_remote_new_scripts_were_deployed[gamma-python3]
+PASSED tests/test_final_state.py::test_zz_cleanup_remote_scripts
+FAILED tests/test_final_state.py::test_alpha_script_runtime_invocation - Asse...
+========================= 1 failed, 8 passed in 3.84s ==========================

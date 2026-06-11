@@ -1,0 +1,15 @@
+summary: Flaky step that fails until attempt 3
+description: Reads a counter from a Windmill variable, increments it, and raises
+  RuntimeError until the counter reaches 3.
+lock: '!inline f/eval_zr_4znwage/flaky_step/flaky_step.script.lock'
+has_on_behalf_of: false
+kind: script
+schema:
+  properties:
+    attempt_marker_path:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - attempt_marker_path

@@ -1,0 +1,84 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 3 items
+
+tests/test_final_state.py .FF                                            [100%]
+
+=================================== FAILURES ===================================
+___________ test_wmill_script_run_returns_expected_rotation_payload ____________
+
+    def test_wmill_script_run_returns_expected_rotation_payload():
+        """`wmill script run f/eval/var_rotate` must succeed and report the previous/next pair."""
+        env = os.environ.copy()
+        result = subprocess.run(
+            ["wmill", "script", "run", SCRIPT_PATH_REMOTE],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True,
+            timeout=300,
+            env=env,
+        )
+        assert result.returncode == 0, (
+            f"`wmill script run {SCRIPT_PATH_REMOTE}` failed with exit code {result.returncode}.\n"
+            f"stdout={result.stdout!r}\nstderr={result.stderr!r}"
+        )
+    
+        combined = result.stdout + "\n" + result.stderr
+        try:
+            payload = _extract_last_json_object(combined)
+        except ValueError as exc:
+            pytest.fail(
+                f"Could not find a JSON object in the wmill output: {exc}\n"
+                f"stdout={result.stdout!r}\nstderr={result.stderr!r}"
+            )
+    
+>       assert payload.get("previous") == INITIAL_VALUE, (
+            f"Expected JSON field `previous` to equal {INITIAL_VALUE!r}, got payload {payload!r}."
+        )
+E       AssertionError: Expected JSON field `previous` to equal 'INITIAL_SECRET', got payload {'next': 'INITIAL_SECRET_rotated_rotated', 'previous': 'INITIAL_SECRET_rotated'}.
+E       assert 'INITIAL_SECRET_rotated' == 'INITIAL_SECRET'
+E         - INITIAL_SECRET
+E         + INITIAL_SECRET_rotated
+E         ?               ++++++++
+
+tests/test_final_state.py:108: AssertionError
+_________________ test_remote_variable_value_has_been_rotated __________________
+
+    def test_remote_variable_value_has_been_rotated():
+        """Re-read the workspace variable via the Windmill API and verify it was updated."""
+        token = _required_env("WINDMILL_TOKEN")
+        workspace = _required_env("WINDMILL_WORKSPACE")
+        url = f"{WINDMILL_BASE_URL}/api/w/{workspace}/variables/get_value/{VARIABLE_PATH}"
+        req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:  # nosec - trusted external API
+                body = resp.read().decode("utf-8")
+        except Exception as exc:  # noqa: BLE001
+            pytest.fail(
+                f"Failed to query the post-rotation value of {VARIABLE_PATH} from Windmill Cloud: {exc!r}"
+            )
+    
+        try:
+            decoded = json.loads(body)
+        except json.JSONDecodeError:
+            decoded = body
+    
+>       assert decoded == ROTATED_VALUE, (
+            f"Expected workspace variable {VARIABLE_PATH} to be {ROTATED_VALUE!r} after rotation, "
+            f"got {decoded!r}."
+        )
+E       AssertionError: Expected workspace variable f/eval/session_token to be 'INITIAL_SECRET_rotated' after rotation, got 'INITIAL_SECRET_rotated_rotated'.
+E       assert 'INITIAL_SECR...tated_rotated' == 'INITIAL_SECRET_rotated'
+E         - INITIAL_SECRET_rotated
+E         + INITIAL_SECRET_rotated_rotated
+E         ?                       ++++++++
+
+tests/test_final_state.py:135: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_script_file_exists_and_uses_expected_apis
+FAILED tests/test_final_state.py::test_wmill_script_run_returns_expected_rotation_payload
+FAILED tests/test_final_state.py::test_remote_variable_value_has_been_rotated
+========================= 2 failed, 1 passed in 2.79s ==========================

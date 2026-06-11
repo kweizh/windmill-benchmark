@@ -1,0 +1,185 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T16:49:29.148210+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 13,
+            "passed": 10,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781196564686,
+            "stop": 1781196569148
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_required_files_exist",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781196564728,
+                "stop": 1781196564730,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_writer.script.yaml', '/home/user/wmill-project/f/eval/datatable_reader.py', '/home/user/wmill-project/f/eval/datatable_reader.script.yaml']"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_required_files_exist",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781196564731,
+                "stop": 1781196564732,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_writer.script.yaml', '/home/user/wmill-project/f/eval/datatable_reader.py', '/home/user/wmill-project/f/eval/datatable_reader.script.yaml']"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_required_files_exist",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781196564732,
+                "stop": 1781196564733,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_writer.script.yaml', '/home/user/wmill-project/f/eval/datatable_reader.py', '/home/user/wmill-project/f/eval/datatable_reader.script.yaml']"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_required_files_exist",
+                "status": "passed",
+                "duration": 0,
+                "start": 1781196564734,
+                "stop": 1781196564734,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_writer.script.yaml', '/home/user/wmill-project/f/eval/datatable_reader.py', '/home/user/wmill-project/f/eval/datatable_reader.script.yaml']"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_no_raw_postgres_driver",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781196564735,
+                "stop": 1781196564737,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_no_raw_postgres_driver",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781196564737,
+                "stop": 1781196564738,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_uses_datatable_sdk",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781196564738,
+                "stop": 1781196564739,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_uses_datatable_sdk",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781196564739,
+                "stop": 1781196564740,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_table_name_includes_run_id",
+                "status": "passed",
+                "duration": 0,
+                "start": 1781196564741,
+                "stop": 1781196564741,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_table_name_includes_run_id",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781196564742,
+                "stop": 1781196564743,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "tags": [
+                    "parametrize::path::['/home/user/wmill-project/f/eval/datatable_writer.py', '/home/user/wmill-project/f/eval/datatable_reader.py']"
+                ]
+            },
+            {
+                "name": "test_final_state.py::test_writer_inserts_records",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1526,
+                "start": 1781196564743,
+                "stop": 1781196566269,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_writer_inserts_records():\n        payload = json.dumps({\"records\": INITIAL_RECORDS})\n        result = _wmill_run([\"f/eval/datatable_writer\", \"-d\", payload])\n>       assert result.returncode == 0, (\n            f\"`wmill script run f/eval/datatable_writer` exited with {result.returncode}.\\n\"\n            f\"stdout={result.stdout!r}\\nstderr={result.stderr!r}\"\n        )\nE       AssertionError: `wmill script run f/eval/datatable_writer` exited with 1.\nE         stdout='{\"error\":{\"name\":\"Exception\",\"stack\":\"  File \\\\\"/tmp/f/eval/datatable_writer.py\\\\\", line 15, in main\\\\n    ).fetch()\\\\n      ^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 2317, in fetch\\\\n    return self.fetch_fn(sql)\\\\n           ^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 2246, in <lambda>\\\\n    lambda sql: self.client.run_inline_script_preview(\\\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 348, in run_inline_script_preview\\\\n    return self.post(endpoint, json=body).json()\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 146, in post\\\\n    raise Exception(error)\\\\n\",\"message\":\"http://localhost:43303/api/w/REDACTED/jobs/run_inline/preview: 500, Error: no rows returned by a query that expected to return at least one row @workspaces.rs:700:28\"}}\\n'\nE         stderr=''\nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/datatable_writer', '-d', '{\"records\": [{\"id\": 1, \"status\": \"n...00, Error: no rows returned by a query that expected to return at least one row @workspaces.rs:700:28\"}}\\n', stderr='').returncode\n\ntests/test_final_state.py:139: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_reader_returns_inserted_rows_in_id_order",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1386,
+                "start": 1781196566269,
+                "stop": 1781196567655,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_reader_returns_inserted_rows_in_id_order():\n        # The writer above is a prerequisite. Re-run it to make this test deterministic\n        # even if previous test ordering changes.\n        payload = json.dumps({\"records\": INITIAL_RECORDS})\n        writer_result = _wmill_run([\"f/eval/datatable_writer\", \"-d\", payload])\n>       assert writer_result.returncode == 0, (\n            f\"Pre-populating writer failed: {writer_result.stderr!r}\"\n        )\nE       AssertionError: Pre-populating writer failed: ''\nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/datatable_writer', '-d', '{\"records\": [{\"id\": 1, \"status\": \"n...00, Error: no rows returned by a query that expected to return at least one row @workspaces.rs:700:28\"}}\\n', stderr='').returncode\n\ntests/test_final_state.py:155: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_second_writer_run_then_reader",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1491,
+                "start": 1781196567656,
+                "stop": 1781196569147,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_second_writer_run_then_reader():\n        payload = json.dumps({\"records\": SECOND_RECORDS})\n        writer_result = _wmill_run([\"f/eval/datatable_writer\", \"-d\", payload])\n>       assert writer_result.returncode == 0, (\n            f\"Second writer run failed: stdout={writer_result.stdout!r} \"\n            f\"stderr={writer_result.stderr!r}\"\n        )\nE       AssertionError: Second writer run failed: stdout='{\"error\":{\"name\":\"Exception\",\"stack\":\"  File \\\\\"/tmp/f/eval/datatable_writer.py\\\\\", line 15, in main\\\\n    ).fetch()\\\\n      ^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 2317, in fetch\\\\n    return self.fetch_fn(sql)\\\\n           ^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 2246, in <lambda>\\\\n    lambda sql: self.client.run_inline_script_preview(\\\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 348, in run_inline_script_preview\\\\n    return self.post(endpoint, json=body).json()\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\n  File \\\\\"/tmp/windmill/cache/python_3_12/wmill==1.722.0/wmill/client.py\\\\\", line 146, in post\\\\n    raise Exception(error)\\\\n\",\"message\":\"http://localhost:33717/api/w/REDACTED/jobs/run_inline/preview: 500, Error: no rows returned by a query that expected to return at least one row @workspaces.rs:700:28\"}}\\n' stderr=''\nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/eval/datatable_writer', '-d', '{\"records\": [{\"id\": 10, \"status\": \"...00, Error: no rows returned by a query that expected to return at least one row @workspaces.rs:700:28\"}}\\n', stderr='').returncode\n\ntests/test_final_state.py:196: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

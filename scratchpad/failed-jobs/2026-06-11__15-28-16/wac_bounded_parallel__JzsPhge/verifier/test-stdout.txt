@@ -1,0 +1,114 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 3 items
+
+tests/test_final_state.py .FE                                            [100%]
+
+==================================== ERRORS ====================================
+____ ERROR at setup of test_workflow_execution_honours_bounded_concurrency _____
+
+http_server = <test_final_state._ThreadingHTTPServer object at 0x7f8c675c7fe0>
+
+    @pytest.fixture(scope="module")
+    def public_url(http_server):  # noqa: ARG001  (depends on server being up)
+        assert shutil.which("cloudflared") is not None, "cloudflared not installed"
+        proc = subprocess.Popen(
+            [
+                "cloudflared",
+                "tunnel",
+                "--no-autoupdate",
+                "--url",
+                f"http://localhost:{PORT}",
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            bufsize=1,
+        )
+    
+        url_holder: dict = {}
+        log_lines: list = []
+    
+        def reader():
+            assert proc.stdout is not None
+            for line in proc.stdout:
+                log_lines.append(line.rstrip())
+                if "url" not in url_holder:
+                    m = _TRYCF_RE.search(line)
+                    if m is not None:
+                        url_holder["url"] = m.group(0)
+    
+        t = threading.Thread(target=reader, daemon=True)
+        t.start()
+    
+        deadline = time.time() + 60.0
+        while time.time() < deadline and "url" not in url_holder:
+            time.sleep(0.5)
+    
+        if "url" not in url_holder:
+            proc.terminate()
+            try:
+                proc.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+            pytest.fail(
+                "cloudflared did not produce a trycloudflare.com URL within 60s. "
+                "Tail of cloudflared log: " + "\n".join(log_lines[-40:])
+            )
+    
+        url = url_holder["url"]
+    
+        # Probe the public URL until it round-trips (DNS / routing propagation)
+        probe_deadline = time.time() + 60.0
+        last_err = None
+        while time.time() < probe_deadline:
+            try:
+                r = requests.get(f"{url}/n/0", timeout=5.0)
+                if r.status_code == 200:
+                    break
+            except Exception as e:  # noqa: BLE001
+                last_err = e
+            time.sleep(1.0)
+        else:
+            proc.terminate()
+>           pytest.fail(
+                f"Public cloudflared URL {url} never returned 200 from /n/0. "
+                f"Last error: {last_err!r}"
+            )
+E           Failed: Public cloudflared URL https://api.trycloudflare.com never returned 200 from /n/0. Last error: None
+
+tests/test_final_state.py:190: Failed
+=================================== FAILURES ===================================
+__________________ test_script_uses_canonical_wac_primitives ___________________
+
+    def test_script_uses_canonical_wac_primitives():
+        """Static analysis: workflow(, parallel(, task(, concurrency: 3, windmill-client import."""
+        src = _read_script_source()
+    
+        assert re.search(r"\bworkflow\s*\(", src), (
+            "Script must call `workflow(...)` to mark the entry point."
+        )
+        assert re.search(r"\bparallel\s*\(", src), (
+            "Script must use `parallel(...)` from windmill-client to fan out."
+        )
+        assert re.search(r"\btask\s*\(", src), (
+            "Script must wrap each HTTP call inside a `task(...)` invocation."
+        )
+>       assert re.search(r"""['"]concurrency['"]?\s*:\s*3\b""", src), (
+            "Script must pass a concurrency cap of 3 to `parallel(...)` "
+            "(e.g. `{ concurrency: 3 }`)."
+        )
+E       AssertionError: Script must pass a concurrency cap of 3 to `parallel(...)` (e.g. `{ concurrency: 3 }`).
+E       assert None
+E        +  where None = <function search at 0x7f8c68a3fba0>('[\'"]concurrency[\'"]?\\s*:\\s*3\\b', 'import { workflow, task, parallel } from "windmill-client";\n\nexport const main = workflow(async (urls: string[]) =>... await fetch(url);\n        return { url, status: response.status };\n      })(),\n    { concurrency: 3 }\n  );\n});\n')
+E        +    where <function search at 0x7f8c68a3fba0> = re.search
+
+tests/test_final_state.py:245: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_script_file_exists
+ERROR tests/test_final_state.py::test_workflow_execution_honours_bounded_concurrency
+FAILED tests/test_final_state.py::test_script_uses_canonical_wac_primitives
+=============== 1 failed, 1 passed, 1 error in 76.37s (0:01:16) ================

@@ -1,0 +1,13 @@
+summary: "Flaky step"
+description: "Flaky step"
+lock: ""
+kind: script
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: object
+  properties:
+    attempt_marker_path:
+      type: string
+  required:
+    - attempt_marker_path
+language: python3

@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.2
+collected 10 items
+
+bootstrap/test_initial_state.py::test_wmill_cli_available PASSED
+bootstrap/test_initial_state.py::test_bun_runtime_available PASSED
+bootstrap/test_initial_state.py::test_required_env_vars_present PASSED
+bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+bootstrap/test_initial_state.py::test_project_is_initialized_windmill_workspace PASSED
+bootstrap/test_initial_state.py::test_eval_folder_exists_on_disk PASSED
+bootstrap/test_initial_state.py::test_var_rotate_script_not_yet_created PASSED
+bootstrap/test_initial_state.py::test_remote_variable_exists_with_initial_value PASSED
+bootstrap/test_initial_state.py::test_remote_variable_is_marked_secret PASSED
+bootstrap/test_initial_state.py::test_wmill_workspace_is_configured PASSED
+
+============================== 10 passed in 2.75s ==============================

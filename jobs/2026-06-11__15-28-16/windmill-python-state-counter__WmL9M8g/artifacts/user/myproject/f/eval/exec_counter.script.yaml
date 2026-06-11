@@ -1,0 +1,9 @@
+summary: "Execution Counter"
+description: "Counts the number of times this script has been executed using wmill.get_state and wmill.set_state."
+lock: ""
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: "object"
+  properties: {}
+  required: []
+language: "python3"

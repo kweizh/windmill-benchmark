@@ -1,0 +1,16 @@
+summary: Flaky step that fails twice before succeeding on the third attempt
+description: Reads an attempt counter from a Windmill variable, increments it,
+  and raises RuntimeError until the counter reaches 3.
+lock: '!inline f/eval_zr_gnmws7t/flaky_step.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    attempt_marker_path:
+      type: string
+      description: Windmill variable path for the attempt counter
+      default: null
+      originalType: string
+  required:
+    - attempt_marker_path

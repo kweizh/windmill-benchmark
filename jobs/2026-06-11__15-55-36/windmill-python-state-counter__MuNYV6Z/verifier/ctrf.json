@@ -1,0 +1,83 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T15:58:17.935672+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781193491364,
+            "stop": 1781193497935
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_yaml_exists_and_declares_python3",
+                "status": "passed",
+                "duration": 3,
+                "start": 1781193491730,
+                "stop": 1781193491733,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_imports_wmill",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781193491734,
+                "stop": 1781193491736,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_uses_get_state_and_set_state",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781193491738,
+                "stop": 1781193491739,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_defines_zero_arg_main",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781193491739,
+                "stop": 1781193491740,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_does_not_hardcode_3",
+                "status": "passed",
+                "duration": 3,
+                "start": 1781193491741,
+                "stop": 1781193491744,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_three_sequential_runs_increment_state_to_3",
+                "status": "passed",
+                "duration": 6190,
+                "start": 1781193491745,
+                "stop": 1781193497935,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}
