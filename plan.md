@@ -268,6 +268,7 @@ AI Agent primitives process LLM tracking instructions headlessly. Tools are expo
 - **Persistent Script State vs. Active Flow User State**: `wmill.get_state()` tracks variable values across distinct runs of a script asset globally, whereas `getFlowUserState()` isolates values solely within a single unique pipeline execution instance. Confusing these leads to state corruption or unexpected resets.
 - **Destructive Sync Semantics in Stateless Deployments**: Commands like `wmill sync push` operate state-destructively; assets discovered on the instance that are absent from the local workspace root are deleted immediately upon deployment. **Mitigation**: Explicitly define `keepDeleted: true` inside the local `wmill.yaml` file to protect un-tracked production resources.
 - **Worker Dependency Management Cold Starts**: Injecting large package dependency graphs (e.g., intensive machine learning frameworks or binary bindings) via inline script annotations requires workers to build runtime environments dynamically upon initialization, producing heavy cold start execution overhead. **Mitigation**: Package long-running or dependency-heavy scripts as custom, pre-compiled **arbitrary Docker images** within Windmill's runtime tasks.
+- **Cloud Hosted**: Never try to start a local Windmill instance, ALWAYS use the cloud hosted version.
 
 ---
 
