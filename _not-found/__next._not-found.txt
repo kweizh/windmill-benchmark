@@ -1,4 +1,4 @@
 1:"$Sreact.fragment"
 2:I[36064,["/windmill-benchmark/_next/static/chunks/eee3fa4a069aaac4.js","/windmill-benchmark/_next/static/chunks/c21188132e0e0d48.js","/windmill-benchmark/_next/static/chunks/3ecbb78a8ff87549.js"],"default"]
 3:I[81497,["/windmill-benchmark/_next/static/chunks/eee3fa4a069aaac4.js","/windmill-benchmark/_next/static/chunks/c21188132e0e0d48.js","/windmill-benchmark/_next/static/chunks/3ecbb78a8ff87549.js"],"default"]
-0:{"buildId":"42kK9S3QPrQpA39Vs35Hl","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"BQdlTgI_1alu3zEaXAA4z","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
