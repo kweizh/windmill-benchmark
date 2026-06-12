@@ -1,0 +1,37 @@
+summary: "Two step doubling and incrementing flow"
+description: "Doubles the input x and then increments it by 1"
+value:
+  modules:
+    - id: double_step
+      value:
+        type: rawscript
+        content: |
+          def main(x: int):
+              return x * 2
+        language: python3
+        input_transforms:
+          x:
+            type: javascript
+            expr: flow_input.x
+    - id: increment_step
+      value:
+        type: rawscript
+        content: |
+          def main(value: int):
+              return value + 1
+        language: python3
+        input_transforms:
+          value:
+            type: javascript
+            expr: results.double_step
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: object
+  order:
+    - x
+  properties:
+    x:
+      type: number
+      description: "The numeric input x"
+  required:
+    - x

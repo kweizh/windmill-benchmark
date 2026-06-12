@@ -1,0 +1,71 @@
+{
+    "id": "d7aafad6-becb-48df-9518-8cfb5cda65a6",
+    "started_at": "2026-06-11T18:33:33.194917",
+    "updated_at": "2026-06-11T19:03:43.876567",
+    "finished_at": "2026-06-11T19:03:43.876567",
+    "n_total_trials": 20,
+    "stats": {
+        "n_completed_trials": 20,
+        "n_errored_trials": 9,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "pochi__glm-5.1__pending-tasks": {
+                "n_trials": 17,
+                "n_errors": 9,
+                "metrics": [
+                    {
+                        "mean": 0.2
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "typescript_bun_typed_script__hJUamVF",
+                            "webhook_raw_signature_verificati__qjvJLe3",
+                            "resource_type_custom_definition__4tkb4fX",
+                            "ai_agent_mcp_tool_definition__vhh5Hvi",
+                            "docker_arbitrary_image_script__BvkzA7U",
+                            "flow_error_handler_branch_yaml__Wy2iHb5",
+                            "python_pydantic_input_validation__RX3FzsT",
+                            "bash_script_env_vars__Ni6Jjzo",
+                            "flow_branch_one_of_yaml__J6vbZGj",
+                            "declarative_flow_input_transform__G7T9K6v",
+                            "wac_step_determinism_ts__pmGhNgH",
+                            "secret_variable_log_masking_py__iVygmzk",
+                            "webhook_sync_invocation_curl__UyieYQe"
+                        ],
+                        "1.0": [
+                            "script_run_inline_payload_cli__x58AH49",
+                            "wac_flow_user_state_isolation_ts__Y36tGgv",
+                            "workspace_init_cli__Ui9H2SQ",
+                            "fullcode_react_app_deploy__r4gRCBX"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "InitialStateError": [
+                        "go_native_script_arithmetic__SEjRhDA",
+                        "multi_env_promote_yaml_cli__DaVxNxm",
+                        "datatable_typed_query_ts__ZbYghbf"
+                    ],
+                    "AgentTimeoutError": [
+                        "ai_agent_mcp_tool_definition__vhh5Hvi",
+                        "python_pydantic_input_validation__RX3FzsT",
+                        "bash_script_env_vars__Ni6Jjzo",
+                        "wac_step_determinism_ts__pmGhNgH",
+                        "secret_variable_log_masking_py__iVygmzk",
+                        "webhook_sync_invocation_curl__UyieYQe"
+                    ]
+                }
+            }
+        },
+        "n_input_tokens": 0,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 396556,
+        "cost_usd": null
+    }
+}

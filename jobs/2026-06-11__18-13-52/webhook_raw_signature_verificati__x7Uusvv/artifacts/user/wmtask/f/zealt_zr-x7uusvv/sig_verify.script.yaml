@@ -1,0 +1,15 @@
+summary: sig verify
+description: Verify webhook signature
+lock: '!inline f/zealt_zr-x7uusvv/sig_verify.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    x_signature:
+      type: string
+      description: ''
+    body: {}
+  required:
+    - x_signature
+    - body

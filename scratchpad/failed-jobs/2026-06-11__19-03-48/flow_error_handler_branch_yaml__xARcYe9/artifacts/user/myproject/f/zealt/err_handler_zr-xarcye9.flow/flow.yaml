@@ -1,0 +1,41 @@
+summary: "Flow with error handler - throws when should_fail is true"
+description: "Demonstrates a flow with a failure_module error handler. When should_fail is true, the inner script throws and the error handler returns a custom JSON payload."
+value:
+  modules:
+    - id: a
+      value:
+        type: rawscript
+        language: deno
+        content: |
+          export function main(input: { should_fail: boolean }) {
+            if (input.should_fail) {
+              throw new Error("Intentional failure: should_fail was set to true");
+            }
+            return { status: "ok", message: "No failure occurred" };
+          }
+        input_transforms:
+          should_fail:
+            type: javascript
+            expr: "flow_input.should_fail"
+  failure_module:
+    id: failure
+    value:
+      type: rawscript
+      language: deno
+      content: |
+        export function main(error: { message?: string; name?: string; step_id?: string; stack?: string }) {
+          return {
+            handled: true,
+            reason: error?.message ?? "Unknown error"
+          };
+        }
+      input_transforms: {}
+schema:
+  type: object
+  properties:
+    should_fail:
+      type: boolean
+      description: "When true, the inner script will throw an error"
+      default: false
+  required:
+    - should_fail

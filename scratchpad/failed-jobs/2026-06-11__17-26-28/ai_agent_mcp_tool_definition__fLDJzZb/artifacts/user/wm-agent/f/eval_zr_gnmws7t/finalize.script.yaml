@@ -1,0 +1,16 @@
+summary: Finalize step that wraps the flaky module result
+description: Takes the output of the flaky step and returns a final result dict.
+lock: '!inline f/eval_zr_gnmws7t/finalize.script.lock'
+has_on_behalf_of: false
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    previous:
+      type: object
+      description: The output from the flaky step
+      default: null
+      properties: {}
+  required:
+    - previous

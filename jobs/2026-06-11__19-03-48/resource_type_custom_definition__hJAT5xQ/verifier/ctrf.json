@@ -1,0 +1,77 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T19:14:30.112709+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 0,
+            "failed": 4,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781205268923,
+            "stop": 1781205270112
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_output_log_contains_api_url",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 50,
+                "start": 1781205269364,
+                "stop": 1781205269414,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "expected_api_url = 'https://api.example.com/zr-hjat5xq'\n\n    def test_output_log_contains_api_url(expected_api_url: str):\n>       assert os.path.isfile(LOG_FILE), f\"Log file {LOG_FILE} does not exist.\"\nE       AssertionError: Log file /home/user/myproject/output.log does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f67ab534220>('/home/user/myproject/output.log')\nE        +    where <function isfile at 0x7f67ab534220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:65: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_resource_type_exists_with_expected_schema",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 286,
+                "start": 1781205269415,
+                "stop": 1781205269701,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "base_url = 'REDACTED', workspace = 'REDACTED'\nauth_headers = {'Authorization': 'Bearer REDACTED'}\nresource_type_name = 'my_api_creds_zr_hjat5xq'\n\n    def test_resource_type_exists_with_expected_schema(\n        base_url: str,\n        workspace: str,\n        auth_headers: dict,\n        resource_type_name: str,\n    ):\n        url = f\"{base_url}/api/w/{workspace}/resources/type/get/{resource_type_name}\"\n        response = requests.get(url, headers=auth_headers, timeout=30)\n>       assert response.status_code == 200, (\n            f\"Resource type {resource_type_name} not found via {url}: \"\n            f\"status={response.status_code}, body={response.text}\"\n        )\nE       AssertionError: Resource type my_api_creds_zr_hjat5xq not found via REDACTED/api/w/REDACTED/resources/type/get/my_api_creds_zr_hjat5xq: status=404, body=Not found: ResourceType not found at name my_api_creds_zr_hjat5xq (resources.rs:1873)\nE       assert 404 == 200\nE        +  where 404 = <Response [404]>.status_code\n\ntests/test_final_state.py:86: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_resource_instance_exists_with_expected_value",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 163,
+                "start": 1781205269702,
+                "stop": 1781205269865,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "base_url = 'REDACTED', workspace = 'REDACTED'\nauth_headers = {'Authorization': 'Bearer REDACTED'}\nresource_path = 'f/zealt/creds_zr_hjat5xq'\nresource_type_name = 'my_api_creds_zr_hjat5xq'\nexpected_api_url = 'https://api.example.com/zr-hjat5xq'\n\n    def test_resource_instance_exists_with_expected_value(\n        base_url: str,\n        workspace: str,\n        auth_headers: dict,\n        resource_path: str,\n        resource_type_name: str,\n        expected_api_url: str,\n    ):\n        url = f\"{base_url}/api/w/{workspace}/resources/get/{resource_path}\"\n        response = requests.get(url, headers=auth_headers, timeout=30)\n>       assert response.status_code == 200, (\n            f\"Resource at {resource_path} not found via {url}: \"\n            f\"status={response.status_code}, body={response.text}\"\n        )\nE       AssertionError: Resource at f/zealt/creds_zr_hjat5xq not found via REDACTED/api/w/REDACTED/resources/get/f/zealt/creds_zr_hjat5xq: status=404, body=Not found: Resource f/zealt/creds_zr_hjat5xq not found\nE       assert 404 == 200\nE        +  where 404 = <Response [404]>.status_code\n\ntests/test_final_state.py:139: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_deployed_script_returns_api_url",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 246,
+                "start": 1781205269865,
+                "stop": 1781205270111,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "base_url = 'REDACTED', workspace = 'REDACTED'\nauth_headers = {'Authorization': 'Bearer REDACTED'}\nscript_path = 'f/zealt/read_api_url_zr_hjat5xq'\nexpected_api_url = 'https://api.example.com/zr-hjat5xq'\n\n    def test_deployed_script_returns_api_url(\n        base_url: str,\n        workspace: str,\n        auth_headers: dict,\n        script_path: str,\n        expected_api_url: str,\n    ):\n        url = f\"{base_url}/api/w/{workspace}/jobs/run_wait_result/p/{script_path}\"\n        response = requests.post(url, headers=auth_headers, json={}, timeout=120)\n>       assert response.status_code == 200, (\n            f\"Failed to run script at {script_path} via {url}: \"\n            f\"status={response.status_code}, body={response.text}\"\n        )\nE       AssertionError: Failed to run script at f/zealt/read_api_url_zr_hjat5xq via REDACTED/api/w/REDACTED/jobs/run_wait_result/p/f/zealt/read_api_url_zr_hjat5xq: status=400, body=Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\nE       assert 400 == 200\nE        +  where 400 = <Response [400]>.status_code\n\ntests/test_final_state.py:166: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

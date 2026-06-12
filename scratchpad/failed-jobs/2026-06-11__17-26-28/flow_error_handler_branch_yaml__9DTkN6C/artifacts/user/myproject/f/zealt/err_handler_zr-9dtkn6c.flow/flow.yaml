@@ -1,0 +1,45 @@
+summary: "Windmill Flow Error Handler - zr-9dtkn6c"
+description: "A Windmill flow with a custom error handler"
+value:
+  modules:
+    - id: inner_script
+      value:
+        lock: ""
+        type: rawscript
+        content: |
+          export async function main(should_fail: boolean) {
+            if (should_fail) {
+              throw new Error("Demanded failure from inner_script");
+            }
+            return "Success";
+          }
+        language: bun
+        input_transforms:
+          should_fail:
+            type: javascript
+            expr: flow_input.should_fail
+  failure_module:
+    id: failure
+    value:
+      lock: ""
+      type: rawscript
+      content: |
+        export async function main(error: any) {
+          return {
+            "handled": true,
+            "reason": error?.message || "Unknown error"
+          };
+        }
+      language: bun
+      input_transforms:
+        error:
+          type: javascript
+          expr: error
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    should_fail:
+      type: boolean
+  required:
+    - should_fail

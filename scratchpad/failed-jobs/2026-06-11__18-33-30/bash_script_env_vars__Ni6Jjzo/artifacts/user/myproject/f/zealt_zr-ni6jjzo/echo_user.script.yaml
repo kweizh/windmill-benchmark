@@ -1,0 +1,13 @@
+summary: Echo user input and WM_USERNAME as JSON
+description: Prints a JSON object with the input argument and the WM_USERNAME
+  environment variable.
+language: bash
+schema:
+  properties:
+    INPUT:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - INPUT

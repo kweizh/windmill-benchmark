@@ -1,0 +1,5 @@
+description: API credentials for zealt run
+value:
+  apiUrl: https://api.example.com/zr-4tkb4fx
+  token: secret-token-12345
+resource_type: my_api_creds_zr_4tkb4fx

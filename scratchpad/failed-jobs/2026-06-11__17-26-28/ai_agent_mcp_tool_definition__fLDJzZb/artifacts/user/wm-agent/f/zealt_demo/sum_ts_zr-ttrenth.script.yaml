@@ -1,0 +1,20 @@
+summary: ''
+description: ''
+lock: '!inline f/zealt_demo/sum_ts_zr-ttrenth.script.lock'
+has_on_behalf_of: false
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    a:
+      type: number
+      description: ''
+      default: null
+    b:
+      type: number
+      description: ''
+      default: null
+  required:
+    - a
+    - b

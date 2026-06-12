@@ -1,0 +1,14 @@
+HTTP/2 400 
+content-type: text/plain
+content-length: 126
+date: Thu, 11 Jun 2026 19:36:39 GMT
+access-control-allow-origin: *
+set-cookie: AWSALB=Xmx7H6eVp11GabPfu2yINhdYitB/OpQnbWWgsUeu9qYemrebMvDj+BxTkxAG042nradNw1aprHGxzPKTGXBpLexljKbuCmmFyWo+L3bKzbrCfXsNaiKs4rLngl+e; Expires=Thu, 18 Jun 2026 19:36:39 GMT; Path=/
+set-cookie: AWSALBCORS=Xmx7H6eVp11GabPfu2yINhdYitB/OpQnbWWgsUeu9qYemrebMvDj+BxTkxAG042nradNw1aprHGxzPKTGXBpLexljKbuCmmFyWo+L3bKzbrCfXsNaiKs4rLngl+e; Expires=Thu, 18 Jun 2026 19:36:39 GMT; Path=/; SameSite=None
+vary: origin, access-control-request-method, access-control-request-headers
+x-cache: Error from cloudfront
+via: 1.1 b669d9add7767f73665f1f8b7e8cd802.cloudfront.net (CloudFront)
+x-amz-cf-pop: SEA900-P10
+alt-svc: h3=":443"; ma=86400
+x-amz-cf-id: Q-zZAGuSbXpEcIi6aq6sJX_rdBhx1SGpvTlZB55iV-Y4__OkIvkedw==
+

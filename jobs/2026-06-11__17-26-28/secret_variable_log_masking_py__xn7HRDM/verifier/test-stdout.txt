@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: anyio-4.13.0, json-ctrf-0.5.2
+collected 6 items
+
+tests/test_final_state.py ......                                         [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_wmill_yaml_exists
+PASSED tests/test_final_state.py::test_variable_manifest_exists_and_is_secret
+PASSED tests/test_final_state.py::test_script_file_pair_exists_and_calls_get_variable
+PASSED tests/test_final_state.py::test_output_log_contains_job_id
+PASSED tests/test_final_state.py::test_remote_variable_is_secret_via_api
+PASSED tests/test_final_state.py::test_job_logs_show_masked_secret
+============================== 6 passed in 0.68s ===============================

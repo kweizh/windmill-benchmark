@@ -1,0 +1,19 @@
+summary: ''
+description: ''
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    message:
+      type: string
+      description: ''
+  required:
+    - message
+is_template: false
+extra_perms: {}
+lock: ''
+tag: null
+ws_error_handler_muted: false
+restart_unless_cancelled: false
+language: python3
+kind: script

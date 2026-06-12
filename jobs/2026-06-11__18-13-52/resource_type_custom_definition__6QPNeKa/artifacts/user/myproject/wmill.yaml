@@ -1,0 +1,19 @@
+defaultTs: bun
+includes: 
+  - "f/**"
+skipVariables: false
+skipResources: false
+skipResourceTypes: false
+skipSecrets: true
+skipScripts: false
+skipFlows: false
+skipApps: false
+skipFolders: false
+skipWorkspaceDependencies: false
+nonDottedPaths: true
+syncBehavior: v1
+codebases: []
+workspaces: 
+  myworkspace:
+    baseUrl: REDACTED
+    workspaceId: REDACTED

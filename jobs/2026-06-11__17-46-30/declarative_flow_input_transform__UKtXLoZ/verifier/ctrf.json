@@ -1,0 +1,98 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T18:08:42.954458+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 5,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781201322143,
+            "stop": 1781201322954
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_flow_yaml_has_summary",
+                "status": "passed",
+                "duration": 6,
+                "start": 1781201322584,
+                "stop": 1781201322590,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_has_two_rawscript_modules",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781201322590,
+                "stop": 1781201322591,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_second_module_input_transforms_reference_first",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781201322592,
+                "stop": 1781201322593,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_schema_declares_x_input",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781201322593,
+                "stop": 1781201322594,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_log_file_contents",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 33,
+                "start": 1781201322594,
+                "stop": 1781201322627,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_log_file_contents():\n>       assert os.path.isfile(LOG_FILE), f\"Log file {LOG_FILE} does not exist.\"\nE       AssertionError: Log file /home/user/wmill-project/output.log does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x7fc143e4c220>('/home/user/wmill-project/output.log')\nE        +    where <function isfile at 0x7fc143e4c220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:121: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_flow_deployed_to_remote_path",
+                "status": "passed",
+                "duration": 169,
+                "start": 1781201322627,
+                "stop": 1781201322796,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_run_returns_expected_result",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 156,
+                "start": 1781201322797,
+                "stop": 1781201322953,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_flow_run_returns_expected_result():\n        remote_path = _remote_flow_path()\n        url = f\"{BASE_URL}/api/w/{_workspace()}/jobs/run_wait_result/f/{remote_path}\"\n        resp = requests.post(\n            url,\n            headers=_headers(),\n            data=json.dumps({\"x\": 4}),\n            timeout=120,\n        )\n>       assert resp.status_code == 200, (\n            f\"Running the deployed flow with {{'x': 4}} must return HTTP 200; \"\n            f\"got {resp.status_code}: {resp.text}\"\n        )\nE       AssertionError: Running the deployed flow with {'x': 4} must return HTTP 200; got 400: Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\nE       assert 400 == 200\nE        +  where 400 = <Response [400]>.status_code\n\ntests/test_final_state.py:158: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

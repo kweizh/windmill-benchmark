@@ -1,0 +1,7 @@
+{
+  "library_name": "Windmill",
+  "task_name": "workspace_init_cli",
+  "complexity_level": "simple single terminal command",
+  "research_plan_path": "/Users/kw/code/zealt/windmill-benchmark/plan.md",
+  "output_dir": "/Users/kw/code/zealt/windmill-benchmark/scratchpad/pending-tasks/"
+}

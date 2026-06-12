@@ -1,0 +1,86 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T18:17:50.308178+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 5,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781201869797,
+            "stop": 1781201870307
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_local_script_ts_file_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781201869951,
+                "stop": 1781201869952,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_local_script_yaml_file_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781201869952,
+                "stop": 1781201869953,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_main_function_signature_is_typed",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781201869953,
+                "stop": 1781201869954,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_deployed_to_cloud_workspace",
+                "status": "passed",
+                "duration": 180,
+                "start": 1781201869955,
+                "stop": 1781201870135,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_log_file_contains_sum_result",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781201870136,
+                "stop": 1781201870137,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deployed_script_returns_correct_sum_via_api",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 170,
+                "start": 1781201870137,
+                "stop": 1781201870307,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_deployed_script_returns_correct_sum_via_api() -> None:\n        url = (\n            f\"{_wmill_base_url()}/api/w/{_wmill_workspace()}/jobs/run_wait_result/p/\"\n            f\"{_script_path()}\"\n        )\n        response = requests.post(\n            url,\n            headers={\n                \"Authorization\": f\"Bearer {_wmill_token()}\",\n                \"Content-Type\": \"application/json\",\n            },\n            json={\"a\": 2, \"b\": 3},\n            timeout=120,\n        )\n>       assert response.status_code == 200, (\n            f\"Synchronous run via {url} failed with HTTP {response.status_code}: {response.text}\"\n        )\nE       AssertionError: Synchronous run via REDACTED/api/w/REDACTED/jobs/run_wait_result/p/f/zealt_demo/sum_ts_zr-wvv49nq failed with HTTP 400: Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\nE       assert 400 == 200\nE        +  where 400 = <Response [400]>.status_code\n\ntests/test_final_state.py:136: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

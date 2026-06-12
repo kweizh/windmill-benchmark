@@ -1,0 +1,7 @@
+{
+  "library_name": "Windmill",
+  "task_name": "python_pydantic_input_validation",
+  "complexity_level": "simple set of 2-5 commands",
+  "research_plan_path": "/Users/kw/code/zealt/windmill-benchmark/plan.md",
+  "output_dir": "/Users/kw/code/zealt/windmill-benchmark/scratchpad/pending-tasks/"
+}

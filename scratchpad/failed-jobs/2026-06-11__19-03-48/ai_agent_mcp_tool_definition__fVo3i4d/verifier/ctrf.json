@@ -1,0 +1,79 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T19:15:21.071879+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 5,
+            "passed": 0,
+            "failed": 5,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781205320512,
+            "stop": 1781205321071
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_first_module_is_aiagent",
+                "status": "failed",
+                "duration": 41,
+                "start": 1781205320994,
+                "stop": 1781205321035,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "run_id = 'zr-fvo3i4d'\n\n    @pytest.fixture(scope=\"session\")\n    def deploy_log_paths(run_id: str) -> Tuple[str, str]:\n>       assert os.path.isfile(DEPLOY_LOG_PATH), (\n            f\"Expected deploy log file at {DEPLOY_LOG_PATH} but it does not exist.\"\n        )\nE       AssertionError: Expected deploy log file at /home/user/wm-agent/deploy.log but it does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f1054f74220>('/home/user/wm-agent/deploy.log')\nE        +    where <function isfile at 0x7f1054f74220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:43: AssertionError"
+            },
+            {
+                "name": "test_final_state.py::test_aiagent_tools_reference_deployed_tool",
+                "status": "failed",
+                "duration": 8,
+                "start": 1781205321036,
+                "stop": 1781205321044,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "run_id = 'zr-fvo3i4d'\n\n    @pytest.fixture(scope=\"session\")\n    def deploy_log_paths(run_id: str) -> Tuple[str, str]:\n>       assert os.path.isfile(DEPLOY_LOG_PATH), (\n            f\"Expected deploy log file at {DEPLOY_LOG_PATH} but it does not exist.\"\n        )\nE       AssertionError: Expected deploy log file at /home/user/wm-agent/deploy.log but it does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f1054f74220>('/home/user/wm-agent/deploy.log')\nE        +    where <function isfile at 0x7f1054f74220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:43: AssertionError"
+            },
+            {
+                "name": "test_final_state.py::test_output_schema_defined_with_required_fields",
+                "status": "failed",
+                "duration": 9,
+                "start": 1781205321044,
+                "stop": 1781205321053,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "run_id = 'zr-fvo3i4d'\n\n    @pytest.fixture(scope=\"session\")\n    def deploy_log_paths(run_id: str) -> Tuple[str, str]:\n>       assert os.path.isfile(DEPLOY_LOG_PATH), (\n            f\"Expected deploy log file at {DEPLOY_LOG_PATH} but it does not exist.\"\n        )\nE       AssertionError: Expected deploy log file at /home/user/wm-agent/deploy.log but it does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f1054f74220>('/home/user/wm-agent/deploy.log')\nE        +    where <function isfile at 0x7f1054f74220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:43: AssertionError"
+            },
+            {
+                "name": "test_final_state.py::test_tool_script_is_deployed",
+                "status": "failed",
+                "duration": 9,
+                "start": 1781205321053,
+                "stop": 1781205321062,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "run_id = 'zr-fvo3i4d'\n\n    @pytest.fixture(scope=\"session\")\n    def deploy_log_paths(run_id: str) -> Tuple[str, str]:\n>       assert os.path.isfile(DEPLOY_LOG_PATH), (\n            f\"Expected deploy log file at {DEPLOY_LOG_PATH} but it does not exist.\"\n        )\nE       AssertionError: Expected deploy log file at /home/user/wm-agent/deploy.log but it does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f1054f74220>('/home/user/wm-agent/deploy.log')\nE        +    where <function isfile at 0x7f1054f74220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:43: AssertionError"
+            },
+            {
+                "name": "test_final_state.py::test_invoking_agent_returns_schema_conformant_payload",
+                "status": "failed",
+                "duration": 9,
+                "start": 1781205321062,
+                "stop": 1781205321071,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "run_id = 'zr-fvo3i4d'\n\n    @pytest.fixture(scope=\"session\")\n    def deploy_log_paths(run_id: str) -> Tuple[str, str]:\n>       assert os.path.isfile(DEPLOY_LOG_PATH), (\n            f\"Expected deploy log file at {DEPLOY_LOG_PATH} but it does not exist.\"\n        )\nE       AssertionError: Expected deploy log file at /home/user/wm-agent/deploy.log but it does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x7f1054f74220>('/home/user/wm-agent/deploy.log')\nE        +    where <function isfile at 0x7f1054f74220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:43: AssertionError"
+            }
+        ]
+    }
+}

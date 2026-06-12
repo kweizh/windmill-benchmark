@@ -1,0 +1,112 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: anyio-4.13.0, json-ctrf-0.5.2
+collected 5 items
+
+tests/test_final_state.py .FEEE                                          [100%]
+
+==================================== ERRORS ====================================
+______ ERROR at setup of test_correctly_signed_request_returns_valid_true ______
+
+wm_base_url = 'REDACTED', wm_workspace = 'REDACTED'
+auth_headers = {'Authorization': 'Bearer REDACTED'}
+variable_path = 'f/zealt_zr-ipf5jne/webhook_secret'
+
+    @pytest.fixture(scope="module")
+    def signing_secret(
+        wm_base_url: str,
+        wm_workspace: str,
+        auth_headers: dict,
+        variable_path: str,
+    ) -> str:
+        url = f"{wm_base_url}/api/w/{wm_workspace}/variables/get_value/{variable_path}"
+        resp = requests.get(url, headers=auth_headers, timeout=30)
+>       assert resp.status_code == 200, (
+            f"Failed to fetch Variable value at {variable_path}: "
+            f"HTTP {resp.status_code} {resp.text}"
+        )
+E       AssertionError: Failed to fetch Variable value at f/zealt_zr-ipf5jne/webhook_secret: HTTP 404 Not found: Variable f/zealt_zr-ipf5jne/webhook_secret not found
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_final_state.py:139: AssertionError
+________ ERROR at setup of test_incorrectly_signed_request_is_rejected _________
+
+wm_base_url = 'REDACTED', wm_workspace = 'REDACTED'
+auth_headers = {'Authorization': 'Bearer REDACTED'}
+variable_path = 'f/zealt_zr-ipf5jne/webhook_secret'
+
+    @pytest.fixture(scope="module")
+    def signing_secret(
+        wm_base_url: str,
+        wm_workspace: str,
+        auth_headers: dict,
+        variable_path: str,
+    ) -> str:
+        url = f"{wm_base_url}/api/w/{wm_workspace}/variables/get_value/{variable_path}"
+        resp = requests.get(url, headers=auth_headers, timeout=30)
+>       assert resp.status_code == 200, (
+            f"Failed to fetch Variable value at {variable_path}: "
+            f"HTTP {resp.status_code} {resp.text}"
+        )
+E       AssertionError: Failed to fetch Variable value at f/zealt_zr-ipf5jne/webhook_secret: HTTP 404 Not found: Variable f/zealt_zr-ipf5jne/webhook_secret not found
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_final_state.py:139: AssertionError
+_______________ ERROR at setup of test_tampered_body_is_rejected _______________
+
+wm_base_url = 'REDACTED', wm_workspace = 'REDACTED'
+auth_headers = {'Authorization': 'Bearer REDACTED'}
+variable_path = 'f/zealt_zr-ipf5jne/webhook_secret'
+
+    @pytest.fixture(scope="module")
+    def signing_secret(
+        wm_base_url: str,
+        wm_workspace: str,
+        auth_headers: dict,
+        variable_path: str,
+    ) -> str:
+        url = f"{wm_base_url}/api/w/{wm_workspace}/variables/get_value/{variable_path}"
+        resp = requests.get(url, headers=auth_headers, timeout=30)
+>       assert resp.status_code == 200, (
+            f"Failed to fetch Variable value at {variable_path}: "
+            f"HTTP {resp.status_code} {resp.text}"
+        )
+E       AssertionError: Failed to fetch Variable value at f/zealt_zr-ipf5jne/webhook_secret: HTTP 404 Not found: Variable f/zealt_zr-ipf5jne/webhook_secret not found
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_final_state.py:139: AssertionError
+=================================== FAILURES ===================================
+___________________________ test_variable_is_secret ____________________________
+
+wm_base_url = 'REDACTED', wm_workspace = 'REDACTED'
+auth_headers = {'Authorization': 'Bearer REDACTED'}
+variable_path = 'f/zealt_zr-ipf5jne/webhook_secret'
+
+    def test_variable_is_secret(
+        wm_base_url: str,
+        wm_workspace: str,
+        auth_headers: dict,
+        variable_path: str,
+    ) -> None:
+        url = f"{wm_base_url}/api/w/{wm_workspace}/variables/get/{variable_path}"
+        resp = requests.get(url, headers=auth_headers, timeout=30)
+>       assert resp.status_code == 200, (
+            f"Failed to fetch Variable {variable_path}: HTTP {resp.status_code} {resp.text}"
+        )
+E       AssertionError: Failed to fetch Variable f/zealt_zr-ipf5jne/webhook_secret: HTTP 404 Not found: Variable f/zealt_zr-ipf5jne/webhook_secret not found
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_final_state.py:120: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_script_deployed_with_required_imports
+ERROR tests/test_final_state.py::test_correctly_signed_request_returns_valid_true
+ERROR tests/test_final_state.py::test_incorrectly_signed_request_is_rejected
+ERROR tests/test_final_state.py::test_tampered_body_is_rejected - AssertionEr...
+FAILED tests/test_final_state.py::test_variable_is_secret - AssertionError: F...
+==================== 1 failed, 1 passed, 3 errors in 0.66s =====================

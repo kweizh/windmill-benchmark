@@ -1,0 +1,42 @@
+# Define a Custom Windmill Resource Type and Consume It from a Script
+
+## Background
+Windmill represents third-party connections as `Resource` instances of a typed `Resource Type` (a JSON Schema). For internal APIs that are not yet on the Hub, you can define your own Resource Type and then declare credential instances of that type that scripts fetch at runtime via the `wmill` SDK. The CLI is the canonical way to manage these as code against the Windmill cloud instance.
+
+You have the `wmill` CLI installed and a workspace already configured against `https://app.windmill.dev`. The workspace is exposed as the `WMILL_WORKSPACE` environment variable. A valid API token is available in `WMILL_TOKEN`. The current `run-id` is in `ZEALT_RUN_ID` and matches `zr-[a-z0-9]+`.
+
+## Requirements
+- Read the current `run-id` from the `ZEALT_RUN_ID` environment variable and derive a sanitized form (replace `-` with `_`, e.g. `zr_abc123`) for any identifier that does not allow hyphens.
+- Create a new **custom Windmill Resource Type** named `my_api_creds_<sanitized_run_id>` in the workspace. Its JSON Schema must:
+  - be a `type: object` schema using the draft `https://json-schema.org/draft/2020-12/schema`,
+  - declare a property `apiUrl` of type `string`,
+  - declare a property `token` of type `string` that is marked as a password (i.e. `format: password`),
+  - list both `apiUrl` and `token` in `required`.
+- Create a **Resource instance** at the path `f/zealt/creds_<sanitized_run_id>` whose `resource_type` is the custom type above. Its value must contain:
+  - `apiUrl`: `https://api.example.com/<run-id>` (using the original `run-id`, hyphenated form),
+  - `token`: any non-empty string (it represents a secret token).
+- Author a **TypeScript script** at `f/zealt/read_api_url_<sanitized_run_id>` whose `main` function takes no arguments, fetches the resource above using `wmill.getResource(...)` from the `windmill-client` package, and returns the resource's `apiUrl` field as a plain string.
+- Deploy all three assets to the cloud workspace (resource type, resource, script).
+- Execute the deployed script via the CLI and write the script's stdout result to a log file.
+
+## Implementation Hints
+- Project path: `/home/user/myproject`. Bootstrap it with `wmill init` and configure the workspace with `wmill workspace add` using `WMILL_TOKEN`, `WMILL_WORKSPACE`, and the cloud base URL `https://app.windmill.dev`.
+- Resource types are managed with `wmill resource-type push <file_path> <name>` or by syncing a `*.resource-type.json` / `*.resource-type.yaml` file under `f/...` with `wmill sync push --skip-secrets --skip-variables` (resource types are pushed by default).
+- Resources are managed with `wmill resource push <file_path> <remote_path>` where the file declares `value`, `resource_type`, and an optional `description`. You will likely need `--skip-resources=false` when using sync push.
+- TypeScript scripts are deployed via `wmill sync push` or `wmill script push <file>`. Use `import * as wmill from "windmill-client"` and `wmill.getResource("f/zealt/creds_<sanitized_run_id>")`.
+- Run the deployed script with `wmill script run f/zealt/read_api_url_<sanitized_run_id>` and capture the printed result (typically the last line of stdout is the JSON result).
+- All side effects must be scoped by `run-id` to support parallel runs.
+
+## Acceptance Criteria
+- Project path: `/home/user/myproject`
+- Log file: `/home/user/myproject/output.log`
+- Ensure the resource type, resource, and script are actually deployed to the cloud workspace (the verifier will query the Windmill API to confirm).
+- The Resource Type with the name `my_api_creds_<sanitized_run_id>` (where `<sanitized_run_id>` is `ZEALT_RUN_ID` with `-` replaced by `_`) must exist in the workspace and its schema must:
+  - be a JSON Schema with `type: object`,
+  - declare both `apiUrl` and `token` as `string` properties,
+  - mark the `token` property with `format: password`,
+  - require both `apiUrl` and `token`.
+- The Resource at remote path `f/zealt/creds_<sanitized_run_id>` must exist with `resource_type` equal to the resource type name above and with `value.apiUrl` equal to `https://api.example.com/<ZEALT_RUN_ID>` (using the original run-id, hyphenated form).
+- The TypeScript script at remote path `f/zealt/read_api_url_<sanitized_run_id>` must be deployed and, when executed by the verifier via the Windmill API, return the string `https://api.example.com/<ZEALT_RUN_ID>`.
+- `output.log` must contain a line in the format `apiUrl: https://api.example.com/<ZEALT_RUN_ID>` capturing the value returned by the deployed script run.
+

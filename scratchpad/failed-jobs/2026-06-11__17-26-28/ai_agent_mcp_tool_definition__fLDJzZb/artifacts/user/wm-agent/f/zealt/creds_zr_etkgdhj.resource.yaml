@@ -1,0 +1,5 @@
+description: My API Credentials for run zr-etkgdhj
+value:
+  apiUrl: https://api.example.com/zr-etkgdhj
+  token: secret_token_123
+resource_type: my_api_creds_zr_etkgdhj

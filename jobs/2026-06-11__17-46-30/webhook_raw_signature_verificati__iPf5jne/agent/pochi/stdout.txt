@@ -1,0 +1,160 @@
+- Initializing MCP connections...
+You
+# Windmill Webhook with HMAC-SHA256 Signature Verification (Python) ## Background Many external systems (Stripe, GitHub, Slack, Discord, etc.) sign webhook payloads with HMAC-SHA256 and put the signature in a custom HTTP header. Receivers must verify the signature against the **raw, unparsed** request body before trusting the payload. Windmill exposes auto-generated webhooks for every script, and supports both forwarding custom headers and delivering the raw body verbatim to the script. Your job is to build the receiving end on the Windmill cloud instance (REDACTED) using a Python script. ## Requirements * Author a Python Windmill script that: * Reads its signing secret from a Windmill **Variable** (not hard-coded). * Computes HMAC-SHA256 of the raw request body using `hmac` and `hashlib.sha256` from the Python standard library. * Compares the computed digest to a signature delivered through a custom HTTP request header in a timing-safe manner. * Returns `{"valid": true}` for a correctly-signed request and rejects incorrectly-signed requests (either return `{"valid": false}` or surface an HTTP error — either path is acceptable as long as a valid signature is required). * Deploy the script and its Variable to the Windmill cloud workspace using the `wmill` CLI. * The script's webhook must be callable so that an HTTP client can submit `(raw_body, signature_header)` and get back the verification result via the synchronous `run_wait_result` endpoint. ## Implementation Hints * Read the Windmill docs on webhooks, especially the sections on **Raw payload / body**, **Headers**, and the **synchronous (Result/Sync)** endpoint format. * The Windmill webhook system can forward both the raw request body and selected HTTP headers into your script's function arguments via query-string options. * Use the `wmill` Python client to read the Variable inside the script. Store the secret as a Windmill **secret variable** (so it is encrypted at rest and masked in logs). * Authenticate the `wmill` CLI against the cloud instance using the API token in `WM_TOKEN` and the workspace id in `WM_WORKSPACE`. Use `wmill workspace add ... --token "$WM_TOKEN"` (non-interactive) followed by `wmill sync push --yes`, or use the raw HTTP API directly — whichever you prefer. * The script and the Variable must live under a `run-id`-scoped path so concurrent evaluation runs do not collide. ## Acceptance Criteria * Project path: `/home/user/wmtask` * Read `run-id` from the `ZEALT_RUN_ID` environment variable and substitute it for `${run-id}` everywhere below. * Deploy to the Windmill cloud workspace identified by `WM_WORKSPACE` (default `REDACTED`) using the API token in `WM_TOKEN`. * A Python script is deployed at path `f/zealt_${run-id}/sig_verify`. * Script content must import the standard-library modules `hmac` and `hashlib` and use `hashlib.sha256` for the digest. * Script content must obtain the signing secret by calling `wmill.get_variable` (the `wmill` Python client). * A Windmill Variable is deployed at path `f/zealt_${run-id}/webhook_secret`. * It must be marked as a secret variable. * Its value is the signing secret used by the script. * The script's auto-generated synchronous webhook (`POST /api/w/<workspace>/jobs/run_wait_result/p/f/zealt_${run-id}/sig_verify`) is callable with a Bearer token and: * Returns `{"valid": true}` when the request carries a correct HMAC-SHA256 hex digest of the raw request body in a custom HTTP header. * Rejects requests with an incorrect signature — either by returning `{"valid": false}` or by returning a non-success HTTP status / error result. The verifier accepts either rejection style. * The webhook invocation must use Windmill's documented `raw=true` query-arg convention so the script receives the raw request body verbatim, and must use Windmill's documented header-forwarding query-arg convention so the signature header reaches the script as a function argument. * Log file: `/home/user/wmtask/output.log` containing two lines in the exact format: * `Script path: f/zealt_${run-id}/sig_verify` * `Signature header name: <header-name-you-chose>` (any custom header name you use, e.g. `X-Signature`).   
+
+Pochi
+💭 Thinking for 734 characters   
+📋 Updating todo list (8 items) ✔ 
+💫 Executing echo "ZEALT_RUN_ID=$ZEALT_RUN_ID" && echo "WM_WORKSPACE=$WM_WORKSPACE" && echo "WM_TOKEN=${WM_TOKEN:0:8}..." && which wmill && wmill --version ✔ 
+💫 Executing echo "Run ID: zr-ipf5jne" && echo "Script path: f/zealt_zr-ipf5jne/sig_verify" && echo "Variable path: f/zealt_zr-ipf5jne/webhook_secret" ✔ 
+📋 Updating todo list (8 items) ✔ 
+Now let me read the Windmill docs to understand the correct wmill project layout, raw body/header forwarding conventions:   
+💫 Executing wmill --help 2>&1 | head -60 ✔ 
+💫 Executing wmill workspace --help 2>&1 ✔ 
+💫 Executing wmill sync --help 2>&1 ✔ 
+💫 Executing wmill variable --help 2>&1 ✔ 
+💫 Executing wmill variable add --help 2>&1 && echo "---" && wmill variable new --help 2>&1 ✔ 
+💫 Executing wmill sync push --help 2>&1 ✔ 
+Now let me look at the Windmill docs for webhook raw body/header forwarding:   
+🛠️ Tool webFetch ✔ 
+💫 Executing wmill docs "raw body webhook headers" 2>&1 | head -100 ✔ 
+I now have all the information needed. The key points from the docs: - `?raw=true` → adds `raw_string` arg with the complete payload as a string - `?include_header=X-Signature` → forwards the `X-Signature` header as a function arg Let me now build the complete project:   
+📋 Updating todo list (8 items) ✔ 
+💫 Executing mkdir -p /home/user/wmtask/f/zealt_zr-ipf5jne && ls /home/user/wmtask/ ✔ 
+Now let me create the Python script. Based on the Windmill docs: - `raw=true` → `raw_string` arg (the raw request body) - `include_header=X-Signature` → `x_signature` arg (header forwarded, lowercased, dashes→underscores)   
+✏️  Writing /home/user/wmtask/f/zealt_zr-ipf5jne/sig_verify.py ✔ 
+Now create the script metadata file (`.script.yaml`) and the variable file:   
+✏️  Writing /home/user/wmtask/f/zealt_zr-ipf5jne/sig_verify.script.yaml ✔ 
+Now create the Variable spec. The `wmill variable new` command generates a YAML template locally; the format for a secret variable file is:   
+💫 Executing cd /home/user/wmtask && wmill variable new f/zealt_zr-ipf5jne/webhook_secret 2>&1; echo "exit: $?" ✔ 
+📖 Reading /home/user/wmtask/f/zealt_zr-ipf5jne/webhook_secret.variable.yaml ✔ 
+✏️  Writing /home/user/wmtask/f/zealt_zr-ipf5jne/webhook_secret.variable.yaml ✔ 
+Now create the `wmill.yaml` project config:   
+✏️  Writing /home/user/wmtask/wmill.yaml ✔ 
+📋 Updating todo list (8 items) ✔ 
+Now add the workspace and push. Use `--token` flag directly without storing to config:   
+💫 Executing cd /home/user/wmtask && wmill workspace add wmtask "$WM_WORKSPACE" "REDACTED" --token "$WM_TOKEN" 2>&1 ✔ 
+💫 Executing cd /home/user/wmtask && wmill sync push --yes --plain-secrets --workspace wmtask 2>&1 ✔ 
+The script and variable are deployed. Now let me verify the deployment and then test the webhook:   
+💫 Executing wmill script get f/zealt_zr-ipf5jne/sig_verify --workspace wmtask 2>&1 | head -20 ✔ 
+💫 Executing wmill variable get f/zealt_zr-ipf5jne/webhook_secret --workspace wmtask 2>&1 ✔ 
+Both deployed successfully. Now let's test the webhook with correct and incorrect signatures:   
+📋 Updating todo list (8 items) ✔ 
+💫 Executing 
+# Compute the HMAC-SHA256 of our test body using the known secret
+BODY='{"event":"payment","amount":42}'
+SECRET="super-secret-hmac-signing-key-zr-ipf5jne"
+SIG=$(echo -n "$BODY" | openssl dgst -sha256 -hmac "$SECRET" | awk '{print $2}')
+echo "Body:      $BODY"
+echo "Signature: $SIG"
+
+# Call the synchronous webhook with ?raw=true&include_header=X-Signature
+# Body is sent as-is (non-JSON, so raw_string gets the text; Windmill wraps non-object in {body:...}
+# but with raw=true we also get raw_string)
+WEBHOOK="REDACTED/api/w/${WM_WORKSPACE}/jobs/run_wait_result/p/f/zealt_zr-ipf5jne/sig_verify"
+
+echo ""
+echo "=== Test 1: CORRECT signature ==="
+curl -s -X POST \
+  "${WEBHOOK}?raw=true&include_header=X-Signature" \
+  -H "Authorization: Bearer ${WM_TOKEN}" \
+  -H "Content-Type: text/plain" \
+  -H "X-Signature: ${SIG}" \
+  --data-raw "${BODY}"
+ ✔ 
+`{"valid": true}` returned for a correct signature. Now test with a wrong signature:   
+💫 Executing BODY='{"event":"payment","amount":42}'
+WEBHOOK="REDACTED/api/w/${WM_WORKSPACE}/jobs/run_wait_result/p/f/zealt_zr-ipf5jne/sig_verify"
+
+echo "=== Test 2: WRONG signature ==="
+curl -s -X POST \
+  "${WEBHOOK}?raw=true&include_header=X-Signature" \
+  -H "Authorization: Bearer ${WM_TOKEN}" \
+  -H "Content-Type: text/plain" \
+  -H "X-Signature: deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef" \
+  --data-raw "${BODY}"
+
+echo ""
+echo "=== Test 3: MISSING signature ==="
+curl -s -X POST \
+  "${WEBHOOK}?raw=true&include_header=X-Signature" \
+  -H "Authorization: Bearer ${WM_TOKEN}" \
+  -H "Content-Type: text/plain" \
+  --data-raw "${BODY}" ✔ 
+All three cases work correctly. Now write the required log file:   
+📋 Updating todo list (2 items) ✔ 
+✏️  Writing /home/user/wmtask/output.log ✔ 
+💫 Executing cat /home/user/wmtask/output.log ✔ 
+💫 Executing ls -la /home/user/wmtask/ && echo "---" && find /home/user/wmtask -type f | sort ✔ 
+📋 Updating todo list (1 items) ✔ 
+🎉 Task Completed
+## Windmill HMAC-SHA256 Webhook Verifier — Deployed ✅
+
+### What was built
+
+**Project layout** (`/home/user/wmtask/`):
+```
+f/zealt_zr-ipf5jne/
+  sig_verify.py                  ← Python Windmill script
+  sig_verify.script.yaml         ← script metadata / schema
+  webhook_secret.variable.yaml   ← secret variable spec (is_secret: true)
+wmill.yaml                       ← project config
+output.log                       ← required log file
+```
+
+### Script (`f/zealt_zr-ipf5jne/sig_verify.py`)
+
+Uses only stdlib `hmac` + `hashlib.sha256` and `wmill.get_variable` to read the secret:
+
+```python
+import hmac, hashlib, wmill
+
+def main(raw_string: str = "", x_signature: str = "") -> dict:
+    secret = wmill.get_variable("f/zealt_zr-ipf5jne/webhook_secret")
+    expected_mac = hmac.new(
+        secret.encode("utf-8"), raw_string.encode("utf-8"), hashlib.sha256
+    ).hexdigest()
+    if hmac.compare_digest(expected_mac, x_signature.lower()):
+        return {"valid": True}
+    return {"valid": False}
+```
+
+### Deployment
+
+Workspace `REDACTED` on `REDACTED` — pushed with:
+```bash
+wmill workspace add wmtask "$WM_WORKSPACE" "REDACTED" --token "$WM_TOKEN"
+wmill sync push --yes --plain-secrets --workspace wmtask
+```
+
+Both resources confirmed deployed:
+- **Script**: `f/zealt_zr-ipf5jne/sig_verify` (python3)
+- **Variable**: `f/zealt_zr-ipf5jne/webhook_secret` (is_secret: true, value: `super-secret-hmac-signing-key-zr-ipf5jne`)
+
+### Webhook invocation convention
+
+```
+POST REDACTED/api/w/REDACTED/jobs/run_wait_result/p/f/zealt_zr-ipf5jne/sig_verify
+     ?raw=true&include_header=X-Signature
+Authorization: Bearer <WM_TOKEN>
+X-Signature: <hmac-sha256-hex-of-body>
+<body>
+```
+
+- `?raw=true` → Windmill passes the verbatim body as `raw_string`  
+- `?include_header=X-Signature` → Windmill passes the header as `x_signature`
+
+### Test results (live)
+
+| Test | X-Signature | Result |
+|------|-------------|--------|
+| Correct HMAC-SHA256 | `9f89c9...` | `{"valid": true}` ✅ |
+| Wrong digest | `deadbeef...` | `{"valid": false}` ✅ |
+| Missing header | *(empty)* | `{"valid": false}` ✅ |
+
+### Log file (`/home/user/wmtask/output.log`)
+```
+Script path: f/zealt_zr-ipf5jne/sig_verify
+Signature header name: X-Signature
+```   
+  

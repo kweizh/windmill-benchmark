@@ -1,0 +1,6 @@
+workspaces:
+  default:
+    workspaceId: REDACTED
+    remote: REDACTED
+includes:
+  - f/**

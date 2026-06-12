@@ -1,0 +1,8 @@
+{
+  "value": {
+    "apiUrl": "https://api.example.com/zr-hjat5xq",
+    "token": "secret-placeholder-token"
+  },
+  "resource_type": "my_api_creds_zr_hjat5xq",
+  "description": "API credentials for my_api_creds_zr_hjat5xq"
+}

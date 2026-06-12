@@ -1,0 +1,867 @@
+{
+    "schema_version": 1,
+    "created_at": "2026-06-11T18:13:54.860385Z",
+    "harbor": {
+        "version": "0.8.0",
+        "is_editable": false
+    },
+    "invocation": [
+        "/home/kweizh/.local/bin/harbor",
+        "run",
+        "--yes",
+        "--agent-import-path",
+        "agents.pochi:Pochi",
+        "--artifact",
+        "/home/user",
+        "--mounts",
+        "[{\"type\": \"bind\",\"source\":\"test_initial_state.py\",\"target\":\"/bootstrap/test_initial_state.py\"}]",
+        "--model",
+        "google/gemini-3.1-pro",
+        "-p",
+        "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks",
+        "--n-attempts",
+        "1",
+        "--max-retries",
+        "0",
+        "--job-name",
+        "2026-06-11__18-13-52",
+        "-n",
+        "5"
+    ],
+    "n_concurrent_trials": 5,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "VerifierTimeoutError",
+            "RewardFileEmptyError",
+            "AgentTimeoutError",
+            "VerifierOutputParseError",
+            "RewardFileNotFoundError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "task": {
+                "name": "go_native_script_arithmetic",
+                "type": "local",
+                "digest": "sha256:1776efa508bc9bd1206fcf71185b32471e4fde1659253f00320a40532ea44c55",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/go_native_script_arithmetic"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "typescript_bun_typed_script",
+                "type": "local",
+                "digest": "sha256:0cc94ccdc17bdcacc744c042ca44b68806da47c21ab79774c41187403972fdd1",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/typescript_bun_typed_script"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "script_run_inline_payload_cli",
+                "type": "local",
+                "digest": "sha256:e602c9bcf59df4b1f2c5d860de008474f38682072ab0b39b04351f3f2562a15e",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/script_run_inline_payload_cli"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "webhook_raw_signature_verification_py",
+                "type": "local",
+                "digest": "sha256:8d8c3511947f06a2c09b2c9ae20c4b99e5405ab578abad662a76ac8ee7d6fa35",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/webhook_raw_signature_verification_py"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "resource_type_custom_definition_cli",
+                "type": "local",
+                "digest": "sha256:3c30f9ae3cf820cd26801f43b15644c2758a33d8ef15bfb22b3379ee3184ef11",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/resource_type_custom_definition_cli"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "ai_agent_mcp_tool_definition",
+                "type": "local",
+                "digest": "sha256:73dd629cbdf784c6e1416498212a458339ccaedd5f548df1705346a19ecf7778",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/ai_agent_mcp_tool_definition"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "docker_arbitrary_image_script",
+                "type": "local",
+                "digest": "sha256:b1dc8b23a656e1ce8087c584075a3c1294a3bbe4275c016d65dba773fedb9057",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/docker_arbitrary_image_script"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "wac_flow_user_state_isolation_ts",
+                "type": "local",
+                "digest": "sha256:f24bc314f38cbdc57204ba58da4d9d72ef5abfea9281269aa17aef926b2ec5f6",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/wac_flow_user_state_isolation_ts"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "flow_error_handler_branch_yaml",
+                "type": "local",
+                "digest": "sha256:2b8f99f3c45acd0c3b5c667e4d70ba3274aab33a9e1188cb35c98a990bf38ef3",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/flow_error_handler_branch_yaml"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "python_pydantic_input_validation",
+                "type": "local",
+                "digest": "sha256:109f628a9b08740da3d310800362a826e0ba7ea38e974d07edca9b014c992084",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/python_pydantic_input_validation"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "bash_script_env_vars",
+                "type": "local",
+                "digest": "sha256:f66440cd3f3182e2022ded9c35189f184e04b8f77629d763e4611c6c54b87a61",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/bash_script_env_vars"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "flow_branch_one_of_yaml",
+                "type": "local",
+                "digest": "sha256:5b318c451ab0440bc10bf3c8e83ecd3037fd80a6d4a15e951be5445917da15af",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/flow_branch_one_of_yaml"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "multi_env_promote_yaml_cli",
+                "type": "local",
+                "digest": "sha256:5c0239de557a944bab3be3bced0683effee6b80d4bc9cda5562774594cc2f9e1",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/multi_env_promote_yaml_cli"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "declarative_flow_input_transforms",
+                "type": "local",
+                "digest": "sha256:0d682e870bd4516837e3d38ac490c26eef77b6cd59b5a50fa1a10fce8d01de68",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/declarative_flow_input_transforms"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "workspace_init_cli",
+                "type": "local",
+                "digest": "sha256:e0967e8d965d13296e7f1e8fc2cb236004014cf654a351157a682644428a2978",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/workspace_init_cli"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "wac_step_determinism_ts",
+                "type": "local",
+                "digest": "sha256:ecb073498721e795d69908df253c663c78ef665028ee151e70039c5668d3ddcd",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/wac_step_determinism_ts"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "fullcode_react_app_deploy",
+                "type": "local",
+                "digest": "sha256:106ed869c43fda9ad4dbe90cc9dd80856600b8173dd40ed0118c9a455facc0fd",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/fullcode_react_app_deploy"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "secret_variable_log_masking_py",
+                "type": "local",
+                "digest": "sha256:7602a8db74331d992a3e4b488936a9f25cf16296329409008613cc1f5c697da6",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/secret_variable_log_masking_py"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "webhook_sync_invocation_curl",
+                "type": "local",
+                "digest": "sha256:c08d06ee19d5420b680d4a8f0e8342d7d0ea07ee62b635c0e8f8f4412eb9dc2f",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/webhook_sync_invocation_curl"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "datatable_typed_query_ts",
+                "type": "local",
+                "digest": "sha256:2190a01dbd85ff4d2d88cd31a2b7f8b09aa8fc7478c2c802a7ce3cdd314e556a",
+                "source": "pending-tasks",
+                "path": "/home/kweizh/zealt/windmill-benchmark/scratchpad/pending-tasks/datatable_typed_query_ts"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3.1-pro",
+                "skills": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        }
+    ]
+}

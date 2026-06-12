@@ -1,0 +1,13 @@
+summary: Echo user script
+description: Consumes a positional argument and WM_USERNAME env var, outputs JSON
+lock: ''
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    input:
+      type: string
+      description: The input string to echo
+  required:
+    - input

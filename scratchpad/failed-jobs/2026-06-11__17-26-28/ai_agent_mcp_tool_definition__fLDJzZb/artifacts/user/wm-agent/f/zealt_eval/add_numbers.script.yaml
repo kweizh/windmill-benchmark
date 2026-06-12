@@ -1,0 +1,21 @@
+summary: Add two numbers
+description: Returns the sum of inputs `a` and `b`.
+lock: '!inline f/zealt_eval/add_numbers.script.lock'
+has_on_behalf_of: false
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  order:
+    - a
+    - b
+  properties:
+    a:
+      type: integer
+      description: First addend
+    b:
+      type: integer
+      description: Second addend
+  required:
+    - a
+    - b

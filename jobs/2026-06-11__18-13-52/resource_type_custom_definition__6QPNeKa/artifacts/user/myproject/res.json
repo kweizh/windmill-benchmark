@@ -1,0 +1,8 @@
+{
+  "value": {
+    "apiUrl": "https://api.example.com/zr-6qpneka",
+    "token": "secret_token_value"
+  },
+  "resource_type": "my_api_creds_zr_6qpneka",
+  "description": "API credentials for run zr-6qpneka"
+}

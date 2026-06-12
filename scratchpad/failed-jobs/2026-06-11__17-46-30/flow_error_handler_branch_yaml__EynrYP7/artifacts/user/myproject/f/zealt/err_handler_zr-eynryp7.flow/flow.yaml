@@ -1,0 +1,45 @@
+summary: Error Handler Demo
+description: >
+  A flow that conditionally throws an error and intercepts it via a
+  failure_module (error handler) returning a structured JSON payload.
+value:
+  modules:
+    - id: main_step
+      summary: Throw if should_fail is true
+      value:
+        type: rawscript
+        language: python3
+        content: |
+          def main(should_fail: bool):
+              if should_fail:
+                  raise Exception("Deliberately triggered failure because should_fail=True")
+              return {"ok": True}
+        input_transforms:
+          should_fail:
+            type: javascript
+            expr: flow_input.should_fail
+  failure_module:
+    id: error_handler
+    summary: Handle flow failure and return structured payload
+    value:
+      type: rawscript
+      language: python3
+      content: |
+        def main(error: dict):
+            message = error.get("message", str(error))
+            return {"handled": True, "reason": message}
+      input_transforms:
+        error:
+          type: javascript
+          expr: error
+  same_worker: false
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: object
+  properties:
+    should_fail:
+      type: boolean
+      description: When true, the inner script raises an error.
+      default: false
+  required:
+    - should_fail

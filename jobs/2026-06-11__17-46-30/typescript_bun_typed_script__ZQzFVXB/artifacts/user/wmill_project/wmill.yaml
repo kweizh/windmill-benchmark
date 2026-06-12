@@ -1,0 +1,4 @@
+defaultWorkspace: REDACTED
+includes:
+  - "f/**"
+excludes: []

@@ -1,0 +1,74 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T19:26:13.999601+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 5,
+            "passed": 5,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781205973944,
+            "stop": 1781205973999
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_wmill_yaml_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781205973987,
+                "stop": 1781205973988,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wmill_yaml_non_empty",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781205973989,
+                "stop": 1781205973990,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wmill_yaml_parses_as_mapping",
+                "status": "passed",
+                "duration": 6,
+                "start": 1781205973990,
+                "stop": 1781205973996,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wmill_yaml_has_includes_key",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781205973997,
+                "stop": 1781205973998,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_wmill_yaml_has_excludes_key",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781205973998,
+                "stop": 1781205973999,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

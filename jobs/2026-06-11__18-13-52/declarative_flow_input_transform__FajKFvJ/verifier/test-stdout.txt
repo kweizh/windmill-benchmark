@@ -1,0 +1,54 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 7 items
+
+tests/test_final_state.py .....FF                                        [100%]
+
+=================================== FAILURES ===================================
+______________________ test_flow_deployed_to_remote_path _______________________
+
+    def test_flow_deployed_to_remote_path():
+        remote_path = _remote_flow_path()
+        url = f"{BASE_URL}/api/w/{_workspace()}/flows/get/{remote_path}"
+        resp = requests.get(url, headers=_headers(), timeout=30)
+>       assert resp.status_code == 200, (
+            f"Expected the flow at '{remote_path}' to be deployed (HTTP 200), "
+            f"got {resp.status_code}: {resp.text}"
+        )
+E       AssertionError: Expected the flow at 'f/zealt/two_step_flow_zr-fajkfvj' to be deployed (HTTP 200), got 404: Not found: Flow not found at name f/zealt/two_step_flow_zr-fajkfvj (flows.rs:1484)
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_final_state.py:138: AssertionError
+____________________ test_flow_run_returns_expected_result _____________________
+
+    def test_flow_run_returns_expected_result():
+        remote_path = _remote_flow_path()
+        url = f"{BASE_URL}/api/w/{_workspace()}/jobs/run_wait_result/f/{remote_path}"
+        resp = requests.post(
+            url,
+            headers=_headers(),
+            data=json.dumps({"x": 4}),
+            timeout=120,
+        )
+>       assert resp.status_code == 200, (
+            f"Running the deployed flow with {{'x': 4}} must return HTTP 200; "
+            f"got {resp.status_code}: {resp.text}"
+        )
+E       AssertionError: Running the deployed flow with {'x': 4} must return HTTP 200; got 404: Not found: flow not found at name f/zealt/two_step_flow_zr-fajkfvj (lib.rs:1502)
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_final_state.py:158: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_flow_yaml_has_summary
+PASSED tests/test_final_state.py::test_flow_yaml_has_two_rawscript_modules
+PASSED tests/test_final_state.py::test_second_module_input_transforms_reference_first
+PASSED tests/test_final_state.py::test_flow_schema_declares_x_input
+PASSED tests/test_final_state.py::test_log_file_contents
+FAILED tests/test_final_state.py::test_flow_deployed_to_remote_path - Asserti...
+FAILED tests/test_final_state.py::test_flow_run_returns_expected_result - Ass...
+========================= 2 failed, 5 passed in 0.55s ==========================

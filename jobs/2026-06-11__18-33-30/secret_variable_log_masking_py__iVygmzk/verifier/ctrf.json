@@ -1,0 +1,89 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T19:02:38.780991+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 4,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781204558308,
+            "stop": 1781204558780
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_wmill_yaml_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781204558500,
+                "stop": 1781204558501,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_variable_manifest_exists_and_is_secret",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781204558502,
+                "stop": 1781204558504,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_file_pair_exists_and_calls_get_variable",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781204558504,
+                "stop": 1781204558505,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_output_log_contains_job_id",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 38,
+                "start": 1781204558506,
+                "stop": 1781204558544,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_output_log_contains_job_id():\n        path = os.path.join(PROJECT_DIR, \"output.log\")\n>       assert os.path.isfile(path), f\"Expected {path} to exist with the job UUID.\"\nE       AssertionError: Expected /home/user/myproject/output.log to exist with the job UUID.\nE       assert False\nE        +  where False = <function isfile at 0x7efde43c4220>('/home/user/myproject/output.log')\nE        +    where <function isfile at 0x7efde43c4220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:91: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_remote_variable_is_secret_via_api",
+                "status": "passed",
+                "duration": 226,
+                "start": 1781204558545,
+                "stop": 1781204558771,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_job_logs_show_masked_secret",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 8,
+                "start": 1781204558772,
+                "stop": 1781204558780,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_job_logs_show_masked_secret():\n        base_url, workspace, token = _windmill_env()\n>       job_id = _read_job_id()\n\ntests/test_final_state.py:132: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _read_job_id() -> str:\n        path = os.path.join(PROJECT_DIR, \"output.log\")\n>       with open(path) as f:\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/myproject/output.log'\n\ntests/test_final_state.py:104: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

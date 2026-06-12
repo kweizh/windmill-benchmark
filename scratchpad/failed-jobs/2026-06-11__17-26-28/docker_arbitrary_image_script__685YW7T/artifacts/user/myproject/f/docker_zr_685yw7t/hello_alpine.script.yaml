@@ -1,0 +1,16 @@
+summary: Hello Alpine
+description: A sandboxed Docker script running on Alpine
+lock: ''
+kind: script
+language: bash
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    message:
+      type: string
+      description: The message to print
+      default: null
+      originalType: string
+  required:
+    - message

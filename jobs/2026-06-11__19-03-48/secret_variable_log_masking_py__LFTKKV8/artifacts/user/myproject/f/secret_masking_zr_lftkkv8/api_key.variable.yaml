@@ -1,0 +1,7 @@
+value: "secret_value_zr_lftkkv8_padding"
+is_secret: true
+description: "Secret API key for secret masking demo"
+extra_perms: {}
+account: null
+is_oauth: false
+is_expired: false

@@ -1,0 +1,7 @@
+value: "secret_value_zr_buj3tws_padding"
+is_secret: true
+description: "API key for secret masking demonstration"
+path: "f/secret_masking_zr_buj3tws/api_key"
+is_oauth: false
+account: ~
+expires_at: ~

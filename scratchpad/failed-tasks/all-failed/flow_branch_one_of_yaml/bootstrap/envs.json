@@ -1,0 +1,4 @@
+{
+    "task": ["WM_TOKEN", "WM_WORKSPACE", "WM_BASE_URL"],
+    "verifier": ["WM_TOKEN", "WM_WORKSPACE", "WM_BASE_URL"]
+}

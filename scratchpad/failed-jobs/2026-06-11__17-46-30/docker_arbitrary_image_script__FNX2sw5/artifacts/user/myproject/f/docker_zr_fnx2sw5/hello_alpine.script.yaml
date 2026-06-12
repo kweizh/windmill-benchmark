@@ -1,0 +1,13 @@
+description: ''
+is_template: false
+language: bash
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  properties:
+    message:
+      description: ''
+      type: string
+  required:
+    - message
+  type: object
+tag: ''

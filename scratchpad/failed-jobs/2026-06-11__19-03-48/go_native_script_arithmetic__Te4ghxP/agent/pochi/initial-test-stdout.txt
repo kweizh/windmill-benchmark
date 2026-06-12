@@ -1,0 +1,36 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.2
+collected 6 items
+
+bootstrap/test_initial_state.py::test_wmill_cli_available PASSED
+bootstrap/test_initial_state.py::test_go_toolchain_available PASSED
+bootstrap/test_initial_state.py::test_project_dir_exists PASSED
+bootstrap/test_initial_state.py::test_zealt_run_id_env_set PASSED
+bootstrap/test_initial_state.py::test_wmill_token_env_set PASSED
+bootstrap/test_initial_state.py::test_wmill_workspace_configured FAILED
+
+=================================== FAILURES ===================================
+_______________________ test_wmill_workspace_configured ________________________
+
+    def test_wmill_workspace_configured():
+        result = subprocess.run(
+            ["wmill", "workspace", "list", "--json"],
+            capture_output=True,
+            text=True,
+            cwd=PROJECT_DIR,
+        )
+>       assert result.returncode == 0, (
+            f"`wmill workspace list --json` failed (exit {result.returncode}). stderr: {result.stderr}"
+        )
+E       AssertionError: `wmill workspace list --json` failed (exit 2). stderr: [31m  [1merror[22m: Unknown option "--json". Did you mean option "--help"?
+E         [39m
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['wmill', 'workspace', 'list', '--json'], returncode=2, stdout='\n\x1b[1mUsage:\x1b[22m   \x1b[95mwmill workspace list\x1b[39m\n\x1b[1mVersion:\x1b[22m \x1b[33m1.722.0\x1b[39m             \n\n\x1b[1mDescription:\x1b[22m\n\n  List local workspace profiles\n\n\x1b[1mOptions:\x1b[22m\n\n  \x1b[94m-h\x1b[39m, \x1b[94m--help\x1b[39m                       \x1b[31m\x1b[1m-\x1b[22m\x1b[39m Show this help.                                                                 \n  \x1b[94m--workspace\x1b[39m         \x1b[33m<\x1b[39m\x1b[95mworkspace\x1b[39m\x1b[33m>\x1b[39m  \x1b[31m\x1b[1m-\x1b[22m\x1b[39m Specify the target workspace. This overrides the default workspace.             \n  \x1b[94m--debug\x1b[39m, \x1b[94m--verbose\x1b[39m               \x1b[31m\x1b[1m-\x1b[22m\x1b[39m Show debug/verbose logs                                                         \n  \x1b[94m--show-diffs\x1b[39m                     \x1b[31m\x1b[1m-\x1b[22m\x1b[39m Show diff informations when syncing (may show sensitive informations)           \n  \x1b[94m--token\x1b[39m             \x1b[33m<\x1b[39m\x1b[95mtoken\x1b[39m\x1b[33m>\x1b[39m      \x1b[31m\x1b[1m-\x1b[22m\x1b[39m Specify an API token. This will override any stored token.                      \n  \x1b[94m--base-url\x1b[39m          \x1b[33m<\x1b[39m\x1b[95mbaseUrl\x1b[39m\x1b[33m>\x1b[39m    \x1b[31m\x1b[1m-\x1b[22m\x1b[39m Specify the base URL of the API. If used, --token and --workspace are required  \n                                     and no local remote/workspace already set will be used.                         \n  \x1b[94m--config-dir\x1b[39m        \x1b[33m<\x1b[39m\x1b[95mconfigDir\x1b[39m\x1b[33m>\x1b[39m  \x1b[31m\x1b[1m-\x1b[22m\x1b[39m Specify a custom config directory. Overrides WMILL_CONFIG_DIR environment       \n                                     variable and default ~/.config location.                                        \n\n', stderr='\x1b[31m  \x1b[1merror\x1b[22m: Unknown option "--json". Did you mean option "--help"?\n\x1b[39m\n').returncode
+
+bootstrap/test_initial_state.py:92: AssertionError
+=========================== short test summary info ============================
+FAILED bootstrap/test_initial_state.py::test_wmill_workspace_configured - AssertionError: `wmill workspace list --json` failed (exit 2). stderr: [31m  [1merror[22m: Unknown option "--json". Did you mean option "--help"?
+========================= 1 failed, 5 passed in 2.89s ==========================

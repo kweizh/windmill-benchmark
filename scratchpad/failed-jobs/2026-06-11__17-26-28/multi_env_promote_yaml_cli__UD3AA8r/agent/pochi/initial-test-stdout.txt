@@ -1,0 +1,39 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.2
+collected 11 items
+
+bootstrap/test_initial_state.py::test_required_env_var_is_set[ZEALT_RUN_ID] PASSED
+bootstrap/test_initial_state.py::test_required_env_var_is_set[WMILL_BASE_URL] PASSED
+bootstrap/test_initial_state.py::test_required_env_var_is_set[WMILL_TOKEN] PASSED
+bootstrap/test_initial_state.py::test_required_env_var_is_set[WMILL_STAGING_WORKSPACE_ID] PASSED
+bootstrap/test_initial_state.py::test_required_env_var_is_set[WMILL_PROD_WORKSPACE_ID] PASSED
+bootstrap/test_initial_state.py::test_wmill_cli_is_available PASSED
+bootstrap/test_initial_state.py::test_project_dir_exists PASSED
+bootstrap/test_initial_state.py::test_project_dir_is_writable PASSED
+bootstrap/test_initial_state.py::test_staging_workspace_has_script_to_promote PASSED
+bootstrap/test_initial_state.py::test_production_workspace_has_canary_script PASSED
+bootstrap/test_initial_state.py::test_production_workspace_does_not_yet_have_promoted_script FAILED
+
+=================================== FAILURES ===================================
+_________ test_production_workspace_does_not_yet_have_promoted_script __________
+
+    def test_production_workspace_does_not_yet_have_promoted_script() -> None:
+        base_url = os.environ["WMILL_BASE_URL"].rstrip("/")
+        token = os.environ["WMILL_TOKEN"]
+        run_id = os.environ["ZEALT_RUN_ID"]
+        prod_ws = os.environ["WMILL_PROD_WORKSPACE_ID"]
+        path = f"f/promote_{run_id}/hello"
+>       assert not _script_exists(base_url, prod_ws, token, path), (
+            f"Script {path!r} must NOT exist in the production workspace {prod_ws!r} "
+            f"before the executor performs the promotion."
+        )
+E       AssertionError: Script 'f/promote_zr-ud3aa8r/hello' must NOT exist in the production workspace 'REDACTED' before the executor performs the promotion.
+E       assert not True
+E        +  where True = _script_exists('REDACTED', 'REDACTED', 'REDACTED', 'f/promote_zr-ud3aa8r/hello')
+
+bootstrap/test_initial_state.py:220: AssertionError
+=========================== short test summary info ============================
+FAILED bootstrap/test_initial_state.py::test_production_workspace_does_not_yet_have_promoted_script
+========================= 1 failed, 10 passed in 1.36s =========================

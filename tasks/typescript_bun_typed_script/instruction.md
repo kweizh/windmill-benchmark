@@ -1,0 +1,34 @@
+# Windmill TypeScript (Bun) Typed Script Deploy & Run
+
+## Background
+Windmill is a developer platform whose core unit is a **script** — a typed function in a supported language that, once deployed, exposes a JSON-Schema-validated input form, webhooks, and an executable CLI/API. TypeScript scripts run on **Bun** by default and are stored on disk as a file pair: a `.ts` source file containing an `export async function main(...)`, plus a sibling `.script.yaml` metadata file. The `wmill` CLI uses these two files to push (deploy) the script to a Windmill workspace, where it can then be executed by its `<u|g|f>/owner/name` path.
+
+In this task you will author such a typed TypeScript (Bun) script locally, deploy it to the **Windmill Cloud** workspace using `wmill sync push`, and execute it via `wmill script run` with concrete arguments.
+
+## Requirements
+- Initialize a local Windmill workspace folder that targets Windmill Cloud (`https://app.windmill.dev`).
+- Author a TypeScript (Bun) script whose `main` function accepts two numeric arguments and returns a JSON object containing their sum.
+- Provide the matching `.script.yaml` metadata file so the file pair is a valid Windmill script asset.
+- Deploy the script to the cloud workspace using `wmill sync push --yes`.
+- Execute the deployed script with concrete inputs via `wmill script run` and capture the run output to a log file.
+
+## Implementation Hints
+- Use the `windmill-cli` package (Node 20+) to obtain the `wmill` CLI; authenticate against the cloud workspace using the API token and workspace id supplied via environment variables.
+- The Windmill Cloud base URL is `https://app.windmill.dev`; you can pass it explicitly through the CLI flags or via `wmill workspace add`.
+- Use `wmill init` to bootstrap the `wmill.yaml` configuration, then place the script file pair under the `f/` path tree so that the default `includes: [f/**]` picks it up.
+- A TypeScript (Bun) Windmill script must define `export async function main(...)`; the JSON Schema of inputs is inferred from the typed signature, so use plain `number` types for the two arguments.
+- Use `wmill sync push --yes` to deploy in a single non-interactive call. The push is **destructive** for items inside the configured includes, so keep the folder scoped (e.g., only your new script under `f/zealt_demo/`).
+- To run the deployed script, use `wmill script run <path> -d '{"a": 2, "b": 3}'` and redirect stdout to the required log file. Use `--silent` so only the final JSON result is printed.
+
+## Acceptance Criteria
+- Project path: `/home/user/wmill_project`
+- Ensure the script is really deployed to Windmill Cloud and at least one successful run with `a=2, b=3` is executed.
+- Log file: `/home/user/wmill_project/run.log`
+- The script path on the workspace must be `f/zealt_demo/sum_ts_${run-id}` where `${run-id}` is read from the `ZEALT_RUN_ID` environment variable.
+- The file pair must exist on disk under the project folder at:
+  - `f/zealt_demo/sum_ts_${run-id}.ts`
+  - `f/zealt_demo/sum_ts_${run-id}.script.yaml`
+- The `.ts` file must define `export async function main(a: number, b: number)` (the parameter names must be `a` and `b`, both typed as `number`).
+- After deployment, the script must be retrievable from the workspace API (i.e., it has been pushed to Windmill Cloud, not only created locally).
+- The log file `/home/user/wmill_project/run.log` must contain the final result JSON of running the script with `a=2, b=3`. The JSON must be parseable and must contain a numeric field `sum` equal to `5`.
+

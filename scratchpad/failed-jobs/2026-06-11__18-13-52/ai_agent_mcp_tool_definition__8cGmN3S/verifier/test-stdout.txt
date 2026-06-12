@@ -1,0 +1,153 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 5 items
+
+tests/test_final_state.py EEEFE                                          [100%]
+
+==================================== ERRORS ====================================
+________________ ERROR at setup of test_first_module_is_aiagent ________________
+
+deploy_log_paths = ('f/agent_zr-8cgmn3s/lookup_sku', 'f/agent_zr-8cgmn3s/price_agent')
+wmill_token = 'REDACTED', wmill_workspace = 'REDACTED'
+
+    @pytest.fixture(scope="session")
+    def fetched_flow(
+        deploy_log_paths: Tuple[str, str],
+        wmill_token: str,
+        wmill_workspace: str,
+    ) -> Dict[str, Any]:
+        _, flow_path = deploy_log_paths
+        url = f"{WMILL_BASE_URL}/api/w/{wmill_workspace}/flows/get/{flow_path}"
+        resp = requests.get(
+            url,
+            headers={"Authorization": f"Bearer {wmill_token}"},
+            timeout=30,
+        )
+>       assert resp.status_code == 200, (
+            f"Failed to fetch deployed flow at {flow_path}: "
+            f"HTTP {resp.status_code} - {resp.text[:500]}"
+        )
+E       AssertionError: Failed to fetch deployed flow at f/agent_zr-8cgmn3s/price_agent: HTTP 404 - Not found: Flow not found at name f/agent_zr-8cgmn3s/price_agent (flows.rs:1484)
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_final_state.py:88: AssertionError
+_________ ERROR at setup of test_aiagent_tools_reference_deployed_tool _________
+
+deploy_log_paths = ('f/agent_zr-8cgmn3s/lookup_sku', 'f/agent_zr-8cgmn3s/price_agent')
+wmill_token = 'REDACTED', wmill_workspace = 'REDACTED'
+
+    @pytest.fixture(scope="session")
+    def fetched_flow(
+        deploy_log_paths: Tuple[str, str],
+        wmill_token: str,
+        wmill_workspace: str,
+    ) -> Dict[str, Any]:
+        _, flow_path = deploy_log_paths
+        url = f"{WMILL_BASE_URL}/api/w/{wmill_workspace}/flows/get/{flow_path}"
+        resp = requests.get(
+            url,
+            headers={"Authorization": f"Bearer {wmill_token}"},
+            timeout=30,
+        )
+>       assert resp.status_code == 200, (
+            f"Failed to fetch deployed flow at {flow_path}: "
+            f"HTTP {resp.status_code} - {resp.text[:500]}"
+        )
+E       AssertionError: Failed to fetch deployed flow at f/agent_zr-8cgmn3s/price_agent: HTTP 404 - Not found: Flow not found at name f/agent_zr-8cgmn3s/price_agent (flows.rs:1484)
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_final_state.py:88: AssertionError
+______ ERROR at setup of test_output_schema_defined_with_required_fields _______
+
+deploy_log_paths = ('f/agent_zr-8cgmn3s/lookup_sku', 'f/agent_zr-8cgmn3s/price_agent')
+wmill_token = 'REDACTED', wmill_workspace = 'REDACTED'
+
+    @pytest.fixture(scope="session")
+    def fetched_flow(
+        deploy_log_paths: Tuple[str, str],
+        wmill_token: str,
+        wmill_workspace: str,
+    ) -> Dict[str, Any]:
+        _, flow_path = deploy_log_paths
+        url = f"{WMILL_BASE_URL}/api/w/{wmill_workspace}/flows/get/{flow_path}"
+        resp = requests.get(
+            url,
+            headers={"Authorization": f"Bearer {wmill_token}"},
+            timeout=30,
+        )
+>       assert resp.status_code == 200, (
+            f"Failed to fetch deployed flow at {flow_path}: "
+            f"HTTP {resp.status_code} - {resp.text[:500]}"
+        )
+E       AssertionError: Failed to fetch deployed flow at f/agent_zr-8cgmn3s/price_agent: HTTP 404 - Not found: Flow not found at name f/agent_zr-8cgmn3s/price_agent (flows.rs:1484)
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_final_state.py:88: AssertionError
+___ ERROR at setup of test_invoking_agent_returns_schema_conformant_payload ____
+
+deploy_log_paths = ('f/agent_zr-8cgmn3s/lookup_sku', 'f/agent_zr-8cgmn3s/price_agent')
+wmill_token = 'REDACTED', wmill_workspace = 'REDACTED'
+
+    @pytest.fixture(scope="session")
+    def fetched_flow(
+        deploy_log_paths: Tuple[str, str],
+        wmill_token: str,
+        wmill_workspace: str,
+    ) -> Dict[str, Any]:
+        _, flow_path = deploy_log_paths
+        url = f"{WMILL_BASE_URL}/api/w/{wmill_workspace}/flows/get/{flow_path}"
+        resp = requests.get(
+            url,
+            headers={"Authorization": f"Bearer {wmill_token}"},
+            timeout=30,
+        )
+>       assert resp.status_code == 200, (
+            f"Failed to fetch deployed flow at {flow_path}: "
+            f"HTTP {resp.status_code} - {resp.text[:500]}"
+        )
+E       AssertionError: Failed to fetch deployed flow at f/agent_zr-8cgmn3s/price_agent: HTTP 404 - Not found: Flow not found at name f/agent_zr-8cgmn3s/price_agent (flows.rs:1484)
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_final_state.py:88: AssertionError
+=================================== FAILURES ===================================
+_________________________ test_tool_script_is_deployed _________________________
+
+deploy_log_paths = ('f/agent_zr-8cgmn3s/lookup_sku', 'f/agent_zr-8cgmn3s/price_agent')
+wmill_token = 'REDACTED', wmill_workspace = 'REDACTED'
+
+    def test_tool_script_is_deployed(
+        deploy_log_paths: Tuple[str, str],
+        wmill_token: str,
+        wmill_workspace: str,
+    ) -> None:
+        tool_path, _ = deploy_log_paths
+        url = (
+            f"{WMILL_BASE_URL}/api/w/{wmill_workspace}/scripts/get/{tool_path}"
+        )
+        resp = requests.get(
+            url,
+            headers={"Authorization": f"Bearer {wmill_token}"},
+            timeout=30,
+        )
+>       assert resp.status_code == 200, (
+            f"Tool script {tool_path} is not reachable on the cloud workspace: "
+            f"HTTP {resp.status_code} - {resp.text[:500]}"
+        )
+E       AssertionError: Tool script f/agent_zr-8cgmn3s/lookup_sku is not reachable on the cloud workspace: HTTP 404 - 
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_final_state.py:258: AssertionError
+=========================== short test summary info ============================
+ERROR tests/test_final_state.py::test_first_module_is_aiagent - AssertionErro...
+ERROR tests/test_final_state.py::test_aiagent_tools_reference_deployed_tool
+ERROR tests/test_final_state.py::test_output_schema_defined_with_required_fields
+ERROR tests/test_final_state.py::test_invoking_agent_returns_schema_conformant_payload
+FAILED tests/test_final_state.py::test_tool_script_is_deployed - AssertionErr...
+========================= 1 failed, 4 errors in 0.99s ==========================

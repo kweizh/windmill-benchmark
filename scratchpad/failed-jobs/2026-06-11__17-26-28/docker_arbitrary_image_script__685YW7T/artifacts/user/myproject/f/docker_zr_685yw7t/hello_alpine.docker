@@ -1,0 +1,11 @@
+# shellcheck shell=bash
+# sandbox alpine:3
+
+message="$1"
+
+cd /tmp
+
+. /etc/os-release
+RESULT="hello $message from $NAME"
+echo "$RESULT"
+echo -n "\"$RESULT\"" > result.json

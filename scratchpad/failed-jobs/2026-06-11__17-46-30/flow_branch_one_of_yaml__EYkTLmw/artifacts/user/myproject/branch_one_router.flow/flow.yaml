@@ -1,0 +1,53 @@
+summary: Branch One Router
+description: Routes to branch_a or branch_b based on the 'route' input field.
+value:
+  modules:
+    - id: branchone_router
+      summary: Route based on input
+      value:
+        type: branchone
+        branches:
+          - summary: Branch A
+            expr: flow_input.route === "a"
+            modules:
+              - id: branch_a_script
+                value:
+                  type: rawscript
+                  language: deno
+                  content: |
+                    export async function main() {
+                      return "branch_a_route";
+                    }
+                  input_transforms: {}
+          - summary: Branch B
+            expr: flow_input.route === "b"
+            modules:
+              - id: branch_b_script
+                value:
+                  type: rawscript
+                  language: deno
+                  content: |
+                    export async function main() {
+                      return "branch_b_route";
+                    }
+                  input_transforms: {}
+        default:
+          - id: default_script
+            value:
+              type: rawscript
+              language: deno
+              content: |
+                export async function main() {
+                  return "default_route";
+                }
+              input_transforms: {}
+  same_worker: false
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    route:
+      type: string
+      description: The route to dispatch (e.g. "a" or "b")
+  required:
+    - route

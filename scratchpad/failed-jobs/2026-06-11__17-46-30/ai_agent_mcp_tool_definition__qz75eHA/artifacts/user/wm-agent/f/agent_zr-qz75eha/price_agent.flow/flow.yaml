@@ -1,0 +1,52 @@
+summary: Price Agent - AI Agent that looks up product SKU pricing
+description: AI Agent flow that uses the lookup_sku tool to retrieve structured pricing data for a given product SKU.
+value:
+  modules:
+    - id: agent_step
+      value:
+        type: aiagent
+        input_transforms:
+          provider:
+            type: ai
+          output_type:
+            type: static
+            value: text
+          user_message:
+            type: javascript
+            expr: flow_input.prompt
+          output_schema:
+            type: static
+            value:
+              $schema: https://json-schema.org/draft/2020-12/schema
+              type: object
+              properties:
+                sku:
+                  type: string
+                  description: The product SKU
+                unit_price:
+                  type: number
+                  description: The unit price of the product
+                currency:
+                  type: string
+                  description: The currency code (e.g. USD)
+              required:
+                - sku
+                - unit_price
+                - currency
+        tools:
+          - id: lookup_sku
+            summary: Look up unit price and currency for a product SKU
+            value:
+              tool_type: flowmodule
+              type: script
+              path: f/agent_zr-qz75eha/lookup_sku
+              input_transforms: {}
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    prompt:
+      type: string
+      description: The user's prompt describing the product SKU to look up
+  required:
+    - prompt

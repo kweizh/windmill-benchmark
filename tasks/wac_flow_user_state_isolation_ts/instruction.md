@@ -1,0 +1,47 @@
+# Windmill TypeScript WAC: Per-Flow User State Accumulator
+
+## Background
+Windmill's Workflows-as-Code (WAC) SDK exposes a *per-flow-execution* user state via the documented `getFlowUserState` / `setFlowUserState` calls in `windmill-client`. Unlike `getState` / `setState` (which is global to a script asset across runs), the user state lives on the root flow/job for the duration of a single execution and is automatically isolated between independent runs.
+
+You will author a TypeScript WAC workflow that uses these calls to accumulate the integers from an input array into a single running total across multiple steps within one execution, then return the final value. The workflow is deployed to the Windmill Cloud workspace (`https://app.windmill.dev`) using the `wmill` CLI.
+
+## Requirements
+- The Windmill Cloud workspace is already authenticated in this environment as the workspace named `evaluation-ws`.
+- Read `ZEALT_RUN_ID` from the environment and use it to namespace the script path so concurrent trials do not collide.
+- Author a TypeScript WAC script (using the `workflow` / `step` primitives from `windmill-client`) at:
+  `f/zealt_${ZEALT_RUN_ID}/wac_accumulator.ts`
+- The script's `main` function must accept a single argument named `values` of type `number[]`.
+- Inside the workflow you must:
+  1. Initialize an accumulator inside the per-flow user state (e.g. under the key `acc`) to `0`.
+  2. Iterate over `values` and, for each element, read the current accumulator from the user state, add the element, and write the new value back — each read/modify/write performed inside its own `step(...)` checkpoint so the SDK call is observable as a real flow-state mutation across multiple steps.
+  3. After processing every element, read the final accumulator value out of the user state and return an object of shape `{ "accumulator": <number> }`.
+- The workflow must use the documented SDK names: `getFlowUserState` and `setFlowUserState` from `windmill-client` (no custom shims, no global variables, no `getState`/`setState`, no plain in-function variables for the accumulator).
+- Deploy the script to the cloud workspace using the `wmill` CLI (e.g. `wmill script push` / `wmill sync push --yes`).
+- After deploying, trigger the script twice from the CLI with input `{ "values": [1, 2, 3] }` and append each invocation's JSON result, one per line, to `/home/user/wac_accumulator/output.log` in the exact format:
+  ```
+  RUN 1 RESULT: {"accumulator": <number>}
+  RUN 2 RESULT: {"accumulator": <number>}
+  ```
+
+## Implementation Hints
+- The `wmill` CLI is pre-installed and the workspace `evaluation-ws` is already added and selected. You do not need to call `wmill workspace add`.
+- A bootstrapped project skeleton with `wmill.yaml` already exists at `/home/user/wac_accumulator/`. Place the script file inside the `f/zealt_${ZEALT_RUN_ID}/` folder under that directory and push with `wmill sync push --yes` (or push the script directly with `wmill script push`).
+- TypeScript scripts on Windmill use the Bun runtime; import from `"windmill-client"`.
+- The cloud worker executes each `step(...)` block once per checkpoint, so the SDK round-trip to the flow user state happens server-side; do not try to keep the accumulator only in a local variable.
+- Use `wmill script run f/zealt_${ZEALT_RUN_ID}/wac_accumulator -d '{"values":[1,2,3]}'` to execute. The CLI prints the JSON result of the run to stdout; capture it and write it into the log.
+- The two CLI invocations are independent flow runs, so the per-flow user state from the first run must NOT bleed into the second run. Do not try to add any cross-run synchronization.
+
+## Acceptance Criteria
+- Project path: /home/user/wac_accumulator
+- Ensure the script is actually deployed to the cloud workspace and the log artifact exists.
+- Log file: /home/user/wac_accumulator/output.log
+- The deployed script path on the workspace must be `f/zealt_${ZEALT_RUN_ID}/wac_accumulator` where `${ZEALT_RUN_ID}` is read from the `ZEALT_RUN_ID` environment variable.
+- The source TypeScript file at `/home/user/wac_accumulator/f/zealt_${ZEALT_RUN_ID}/wac_accumulator.ts` must:
+  - import from `windmill-client`,
+  - reference the identifiers `getFlowUserState` and `setFlowUserState` (the documented SDK names),
+  - export an `async function main(values: number[])` (or equivalent typed signature accepting a number array).
+- The log file must contain exactly two lines matching:
+  - `RUN 1 RESULT: {"accumulator": <number>}`
+  - `RUN 2 RESULT: {"accumulator": <number>}`
+  (Whitespace inside the JSON object is flexible; the key must be `accumulator` and the value must be an integer.)
+

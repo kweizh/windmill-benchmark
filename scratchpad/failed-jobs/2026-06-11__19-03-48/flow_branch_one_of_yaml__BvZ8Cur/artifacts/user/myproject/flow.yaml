@@ -1,0 +1,44 @@
+summary: "Branch one router - dispatches based on 'route' input"
+value:
+  modules:
+    - id: router
+      summary: "Route dispatcher"
+      value:
+        type: branchone
+        branches:
+          - summary: "Route A"
+            expr: "flow_input.route == 'a'"
+            modules:
+              - id: branch_a
+                value:
+                  type: rawscript
+                  language: deno
+                  input_transforms: {}
+                  content: |
+                    export function main() {
+                      return "branch_a_route";
+                    }
+          - summary: "Route B"
+            expr: "flow_input.route == 'b'"
+            modules:
+              - id: branch_b
+                value:
+                  type: rawscript
+                  language: deno
+                  input_transforms: {}
+                  content: |
+                    export function main() {
+                      return "branch_b_route";
+                    }
+        default:
+          - id: default_branch
+            value:
+              type: identity
+schema:
+  type: object
+  properties:
+    route:
+      type: string
+      description: "The route to dispatch on ('a' or 'b')"
+  required:
+    - route

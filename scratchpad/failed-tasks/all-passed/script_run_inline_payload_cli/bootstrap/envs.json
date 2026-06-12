@@ -1,0 +1,4 @@
+{
+    "task": ["WMILL_BASE_URL", "WMILL_WORKSPACE_ID", "WMILL_TOKEN"],
+    "verifier": []
+}

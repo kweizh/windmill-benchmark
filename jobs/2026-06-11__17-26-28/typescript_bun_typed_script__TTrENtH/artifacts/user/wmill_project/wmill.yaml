@@ -1,0 +1,20 @@
+defaultTs: bun
+includes:
+  - f/zealt_demo/**
+excludes: []
+skipVariables: true
+skipResources: true
+skipResourceTypes: true
+skipSecrets: true
+skipScripts: false
+skipFlows: true
+skipApps: true
+skipFolders: true
+skipWorkspaceDependencies: true
+nonDottedPaths: true
+syncBehavior: v1
+codebases: []
+workspaces:
+  main: {}
+  REDACTED:
+    baseUrl: REDACTED/

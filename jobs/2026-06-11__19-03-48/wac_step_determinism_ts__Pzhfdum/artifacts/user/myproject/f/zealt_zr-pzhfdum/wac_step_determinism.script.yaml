@@ -1,0 +1,7 @@
+summary: ""
+description: ""
+kind: script
+schema:
+  type: object
+  properties: {}
+  required: []

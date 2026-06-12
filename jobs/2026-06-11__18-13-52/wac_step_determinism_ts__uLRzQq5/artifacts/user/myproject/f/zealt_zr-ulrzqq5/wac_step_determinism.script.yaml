@@ -1,0 +1,10 @@
+summary: WAC step determinism
+description: WAC step determinism
+lock: '!inline wac_step_determinism.ts'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties: {}
+  required: []
+language: bun

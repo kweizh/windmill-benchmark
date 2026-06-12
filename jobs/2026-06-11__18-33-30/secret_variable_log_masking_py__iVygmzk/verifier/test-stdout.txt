@@ -1,0 +1,45 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: anyio-4.13.0, json-ctrf-0.5.2
+collected 6 items
+
+tests/test_final_state.py ...F.F                                         [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_output_log_contains_job_id ________________________
+
+    def test_output_log_contains_job_id():
+        path = os.path.join(PROJECT_DIR, "output.log")
+>       assert os.path.isfile(path), f"Expected {path} to exist with the job UUID."
+E       AssertionError: Expected /home/user/myproject/output.log to exist with the job UUID.
+E       assert False
+E        +  where False = <function isfile at 0x7efde43c4220>('/home/user/myproject/output.log')
+E        +    where <function isfile at 0x7efde43c4220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:91: AssertionError
+_______________________ test_job_logs_show_masked_secret _______________________
+
+    def test_job_logs_show_masked_secret():
+        base_url, workspace, token = _windmill_env()
+>       job_id = _read_job_id()
+
+tests/test_final_state.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _read_job_id() -> str:
+        path = os.path.join(PROJECT_DIR, "output.log")
+>       with open(path) as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/myproject/output.log'
+
+tests/test_final_state.py:104: FileNotFoundError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_wmill_yaml_exists
+PASSED tests/test_final_state.py::test_variable_manifest_exists_and_is_secret
+PASSED tests/test_final_state.py::test_script_file_pair_exists_and_calls_get_variable
+PASSED tests/test_final_state.py::test_remote_variable_is_secret_via_api
+FAILED tests/test_final_state.py::test_output_log_contains_job_id - Assertion...
+FAILED tests/test_final_state.py::test_job_logs_show_masked_secret - FileNotF...
+========================= 2 failed, 4 passed in 0.47s ==========================

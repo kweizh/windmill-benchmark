@@ -1,0 +1,14 @@
+{
+    "task": [
+        "WMILL_BASE_URL",
+        "WMILL_TOKEN",
+        "WMILL_STAGING_WORKSPACE_ID",
+        "WMILL_PROD_WORKSPACE_ID"
+    ],
+    "verifier": [
+        "WMILL_BASE_URL",
+        "WMILL_TOKEN",
+        "WMILL_STAGING_WORKSPACE_ID",
+        "WMILL_PROD_WORKSPACE_ID"
+    ]
+}

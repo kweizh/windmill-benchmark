@@ -1,0 +1,28 @@
+summary: Two-step linear flow that doubles then increments
+schema:
+  type: object
+  properties:
+    x:
+      type: integer
+value:
+  modules:
+  - id: step1
+    value:
+      type: rawscript
+      language: python3
+      content: |
+        return x * 2
+      input_transforms:
+        x:
+          type: javascript
+          expr: flow_input.x
+  - id: step2
+    value:
+      type: rawscript
+      language: python3
+      content: |
+        return value + 1
+      input_transforms:
+        value:
+          type: javascript
+          expr: results.step1

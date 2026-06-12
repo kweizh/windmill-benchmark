@@ -1,0 +1,15 @@
+description: My API Credentials for run zr_etkgdhj
+format_extension: null
+is_fileset: false
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    apiUrl:
+      type: string
+    token:
+      type: string
+      format: password
+  required:
+    - apiUrl
+    - token

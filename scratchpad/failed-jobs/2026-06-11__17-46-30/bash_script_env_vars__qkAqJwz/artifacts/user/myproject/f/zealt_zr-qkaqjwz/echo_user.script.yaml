@@ -1,0 +1,18 @@
+summary: Echo input and caller username
+description: Prints a JSON object with the input argument and the WM_USERNAME runtime variable
+is_template: false
+language: bash
+kind: script
+lock: ''
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  order:
+    - input
+  properties:
+    input:
+      type: string
+      description: The string to echo back
+      default: ''
+  required:
+    - input

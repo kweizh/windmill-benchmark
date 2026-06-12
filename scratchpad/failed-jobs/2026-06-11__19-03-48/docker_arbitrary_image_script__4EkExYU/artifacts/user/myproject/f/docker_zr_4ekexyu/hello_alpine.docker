@@ -1,0 +1,6 @@
+# sandbox alpine:3
+# The "# sandbox <image>" annotation runs this script INSIDE the image above,
+# sandboxed via nsjail. The body runs with the image's /bin/sh and windmill args
+# bind positionally as $1, $2, ...
+message="$1"
+. /etc/os-release && echo "hello $message from $NAME"

@@ -1,0 +1,68 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T17:51:05.994671+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 3,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781200264871,
+            "stop": 1781200265994
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_output_log_contains_api_url",
+                "status": "passed",
+                "duration": 4,
+                "start": 1781200265249,
+                "stop": 1781200265253,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_resource_type_exists_with_expected_schema",
+                "status": "passed",
+                "duration": 245,
+                "start": 1781200265253,
+                "stop": 1781200265498,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_resource_instance_exists_with_expected_value",
+                "status": "passed",
+                "duration": 212,
+                "start": 1781200265499,
+                "stop": 1781200265711,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deployed_script_returns_api_url",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 282,
+                "start": 1781200265712,
+                "stop": 1781200265994,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "base_url = 'REDACTED', workspace = 'REDACTED'\nauth_headers = {'Authorization': 'Bearer REDACTED'}\nscript_path = 'f/zealt/read_api_url_zr_t6ggbax'\nexpected_api_url = 'https://api.example.com/zr-t6ggbax'\n\n    def test_deployed_script_returns_api_url(\n        base_url: str,\n        workspace: str,\n        auth_headers: dict,\n        script_path: str,\n        expected_api_url: str,\n    ):\n        url = f\"{base_url}/api/w/{workspace}/jobs/run_wait_result/p/{script_path}\"\n        response = requests.post(url, headers=auth_headers, json={}, timeout=120)\n>       assert response.status_code == 200, (\n            f\"Failed to run script at {script_path} via {url}: \"\n            f\"status={response.status_code}, body={response.text}\"\n        )\nE       AssertionError: Failed to run script at f/zealt/read_api_url_zr_t6ggbax via REDACTED/api/w/REDACTED/jobs/run_wait_result/p/f/zealt/read_api_url_zr_t6ggbax: status=400, body=Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\nE       assert 400 == 200\nE        +  where 400 = <Response [400]>.status_code\n\ntests/test_final_state.py:166: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

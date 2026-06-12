@@ -1,0 +1,71 @@
+Skipping image OS validation for hb__flow_error_handler_branch_yaml: docker inspect returned 1
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.14 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo zr-wy2ihb5 > /logs/artifacts/run-id && echo flow_error_handler_branch_yaml__Wy2iHb5 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: pochi --model zai/glm-5.1 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Windmill Flow Error Handler in YAML
+
+## Background
+Windmill flows are declarative DAGs that can be authored as `.flow.yaml` files and deployed to a Windmill instance. A flow can declare a documented error handler that runs when one of its modules fails.
+
+## Requirements
+Author a Windmill flow as YAML on disk and deploy it to the cloud workspace. The flow must contain a script step that throws when its input demands it, and an error handler that intercepts the failure and returns a custom JSON payload.
+
+## Implementation Hints
+- Read the current `run-id` from the `ZEALT_RUN_ID` environment variable and append it to the flow path so concurrent trials do not collide.
+- The Windmill CLI (`wmill`) is preconfigured to talk to the cloud workspace; environment variables for the base URL, workspace, and token are already provided.
+- A flow's error handler is documented in the OpenFlow specification.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Ensure the flow is actually deployed to the cloud workspace; the verifier will fetch and run the deployed flow remotely.
+- The flow must be deployed at the remote path `f/zealt/err_handler_${run-id}` where `run-id` is read from `ZEALT_RUN_ID`.
+- The local YAML file `/home/user/myproject/f/zealt/err_handler_${run-id}.flow/flow.yaml` must use the documented error-handler keyword from the OpenFlow spec.
+- The flow accepts a single input field `should_fail` (boolean). When `should_fail` is `true`, the inner script must raise/throw an error.
+- When the inner script fails, the flow's overall result (i.e. the value returned by the error handler) must be a JSON object of the form `{ "handled": true, "reason": "<non-empty string>" }`. The `reason` value should be derived from the upstream error message.
+
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

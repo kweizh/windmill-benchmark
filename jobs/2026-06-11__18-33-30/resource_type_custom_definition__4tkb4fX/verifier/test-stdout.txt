@@ -1,0 +1,70 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 4 items
+
+tests/test_final_state.py .F.F                                           [100%]
+
+=================================== FAILURES ===================================
+________________ test_resource_type_exists_with_expected_schema ________________
+
+base_url = 'REDACTED', workspace = 'REDACTED'
+auth_headers = {'Authorization': 'Bearer REDACTED'}
+resource_type_name = 'my_api_creds_zr_4tkb4fx'
+
+    def test_resource_type_exists_with_expected_schema(
+        base_url: str,
+        workspace: str,
+        auth_headers: dict,
+        resource_type_name: str,
+    ):
+        url = f"{base_url}/api/w/{workspace}/resources/type/get/{resource_type_name}"
+        response = requests.get(url, headers=auth_headers, timeout=30)
+        assert response.status_code == 200, (
+            f"Resource type {resource_type_name} not found via {url}: "
+            f"status={response.status_code}, body={response.text}"
+        )
+        body = response.json()
+        schema = body.get("schema")
+>       assert isinstance(schema, dict), (
+            f"Resource type {resource_type_name} must have a JSON Schema 'schema' object,"
+            f" got: {body}"
+        )
+E       AssertionError: Resource type my_api_creds_zr_4tkb4fx must have a JSON Schema 'schema' object, got: {'workspace_id': 'REDACTED', 'name': 'my_api_creds_zr_4tkb4fx', 'schema': None, 'description': None, 'created_by': 'REDACTED', 'edited_at': '2026-06-11T18:39:23.754329Z', 'format_extension': None, 'is_fileset': False}
+E       assert False
+E        +  where False = isinstance(None, dict)
+
+tests/test_final_state.py:92: AssertionError
+_____________________ test_deployed_script_returns_api_url _____________________
+
+base_url = 'REDACTED', workspace = 'REDACTED'
+auth_headers = {'Authorization': 'Bearer REDACTED'}
+script_path = 'f/zealt/read_api_url_zr_4tkb4fx'
+expected_api_url = 'https://api.example.com/zr-4tkb4fx'
+
+    def test_deployed_script_returns_api_url(
+        base_url: str,
+        workspace: str,
+        auth_headers: dict,
+        script_path: str,
+        expected_api_url: str,
+    ):
+        url = f"{base_url}/api/w/{workspace}/jobs/run_wait_result/p/{script_path}"
+        response = requests.post(url, headers=auth_headers, json={}, timeout=120)
+>       assert response.status_code == 200, (
+            f"Failed to run script at {script_path} via {url}: "
+            f"status={response.status_code}, body={response.text}"
+        )
+E       AssertionError: Failed to run script at f/zealt/read_api_url_zr_4tkb4fx via REDACTED/api/w/REDACTED/jobs/run_wait_result/p/f/zealt/read_api_url_zr_4tkb4fx: status=400, body=Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.
+E       assert 400 == 200
+E        +  where 400 = <Response [400]>.status_code
+
+tests/test_final_state.py:166: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_output_log_contains_api_url
+PASSED tests/test_final_state.py::test_resource_instance_exists_with_expected_value
+FAILED tests/test_final_state.py::test_resource_type_exists_with_expected_schema
+FAILED tests/test_final_state.py::test_deployed_script_returns_api_url - Asse...
+========================= 2 failed, 2 passed in 0.68s ==========================

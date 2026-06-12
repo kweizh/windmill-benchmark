@@ -1,0 +1,119 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T18:43:13.817783+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 10,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781203392948,
+            "stop": 1781203393817
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_source_file_exists",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781203392976,
+                "stop": 1781203392978,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_source_imports_windmill_client",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781203392978,
+                "stop": 1781203392979,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_source_uses_documented_user_state_sdk_calls",
+                "status": "passed",
+                "duration": 0,
+                "start": 1781203392980,
+                "stop": 1781203392980,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_source_main_accepts_number_array",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781203392981,
+                "stop": 1781203392982,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_log_file_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781203392982,
+                "stop": 1781203392983,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_log_contains_two_run_results",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781203392983,
+                "stop": 1781203392984,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_each_run_has_numeric_accumulator",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781203392984,
+                "stop": 1781203392985,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_within_run_accumulation_correct",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781203392986,
+                "stop": 1781203392987,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_runs_are_isolated_from_each_other",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781203392987,
+                "stop": 1781203392988,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_is_deployed_on_cloud_workspace",
+                "status": "passed",
+                "duration": 829,
+                "start": 1781203392988,
+                "stop": 1781203393817,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

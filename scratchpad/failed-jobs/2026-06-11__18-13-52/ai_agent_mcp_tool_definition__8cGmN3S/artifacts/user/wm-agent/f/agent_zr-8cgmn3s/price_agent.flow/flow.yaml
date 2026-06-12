@@ -1,0 +1,46 @@
+summary: Price Agent Flow
+description: AI Agent that looks up price for a SKU
+schema:
+  $schema: http://json-schema.org/draft-07/schema#
+  type: object
+  properties:
+    prompt:
+      type: string
+      description: User prompt
+  required:
+    - prompt
+value:
+  modules:
+    - id: a
+      value:
+        type: aiagent
+        input_transforms:
+          provider:
+            type: static
+            value:
+              kind: workspace_default
+          user_message:
+            type: javascript
+            expr: flow_input.prompt
+          output_schema:
+            type: static
+            value:
+              type: object
+              properties:
+                sku:
+                  type: string
+                unit_price:
+                  type: number
+                currency:
+                  type: string
+              required:
+                - sku
+                - unit_price
+                - currency
+        tools:
+          - id: lookup_sku
+            summary: Lookup SKU price
+            value:
+              tool_type: flowmodule
+              type: script
+              path: f/agent_zr-8cgmn3s/lookup_sku

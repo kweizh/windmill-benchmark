@@ -1,0 +1,19 @@
+summary: ''
+description: ''
+lock: '!inline f/zealt_zr-dt76e9a/sig_verify.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    raw_string:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    x_signature:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required: []

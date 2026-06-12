@@ -1,0 +1,20 @@
+summary: "Sum two numbers"
+description: "Returns the sum of two numeric inputs"
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: object
+  properties:
+    a:
+      type: number
+      description: "First number"
+    b:
+      type: number
+      description: "Second number"
+  required:
+    - a
+    - b
+is_template: false
+kind: script
+lock: ""
+tag: ""
+language: bun

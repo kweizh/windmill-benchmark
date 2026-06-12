@@ -1,0 +1,65 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 4 items
+
+tests/test_final_state.py ..FF                                           [100%]
+
+=================================== FAILURES ===================================
+____________________ test_output_log_contains_expected_json ____________________
+
+    def test_output_log_contains_expected_json():
+        assert os.path.isfile(LOG_FILE), (
+            f"Expected log file at {LOG_FILE} produced by the task but it was not found."
+        )
+        with open(LOG_FILE, "r", encoding="utf-8", errors="replace") as fh:
+            content = fh.read()
+>       payload = _extract_last_json_object(content)
+
+tests/test_final_state.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+text = '\x1b[31mServer failed. Bad Request: Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\x1b[39m\n'
+
+    def _extract_last_json_object(text: str) -> dict:
+        """Find the last `{...}` JSON object in the text and return it as a dict."""
+        matches = re.findall(r"\{[^{}]*\}", text or "", flags=re.DOTALL)
+>       assert matches, (
+            f"No JSON object literal found in text: {text!r}"
+        )
+E       AssertionError: No JSON object literal found in text: '\x1b[31mServer failed. Bad Request: Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\x1b[39m\n'
+E       assert []
+
+tests/test_final_state.py:25: AssertionError
+_________________ test_deployed_script_runs_on_cloud_workspace _________________
+
+    def test_deployed_script_runs_on_cloud_workspace():
+        script_path_on_instance = f"f/zealt_{_run_id()}/echo_user"
+        # Windmill Bash scripts expose typed positional parameters. The parameter
+        # name does not affect the positional ordering, so the verifier supplies
+        # the input as the first declared field regardless of its key name.
+        payload = json.dumps({"msg": "hello"})
+        result = subprocess.run(
+            ["wmill", "script", "run", script_path_on_instance, "-d", payload],
+            capture_output=True,
+            text=True,
+            cwd=PROJECT_DIR,
+            timeout=180,
+        )
+>       assert result.returncode == 0, (
+            "`wmill script run` failed for the deployed Bash script. "
+            f"stdout: {result.stdout!r} stderr: {result.stderr!r}"
+        )
+E       AssertionError: `wmill script run` failed for the deployed Bash script. stdout: '' stderr: '\x1b[31mServer failed. Bad Request: Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\x1b[39m\n'
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/zealt_zr-qkaqjwz/echo_user', '-d', '{"msg": "hello"}'], returncode...r zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\x1b[39m\n').returncode
+
+tests/test_final_state.py:82: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_bash_script_file_exists
+PASSED tests/test_final_state.py::test_script_yaml_metadata_file_exists
+FAILED tests/test_final_state.py::test_output_log_contains_expected_json - As...
+FAILED tests/test_final_state.py::test_deployed_script_runs_on_cloud_workspace
+========================= 2 failed, 2 passed in 0.84s ==========================

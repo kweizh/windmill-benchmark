@@ -1,0 +1,29 @@
+# Bootstrap a Windmill Project with `wmill init`
+
+## Background
+Windmill is an open-source workflow engine and developer platform. Its CLI (`wmill`) treats a project directory on disk as a declarative bundle of scripts, flows, apps, and other assets that can be synchronized against a Windmill workspace. The entry point for turning an empty directory into a Windmill project is `wmill init`, which writes a `wmill.yaml` configuration file at the project root. This file binds your local working tree to a Windmill instance and controls what subsequent `wmill sync pull` / `wmill sync push` commands include, exclude, and skip.
+
+In this task, you will bootstrap a brand-new Windmill project folder by generating a default `wmill.yaml` via the `wmill` CLI, **without spinning up any local Windmill server**. The cloud-hosted instance at `https://app.windmill.dev` is the only Windmill backend used.
+
+## Requirements
+- The project root is `/home/user/myproject`. Treat that directory as the root of a fresh Windmill project.
+- Use the `wmill` CLI (already installed in the environment) to create a `wmill.yaml` file directly inside `/home/user/myproject/`.
+- The generated `wmill.yaml` must be the file produced by `wmill init` itself (i.e. the CLI must be the one writing it). Do **NOT** hand-author the file from scratch.
+- The file must be parseable as YAML.
+- The file must contain at least the standard top-level keys that `wmill init` documents as part of the default sync configuration (notably `includes` and `excludes`).
+
+## Implementation Hints
+- Run `wmill --version` first if you want to confirm the CLI is available.
+- The relevant subcommand is `wmill init`. Run it from inside `/home/user/myproject` so the file lands at the project root.
+- `wmill init` accepts a `--use-default` flag to skip any backend probing and write the default `wmill.yaml` non-interactively. This is the simplest path because the task does not require any workspace binding.
+- This task does **NOT** require you to authenticate against `https://app.windmill.dev`, register a workspace profile, or push any assets. Only the local `wmill.yaml` file is graded.
+- Do **NOT** attempt to start a local Windmill instance (Docker Compose, `windmill` binary, etc.). The cloud version is the only supported backend, but for this bootstrap task no network call against it is needed.
+- See the official wmill.yaml reference at https://www.windmill.dev/docs/advanced/cli/wmill-yaml-reference for the defaults that `wmill init` is expected to write.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- File `/home/user/myproject/wmill.yaml` exists and is a regular file.
+- The file is valid YAML and parses into a mapping (object) at the top level.
+- The parsed mapping contains the `includes` key (the default sync include-globs documented by `wmill init`).
+- The parsed mapping contains the `excludes` key (the default sync exclude-globs documented by `wmill init`).
+

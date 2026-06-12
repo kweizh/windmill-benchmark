@@ -1,0 +1,35 @@
+summary: Branch One Router
+schema:
+  type: object
+  properties:
+    route:
+      type: string
+  required:
+    - route
+value:
+  modules:
+    - value:
+        type: branchone
+        branches:
+          - expr: 'flow_input.route === "a"'
+            summary: Route A
+            modules:
+              - value:
+                  type: rawscript
+                  input_transforms: {}
+                  content: |
+                    def main():
+                        return "branch_a_route"
+                  language: python3
+          - expr: 'flow_input.route === "b"'
+            summary: Route B
+            modules:
+              - value:
+                  type: rawscript
+                  input_transforms: {}
+                  content: |
+                    def main():
+                        return "branch_b_route"
+                  language: python3
+        default: []
+  same_worker: false

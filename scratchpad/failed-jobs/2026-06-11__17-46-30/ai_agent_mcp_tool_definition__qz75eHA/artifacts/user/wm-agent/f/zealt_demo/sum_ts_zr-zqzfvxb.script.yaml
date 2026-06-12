@@ -1,0 +1,18 @@
+summary: Sum two numbers
+description: Returns the sum of two numeric inputs
+lock: '!inline f/zealt_demo/sum_ts_zr-zqzfvxb.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    a:
+      type: number
+      description: First number
+    b:
+      type: number
+      description: Second number
+  required:
+    - a
+    - b
+tag: ''

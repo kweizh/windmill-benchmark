@@ -1,0 +1,37 @@
+summary: Two-step linear flow that doubles x then increments by 1
+description: Step 1 doubles the input x. Step 2 increments step 1's result by 1.
+value:
+  modules:
+    - id: step1
+      value:
+        type: rawscript
+        language: bun
+        content: |
+          export async function main(x: number): Promise<number> {
+            return x * 2;
+          }
+        input_transforms:
+          x:
+            type: javascript
+            expr: flow_input.x
+    - id: step2
+      value:
+        type: rawscript
+        language: bun
+        content: |
+          export async function main(value: number): Promise<number> {
+            return value + 1;
+          }
+        input_transforms:
+          value:
+            type: javascript
+            expr: results.step1
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: object
+  properties:
+    x:
+      type: number
+      description: Numeric input to double then increment
+  required:
+    - x

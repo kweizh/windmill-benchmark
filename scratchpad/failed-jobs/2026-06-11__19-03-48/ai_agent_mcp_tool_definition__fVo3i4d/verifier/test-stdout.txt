@@ -1,0 +1,96 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 5 items
+
+tests/test_final_state.py EEEEE                                          [100%]
+
+==================================== ERRORS ====================================
+________________ ERROR at setup of test_first_module_is_aiagent ________________
+
+run_id = 'zr-fvo3i4d'
+
+    @pytest.fixture(scope="session")
+    def deploy_log_paths(run_id: str) -> Tuple[str, str]:
+>       assert os.path.isfile(DEPLOY_LOG_PATH), (
+            f"Expected deploy log file at {DEPLOY_LOG_PATH} but it does not exist."
+        )
+E       AssertionError: Expected deploy log file at /home/user/wm-agent/deploy.log but it does not exist.
+E       assert False
+E        +  where False = <function isfile at 0x7f1054f74220>('/home/user/wm-agent/deploy.log')
+E        +    where <function isfile at 0x7f1054f74220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:43: AssertionError
+_________ ERROR at setup of test_aiagent_tools_reference_deployed_tool _________
+
+run_id = 'zr-fvo3i4d'
+
+    @pytest.fixture(scope="session")
+    def deploy_log_paths(run_id: str) -> Tuple[str, str]:
+>       assert os.path.isfile(DEPLOY_LOG_PATH), (
+            f"Expected deploy log file at {DEPLOY_LOG_PATH} but it does not exist."
+        )
+E       AssertionError: Expected deploy log file at /home/user/wm-agent/deploy.log but it does not exist.
+E       assert False
+E        +  where False = <function isfile at 0x7f1054f74220>('/home/user/wm-agent/deploy.log')
+E        +    where <function isfile at 0x7f1054f74220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:43: AssertionError
+______ ERROR at setup of test_output_schema_defined_with_required_fields _______
+
+run_id = 'zr-fvo3i4d'
+
+    @pytest.fixture(scope="session")
+    def deploy_log_paths(run_id: str) -> Tuple[str, str]:
+>       assert os.path.isfile(DEPLOY_LOG_PATH), (
+            f"Expected deploy log file at {DEPLOY_LOG_PATH} but it does not exist."
+        )
+E       AssertionError: Expected deploy log file at /home/user/wm-agent/deploy.log but it does not exist.
+E       assert False
+E        +  where False = <function isfile at 0x7f1054f74220>('/home/user/wm-agent/deploy.log')
+E        +    where <function isfile at 0x7f1054f74220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:43: AssertionError
+________________ ERROR at setup of test_tool_script_is_deployed ________________
+
+run_id = 'zr-fvo3i4d'
+
+    @pytest.fixture(scope="session")
+    def deploy_log_paths(run_id: str) -> Tuple[str, str]:
+>       assert os.path.isfile(DEPLOY_LOG_PATH), (
+            f"Expected deploy log file at {DEPLOY_LOG_PATH} but it does not exist."
+        )
+E       AssertionError: Expected deploy log file at /home/user/wm-agent/deploy.log but it does not exist.
+E       assert False
+E        +  where False = <function isfile at 0x7f1054f74220>('/home/user/wm-agent/deploy.log')
+E        +    where <function isfile at 0x7f1054f74220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:43: AssertionError
+___ ERROR at setup of test_invoking_agent_returns_schema_conformant_payload ____
+
+run_id = 'zr-fvo3i4d'
+
+    @pytest.fixture(scope="session")
+    def deploy_log_paths(run_id: str) -> Tuple[str, str]:
+>       assert os.path.isfile(DEPLOY_LOG_PATH), (
+            f"Expected deploy log file at {DEPLOY_LOG_PATH} but it does not exist."
+        )
+E       AssertionError: Expected deploy log file at /home/user/wm-agent/deploy.log but it does not exist.
+E       assert False
+E        +  where False = <function isfile at 0x7f1054f74220>('/home/user/wm-agent/deploy.log')
+E        +    where <function isfile at 0x7f1054f74220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:43: AssertionError
+=========================== short test summary info ============================
+ERROR tests/test_final_state.py::test_first_module_is_aiagent - AssertionErro...
+ERROR tests/test_final_state.py::test_aiagent_tools_reference_deployed_tool
+ERROR tests/test_final_state.py::test_output_schema_defined_with_required_fields
+ERROR tests/test_final_state.py::test_tool_script_is_deployed - AssertionErro...
+ERROR tests/test_final_state.py::test_invoking_agent_returns_schema_conformant_payload
+============================== 5 errors in 0.56s ===============================

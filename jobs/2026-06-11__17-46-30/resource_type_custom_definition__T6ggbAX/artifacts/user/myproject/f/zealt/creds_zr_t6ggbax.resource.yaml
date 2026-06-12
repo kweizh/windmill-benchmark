@@ -1,0 +1,5 @@
+resource_type: my_api_creds_zr_t6ggbax
+description: API credentials for zr-t6ggbax
+value:
+  apiUrl: "https://api.example.com/zr-t6ggbax"
+  token: "secret-token-zr-t6ggbax"

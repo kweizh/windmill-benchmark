@@ -1,0 +1,13 @@
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: object
+  properties:
+    apiUrl:
+      type: string
+    token:
+      type: string
+      format: password
+  required:
+    - apiUrl
+    - token
+description: "Custom resource type for API credentials (zr-t6ggbax)"

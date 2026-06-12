@@ -1,0 +1,9 @@
+summary: WAC step determinism test
+description: Captures a timestamp via a step checkpoint and derives a date string from it.
+kind: script
+lock: []
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  properties: {}
+  title: WAC Step Determinism
+  type: object

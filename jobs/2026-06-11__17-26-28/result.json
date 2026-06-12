@@ -1,0 +1,67 @@
+{
+    "id": "21b9730e-2974-43db-92f6-2879044c7f05",
+    "started_at": "2026-06-11T17:26:29.962132",
+    "updated_at": "2026-06-11T17:46:27.349844",
+    "finished_at": "2026-06-11T17:46:27.349844",
+    "n_total_trials": 20,
+    "stats": {
+        "n_completed_trials": 20,
+        "n_errored_trials": 6,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "pochi__gemini-3.5-flash__pending-tasks": {
+                "n_trials": 16,
+                "n_errors": 6,
+                "metrics": [
+                    {
+                        "mean": 0.55
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "typescript_bun_typed_script__TTrENtH",
+                            "script_run_inline_payload_cli__cQGBjWa",
+                            "webhook_raw_signature_verificati__DT76E9a",
+                            "resource_type_custom_definition__EtKGdHj",
+                            "python_pydantic_input_validation__vKWGfdG",
+                            "declarative_flow_input_transform__NxAqs5q",
+                            "workspace_init_cli__oBLu7qB",
+                            "wac_step_determinism_ts__gEwYn9T",
+                            "fullcode_react_app_deploy__cGCTKmF",
+                            "secret_variable_log_masking_py__xn7HRDM",
+                            "webhook_sync_invocation_curl__sEenBzC"
+                        ],
+                        "0.0": [
+                            "ai_agent_mcp_tool_definition__fLDJzZb",
+                            "docker_arbitrary_image_script__685YW7T",
+                            "flow_error_handler_branch_yaml__9DTkN6C",
+                            "bash_script_env_vars__pBrfmeR",
+                            "flow_branch_one_of_yaml__GgvPLm3"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "InitialStateError": [
+                        "go_native_script_arithmetic__Fv2sXUJ",
+                        "wac_flow_user_state_isolation_ts__CFX6V7g",
+                        "multi_env_promote_yaml_cli__UD3AA8r",
+                        "datatable_typed_query_ts__YLNQHAW"
+                    ],
+                    "AgentTimeoutError": [
+                        "ai_agent_mcp_tool_definition__fLDJzZb",
+                        "docker_arbitrary_image_script__685YW7T"
+                    ]
+                }
+            }
+        },
+        "n_input_tokens": 0,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 616029,
+        "cost_usd": null
+    }
+}

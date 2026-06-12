@@ -1,0 +1,58 @@
+summary: AI agent that looks up product SKU prices
+description: An AI agent flow that takes a prompt, looks up SKU pricing via a tool, and returns structured output.
+value:
+  modules:
+    - id: a
+      summary: AI agent that looks up SKU prices
+      value:
+        type: aiagent
+        input_transforms:
+          provider:
+            type: static
+            value:
+              kind: openai
+              resource: ""
+              model: gpt-4o
+          user_message:
+            type: javascript
+            expr: flow_input.prompt
+          output_type:
+            type: static
+            value: text
+          output_schema:
+            type: static
+            value:
+              type: object
+              properties:
+                sku:
+                  type: string
+                  description: The product SKU
+                unit_price:
+                  type: number
+                  description: The unit price of the product
+                currency:
+                  type: string
+                  description: The currency of the unit price
+              required:
+                - sku
+                - unit_price
+                - currency
+          system_prompt:
+            type: static
+            value: You are a helpful product pricing assistant. When asked about a product SKU, use the lookup_sku tool to get the price information and return it in the structured format.
+        tools:
+          - id: lookup_sku
+            summary: Look up the unit price and currency for a given product SKU
+            value:
+              tool_type: flowmodule
+              type: script
+              path: f/agent_zr-fvo3i4d/lookup_sku
+              input_transforms: {}
+schema:
+  type: object
+  required:
+    - prompt
+  properties:
+    prompt:
+      type: string
+      description: The user prompt to send to the AI agent

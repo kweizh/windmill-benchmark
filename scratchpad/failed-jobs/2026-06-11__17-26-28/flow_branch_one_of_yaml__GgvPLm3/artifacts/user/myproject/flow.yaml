@@ -1,0 +1,50 @@
+summary: "Branch One Router"
+description: "A flow that routes based on a route parameter"
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: "object"
+  properties:
+    route:
+      type: "string"
+  required:
+    - route
+value:
+  modules:
+    - id: router_step
+      value:
+        type: branchone
+        branches:
+          - summary: "Branch A"
+            expr: "flow_input.route === 'a'"
+            modules:
+              - id: branch_a
+                value:
+                  type: rawscript
+                  content: |
+                    export async function main() {
+                      return "branch_a_route";
+                    }
+                  language: bun
+                  input_transforms: {}
+          - summary: "Branch B"
+            expr: "flow_input.route === 'b'"
+            modules:
+              - id: branch_b
+                value:
+                  type: rawscript
+                  content: |
+                    export async function main() {
+                      return "branch_b_route";
+                    }
+                  language: bun
+                  input_transforms: {}
+        default:
+          - id: branch_default
+            value:
+              type: rawscript
+              content: |
+                export async function main() {
+                  return "default_route";
+                }
+              language: bun
+              input_transforms: {}

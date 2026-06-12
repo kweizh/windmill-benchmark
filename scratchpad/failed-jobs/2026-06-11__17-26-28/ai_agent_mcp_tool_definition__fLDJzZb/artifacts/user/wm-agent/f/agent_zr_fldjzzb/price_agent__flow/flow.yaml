@@ -1,0 +1,53 @@
+summary: AI Agent with a Structured-Output Tool
+description: "AI Agent that can call a SKU lookup tool and return structured price information."
+value:
+  modules:
+    - id: price_agent_step
+      summary: AI Agent Step
+      value:
+        type: aiagent
+        parallel: false
+        tools:
+          - id: lookup_sku
+            summary: Look up unit price and currency for a SKU
+            value:
+              tool_type: flowmodule
+              type: script
+              path: f/agent_zr_fldjzzb/lookup_sku
+        input_transforms:
+          provider:
+            type: static
+            value:
+              kind: openai
+              resource: ""
+              model: gpt-4o
+          user_message:
+            type: javascript
+            expr: flow_input.prompt
+          output_schema:
+            type: static
+            value:
+              type: object
+              properties:
+                sku:
+                  type: string
+                unit_price:
+                  type: number
+                currency:
+                  type: string
+              required:
+                - sku
+                - unit_price
+                - currency
+has_on_behalf_of: false
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  order:
+    - prompt
+  properties:
+    prompt:
+      type: string
+      description: The prompt for the AI Agent
+  required:
+    - prompt

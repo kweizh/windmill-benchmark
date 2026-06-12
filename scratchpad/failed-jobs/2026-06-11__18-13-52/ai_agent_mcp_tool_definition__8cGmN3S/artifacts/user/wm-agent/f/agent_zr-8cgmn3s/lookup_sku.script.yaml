@@ -1,0 +1,12 @@
+summary: Lookup SKU price
+description: Returns unit price and currency for a given SKU
+kind: script
+schema:
+  $schema: http://json-schema.org/draft-07/schema#
+  type: object
+  properties:
+    sku:
+      type: string
+      description: The product SKU
+  required:
+    - sku

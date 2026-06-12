@@ -1,0 +1,93 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 10 items
+
+tests/test_final_state.py ....F.FFFF                                     [100%]
+
+=================================== FAILURES ===================================
+____________________ test_local_source_uses_init_time_step _____________________
+
+    def test_local_source_uses_init_time_step():
+        with open(LOCAL_TS_FILE) as f:
+            src = f.read()
+>       assert (
+            'step("init_time"' in src or "step('init_time'" in src
+        ), 'Source must contain a literal step("init_time", ...) checkpoint call.'
+E       AssertionError: Source must contain a literal step("init_time", ...) checkpoint call.
+E       assert ('step("init_time"' in 'import { workflow, step } from "windmill-client";\n\nexport const main = workflow(\n  "wac-step-determinism",\n  asyn...Date().toISOString()\n    );\n\n    const date = timestamp.slice(0, 10);\n\n    return { timestamp, date };\n  }\n);\n' or "step('init_time'" in 'import { workflow, step } from "windmill-client";\n\nexport const main = workflow(\n  "wac-step-determinism",\n  asyn...Date().toISOString()\n    );\n\n    const date = timestamp.slice(0, 10);\n\n    return { timestamp, date };\n  }\n);\n')
+
+tests/test_final_state.py:105: AssertionError
+____________________ test_script_deployed_on_windmill_cloud ____________________
+
+    def test_script_deployed_on_windmill_cloud():
+        url = f"{BASE_URL}/api/w/{WORKSPACE}/scripts/get/p/{SCRIPT_PATH}"
+        resp = requests.get(url, headers=_auth_headers(), timeout=30)
+        assert resp.status_code == 200, (
+            f"Windmill script lookup failed for {SCRIPT_PATH}: "
+            f"HTTP {resp.status_code} body={resp.text[:500]}"
+        )
+        data = resp.json()
+        language = data.get("language") or ""
+        assert language in ("bun", "deno", "nativets", "typescript"), (
+            f"Deployed script language expected to be TypeScript-family, got {language!r}."
+        )
+        content = data.get("content") or ""
+>       assert (
+            'step("init_time"' in content or "step('init_time'" in content
+        ), "Deployed script content must contain step(\"init_time\", ...)."
+E       AssertionError: Deployed script content must contain step("init_time", ...).
+E       assert ('step("init_time"' in 'import { workflow, step } from "windmill-client";\n\nexport const main = workflow(\n  "wac-step-determinism",\n  asyn...Date().toISOString()\n    );\n\n    const date = timestamp.slice(0, 10);\n\n    return { timestamp, date };\n  }\n);\n' or "step('init_time'" in 'import { workflow, step } from "windmill-client";\n\nexport const main = workflow(\n  "wac-step-determinism",\n  asyn...Date().toISOString()\n    );\n\n    const date = timestamp.slice(0, 10);\n\n    return { timestamp, date };\n  }\n);\n')
+
+tests/test_final_state.py:135: AssertionError
+____________________ test_output_log_present_and_parseable _____________________
+
+    def test_output_log_present_and_parseable():
+>       assert os.path.isfile(LOG_FILE), f"Expected log file at {LOG_FILE}"
+E       AssertionError: Expected log file at /home/user/myproject/output.log
+E       assert False
+E        +  where False = <function isfile at 0x7fa6730f0220>('/home/user/myproject/output.log')
+E        +    where <function isfile at 0x7fa6730f0220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:142: AssertionError
+___________________ test_job_completed_successfully_on_cloud ___________________
+
+    def test_job_completed_successfully_on_cloud():
+>       job_uuid, _ = _read_log_uuid_and_result()
+
+tests/test_final_state.py:172: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _read_log_uuid_and_result():
+>       with open(LOG_FILE) as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/myproject/output.log'
+
+tests/test_final_state.py:163: FileNotFoundError
+________________ test_result_schema_timestamp_and_derived_field ________________
+
+    def test_result_schema_timestamp_and_derived_field():
+>       job_uuid, log_result = _read_log_uuid_and_result()
+
+tests/test_final_state.py:190: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _read_log_uuid_and_result():
+>       with open(LOG_FILE) as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/myproject/output.log'
+
+tests/test_final_state.py:163: FileNotFoundError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_run_id_present
+PASSED tests/test_final_state.py::test_local_ts_source_exists
+PASSED tests/test_final_state.py::test_local_yaml_metadata_exists
+PASSED tests/test_final_state.py::test_local_source_uses_step_and_workflow_imports
+PASSED tests/test_final_state.py::test_local_source_has_no_unwrapped_nondeterminism
+FAILED tests/test_final_state.py::test_local_source_uses_init_time_step - Ass...
+FAILED tests/test_final_state.py::test_script_deployed_on_windmill_cloud - As...
+FAILED tests/test_final_state.py::test_output_log_present_and_parseable - Ass...
+FAILED tests/test_final_state.py::test_job_completed_successfully_on_cloud - ...
+FAILED tests/test_final_state.py::test_result_schema_timestamp_and_derived_field
+========================= 5 failed, 5 passed in 0.42s ==========================

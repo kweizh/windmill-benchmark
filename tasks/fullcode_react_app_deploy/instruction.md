@@ -1,0 +1,40 @@
+# Scaffold and Deploy a Windmill Full-Code React App
+
+## Background
+Windmill supports **Full-Code Apps**: hand-written React (or Svelte) single-page applications hosted by a Windmill workspace, where the frontend talks to backend runnables (scripts / flows) through an auto-generated, fully typed `wmill.ts` client. The whole bundle (frontend + backend runnables + metadata) lives on disk under an `.raw_app` directory and is deployed to a workspace with `wmill sync push`.
+
+Your job is to scaffold such an app locally, wire the frontend to a backend TypeScript runnable through the auto-generated client, and deploy the result to the cloud Windmill workspace (`https://app.windmill.dev`) using the `wmill` CLI. NEVER start a local Windmill instance.
+
+A Windmill CLI workspace named `harbor` is already configured and authenticated against the cloud instance. The bearer token is available in `WM_TOKEN`, the workspace id in `WM_WORKSPACE`, and the cloud base URL in `WM_BASE_URL` (defaults to `https://app.windmill.dev`).
+
+## Requirements
+- Create a Full-Code App scaffold using the Windmill CLI, choosing the **React** framework (React 18 or React 19, either is fine).
+- Place the app at the workspace path `f/harbor/fullcode_${SAFE_RUN_ID}` (see hint below for `SAFE_RUN_ID`). On disk this corresponds to a directory whose name ends in `.raw_app` (or `__raw_app` if `nonDottedPaths: true` is set in `wmill.yaml`).
+- Keep the auto-generated backend runnable that the wizard creates, or add your own simple backend TypeScript runnable under `backend/`. The runnable must export a typed `main` function so the auto-generated `wmill.ts` client can produce a typed binding for it.
+- The frontend (`App.tsx` or any frontend `.tsx` file in the app root) must import from the auto-generated `./wmill` module and call at least one runnable through the typed client (`backend.<name>(...)`, `backendAsync.<name>(...)`, or any of the helpers it exports).
+- Edit `raw_app.yaml` so that the deployed app is publicly accessible without authentication and exposes a stable, deterministic custom URL path:
+    - `public: true`
+    - `custom_path: "harbor-fullcode-${ZEALT_RUN_ID}"` (use the raw `ZEALT_RUN_ID` value, including the `zr-` prefix and any hyphens).
+- Install the npm dependencies of the scaffolded project and deploy the app to the cloud workspace with the standard sync push command (`wmill sync push`). Use `--yes` so the push runs non-interactively.
+- After a successful deploy, write the deployed public URL to the log file in the form `App URL: <url>` (see Acceptance Criteria for the exact format).
+
+## Implementation Hints
+- Read the parallel-run id from the `ZEALT_RUN_ID` environment variable. Some Windmill identifiers do not accept hyphens, so derive a safe variant by replacing `-` with `_`: e.g. in bash `SAFE_RUN_ID="${ZEALT_RUN_ID//-/_}"`. Use `SAFE_RUN_ID` inside Windmill paths (`f/harbor/fullcode_${SAFE_RUN_ID}`) and the original `ZEALT_RUN_ID` inside the `custom_path` (hyphens are allowed in URL custom paths).
+- The cloud workspace and CLI are already wired up in `/home/user/myproject` (`wmill.yaml` is present and a workspace named `harbor` is selected). You do **not** need to run `wmill workspace add` or `wmill init` again.
+- Use the official scaffolding command (`wmill app new`) when possible. It is interactive; if you need to drive it non-interactively, you can pipe answers in or write the scaffold manually as long as the final directory layout matches the documented one (`raw_app.yaml`, `package.json`, `index.tsx`, `App.tsx`, `index.css`, a `backend/` subfolder with at least one runnable, etc.).
+- The frontend must reference the auto-generated client. A typical import looks like `import { backend } from "./wmill"` (or `./wmill.ts`). The actual `wmill.ts` / `wmill.d.ts` files only appear once `wmill app dev` is run, but importing from `./wmill` in source is what the verifier checks.
+- Deploy with `wmill sync push --yes`. The push reads `raw_app.yaml`, bundles the frontend with esbuild, uploads backend runnables and registers the app at its Windmill path.
+- The deployed public URL has the shape `${WM_BASE_URL}/apps/custom/harbor-fullcode-${ZEALT_RUN_ID}`. Write this exact URL to the log file.
+- You can sanity-check the deployment with the Windmill REST API: `GET ${WM_BASE_URL}/api/w/${WM_WORKSPACE}/apps/get/p/f/harbor/fullcode_${SAFE_RUN_ID}` using an `Authorization: Bearer ${WM_TOKEN}` header.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- The Full-Code App scaffold exists on disk under `/home/user/myproject/f/harbor/` in a directory whose name is either `fullcode_<SAFE_RUN_ID>.raw_app` or `fullcode_<SAFE_RUN_ID>__raw_app`, where `<SAFE_RUN_ID>` is `ZEALT_RUN_ID` with `-` replaced by `_`.
+- The scaffold directory must contain at least: `raw_app.yaml`, `package.json`, `index.tsx`, `App.tsx`, and a `backend/` subdirectory with at least one TypeScript runnable file (`*.ts`) plus its companion `*.yaml`.
+- At least one frontend `.tsx` file in the scaffold root imports from the auto-generated client using a module specifier matching `./wmill` (with or without a `.ts` / `.tsx` extension) and contains at least one call site of the shape `backend.<name>(`, `backendAsync.<name>(`, `waitJob(`, `getJob(`, or `streamJob(`.
+- `raw_app.yaml` must declare `public: true` and `custom_path: harbor-fullcode-${ZEALT_RUN_ID}` (raw run-id).
+- The app must be deployed to the cloud workspace and discoverable through the Windmill REST API at `GET /api/w/${WM_WORKSPACE}/apps/get/p/f/harbor/fullcode_${SAFE_RUN_ID}` returning HTTP 200.
+- A simple HTTP `GET` (no authentication) to `${WM_BASE_URL}/apps/custom/harbor-fullcode-${ZEALT_RUN_ID}` must return HTTP 200.
+- Log file: /home/user/myproject/output.log. The log file must contain a line of the exact form: `App URL: ${WM_BASE_URL}/apps/custom/harbor-fullcode-${ZEALT_RUN_ID}` (with the run-id substituted).
+- Ensure the real deployment action is executed; do not mock or stub Windmill.
+

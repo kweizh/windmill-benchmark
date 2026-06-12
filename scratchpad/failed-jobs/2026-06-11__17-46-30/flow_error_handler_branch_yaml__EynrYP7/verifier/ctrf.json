@@ -1,0 +1,77 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T17:52:08.435345+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 5,
+            "passed": 4,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781200327648,
+            "stop": 1781200328435
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_local_flow_yaml_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781200327991,
+                "stop": 1781200327992,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_local_flow_yaml_uses_failure_module_keyword",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781200327992,
+                "stop": 1781200327994,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_is_deployed_with_failure_module",
+                "status": "passed",
+                "duration": 220,
+                "start": 1781200327995,
+                "stop": 1781200328215,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_running_flow_with_failure_returns_handled_payload",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 211,
+                "start": 1781200328216,
+                "stop": 1781200328427,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "auth_headers = {'Authorization': 'Bearer REDACTED', 'Content-Type': 'application/json'}\n\n    def test_running_flow_with_failure_returns_handled_payload(auth_headers):\n        url = (\n            f\"{_base_url()}/api/w/{_workspace()}/jobs/run_wait_result/f/\"\n            f\"{_remote_flow_path()}\"\n        )\n        resp = requests.post(\n            url,\n            headers=auth_headers,\n            json={\"should_fail\": True},\n            timeout=120,\n        )\n>       assert resp.status_code == 200, (\n            f\"Expected POST {url} with body {{'should_fail': true}} to return 200, \"\n            f\"got {resp.status_code}: {resp.text[:500]}\"\n        )\nE       AssertionError: Expected POST REDACTED/api/w/REDACTED/jobs/run_wait_result/f/f/zealt/err_handler_zr-eynryp7 with body {'should_fail': true} to return 200, got 400: Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\nE       assert 400 == 200\nE        +  where 400 = <Response [400]>.status_code\n\ntests/test_final_state.py:104: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_local_yaml_parses_as_openflow",
+                "status": "passed",
+                "duration": 7,
+                "start": 1781200328427,
+                "stop": 1781200328434,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

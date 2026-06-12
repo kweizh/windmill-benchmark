@@ -1,0 +1,74 @@
+{
+    "id": "caf04b86-b0b1-4af6-ba91-b6c353e33519",
+    "started_at": "2026-06-11T17:46:32.602167",
+    "updated_at": "2026-06-11T18:13:48.805784",
+    "finished_at": "2026-06-11T18:13:48.805784",
+    "n_total_trials": 20,
+    "stats": {
+        "n_completed_trials": 20,
+        "n_errored_trials": 13,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "pochi__claude-4-6-sonnet__pending-tasks": {
+                "n_trials": 16,
+                "n_errors": 13,
+                "metrics": [
+                    {
+                        "mean": 0.2
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "typescript_bun_typed_script__ZQzFVXB",
+                            "script_run_inline_payload_cli__q6q9KqA",
+                            "workspace_init_cli__ULRwPjz",
+                            "fullcode_react_app_deploy__arD5j2u"
+                        ],
+                        "0.0": [
+                            "webhook_raw_signature_verificati__iPf5jne",
+                            "resource_type_custom_definition__T6ggbAX",
+                            "ai_agent_mcp_tool_definition__qz75eHA",
+                            "docker_arbitrary_image_script__FNX2sw5",
+                            "flow_error_handler_branch_yaml__EynrYP7",
+                            "python_pydantic_input_validation__dtCsvkG",
+                            "bash_script_env_vars__qkAqJwz",
+                            "flow_branch_one_of_yaml__EYkTLmw",
+                            "declarative_flow_input_transform__UKtXLoZ",
+                            "wac_step_determinism_ts__8AQWSyx",
+                            "secret_variable_log_masking_py__BuJ3TwS",
+                            "webhook_sync_invocation_curl__aHPW6e8"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "InitialStateError": [
+                        "go_native_script_arithmetic__Dyj3C6B",
+                        "wac_flow_user_state_isolation_ts__3Ujx2F8",
+                        "multi_env_promote_yaml_cli__zheS5Fu",
+                        "datatable_typed_query_ts__Jh7xdkk"
+                    ],
+                    "AgentTimeoutError": [
+                        "ai_agent_mcp_tool_definition__qz75eHA",
+                        "docker_arbitrary_image_script__FNX2sw5",
+                        "python_pydantic_input_validation__dtCsvkG",
+                        "bash_script_env_vars__qkAqJwz",
+                        "flow_branch_one_of_yaml__EYkTLmw",
+                        "declarative_flow_input_transform__UKtXLoZ",
+                        "wac_step_determinism_ts__8AQWSyx",
+                        "secret_variable_log_masking_py__BuJ3TwS",
+                        "webhook_sync_invocation_curl__aHPW6e8"
+                    ]
+                }
+            }
+        },
+        "n_input_tokens": 0,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 211401,
+        "cost_usd": null
+    }
+}

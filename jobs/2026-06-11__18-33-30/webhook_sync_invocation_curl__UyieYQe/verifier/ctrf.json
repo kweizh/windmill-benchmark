@@ -1,0 +1,74 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T19:03:31.973445+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 1,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781204611433,
+            "stop": 1781204611973
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_is_deployed_in_workspace",
+                "status": "passed",
+                "duration": 303,
+                "start": 1781204611602,
+                "stop": 1781204611905,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_response_headers_file_exists_and_has_200_status",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 35,
+                "start": 1781204611905,
+                "stop": 1781204611940,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_response_headers_file_exists_and_has_200_status() -> None:\n        \"\"\"The captured HTTP response headers file must exist, be non-empty, and start with HTTP/.* 200.\"\"\"\n        assert os.path.isfile(HEADERS_FILE), (\n            f\"Captured headers file {HEADERS_FILE} does not exist.\"\n        )\n        with open(HEADERS_FILE, \"r\", encoding=\"utf-8\", errors=\"replace\") as f:\n            content = f.read()\n        assert content.strip(), f\"Captured headers file {HEADERS_FILE} is empty.\"\n    \n        lines = [line for line in content.splitlines() if line.strip()]\n        assert lines, f\"Captured headers file {HEADERS_FILE} has no non-empty lines.\"\n        status_line = lines[0]\n        assert status_line.startswith(\"HTTP/\"), (\n            f\"First non-empty line of {HEADERS_FILE} must start with 'HTTP/', \"\n            f\"got: {status_line!r}\"\n        )\n>       assert re.search(r\"\\b200\\b\", status_line), (\n            f\"Expected HTTP status 200 in the status line, got: {status_line!r}\"\n        )\nE       AssertionError: Expected HTTP status 200 in the status line, got: 'HTTP/2 400 '\nE       assert None\nE        +  where None = <function search at 0x7ff387643ba0>('\\\\b200\\\\b', 'HTTP/2 400 ')\nE        +    where <function search at 0x7ff387643ba0> = re.search\n\ntests/test_final_state.py:78: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_response_headers_file_contains_json_content_type",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 6,
+                "start": 1781204611941,
+                "stop": 1781204611947,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_response_headers_file_contains_json_content_type() -> None:\n        \"\"\"The Content-Type header in the captured response must contain 'application/json'.\"\"\"\n        with open(HEADERS_FILE, \"r\", encoding=\"utf-8\", errors=\"replace\") as f:\n            content = f.read()\n        content_type_value = None\n        for line in content.splitlines():\n            if \":\" not in line:\n                continue\n            name, _, value = line.partition(\":\")\n            if name.strip().lower() == \"content-type\":\n                content_type_value = value.strip().lower()\n                break\n        assert content_type_value is not None, (\n            f\"No 'Content-Type' header found in {HEADERS_FILE}.\"\n        )\n>       assert \"application/json\" in content_type_value, (\n            f\"Expected Content-Type to contain 'application/json', got: {content_type_value!r}\"\n        )\nE       AssertionError: Expected Content-Type to contain 'application/json', got: 'text/plain'\nE       assert 'application/json' in 'text/plain'\n\ntests/test_final_state.py:98: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_response_body_matches_expected_json",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 25,
+                "start": 1781204611947,
+                "stop": 1781204611972,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "windmill_env = {'expected_body_value': 'harbor-zr-uyieyqe', 'run_id': 'zr-uyieyqe', 'run_id_safe': 'zr_uyieyqe', 'script_path': 'u/REDACTED/echo_message_zr_uyieyqe', ...}\n\n    def test_response_body_matches_expected_json(windmill_env: dict) -> None:\n        \"\"\"The captured response body must equal exactly {'echoed': 'harbor-<ZEALT_RUN_ID>'}.\"\"\"\n        assert os.path.isfile(BODY_FILE), (\n            f\"Captured body file {BODY_FILE} does not exist.\"\n        )\n        with open(BODY_FILE, \"r\", encoding=\"utf-8\") as f:\n            raw = f.read()\n        try:\n>           parsed = json.loads(raw)\n\ntests/test_final_state.py:111: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nusr/lib/python3.12/json/__init__.py:346: in loads\n    return _default_decoder.decode(s)\nusr/lib/python3.12/json/decoder.py:337: in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <json.decoder.JSONDecoder object at 0x7ff3874e8320>\ns = 'Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.'\nidx = 0\n\n    def raw_decode(self, s, idx=0):\n        \"\"\"Decode a JSON document from ``s`` (a ``str`` beginning with\n        a JSON document) and return a 2-tuple of the Python\n        representation and the index in ``s`` where the document ended.\n    \n        This can be used to decode a JSON document from a string that may\n        have extraneous data at the end.\n    \n        \"\"\"\n        try:\n            obj, end = self.scan_once(s, idx)\n        except StopIteration as err:\n>           raise JSONDecodeError(\"Expecting value\", s, err.value) from None\nE           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n\nusr/lib/python3.12/json/decoder.py:355: JSONDecodeError\n\nDuring handling of the above exception, another exception occurred:\n\nwindmill_env = {'expected_body_value': 'harbor-zr-uyieyqe', 'run_id': 'zr-uyieyqe', 'run_id_safe': 'zr_uyieyqe', 'script_path': 'u/REDACTED/echo_message_zr_uyieyqe', ...}\n\n    def test_response_body_matches_expected_json(windmill_env: dict) -> None:\n        \"\"\"The captured response body must equal exactly {'echoed': 'harbor-<ZEALT_RUN_ID>'}.\"\"\"\n        assert os.path.isfile(BODY_FILE), (\n            f\"Captured body file {BODY_FILE} does not exist.\"\n        )\n        with open(BODY_FILE, \"r\", encoding=\"utf-8\") as f:\n            raw = f.read()\n        try:\n            parsed = json.loads(raw)\n        except json.JSONDecodeError as exc:\n>           pytest.fail(\n                f\"Captured body file {BODY_FILE} is not valid JSON: {exc}; content was: {raw!r}\"\n            )\nE           Failed: Captured body file /home/user/windmill-webhook/response.body.json is not valid JSON: Expecting value: line 1 column 1 (char 0); content was: 'Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.'\n\ntests/test_final_state.py:113: Failed",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

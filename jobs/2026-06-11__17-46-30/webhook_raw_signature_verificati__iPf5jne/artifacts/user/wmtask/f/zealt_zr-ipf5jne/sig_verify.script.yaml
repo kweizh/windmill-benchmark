@@ -1,0 +1,20 @@
+summary: "HMAC-SHA256 Webhook Signature Verifier"
+description: |
+  Reads the raw request body (via ?raw=true) and the X-Signature header
+  (via ?include_header=X-Signature), then verifies the HMAC-SHA256 digest
+  against the secret stored in the Windmill Variable webhook_secret.
+is_template: false
+lock: []
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  type: object
+  properties:
+    raw_string:
+      type: string
+      description: "Raw verbatim request body forwarded by Windmill (?raw=true)"
+      default: ""
+    x_signature:
+      type: string
+      description: "X-Signature header value forwarded by ?include_header=X-Signature"
+      default: ""
+  required: []

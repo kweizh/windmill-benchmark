@@ -1,0 +1,37 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 3 items
+
+tests/test_final_state.py .F.                                            [100%]
+
+=================================== FAILURES ===================================
+____________________ test_valid_input_returns_expected_json ____________________
+
+    def test_valid_input_returns_expected_json():
+        """A valid payload must pass Pydantic validation and produce the expected processed JSON."""
+        payload = json.dumps(
+            {"data": {"item": "widget", "quantity": 3, "unit_price": 2.5}}
+        )
+        result = _wmill_run(payload)
+>       assert result.returncode == 0, (
+            f"`wmill script run` with valid input exited with code {result.returncode}.\n"
+            f"stdout:\n{result.stdout}\nstderr:\n{result.stderr}"
+        )
+E       AssertionError: `wmill script run` with valid input exited with code 1.
+E         stdout:
+E         
+E         stderr:
+E         [31mServer failed. Bad Request: Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.[39m
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['wmill', 'script', 'run', 'f/zealt/pydantic_input_zr-rx3fzst', '-s', '-d', '{"data": {"item": "...r zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\x1b[39m\n').returncode
+
+tests/test_final_state.py:56: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_script_file_pair_exists
+PASSED tests/test_final_state.py::test_invalid_input_is_rejected_by_pydantic
+FAILED tests/test_final_state.py::test_valid_input_returns_expected_json - As...
+========================= 1 failed, 2 passed in 1.68s ==========================

@@ -1,0 +1,92 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T17:39:45.794732+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 7,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781199583700,
+            "stop": 1781199585794
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_flow_yaml_has_summary",
+                "status": "passed",
+                "duration": 17,
+                "start": 1781199584426,
+                "stop": 1781199584443,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_has_two_rawscript_modules",
+                "status": "passed",
+                "duration": 3,
+                "start": 1781199584445,
+                "stop": 1781199584448,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_second_module_input_transforms_reference_first",
+                "status": "passed",
+                "duration": 4,
+                "start": 1781199584450,
+                "stop": 1781199584454,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_schema_declares_x_input",
+                "status": "passed",
+                "duration": 3,
+                "start": 1781199584455,
+                "stop": 1781199584458,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_log_file_contents",
+                "status": "passed",
+                "duration": 4,
+                "start": 1781199584459,
+                "stop": 1781199584463,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_deployed_to_remote_path",
+                "status": "passed",
+                "duration": 261,
+                "start": 1781199584464,
+                "stop": 1781199584725,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_run_returns_expected_result",
+                "status": "passed",
+                "duration": 1065,
+                "start": 1781199584727,
+                "stop": 1781199585792,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

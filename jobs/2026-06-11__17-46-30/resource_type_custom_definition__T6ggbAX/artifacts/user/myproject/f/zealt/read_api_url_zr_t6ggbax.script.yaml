@@ -1,0 +1,9 @@
+summary: ''
+description: ''
+lock: '!inline f/zealt/read_api_url_zr_t6ggbax.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties: {}
+  required: []

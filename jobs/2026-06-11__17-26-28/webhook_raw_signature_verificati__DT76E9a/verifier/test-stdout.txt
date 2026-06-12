@@ -1,0 +1,16 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: anyio-4.13.0, json-ctrf-0.5.2
+collected 5 items
+
+tests/test_final_state.py .....                                          [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_script_deployed_with_required_imports
+PASSED tests/test_final_state.py::test_variable_is_secret
+PASSED tests/test_final_state.py::test_correctly_signed_request_returns_valid_true
+PASSED tests/test_final_state.py::test_incorrectly_signed_request_is_rejected
+PASSED tests/test_final_state.py::test_tampered_body_is_rejected
+============================== 5 passed in 2.97s ===============================

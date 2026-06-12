@@ -1,0 +1,27 @@
+summary: 'Pydantic Order Input Validation'
+description: 'Accepts an Order (item, quantity, unit_price) and returns item + total'
+lock: '!inline f/zealt/pydantic_input_zr-dtcsvkg.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    data:
+      type: object
+      description: Order model
+      properties:
+        item:
+          type: string
+          description: Name of the item
+        quantity:
+          type: integer
+          description: Quantity ordered
+        unit_price:
+          type: number
+          description: Unit price of the item
+      required:
+        - item
+        - quantity
+        - unit_price
+  required:
+    - data

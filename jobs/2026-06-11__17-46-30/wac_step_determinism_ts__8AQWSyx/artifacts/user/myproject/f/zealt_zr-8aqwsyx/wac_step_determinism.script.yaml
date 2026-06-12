@@ -1,0 +1,9 @@
+summary: WAC Step Determinism Demo
+description: >
+  Workflows-as-Code example that captures a timestamp via a step checkpoint
+  to ensure deterministic replay behaviour.
+is_template: false
+kind: script
+language: bun
+tag: ""
+lock: ""

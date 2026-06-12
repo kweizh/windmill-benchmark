@@ -1,0 +1,18 @@
+summary: Look up details of a product SKU
+description: Takes a single SKU string and returns unit price, currency, and SKU.
+lock: '!inline f/agent_zr_fldjzzb/lookup_sku.script.lock'
+has_on_behalf_of: false
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  order:
+    - sku
+  properties:
+    sku:
+      type: string
+      description: The product SKU to look up
+      default: null
+      originalType: string
+  required:
+    - sku

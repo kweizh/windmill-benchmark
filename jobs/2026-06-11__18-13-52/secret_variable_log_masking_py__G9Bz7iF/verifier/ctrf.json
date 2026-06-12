@@ -1,0 +1,86 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T18:33:14.763764+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 5,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781202793915,
+            "stop": 1781202794763
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_wmill_yaml_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781202794236,
+                "stop": 1781202794237,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_variable_manifest_exists_and_is_secret",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781202794237,
+                "stop": 1781202794239,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_file_pair_exists_and_calls_get_variable",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781202794240,
+                "stop": 1781202794241,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_output_log_contains_job_id",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781202794241,
+                "stop": 1781202794242,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_remote_variable_is_secret_via_api",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 329,
+                "start": 1781202794242,
+                "stop": 1781202794571,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_remote_variable_is_secret_via_api():\n        base_url, workspace, token = _windmill_env()\n        url = f\"{base_url}/api/w/{workspace}/variables/get/{_variable_path()}\"\n        response = requests.get(\n            url, headers={\"Authorization\": f\"Bearer {token}\"}, timeout=30\n        )\n>       assert response.status_code == 200, (\n            f\"GET {url} should return 200, got {response.status_code}: {response.text}\"\n        )\nE       AssertionError: GET REDACTED/api/w/REDACTED/variables/get/f/secret_masking_zr_g9bz7if/api_key should return 200, got 500: Internal: Error decrypting variable f/secret_masking_zr_g9bz7if/api_key: Internal: Invalid byte 95, offset 6. @variables.rs:247:14 @secret_backend_ext.rs:248:17\nE       assert 500 == 200\nE        +  where 500 = <Response [500]>.status_code\n\ntests/test_final_state.py:117: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_job_logs_show_masked_secret",
+                "status": "passed",
+                "duration": 192,
+                "start": 1781202794571,
+                "stop": 1781202794763,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

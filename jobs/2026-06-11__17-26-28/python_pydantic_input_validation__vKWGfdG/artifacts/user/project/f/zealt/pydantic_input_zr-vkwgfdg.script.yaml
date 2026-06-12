@@ -1,0 +1,26 @@
+summary: ''
+description: ''
+lock: '!inline f/zealt/pydantic_input_zr-vkwgfdg.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    data:
+      type: object
+      description: ''
+      default: null
+      format: resource-Order
+      properties:
+        item:
+          type: string
+          description: ''
+          originalType: string
+        quantity:
+          type: integer
+          description: ''
+        unit_price:
+          type: number
+          description: ''
+  required:
+    - data

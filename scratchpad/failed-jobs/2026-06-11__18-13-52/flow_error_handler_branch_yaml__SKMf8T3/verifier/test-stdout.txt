@@ -1,0 +1,41 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 5 items
+
+tests/test_final_state.py ...F.                                          [100%]
+
+=================================== FAILURES ===================================
+____________ test_running_flow_with_failure_returns_handled_payload ____________
+
+auth_headers = {'Authorization': 'Bearer REDACTED', 'Content-Type': 'application/json'}
+
+    def test_running_flow_with_failure_returns_handled_payload(auth_headers):
+        url = (
+            f"{_base_url()}/api/w/{_workspace()}/jobs/run_wait_result/f/"
+            f"{_remote_flow_path()}"
+        )
+        resp = requests.post(
+            url,
+            headers=auth_headers,
+            json={"should_fail": True},
+            timeout=120,
+        )
+>       assert resp.status_code == 200, (
+            f"Expected POST {url} with body {{'should_fail': true}} to return 200, "
+            f"got {resp.status_code}: {resp.text[:500]}"
+        )
+E       AssertionError: Expected POST REDACTED/api/w/REDACTED/jobs/run_wait_result/f/f/zealt/err_handler_zr-skmf8t3 with body {'should_fail': true} to return 200, got 400: Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.
+E       assert 400 == 200
+E        +  where 400 = <Response [400]>.status_code
+
+tests/test_final_state.py:104: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_local_flow_yaml_exists
+PASSED tests/test_final_state.py::test_local_flow_yaml_uses_failure_module_keyword
+PASSED tests/test_final_state.py::test_flow_is_deployed_with_failure_module
+PASSED tests/test_final_state.py::test_local_yaml_parses_as_openflow
+FAILED tests/test_final_state.py::test_running_flow_with_failure_returns_handled_payload
+========================= 1 failed, 4 passed in 0.83s ==========================

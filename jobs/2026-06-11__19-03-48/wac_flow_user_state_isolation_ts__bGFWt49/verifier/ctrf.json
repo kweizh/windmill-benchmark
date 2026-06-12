@@ -1,0 +1,137 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T19:24:00.793547+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 4,
+            "failed": 6,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781205839855,
+            "stop": 1781205840793
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_source_file_exists",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781205839889,
+                "stop": 1781205839891,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_source_imports_windmill_client",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781205839891,
+                "stop": 1781205839892,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_source_uses_documented_user_state_sdk_calls",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781205839893,
+                "stop": 1781205839894,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_source_main_accepts_number_array",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 21,
+                "start": 1781205839894,
+                "stop": 1781205839915,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_source_main_accepts_number_array():\n        with open(_script_file(), \"r\", encoding=\"utf-8\") as f:\n            source = f.read()\n        # Match async function main(values: number[]) OR Array<number>\n        pattern = re.compile(\n            r\"async\\s+function\\s+main\\s*\\(\\s*\\w+\\s*:\\s*(number\\s*\\[\\s*\\]|Array\\s*<\\s*number\\s*>)\",\n            re.DOTALL,\n        )\n>       assert pattern.search(source), (\n            \"Expected `async function main(<name>: number[])` (or `Array<number>`) \"\n            f\"signature. Got:\\n{source}\"\n        )\nE       AssertionError: Expected `async function main(<name>: number[])` (or `Array<number>`) signature. Got:\nE         import { workflow, step, getFlowUserState, setFlowUserState } from 'windmill-client';\nE         \nE         export const main = workflow(async (values: number[]) => {\nE           // Step 1: Initialize the accumulator to 0 in the per-flow user state\nE           await step('init_acc', async () => {\nE             await setFlowUserState('acc', 0);\nE           });\nE         \nE           // Step 2: Iterate over each value, read-modify-write the accumulator\nE           for (let i = 0; i < values.length; i++) {\nE             const v = values[i];\nE             await step(`accumulate_${i}`, async () => {\nE               const current: number = await getFlowUserState('acc');\nE               const next = current + v;\nE               await setFlowUserState('acc', next);\nE             });\nE           }\nE         \nE           // Step 3: Read the final accumulator and return it\nE           const finalAcc: number = await step('read_final', async () => {\nE             return await getFlowUserState('acc');\nE           });\nE         \nE           return { accumulator: finalAcc };\nE         });\nE         \nE       assert None\nE        +  where None = <built-in method search of re.Pattern object at 0x4f22f10>(\"import { workflow, step, getFlowUserState, setFlowUserState } from 'windmill-client';\\n\\nexport const main = workflow..._final', async () => {\\n    return await getFlowUserState('acc');\\n  });\\n\\n  return { accumulator: finalAcc };\\n});\\n\")\nE        +    where <built-in method search of re.Pattern object at 0x4f22f10> = re.compile('async\\\\s+function\\\\s+main\\\\s*\\\\(\\\\s*\\\\w+\\\\s*:\\\\s*(number\\\\s*\\\\[\\\\s*\\\\]|Array\\\\s*<\\\\s*number\\\\s*>)', re.DOTALL).search\n\ntests/test_final_state.py:62: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_log_file_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 5,
+                "start": 1781205839916,
+                "stop": 1781205839921,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_log_file_exists():\n>       assert os.path.isfile(LOG_PATH), (\n            f\"Expected the output log file at {LOG_PATH} after running the flow.\"\n        )\nE       AssertionError: Expected the output log file at /home/user/wac_accumulator/output.log after running the flow.\nE       assert False\nE        +  where False = <function isfile at 0x7fab12c08220>('/home/user/wac_accumulator/output.log')\nE        +    where <function isfile at 0x7fab12c08220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:69: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_log_contains_two_run_results",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7,
+                "start": 1781205839921,
+                "stop": 1781205839928,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_log_contains_two_run_results():\n>       runs = _parse_runs()\n\ntests/test_final_state.py:98: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _parse_runs():\n>       with open(LOG_PATH, \"r\", encoding=\"utf-8\") as f:\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/wac_accumulator/output.log'\n\ntests/test_final_state.py:75: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_each_run_has_numeric_accumulator",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7,
+                "start": 1781205839928,
+                "stop": 1781205839935,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_each_run_has_numeric_accumulator():\n>       runs = _parse_runs()\n\ntests/test_final_state.py:106: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _parse_runs():\n>       with open(LOG_PATH, \"r\", encoding=\"utf-8\") as f:\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/wac_accumulator/output.log'\n\ntests/test_final_state.py:75: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_within_run_accumulation_correct",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 8,
+                "start": 1781205839935,
+                "stop": 1781205839943,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_within_run_accumulation_correct():\n        \"\"\"Run 1's accumulator must equal 1+2+3 = 6, proving the\n        per-flow user state correctly carries the running total across steps\n        inside a single execution.\"\"\"\n>       runs = _parse_runs()\n\ntests/test_final_state.py:123: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _parse_runs():\n>       with open(LOG_PATH, \"r\", encoding=\"utf-8\") as f:\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/wac_accumulator/output.log'\n\ntests/test_final_state.py:75: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_runs_are_isolated_from_each_other",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7,
+                "start": 1781205839944,
+                "stop": 1781205839951,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_runs_are_isolated_from_each_other():\n        \"\"\"Run 2's accumulator must equal Run 1's accumulator, proving that\n        flow user state does NOT leak across separate flow runs. If state leaked,\n        Run 2 would start at 6 and end at 12 (or larger).\"\"\"\n>       runs = _parse_runs()\n\ntests/test_final_state.py:134: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def _parse_runs():\n>       with open(LOG_PATH, \"r\", encoding=\"utf-8\") as f:\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/wac_accumulator/output.log'\n\ntests/test_final_state.py:75: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_script_is_deployed_on_cloud_workspace",
+                "status": "passed",
+                "duration": 841,
+                "start": 1781205839951,
+                "stop": 1781205840792,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

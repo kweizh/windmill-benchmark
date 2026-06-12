@@ -1,0 +1,72 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 6 items
+
+tests/test_final_state.py ....FF                                         [100%]
+
+=================================== FAILURES ===================================
+______________________ test_log_file_contains_sum_result _______________________
+
+    def test_log_file_contains_sum_result() -> None:
+        assert os.path.isfile(LOG_FILE), (
+            f"Expected run log file at {LOG_FILE} containing the wmill script run output."
+        )
+        with open(LOG_FILE, "r", encoding="utf-8") as f:
+            content = f.read().strip()
+        assert content, f"Run log file {LOG_FILE} is empty."
+    
+        # Extract the last balanced JSON object from the log content.
+        last_obj_match = None
+        depth = 0
+        start = -1
+        for i, ch in enumerate(content):
+            if ch == "{":
+                if depth == 0:
+                    start = i
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0 and start != -1:
+                    last_obj_match = content[start : i + 1]
+>       assert last_obj_match, (
+            f"Could not find a JSON object inside {LOG_FILE}; content was: {content!r}"
+        )
+E       AssertionError: Could not find a JSON object inside /home/user/wmill_project/run.log; content was: '\x1b[31mServer failed. Bad Request: Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\x1b[39m'
+E       assert None
+
+tests/test_final_state.py:110: AssertionError
+_______________ test_deployed_script_returns_correct_sum_via_api _______________
+
+    def test_deployed_script_returns_correct_sum_via_api() -> None:
+        url = (
+            f"{_wmill_base_url()}/api/w/{_wmill_workspace()}/jobs/run_wait_result/p/"
+            f"{_script_path()}"
+        )
+        response = requests.post(
+            url,
+            headers={
+                "Authorization": f"Bearer {_wmill_token()}",
+                "Content-Type": "application/json",
+            },
+            json={"a": 2, "b": 3},
+            timeout=120,
+        )
+>       assert response.status_code == 200, (
+            f"Synchronous run via {url} failed with HTTP {response.status_code}: {response.text}"
+        )
+E       AssertionError: Synchronous run via REDACTED/api/w/REDACTED/jobs/run_wait_result/p/f/zealt_demo/sum_ts_zr-6whb2xx failed with HTTP 400: Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.
+E       assert 400 == 200
+E        +  where 400 = <Response [400]>.status_code
+
+tests/test_final_state.py:136: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_local_script_ts_file_exists
+PASSED tests/test_final_state.py::test_local_script_yaml_file_exists
+PASSED tests/test_final_state.py::test_main_function_signature_is_typed
+PASSED tests/test_final_state.py::test_script_deployed_to_cloud_workspace
+FAILED tests/test_final_state.py::test_log_file_contains_sum_result - Asserti...
+FAILED tests/test_final_state.py::test_deployed_script_returns_correct_sum_via_api
+========================= 2 failed, 4 passed in 0.63s ==========================

@@ -1,0 +1,12 @@
+summary: Look up unit price and currency for a product SKU
+description: Returns the unit price and currency for a given product SKU from the product database.
+kind: script
+schema:
+  type: object
+  required:
+    - sku
+  properties:
+    sku:
+      type: string
+      description: The product SKU to look up
+  $schema: https://json-schema.org/draft/2020-12/schema

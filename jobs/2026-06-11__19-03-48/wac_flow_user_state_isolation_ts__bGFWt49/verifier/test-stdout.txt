@@ -1,0 +1,139 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 10 items
+
+tests/test_final_state.py ...FFFFFF.                                     [100%]
+
+=================================== FAILURES ===================================
+____________________ test_source_main_accepts_number_array _____________________
+
+    def test_source_main_accepts_number_array():
+        with open(_script_file(), "r", encoding="utf-8") as f:
+            source = f.read()
+        # Match async function main(values: number[]) OR Array<number>
+        pattern = re.compile(
+            r"async\s+function\s+main\s*\(\s*\w+\s*:\s*(number\s*\[\s*\]|Array\s*<\s*number\s*>)",
+            re.DOTALL,
+        )
+>       assert pattern.search(source), (
+            "Expected `async function main(<name>: number[])` (or `Array<number>`) "
+            f"signature. Got:\n{source}"
+        )
+E       AssertionError: Expected `async function main(<name>: number[])` (or `Array<number>`) signature. Got:
+E         import { workflow, step, getFlowUserState, setFlowUserState } from 'windmill-client';
+E         
+E         export const main = workflow(async (values: number[]) => {
+E           // Step 1: Initialize the accumulator to 0 in the per-flow user state
+E           await step('init_acc', async () => {
+E             await setFlowUserState('acc', 0);
+E           });
+E         
+E           // Step 2: Iterate over each value, read-modify-write the accumulator
+E           for (let i = 0; i < values.length; i++) {
+E             const v = values[i];
+E             await step(`accumulate_${i}`, async () => {
+E               const current: number = await getFlowUserState('acc');
+E               const next = current + v;
+E               await setFlowUserState('acc', next);
+E             });
+E           }
+E         
+E           // Step 3: Read the final accumulator and return it
+E           const finalAcc: number = await step('read_final', async () => {
+E             return await getFlowUserState('acc');
+E           });
+E         
+E           return { accumulator: finalAcc };
+E         });
+E         
+E       assert None
+E        +  where None = <built-in method search of re.Pattern object at 0x4f22f10>("import { workflow, step, getFlowUserState, setFlowUserState } from 'windmill-client';\n\nexport const main = workflow..._final', async () => {\n    return await getFlowUserState('acc');\n  });\n\n  return { accumulator: finalAcc };\n});\n")
+E        +    where <built-in method search of re.Pattern object at 0x4f22f10> = re.compile('async\\s+function\\s+main\\s*\\(\\s*\\w+\\s*:\\s*(number\\s*\\[\\s*\\]|Array\\s*<\\s*number\\s*>)', re.DOTALL).search
+
+tests/test_final_state.py:62: AssertionError
+_____________________________ test_log_file_exists _____________________________
+
+    def test_log_file_exists():
+>       assert os.path.isfile(LOG_PATH), (
+            f"Expected the output log file at {LOG_PATH} after running the flow."
+        )
+E       AssertionError: Expected the output log file at /home/user/wac_accumulator/output.log after running the flow.
+E       assert False
+E        +  where False = <function isfile at 0x7fab12c08220>('/home/user/wac_accumulator/output.log')
+E        +    where <function isfile at 0x7fab12c08220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:69: AssertionError
+______________________ test_log_contains_two_run_results _______________________
+
+    def test_log_contains_two_run_results():
+>       runs = _parse_runs()
+
+tests/test_final_state.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _parse_runs():
+>       with open(LOG_PATH, "r", encoding="utf-8") as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/wac_accumulator/output.log'
+
+tests/test_final_state.py:75: FileNotFoundError
+____________________ test_each_run_has_numeric_accumulator _____________________
+
+    def test_each_run_has_numeric_accumulator():
+>       runs = _parse_runs()
+
+tests/test_final_state.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _parse_runs():
+>       with open(LOG_PATH, "r", encoding="utf-8") as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/wac_accumulator/output.log'
+
+tests/test_final_state.py:75: FileNotFoundError
+_____________________ test_within_run_accumulation_correct _____________________
+
+    def test_within_run_accumulation_correct():
+        """Run 1's accumulator must equal 1+2+3 = 6, proving the
+        per-flow user state correctly carries the running total across steps
+        inside a single execution."""
+>       runs = _parse_runs()
+
+tests/test_final_state.py:123: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _parse_runs():
+>       with open(LOG_PATH, "r", encoding="utf-8") as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/wac_accumulator/output.log'
+
+tests/test_final_state.py:75: FileNotFoundError
+____________________ test_runs_are_isolated_from_each_other ____________________
+
+    def test_runs_are_isolated_from_each_other():
+        """Run 2's accumulator must equal Run 1's accumulator, proving that
+        flow user state does NOT leak across separate flow runs. If state leaked,
+        Run 2 would start at 6 and end at 12 (or larger)."""
+>       runs = _parse_runs()
+
+tests/test_final_state.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _parse_runs():
+>       with open(LOG_PATH, "r", encoding="utf-8") as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/wac_accumulator/output.log'
+
+tests/test_final_state.py:75: FileNotFoundError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_source_file_exists
+PASSED tests/test_final_state.py::test_source_imports_windmill_client
+PASSED tests/test_final_state.py::test_source_uses_documented_user_state_sdk_calls
+PASSED tests/test_final_state.py::test_script_is_deployed_on_cloud_workspace
+FAILED tests/test_final_state.py::test_source_main_accepts_number_array - Ass...
+FAILED tests/test_final_state.py::test_log_file_exists - AssertionError: Expe...
+FAILED tests/test_final_state.py::test_log_contains_two_run_results - FileNot...
+FAILED tests/test_final_state.py::test_each_run_has_numeric_accumulator - Fil...
+FAILED tests/test_final_state.py::test_within_run_accumulation_correct - File...
+FAILED tests/test_final_state.py::test_runs_are_isolated_from_each_other - Fi...
+========================= 6 failed, 4 passed in 0.93s ==========================

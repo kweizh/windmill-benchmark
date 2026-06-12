@@ -1,0 +1,35 @@
+summary: "Two step flow"
+schema:
+  type: object
+  properties:
+    x:
+      type: number
+      description: "Input x"
+  required:
+    - x
+value:
+  modules:
+    - id: step1
+      value:
+        type: rawscript
+        content: |
+          export async function main(x: number) {
+            return x * 2;
+          }
+        language: bun
+        input_transforms:
+          x:
+            type: javascript
+            expr: flow_input.x
+    - id: step2
+      value:
+        type: rawscript
+        content: |
+          export async function main(val: number) {
+            return val + 1;
+          }
+        language: bun
+        input_transforms:
+          val:
+            type: javascript
+            expr: results.step1

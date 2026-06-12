@@ -1,0 +1,41 @@
+summary: 'Branch One Router'
+description: 'A router using branchone'
+value:
+  modules:
+    - id: router
+      value:
+        type: branchone
+        default: []
+        branches:
+          - summary: 'Branch A'
+            expr: "flow_input.route === 'a'"
+            modules:
+              - id: a_handler
+                value:
+                  type: rawscript
+                  content: |
+                    export async function main() {
+                      return "branch_a_route";
+                    }
+                  language: deno
+                  input_transforms: {}
+          - summary: 'Branch B'
+            expr: "flow_input.route === 'b'"
+            modules:
+              - id: b_handler
+                value:
+                  type: rawscript
+                  content: |
+                    export async function main() {
+                      return "branch_b_route";
+                    }
+                  language: deno
+                  input_transforms: {}
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    route:
+      type: string
+  required:
+    - route

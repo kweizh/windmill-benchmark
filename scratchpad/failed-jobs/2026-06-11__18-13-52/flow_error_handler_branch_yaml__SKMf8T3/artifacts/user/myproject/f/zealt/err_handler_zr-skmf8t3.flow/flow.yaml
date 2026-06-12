@@ -1,0 +1,39 @@
+summary: "Error handler flow"
+description: "A flow that throws an error and handles it"
+schema:
+  $schema: "http://json-schema.org/draft-07/schema#"
+  type: object
+  properties:
+    should_fail:
+      type: boolean
+      description: "Whether the script should fail"
+      default: false
+  required:
+    - should_fail
+value:
+  modules:
+    - id: inner_script
+      value:
+        type: rawscript
+        content: |
+          export async function main(should_fail) {
+            if (should_fail) {
+              throw new Error("Intentional failure from inner script");
+            }
+            return { success: true };
+          }
+        language: bun
+        input_transforms:
+          should_fail:
+            type: javascript
+            expr: "flow_input.should_fail"
+  failure_module:
+    id: failure
+    value:
+      type: rawscript
+      content: |
+        export async function main(error) {
+          return { handled: true, reason: (error && error.message) ? error.message : String(error) };
+        }
+      language: bun
+      input_transforms: {}

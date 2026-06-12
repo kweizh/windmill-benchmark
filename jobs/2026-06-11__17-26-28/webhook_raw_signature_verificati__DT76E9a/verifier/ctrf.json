@@ -1,0 +1,74 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T17:33:57.675868+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 5,
+            "passed": 5,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781199234702,
+            "stop": 1781199237675
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_script_deployed_with_required_imports",
+                "status": "passed",
+                "duration": 138,
+                "start": 1781199234845,
+                "stop": 1781199234983,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_variable_is_secret",
+                "status": "passed",
+                "duration": 139,
+                "start": 1781199234984,
+                "stop": 1781199235123,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_correctly_signed_request_returns_valid_true",
+                "status": "passed",
+                "duration": 944,
+                "start": 1781199235124,
+                "stop": 1781199236068,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_incorrectly_signed_request_is_rejected",
+                "status": "passed",
+                "duration": 814,
+                "start": 1781199236068,
+                "stop": 1781199236882,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_tampered_body_is_rejected",
+                "status": "passed",
+                "duration": 793,
+                "start": 1781199236882,
+                "stop": 1781199237675,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

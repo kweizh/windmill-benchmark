@@ -1,0 +1,104 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.2
+collected 8 items
+
+bootstrap/test_initial_state.py::test_wmill_cli_available PASSED
+bootstrap/test_initial_state.py::test_node_available PASSED
+bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+bootstrap/test_initial_state.py::test_wmill_yaml_exists PASSED
+bootstrap/test_initial_state.py::test_zealt_run_id_env_present PASSED
+bootstrap/test_initial_state.py::test_wmill_token_env_present PASSED
+bootstrap/test_initial_state.py::test_workspace_registered_and_active FAILED
+bootstrap/test_initial_state.py::test_workspace_whoami_reachable FAILED
+
+=================================== FAILURES ===================================
+_____________________ test_workspace_registered_and_active _____________________
+
+    def test_workspace_registered_and_active():
+>       _ensure_workspace_registered()
+
+bootstrap/test_initial_state.py:91: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _ensure_workspace_registered():
+        """Register the cloud workspace with the wmill CLI using the runtime
+        API token from the environment. Idempotent: if the workspace is already
+        configured, this is a no-op.
+        """
+        token = os.environ.get("WMILL_TOKEN")
+        assert token, "WMILL_TOKEN environment variable must be set."
+        # Run unconditionally; the CLI will overwrite/create the named workspace.
+        result = subprocess.run(
+            [
+                "wmill",
+                "workspace",
+                "add",
+                WORKSPACE_NAME,
+                WORKSPACE_ID,
+                WINDMILL_REMOTE,
+                "--token",
+                token,
+            ],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True,
+            timeout=60,
+        )
+>       assert result.returncode == 0, (
+            f"Failed to register workspace '{WORKSPACE_NAME}'. "
+            f"stdout={result.stdout!r} stderr={result.stderr!r}"
+        )
+E       AssertionError: Failed to register workspace 'evaluation-ws'. stdout='\x1b[34m\x1b[1m\x1b[31m! Workspace at id evaluation-ws on REDACTED/ does not exist. Re-run with --create to create it. Aborting.\x1b[39m\x1b[22m\x1b[39m\n\x1b[34mOn that instance and with those credentials, the workspaces that you can access are:\x1b[39m\n\x1b[34m- REDACTED (name: REDACTED)\x1b[39m\n' stderr=''
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['wmill', 'workspace', 'add', 'evaluation-ws', 'evaluation-ws', 'REDACTED', '--token', 'REDACTED'], returncode=1, stdout='\x1b[34m\x1b[1m\x1b[31m! Workspace at id evaluation-ws on REDACTED/ does not exist. Re-run with --create to create it. Aborting.\x1b[39m\x1b[22m\x1b[39m\n\x1b[34mOn that instance and with those credentials, the workspaces that you can access are:\x1b[39m\n\x1b[34m- REDACTED (name: REDACTED)\x1b[39m\n', stderr='').returncode
+
+bootstrap/test_initial_state.py:36: AssertionError
+_______________________ test_workspace_whoami_reachable ________________________
+
+    def test_workspace_whoami_reachable():
+        """Sanity-check that the configured token can actually authenticate
+        against the cloud workspace before the agent begins the task."""
+>       _ensure_workspace_registered()
+
+bootstrap/test_initial_state.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _ensure_workspace_registered():
+        """Register the cloud workspace with the wmill CLI using the runtime
+        API token from the environment. Idempotent: if the workspace is already
+        configured, this is a no-op.
+        """
+        token = os.environ.get("WMILL_TOKEN")
+        assert token, "WMILL_TOKEN environment variable must be set."
+        # Run unconditionally; the CLI will overwrite/create the named workspace.
+        result = subprocess.run(
+            [
+                "wmill",
+                "workspace",
+                "add",
+                WORKSPACE_NAME,
+                WORKSPACE_ID,
+                WINDMILL_REMOTE,
+                "--token",
+                token,
+            ],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True,
+            timeout=60,
+        )
+>       assert result.returncode == 0, (
+            f"Failed to register workspace '{WORKSPACE_NAME}'. "
+            f"stdout={result.stdout!r} stderr={result.stderr!r}"
+        )
+E       AssertionError: Failed to register workspace 'evaluation-ws'. stdout='\x1b[34m\x1b[1m\x1b[31m! Workspace at id evaluation-ws on REDACTED/ does not exist. Re-run with --create to create it. Aborting.\x1b[39m\x1b[22m\x1b[39m\n\x1b[34mOn that instance and with those credentials, the workspaces that you can access are:\x1b[39m\n\x1b[34m- REDACTED (name: REDACTED)\x1b[39m\n' stderr=''
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['wmill', 'workspace', 'add', 'evaluation-ws', 'evaluation-ws', 'REDACTED', '--token', 'REDACTED'], returncode=1, stdout='\x1b[34m\x1b[1m\x1b[31m! Workspace at id evaluation-ws on REDACTED/ does not exist. Re-run with --create to create it. Aborting.\x1b[39m\x1b[22m\x1b[39m\n\x1b[34mOn that instance and with those credentials, the workspaces that you can access are:\x1b[39m\n\x1b[34m- REDACTED (name: REDACTED)\x1b[39m\n', stderr='').returncode
+
+bootstrap/test_initial_state.py:36: AssertionError
+=========================== short test summary info ============================
+FAILED bootstrap/test_initial_state.py::test_workspace_registered_and_active
+FAILED bootstrap/test_initial_state.py::test_workspace_whoami_reachable - Ass...
+========================= 2 failed, 6 passed in 1.34s ==========================

@@ -1,0 +1,3 @@
+language: bash
+summary: Hello Alpine sandboxed Docker script
+description: Prints hello message from Alpine Linux inside a sandboxed container

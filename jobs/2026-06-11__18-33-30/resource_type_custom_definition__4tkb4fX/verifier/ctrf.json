@@ -1,0 +1,71 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T18:40:26.444017+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 2,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781203225763,
+            "stop": 1781203226443
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_output_log_contains_api_url",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781203225930,
+                "stop": 1781203225932,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_resource_type_exists_with_expected_schema",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 230,
+                "start": 1781203225932,
+                "stop": 1781203226162,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "base_url = 'REDACTED', workspace = 'REDACTED'\nauth_headers = {'Authorization': 'Bearer REDACTED'}\nresource_type_name = 'my_api_creds_zr_4tkb4fx'\n\n    def test_resource_type_exists_with_expected_schema(\n        base_url: str,\n        workspace: str,\n        auth_headers: dict,\n        resource_type_name: str,\n    ):\n        url = f\"{base_url}/api/w/{workspace}/resources/type/get/{resource_type_name}\"\n        response = requests.get(url, headers=auth_headers, timeout=30)\n        assert response.status_code == 200, (\n            f\"Resource type {resource_type_name} not found via {url}: \"\n            f\"status={response.status_code}, body={response.text}\"\n        )\n        body = response.json()\n        schema = body.get(\"schema\")\n>       assert isinstance(schema, dict), (\n            f\"Resource type {resource_type_name} must have a JSON Schema 'schema' object,\"\n            f\" got: {body}\"\n        )\nE       AssertionError: Resource type my_api_creds_zr_4tkb4fx must have a JSON Schema 'schema' object, got: {'workspace_id': 'REDACTED', 'name': 'my_api_creds_zr_4tkb4fx', 'schema': None, 'description': None, 'created_by': 'REDACTED', 'edited_at': '2026-06-11T18:39:23.754329Z', 'format_extension': None, 'is_fileset': False}\nE       assert False\nE        +  where False = isinstance(None, dict)\n\ntests/test_final_state.py:92: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_resource_instance_exists_with_expected_value",
+                "status": "passed",
+                "duration": 139,
+                "start": 1781203226162,
+                "stop": 1781203226301,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deployed_script_returns_api_url",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 141,
+                "start": 1781203226301,
+                "stop": 1781203226442,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "base_url = 'REDACTED', workspace = 'REDACTED'\nauth_headers = {'Authorization': 'Bearer REDACTED'}\nscript_path = 'f/zealt/read_api_url_zr_4tkb4fx'\nexpected_api_url = 'https://api.example.com/zr-4tkb4fx'\n\n    def test_deployed_script_returns_api_url(\n        base_url: str,\n        workspace: str,\n        auth_headers: dict,\n        script_path: str,\n        expected_api_url: str,\n    ):\n        url = f\"{base_url}/api/w/{workspace}/jobs/run_wait_result/p/{script_path}\"\n        response = requests.post(url, headers=auth_headers, json={}, timeout=120)\n>       assert response.status_code == 200, (\n            f\"Failed to run script at {script_path} via {url}: \"\n            f\"status={response.status_code}, body={response.text}\"\n        )\nE       AssertionError: Failed to run script at f/zealt/read_api_url_zr_4tkb4fx via REDACTED/api/w/REDACTED/jobs/run_wait_result/p/f/zealt/read_api_url_zr_4tkb4fx: status=400, body=Quota exceeded: User zwpaperad@gmail.com has exceeded the free usage limit of 1000 that applies outside of premium workspaces.\nE       assert 400 == 200\nE        +  where 400 = <Response [400]>.status_code\n\ntests/test_final_state.py:166: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

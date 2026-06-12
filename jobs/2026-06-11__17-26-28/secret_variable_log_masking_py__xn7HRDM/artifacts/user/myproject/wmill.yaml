@@ -1,0 +1,20 @@
+defaultTs: bun
+includes:
+  - f/secret_masking_zr_xn7hrdm/**
+excludes: []
+skipVariables: false
+skipResources: true
+skipResourceTypes: true
+skipSecrets: false
+skipScripts: false
+skipFlows: true
+skipApps: true
+skipFolders: false
+skipWorkspaceDependencies: true
+nonDottedPaths: true
+syncBehavior: v1
+codebases: []
+workspaces:
+  main: {}
+  REDACTED:
+    baseUrl: REDACTED/

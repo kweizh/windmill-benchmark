@@ -1,0 +1,38 @@
+summary: "Two-step linear flow: double then increment"
+
+schema:
+  type: object
+  properties:
+    x:
+      type: number
+      description: "Input number to double then increment"
+  required:
+    - x
+
+value:
+  modules:
+    - id: a
+      summary: "Double the input"
+      value:
+        type: rawscript
+        language: python3
+        content: |
+          def main(x: float):
+              return x * 2
+        input_transforms:
+          x:
+            type: javascript
+            expr: "flow_input.x"
+
+    - id: b
+      summary: "Increment by 1"
+      value:
+        type: rawscript
+        language: python3
+        content: |
+          def main(value: float):
+              return value + 1
+        input_transforms:
+          value:
+            type: javascript
+            expr: "results.a"

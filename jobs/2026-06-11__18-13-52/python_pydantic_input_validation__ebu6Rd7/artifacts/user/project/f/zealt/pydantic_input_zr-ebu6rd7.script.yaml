@@ -1,0 +1,23 @@
+summary: ''
+description: ''
+lock: ''
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    data:
+      type: object
+      properties:
+        item:
+          type: string
+        quantity:
+          type: integer
+        unit_price:
+          type: number
+      required:
+        - item
+        - quantity
+        - unit_price
+  required:
+    - data

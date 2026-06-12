@@ -1,0 +1,89 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T17:37:24.980104+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 4,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781199444357,
+            "stop": 1781199444979
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_flow_yaml_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781199444540,
+                "stop": 1781199444541,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_yaml_uses_branchone_with_two_branches",
+                "status": "passed",
+                "duration": 6,
+                "start": 1781199444541,
+                "stop": 1781199444547,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_log_file_records_flow_path",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781199444547,
+                "stop": 1781199444548,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_deployed_to_workspace",
+                "status": "passed",
+                "duration": 136,
+                "start": 1781199444549,
+                "stop": 1781199444685,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_flow_route_a_returns_branch_a_constant",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 158,
+                "start": 1781199444685,
+                "stop": 1781199444843,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "wm_base_url = 'REDACTED', wm_workspace = 'REDACTED'\nwm_headers = {'Authorization': 'Bearer REDACTED', 'Content-Type': 'application/json'}\nremote_flow_path = 'f/zealt/branch_one_zr-ggvplm3'\n\n    def test_flow_route_a_returns_branch_a_constant(\n        wm_base_url: str, wm_workspace: str, wm_headers: dict, remote_flow_path: str\n    ):\n>       result = _run_flow_wait_result(\n            wm_base_url, wm_workspace, wm_headers, remote_flow_path, {\"route\": \"a\"}\n        )\n\ntests/test_final_state.py:172: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nwm_base_url = 'REDACTED', wm_workspace = 'REDACTED'\nwm_headers = {'Authorization': 'Bearer REDACTED', 'Content-Type': 'application/json'}\nremote_flow_path = 'f/zealt/branch_one_zr-ggvplm3', payload = {'route': 'a'}\n\n    def _run_flow_wait_result(\n        wm_base_url: str, wm_workspace: str, wm_headers: dict, remote_flow_path: str, payload: dict\n    ):\n        url = (\n            f\"{wm_base_url}/api/w/{wm_workspace}/jobs/run_wait_result/{remote_flow_path}\"\n        )\n        response = requests.post(url, headers=wm_headers, json=payload, timeout=120)\n>       assert response.status_code == 200, (\n            f\"Expected POST {url} with payload {payload} to return 200, \"\n            f\"got {response.status_code}: {response.text}\"\n        )\nE       AssertionError: Expected POST REDACTED/api/w/REDACTED/jobs/run_wait_result/f/zealt/branch_one_zr-ggvplm3 with payload {'route': 'a'} to return 200, got 404: Not found: flow not found at name zealt/branch_one_zr-ggvplm3 (lib.rs:1502)\nE       assert 404 == 200\nE        +  where 404 = <Response [404]>.status_code\n\ntests/test_final_state.py:157: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_flow_route_b_returns_branch_b_constant",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 136,
+                "start": 1781199444843,
+                "stop": 1781199444979,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "wm_base_url = 'REDACTED', wm_workspace = 'REDACTED'\nwm_headers = {'Authorization': 'Bearer REDACTED', 'Content-Type': 'application/json'}\nremote_flow_path = 'f/zealt/branch_one_zr-ggvplm3'\n\n    def test_flow_route_b_returns_branch_b_constant(\n        wm_base_url: str, wm_workspace: str, wm_headers: dict, remote_flow_path: str\n    ):\n>       result = _run_flow_wait_result(\n            wm_base_url, wm_workspace, wm_headers, remote_flow_path, {\"route\": \"b\"}\n        )\n\ntests/test_final_state.py:184: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nwm_base_url = 'REDACTED', wm_workspace = 'REDACTED'\nwm_headers = {'Authorization': 'Bearer REDACTED', 'Content-Type': 'application/json'}\nremote_flow_path = 'f/zealt/branch_one_zr-ggvplm3', payload = {'route': 'b'}\n\n    def _run_flow_wait_result(\n        wm_base_url: str, wm_workspace: str, wm_headers: dict, remote_flow_path: str, payload: dict\n    ):\n        url = (\n            f\"{wm_base_url}/api/w/{wm_workspace}/jobs/run_wait_result/{remote_flow_path}\"\n        )\n        response = requests.post(url, headers=wm_headers, json=payload, timeout=120)\n>       assert response.status_code == 200, (\n            f\"Expected POST {url} with payload {payload} to return 200, \"\n            f\"got {response.status_code}: {response.text}\"\n        )\nE       AssertionError: Expected POST REDACTED/api/w/REDACTED/jobs/run_wait_result/f/zealt/branch_one_zr-ggvplm3 with payload {'route': 'b'} to return 200, got 404: Not found: flow not found at name zealt/branch_one_zr-ggvplm3 (lib.rs:1502)\nE       assert 404 == 200\nE        +  where 404 = <Response [404]>.status_code\n\ntests/test_final_state.py:157: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}
